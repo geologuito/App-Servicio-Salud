@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="servicioSalud">
+  <ClassDiagramComponents>
+    <Class name="Usuarios" package="" visibility="public" xPosition="22.0" yPosition="37.0">
+      <Fields>
+        <Field name="DNI" type="Integer" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="correo" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="profesional" type="Profesional" visibility="private"/>
+        <Field name="turno" type="Turno" visibility="private"/>
+        <Field name="calle" type="String" visibility="private"/>
+        <Field name="numero" type="String" visibility="private"/>
+        <Field name="prepaga" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearUsuario" returnType="void" visibility="public"/>
+        <Method name="modificarUsuario" returnType="void" visibility="public"/>
+        <Method name="pedirTurno" returnType="void" visibility="public"/>
+        <Method name="consultarTurno" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Profesional" package="" visibility="public" xPosition="22.0" yPosition="356.0">
+      <Fields>
+        <Field name="matricula" type="Integer" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="correo" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="activo" type="Boleans" visibility="private"/>
+        <Field name="especialidad" type="String" visibility="private"/>
+        <Field name="valorConsulta" type="Integer" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearProfesional" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Turnos" package="" visibility="public" xPosition="276.0" yPosition="156.0">
+      <Fields>
+        <Field name="operacion" type="id" visibility="private"/>
+        <Field name="idUsuario" type="Usuario" visibility="private"/>
+        <Field name="idProfesional" type="Profesional" visibility="private"/>
+        <Field name="fecha" type="Date" visibility="private"/>
+        <Field name="hora" type="Date" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearTurno" returnType="void" visibility="public"/>
+        <Method name="modificarTurnoi" returnType="void" visibility="public"/>
+        <Method name="cancelarTurno" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Consulta" package="" visibility="public" xPosition="526.0" yPosition="37.0">
+      <Fields>
+        <Field name="idTurno" type="Turno" visibility="private"/>
+        <Field name="consulta" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearFicha" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+    <Class name="Calificacion" package="" visibility="public" xPosition="526.0" yPosition="248.0">
+      <Fields>
+        <Field name="idTurno" type="Turno" visibility="private"/>
+        <Field name="calificacion" type="String" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="crearCalifiacion" returnType="void" visibility="public"/>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations/>
+</ClassDiagram>
