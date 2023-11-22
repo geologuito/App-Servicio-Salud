@@ -1,4 +1,4 @@
-package com.app.serviciosalud;
+package com.app.servicioSalud;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
