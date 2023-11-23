@@ -2,7 +2,7 @@
 
 <ClassDiagram name="servicioSalud">
   <ClassDiagramComponents>
-    <Class name="Admin" package="com.app.servicioSalud.entidades" visibility="public" xPosition="20.0" yPosition="20.0">
+    <Class name="Admin" package="com.app.servicioSalud.entidades" visibility="public" xPosition="1520.0" yPosition="405.0">
       <Fields>
         <Field name="idAdmin" type="String" visibility="private"/>
         <Field name="usuario" type="String" visibility="private"/>
@@ -11,7 +11,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Calificacion" package="com.app.servicioSalud.entidades" visibility="public" xPosition="320.0" yPosition="20.0">
+    <Class name="Calificacion" package="com.app.servicioSalud.entidades" visibility="public" xPosition="29.0" yPosition="273.0">
       <Fields>
         <Field name="idTurno" type="Turno" visibility="private"/>
         <Field name="calificacion" type="String" visibility="private"/>
@@ -19,7 +19,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="HistoriaClinica" package="com.app.servicioSalud.entidades" visibility="public" xPosition="620.0" yPosition="20.0">
+    <Class name="HistoriaClinica" package="com.app.servicioSalud.entidades" visibility="public" xPosition="187.0" yPosition="20.0">
       <Fields>
         <Field name="dni" type="Usuario" visibility="private"/>
         <Field name="dx" type="List&lt;String&gt;" visibility="private"/>
@@ -28,7 +28,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Profesional" package="com.app.servicioSalud.entidades" visibility="public" xPosition="920.0" yPosition="20.0">
+    <Class name="Profesional" package="com.app.servicioSalud.entidades" visibility="public" xPosition="931.0" yPosition="160.0">
       <Fields>
         <Field name="Matricula" type="String" visibility="private"/>
         <Field name="nombre" type="String" visibility="private"/>
@@ -46,7 +46,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="Turno" package="com.app.servicioSalud.entidades" visibility="public" xPosition="1220.0" yPosition="20.0">
+    <Class name="Turno" package="com.app.servicioSalud.entidades" visibility="public" xPosition="962.0" yPosition="859.0">
       <Fields>
         <Field name="idTurno" type="String" visibility="private"/>
         <Field name="fecha" type="Date" visibility="private"/>
@@ -74,7 +74,7 @@
       <Constructors/>
       <Methods/>
     </Class>
-    <Class name="ServicioSaludApplication" package="com.app.servicioSalud" visibility="public" xPosition="1820.0" yPosition="20.0">
+    <Class name="ServicioSaludApplication" package="com.app.servicioSalud" visibility="public" xPosition="1505.0" yPosition="640.0">
       <Fields/>
       <Constructors/>
       <Methods>
@@ -85,16 +85,16 @@
     </Class>
   </ClassDiagramComponents>
   <ClassDiagramRelations>
-    <HasRelation name="nombreProfesional" source="com.app.servicioSalud.entidades.HistoriaClinica" target="com.app.servicioSalud.entidades.Profesional" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="turno" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.entidades.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="idTurno" source="com.app.servicioSalud.entidades.Calificacion" target="com.app.servicioSalud.entidades.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="profesional" source="com.app.servicioSalud.entidades.Turno" target="com.app.servicioSalud.entidades.Profesional" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="historiaClinica" source="com.app.servicioSalud.entidades.Usuario" target="com.app.servicioSalud.entidades.HistoriaClinica" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="calificacion" source="com.app.servicioSalud.entidades.Turno" target="com.app.servicioSalud.entidades.Calificacion" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="usuario" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
-    <HasRelation name="usuario" source="com.app.servicioSalud.entidades.Turno" target="com.app.servicioSalud.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="historiaClinica" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.entidades.HistoriaClinica" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="nombreProfesional" source="com.app.servicioSalud.entidades.HistoriaClinica" target="com.app.servicioSalud.entidades.Profesional" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="profesional" source="com.app.servicioSalud.entidades.Turno" target="com.app.servicioSalud.entidades.Profesional" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="dni" source="com.app.servicioSalud.entidades.HistoriaClinica" target="com.app.servicioSalud.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
     <HasRelation name="turno" source="com.app.servicioSalud.entidades.Usuario" target="com.app.servicioSalud.entidades.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="turno" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.entidades.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="idTurno" source="com.app.servicioSalud.entidades.Calificacion" target="com.app.servicioSalud.entidades.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="com.app.servicioSalud.entidades.Turno" target="com.app.servicioSalud.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
   </ClassDiagramRelations>
 </ClassDiagram>
