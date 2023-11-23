@@ -1,34 +1,30 @@
-
 package com.app.servicioSalud.entidades;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
+import com.app.servicioSalud.enumeraciones.Rol;
+import java.util.List;
+import javax.persistence.*;
 import lombok.Data;
-
 
 @Entity
 @Data
 public class Usuario {
-    
+
     @Id
     private Integer dni;
-    
+
     private String nombre;
     private String apellido;
-    private String correo;
-    private String password;    
-    private String calle;
-    private Integer numero;
+    private String email;
+    private String password;
+    private String domicilio;
+   
     private String telefono;
-     
-    
-     @OneToOne
-     private HistoriaClinica historiaClinica;
-     @OneToMany
-     private Turno turno;
-      
-        
-    
+
+   
+    @OneToMany(mappedBy = "usuario")
+    private List<Turno> turnos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Profesional> profesionales;
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 }
