@@ -47,7 +47,7 @@ public class UsuarioServicio {
     
     public List<Usuario> listarUsuario() {
 
-        List<Usuario> usuarios = new ArrayList<>();
+        List<Usuario> usuarios = new ArrayList();
 
         usuarios = usuarioRepositorio.findAll();
 
@@ -112,5 +112,9 @@ public class UsuarioServicio {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
+      public void eliminarNoticias(String id) throws MiException {
 
+        usuarioRepositorio.deleteById(id);
+
+    }
 }
