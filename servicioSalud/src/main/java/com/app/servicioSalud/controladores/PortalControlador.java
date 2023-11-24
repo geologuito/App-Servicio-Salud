@@ -31,11 +31,13 @@ public class PortalControlador {
 
     @GetMapping("/registrar")//localhost:8080/registrar
     public String registrar() {
-        return "registro.html";
+      
+        return "registro";
     }
     
         @PostMapping("/registro")
-    public String registro(@RequestParam Integer dni, @RequestParam String nombre, @RequestParam String apellido,
+    public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
+
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono, @RequestParam String password, String password2, ModelMap modelo) {
 
         try {
@@ -51,8 +53,10 @@ public class PortalControlador {
             modelo.put("email", email);
             modelo.put("domicilio", domicilio);
             modelo.put("telefono", telefono);
-            return "registro.html";
+
+            return "registro";
         }
-        return "index.html";
+        return "index";
+
     }
 }
