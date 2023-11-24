@@ -1,44 +1,34 @@
-
 package com.app.servicioSalud.entidades;
 
+import com.app.servicioSalud.enumeraciones.Rol;
 import java.util.Date;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import java.util.List;
+import javax.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
-
 
 @Entity
 @Data
 public class Profesional {
-    
-     @Id
+
+    @Id
     private String Matricula;
+
+    private String nombre;
+    private String apellido;
+    private String correo;
+    private String password;
+    private Boolean activo;
+    private String especialidad;
+    private Integer consulta;
+    @Temporal(TemporalType.DATE)
+    private Date horario;
+
+    @ManyToOne
+    @JoinColumn(name = "usuario_id")
+    private Usuario usuario;
+    @OneToMany(mappedBy = "profesional")
+    private List<Turno> turno;
     
-     private String nombre;
-     private String apellido;
-     private String correo;
-     private String password;
-     private Boolean activo;
-     private String especialidad;
-     private Integer consulta;
-     private Date horario;
-  
-     @OneToMany
-     private Usuario usuario;
-     @OneToMany
-     private Turno turno;
-     @OneToMany
-     private HistoriaClinica historiaClinica;
-     
-     
-    
-     
-     
-     
-     
-     
-    
+    @Enumerated(EnumType.STRING)
+    private Rol rol;
 }
