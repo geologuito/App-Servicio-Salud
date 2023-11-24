@@ -7,11 +7,14 @@ import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.UsuarioRepositorio;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 /**
  *
  * @author gonza
  */
+
+@Service
 public class UsuarioServicio {
 
     @Autowired

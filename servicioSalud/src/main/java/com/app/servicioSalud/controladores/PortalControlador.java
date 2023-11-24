@@ -1,6 +1,7 @@
 
 package com.app.servicioSalud.controladores;
 
+
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.UsuarioServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
 
 /**
  *
@@ -21,13 +23,13 @@ public class PortalControlador {
 
     @Autowired
     private UsuarioServicio usuarioServicio;
-
+    
     @GetMapping("/")    //localhost:8080/
     public String index() {
-        return "index.html";
+        return "index";
     }
 
-    @GetMapping("/registrar")//localhost:8080/registar
+    @GetMapping("/registrar")//localhost:8080/registrar
     public String registrar() {
         return "registro.html";
     }
@@ -43,11 +45,14 @@ public class PortalControlador {
 
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
+            modelo.put("dni", dni);
             modelo.put("nombre", nombre);
+            modelo.put("apellido", apellido);
             modelo.put("email", email);
+            modelo.put("domicilio", domicilio);
+            modelo.put("telefono", telefono);
             return "registro.html";
         }
         return "index.html";
     }
-    
 }
