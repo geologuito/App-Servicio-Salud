@@ -35,7 +35,7 @@ public class PortalControlador {
     }
     
         @PostMapping("/registro")
-    public String registro(@RequestParam Integer dni, @RequestParam String nombre, @RequestParam String apellido,
+    public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono, @RequestParam String password, String password2, ModelMap modelo) {
 
         try {
