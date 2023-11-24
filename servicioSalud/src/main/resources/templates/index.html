@@ -56,16 +56,26 @@
         </div>
 
         <div class="cont">
-            <div>
-                Lorem ipsum dolor sit amet.
-            </div>
+            <h1>Nuestros Profesionales</h1>
+            <div class="profesionales">
+                <div class="prof">
+                   <img src="images/appointment-image.jpg" alt="">
+                </div>
+                <div class="prof">
+                   <img src="images/appointment-image.jpg" alt="">
+                </div>
+                <div class="prof">
+                   <img src="images/appointment-image.jpg" alt="">
+                </div>
+        </div>
         </div>
 
         <!-- INICIO FORM -->
         <div class="reg">
-            <form id="form" class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data"><!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+            <form id="form" class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+                <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                 <p class="title">Registro </p>
-                <p class="message">Registrate ahora para tener acceso completo a nuesta app!</p>
+                <p class="message">Registrate ahora para acceder a nuestros sesrvicios!</p>
 
                 <label>
                     <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
@@ -135,18 +145,32 @@
 
 
         <div class="cont2">
-            <div>
-                Lorem ipsum dolor sit amet.
+            <div class="contimag">
+                <img src="images/team-image1.jpg">
+            </div>
+            <div class="context">
+                <h1>Pediatría</h1>
+                <div class="my-3 ">
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        perferendis architecto? Rerum, commodi pariatur ipsa fuga error voluptas repellendus rem
+                        corporis odit ipsum. Repudiandae.</p>
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        perferendis architecto? Rerum, commodi pariatur ipsa fuga error voluptas repellendus rem
+                        corporis odit ipsum. Repudiandae.</p>
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        ae.</p>
+                    
+                </div>
             </div>
         </div>
 
         <div class="foot">
             <div class="col-md-6 col-sm-6">
-                <div class="footer-link">
+                <div class="">
                     <a href="#">Laboratory Tests</a>
-                    <a href="#">Departments</a>
+                    <!-- <a href="#">Departments</a>
                     <a href="#">Insurance Policy</a>
-                    <a href="#">Careers</a>
+                    <a href="#">Careers</a> -->
                 </div>
             </div>
 
