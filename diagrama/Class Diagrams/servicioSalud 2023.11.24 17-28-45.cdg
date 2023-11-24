@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ClassDiagram name="servicioSalud">
+  <ClassDiagramComponents>
+    <Class name="PortalControlador" package="com.app.servicioSalud.controladores" visibility="public" xPosition="20.0" yPosition="20.0">
+      <Fields>
+        <Field name="usuarioServicio" type="UsuarioServicio" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="index" returnType="String" visibility="public"/>
+        <Method name="registrar" returnType="String" visibility="public"/>
+        <Method name="registro" returnType="String" visibility="public">
+          <Argument type="String" name="dni"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="domicilio"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="password2"/>
+          <Argument type="ModelMap" name="modelo"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="Profesional" package="com.app.servicioSalud.entidades" visibility="public" xPosition="320.0" yPosition="20.0">
+      <Fields>
+        <Field name="Matricula" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="correo" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="activo" type="Boolean" visibility="private"/>
+        <Field name="especialidad" type="String" visibility="private"/>
+        <Field name="consulta" type="Integer" visibility="private"/>
+        <Field name="horario" type="Date" visibility="private"/>
+        <Field name="usuario" type="Usuario" visibility="private"/>
+        <Field name="turno" type="List&lt;Turno&gt;" visibility="private"/>
+        <Field name="rol" type="Rol" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Turno" package="com.app.servicioSalud.entidades" visibility="public" xPosition="620.0" yPosition="20.0">
+      <Fields>
+        <Field name="idTurno" type="Long" visibility="private"/>
+        <Field name="fecha" type="Date" visibility="private"/>
+        <Field name="hora" type="Date" visibility="private"/>
+        <Field name="profesional" type="Profesional" visibility="private"/>
+        <Field name="usuario" type="Usuario" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Class name="Usuario" package="com.app.servicioSalud.entidades" visibility="public" xPosition="920.0" yPosition="20.0">
+      <Fields>
+        <Field name="dni" type="String" visibility="private"/>
+        <Field name="nombre" type="String" visibility="private"/>
+        <Field name="apellido" type="String" visibility="private"/>
+        <Field name="email" type="String" visibility="private"/>
+        <Field name="password" type="String" visibility="private"/>
+        <Field name="domicilio" type="String" visibility="private"/>
+        <Field name="telefono" type="String" visibility="private"/>
+        <Field name="turnos" type="List&lt;Turno&gt;" visibility="private"/>
+        <Field name="profesionales" type="List&lt;Profesional&gt;" visibility="private"/>
+        <Field name="rol" type="Rol" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods/>
+    </Class>
+    <Enum name="Rol" package="com.app.servicioSalud.enumeraciones" visibility="public" xPosition="1220.0" yPosition="20.0">
+      <Literals>
+        <Literal name="USER"/>
+        <Literal name="ADMIN"/>
+        <Literal name="PROFESIONAL"/>
+      </Literals>
+    </Enum>
+    <Class name="MiException" package="com.app.servicioSalud.excepciones" visibility="public" xPosition="1520.0" yPosition="20.0">
+      <Fields/>
+      <Constructors>
+        <Constructor visibility="public">
+          <Argument type="String" name="msg"/>
+        </Constructor>
+      </Constructors>
+      <Methods/>
+    </Class>
+    <Interface name="ProfesionalRepositorio" package="com.app.servicioSalud.repositorios" visibility="public" xPosition="1820.0" yPosition="20.0">
+      <Methods/>
+    </Interface>
+    <Interface name="TurnoRepositorio" package="com.app.servicioSalud.repositorios" visibility="public" xPosition="2120.0" yPosition="20.0">
+      <Methods/>
+    </Interface>
+    <Interface name="UsuarioRepositorio" package="com.app.servicioSalud.repositorios" visibility="public" xPosition="20.0" yPosition="420.0">
+      <Methods>
+        <Method name="buscarPorDNI" returnType="Usuario" visibility="public">
+          <Argument type="String" name="dni"/>
+        </Method>
+      </Methods>
+    </Interface>
+    <Class name="SeguridadWeb" package="com.app.servicioSalud" visibility="public" xPosition="320.0" yPosition="420.0">
+      <Fields>
+        <Field name="usuarioServicio" type="UsuarioServicio" visibility="public"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="configure" returnType="void" visibility="protected">
+          <Argument type="HttpSecurity" name="http"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="UsuarioServicio" package="com.app.servicioSalud.servicios" visibility="public" xPosition="620.0" yPosition="420.0">
+      <Fields>
+        <Field name="usuarioRepositorio" type="UsuarioRepositorio" visibility="private"/>
+      </Fields>
+      <Constructors/>
+      <Methods>
+        <Method name="registrar" returnType="void" visibility="public">
+          <Argument type="String" name="dni"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="domicilio"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="password2"/>
+        </Method>
+        <Method name="listarUsuario" returnType="List&lt;Usuario&gt;" visibility="public"/>
+        <Method name="modificarUsuario" returnType="void" visibility="public">
+          <Argument type="String" name="dni"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="domicilio"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="password2"/>
+        </Method>
+        <Method name="validar" returnType="void" visibility="private">
+          <Argument type="String" name="dni"/>
+          <Argument type="String" name="nombre"/>
+          <Argument type="String" name="apellido"/>
+          <Argument type="String" name="domicilio"/>
+          <Argument type="String" name="telefono"/>
+          <Argument type="String" name="email"/>
+          <Argument type="String" name="password"/>
+          <Argument type="String" name="password2"/>
+        </Method>
+        <Method name="getOne" returnType="Usuario" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+        <Method name="eliminarUsuario" returnType="void" visibility="public">
+          <Argument type="String" name="id"/>
+        </Method>
+      </Methods>
+    </Class>
+    <Class name="ServicioSaludApplication" package="com.app.servicioSalud" visibility="public" xPosition="920.0" yPosition="420.0">
+      <Fields/>
+      <Constructors/>
+      <Methods>
+        <Method name="main" returnType="void" visibility="public" isStatic="true">
+          <Argument type="String[]" name="args"/>
+        </Method>
+      </Methods>
+    </Class>
+  </ClassDiagramComponents>
+  <ClassDiagramRelations>
+    <HasRelation name="usuario" source="com.app.servicioSalud.entidades.Turno" target="com.app.servicioSalud.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="turnos" source="com.app.servicioSalud.entidades.Usuario" target="com.app.servicioSalud.entidades.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Turno&gt;"/>
+    <UseRelation source="com.app.servicioSalud.repositorios.UsuarioRepositorio" target="com.app.servicioSalud.entidades.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="turno" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.entidades.Turno" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Turno&gt;"/>
+    <HasRelation name="rol" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.enumeraciones.Rol" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="profesionales" source="com.app.servicioSalud.entidades.Usuario" target="com.app.servicioSalud.entidades.Profesional" type="Aggregation" sourceCardinality="1..1" targetCardinality="0..*" collectionType="List&lt;Profesional&gt;"/>
+    <HasRelation name="rol" source="com.app.servicioSalud.entidades.Usuario" target="com.app.servicioSalud.enumeraciones.Rol" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuario" source="com.app.servicioSalud.entidades.Profesional" target="com.app.servicioSalud.entidades.Usuario" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuarioServicio" source="com.app.servicioSalud.SeguridadWeb" target="com.app.servicioSalud.servicios.UsuarioServicio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuarioRepositorio" source="com.app.servicioSalud.servicios.UsuarioServicio" target="com.app.servicioSalud.repositorios.UsuarioRepositorio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <UseRelation source="com.app.servicioSalud.servicios.UsuarioServicio" target="com.app.servicioSalud.entidades.Usuario" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="usuarioServicio" source="com.app.servicioSalud.controladores.PortalControlador" target="com.app.servicioSalud.servicios.UsuarioServicio" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+    <HasRelation name="profesional" source="com.app.servicioSalud.entidades.Turno" target="com.app.servicioSalud.entidades.Profesional" type="Aggregation" sourceCardinality="1..1" targetCardinality="1..1"/>
+  </ClassDiagramRelations>
+</ClassDiagram>
