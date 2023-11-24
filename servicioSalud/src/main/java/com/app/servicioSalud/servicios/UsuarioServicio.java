@@ -5,6 +5,8 @@ import com.app.servicioSalud.entidades.Usuario;
 import com.app.servicioSalud.enumeraciones.Rol;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.UsuarioRepositorio;
+import java.util.ArrayList;
+import java.util.List;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +40,20 @@ public class UsuarioServicio {
 
         usuarioRepositorio.save(usuario);
     }
+    
+    
+    public List<Usuario> listarUsuario() {
+
+        List<Usuario> usuarios = new ArrayList<>();
+
+        usuarios = usuarioRepositorio.findAll();
+
+        return usuarios;
+
+    }
+    
+    
+    
 
     /*
     Falta validar los campos dni, apellido, domicilio y telefono
