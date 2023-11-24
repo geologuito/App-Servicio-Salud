@@ -25,6 +25,7 @@ public class UsuarioServicio {
 
 
     @Transactional
+
     public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
         validar(dni, nombre, apellido, domicilio, telefono, email, password, password2);
 
@@ -41,6 +42,7 @@ public class UsuarioServicio {
 
         usuarioRepositorio.save(usuario);
     }
+
     
     
     public List<Usuario> listarUsuario() {
@@ -96,6 +98,7 @@ public class UsuarioServicio {
           if (telefono == null || telefono.isEmpty() || telefono.length() <=6) {
             throw new MiException("el telefono no puede ser nulo ni estar vacio");
         }
+
 
         if (email == null || email.isEmpty()) {
             throw new MiException("el email no puede ser nulo ni estar vacio");

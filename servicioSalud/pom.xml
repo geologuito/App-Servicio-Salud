@@ -8,11 +8,14 @@
         <version>2.7.17</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
+
      <groupId>com.app</groupId>
 	<artifactId>servicioSalud</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>servicioSalud</name>
 	<description>web app para servicios de salud</description>
+
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -68,7 +71,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-mail</artifactId>
         </dependency>
-           </dependencies>
+
+
+ </dependencies>
     
 
     <build>
@@ -85,7 +90,7 @@
                     </excludes>
                 </configuration>
             </plugin>
-           
+
         </plugins>
     </build>
 
