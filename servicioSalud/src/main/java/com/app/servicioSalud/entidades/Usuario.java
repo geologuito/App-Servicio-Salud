@@ -10,7 +10,7 @@ import lombok.Data;
 public class Usuario {
 
     @Id
-    private Integer dni;
+    private String dni;
 
     private String nombre;
     private String apellido;

@@ -1,44 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
+
     <title>Document</title>
 </head>
 
 <body>
 
     <!-- Inicio Header -->
-    <div class="container">
-        <header
-            class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-            <div class="col-md-3 mb-2 mb-md-0">
-                <a href="/" class="d-inline-flex link-body-emphasis text-decoration-none">
-                    <svg class="bi" width="40" height="32" role="img" aria-label="Bootstrap">
-                        <use xlink:href="#bootstrap" />
-                    </svg>
-                </a>
-            </div>
-
-            <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-                <li><a href="#" class="nav-link px-2">Home</a></li>
-                <li><a href="#" class="nav-link px-2">Features</a></li>
-                <li><a href="#" class="nav-link px-2">FAQs</a></li>
-                <li><a href="#" class="nav-link px-2">About</a></li>
-            </ul>
-
-            <div class="col-md-3 text-end">
-                <a class="btn btn-outline-primary me-2">Login</a>
-                <a href="/registrar" class="btn btn-primary">Sign-up</a>
+        <header>
+            <div class="navb mb-3">
+                <!-- MENU -->
+                <nav class="navbar navbar-expand-md bg-body-tertiary  ">
+                    <div class="container-fluid">
+                        <a class="navbar-brand mx-5" href="/">Health Service</a>
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav container d-flex justify-content-end">
+                                <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
+                                <a class="nav-link mx-2" href="#">Doctores</a>
+                                <a class="nav-link mx-2" href="#">Contacto</a>
+                                <a class="nav-link mx-2 btn btn-custom-green " href="#turnos">Turnos</a>
+                                <a class="nav-link mx-2" href="#">Login</a>
+                                <a class="nav-link mx-2" href="/registrar">Registro</a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+               <!-- FIN MENU --> 
             </div>
         </header>
-    </div>
+<!-- Fin Header -->
+
+<!-- Inicio Formulario Registro -->      
     <div class="container">
         <div class="row mb-5 justify-content-center">
             <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
                 <form th:action="@{/registro}" method="POST" class="form-box" enctype="multipart/form-data">
+                    <p class="title">Registro </p>
                     <div class="row">
                         <div class="col-12 mb-3">
                             <input type="text" class="form-control" name="nombre" placeholder="Nombre" th:value="${nombre}">
@@ -64,14 +74,14 @@
                         <div class="col-12 mb-3">
                             <input type="password" class="form-control" name="password2" placeholder="Repetir Password" th:value="${password2}">
                         </div>
-
-                        <div class="col-12 mb-3">
+                    <!-- TERMINOS Y CONDICIONES -->
+                        <!-- <div class="col-12 mb-3">
                             <label class="control control--checkbox">
                                 <span class="caption">Acepto los <a href="#">terminos y condiciones</a></span>
                                 <input type="checkbox" checked="checked" />
                                 <div class="control__indicator"></div>
                             </label>
-                        </div>
+                        </div> -->
 
                         <div class="col-12">
                             <input type="submit" value="Registrarme" class="btn btn-primary">
