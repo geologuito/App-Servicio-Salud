@@ -105,9 +105,6 @@ public class UsuarioServicio {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
-<<<<<<< HEAD
-      public void eliminarNoticias(String id) throws MiException {
-=======
     
     public Usuario getOne(String id){
         return usuarioRepositorio.getOne(id);
@@ -115,10 +112,6 @@ public class UsuarioServicio {
     
     public void eliminarUsuario(String id)throws MiException{
         usuarioRepositorio.deleteById(id);
-    }
->>>>>>> developer
-
-        usuarioRepositorio.deleteById(id);
-
-    }
+        }
+    
 }
