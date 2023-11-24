@@ -1,4 +1,3 @@
-
 package com.app.servicioSalud.servicios;
 
 import com.app.servicioSalud.entidades.Usuario;
@@ -16,13 +15,11 @@ import org.springframework.stereotype.Service;
  *
  * @author gonza
  */
-
 @Service
 public class UsuarioServicio {
 
     @Autowired
     private UsuarioRepositorio usuarioRepositorio;
-
 
     @Transactional
 
@@ -43,8 +40,6 @@ public class UsuarioServicio {
         usuarioRepositorio.save(usuario);
     }
 
-    
-    
     public List<Usuario> listarUsuario() {
 
         List<Usuario> usuarios = new ArrayList();
@@ -54,54 +49,52 @@ public class UsuarioServicio {
         return usuarios;
 
     }
-    
-   public void modificarUsuario(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException{
-       
-       validar(dni, nombre, apellido, domicilio, telefono, email, password, password2);
-       
+
+    public void modificarUsuario(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+
+        validar(dni, nombre, apellido, domicilio, telefono, email, password, password2);
+
         Optional<Usuario> respuesta = usuarioRepositorio.findById(dni);
-       
+
         if (respuesta.isPresent()) {
-           Usuario usuario = respuesta.get();
-           
-           usuario.setNombre(nombre);
-           usuario.setApellido(apellido);
-           usuario.setEmail(email);
-           usuario.setDomicilio(domicilio);
-           usuario.setTelefono(telefono);
-           usuario.setPassword(password);
-           
-           usuarioRepositorio.save(usuario);
-       }
-             
-   }
-    
-    
-      private void validar(String dni,String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2) throws MiException {
-       
-        if (dni == null || dni.isEmpty() || dni.length() <= 6) {
-            throw new MiException("se requiere DNI valido");
+            Usuario usuario = respuesta.get();
+
+            usuario.setNombre(nombre);
+            usuario.setApellido(apellido);
+            usuario.setEmail(email);
+            usuario.setDomicilio(domicilio);
+            usuario.setTelefono(telefono);
+            usuario.setPassword(password);
+
+            usuarioRepositorio.save(usuario);
         }
-        
+
+    }
+
+    private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2) throws MiException {
+
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("el nombre no puede ser nulo ni estar vacio");
         }
-        
+
         if (apellido == null || apellido.isEmpty()) {
             throw new MiException("el apellido no puede ser nulo ni estar vacio");
         }
-        
-         if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
-        }
-         
-          if (telefono == null || telefono.isEmpty() || telefono.length() <=6) {
-            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+
+        if (dni == null || dni.isEmpty() || dni.length() <= 6) {
+            throw new MiException("se requiere DNI valido");
         }
 
+        if (domicilio == null || domicilio.isEmpty()) {
+            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+        }
 
         if (email == null || email.isEmpty()) {
             throw new MiException("el email no puede ser nulo ni estar vacio");
+        }
+
+        if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
+            throw new MiException("el telefono no puede ser nulo ni estar vacio");
         }
 
         if (password == null || password.isEmpty() || password.length() <= 5) {
@@ -112,7 +105,18 @@ public class UsuarioServicio {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
+<<<<<<< HEAD
       public void eliminarNoticias(String id) throws MiException {
+=======
+    
+    public Usuario getOne(String id){
+        return usuarioRepositorio.getOne(id);
+    }
+    
+    public void eliminarUsuario(String id)throws MiException{
+        usuarioRepositorio.deleteById(id);
+    }
+>>>>>>> developer
 
         usuarioRepositorio.deleteById(id);
 
