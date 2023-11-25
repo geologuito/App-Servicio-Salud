@@ -230,3 +230,11 @@
     background-color: rgb(122, 218, 164);
 }
 
+/*ESTILO LOGO*/
+.logo{
+    width: 95%;
+    height: 100px;
+    background-size: cover;
+    border-radius: 50%;
+    margin-left: 150px;
+}

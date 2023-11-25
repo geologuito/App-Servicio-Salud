@@ -1,59 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Salud</title>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>App Salud</title>
 
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/styles.css">
+    </head>
 
-<body>
-    <div class="contenedor">
-        <div class="navb">
-            <!-- MENU -->
-            <nav class="navbar navbar-expand-md bg-body-tertiary  ">
-                <div class="container-fluid">
-                    <a class="navbar-brand mx-5" href="/">Health Service</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav container d-flex justify-content-end">
-                            <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
-                            <a class="nav-link mx-2" href="#">Doctores</a>
-                            <a class="nav-link mx-2" href="#">Contacto</a>
-                            <a class="nav-link mx-2 btn btn-custom-green " href="#turnos">Turnos</a>
-                            <a class="nav-link mx-2" href="#">Login</a>
-                            <a class="nav-link mx-2" href="#form">Registro</a>
+    <body>
+        <div class="contenedor">
+            <div class="navb">
+                <!-- MENU -->
+                <nav class="navbar navbar-expand-md bg-body-tertiary  ">
+                    <div class="container-fluid">
+                        <a href="/" class="navbar-brand d-flex align-items-center">
+                            <img class="logo" src="/images/logo.jpg" alt="logo ss">
+                        </a>
+                        <!-- <a class="navbar-brand mx-5" href="/">Health Service</a> -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                                aria-label="Toggle navigation">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+                            <div class="navbar-nav container d-flex justify-content-end">
+                                <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
+                                <a class="nav-link mx-2" href="#">Doctores</a>
+                                <a class="nav-link mx-2" href="#">Contacto</a>
+                                <a class="nav-link mx-2 btn btn-custom-green " href="#turnos">Turnos</a>
+                                <a class="nav-link mx-2" href="#">Login</a>
+                                <a class="nav-link mx-2" href="#form">Registro</a>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </nav>
-        </div>
-        <!-- HOME CAROUSEL -->
-        <div class="carr">
-            <div class="carrusel">
-                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active">
-                            <img src="images/slider1.jpg" class="d-block " alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/slider2.jpg" class="d-block " alt="...">
-                        </div>
-                        <div class="carousel-item">
-                            <img src="images/slider3.jpg" class="d-block " alt="...">
-                        </div>
-                    </div>
-                </div>
-
+                </nav>
             </div>
-        </div>
+            <!-- HOME CAROUSEL -->
+            <div class="carr">
+                <div class="carrusel">
+                    <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="images/slider1.jpg" class="d-block " alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/slider2.jpg" class="d-block " alt="...">
+                            </div>
+                            <div class="carousel-item">
+                                <img src="images/slider3.jpg" class="d-block " alt="...">
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
 
         <div class="cont">
             <h1>Nuestros Profesionales</h1>
@@ -118,30 +121,31 @@
                     <div class="card-body">
                         <h5 class="card-title">Exito</h5>
                         <p class="card-text" th:text="${exito}"></p>
-                    </div>
-                </div>
-                <!-- Fin Mensaje de Exito -->
 
-                <!-- Inicio mensaje de error -->
-                <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                    <div class="card-body">
-                        <h5 class="card-title">Error!!</h5>
-                        <p class="card-text" th:text="${error}"></p>
                     </div>
-                </div>
-                <!-- Fin mensaje de error -->
-            </form>
-            <!-- FIN FORM -->
+                    <!-- Fin Mensaje de Exito -->
 
-            <!-- 
-                <div class="apartado">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quis laborum consectetur nam
-                eligendi, maiores distinctio praesentium delectus iure ut saepe? Sit accusantium architecto nulla
-                possimus, cumque inventore, debitis at tenetur, maxime itaque accusamus illo sunt molestias praesentium
-                mollitia fugiat sint libero non eius. Iste saepe ex dolor exercitationem deserunt?
-            </div> 
-            -->
-        </div>
+                    <!-- Inicio mensaje de error -->
+                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                        <div class="card-body">
+                            <h5 class="card-title">Error!!</h5>
+                            <p class="card-text" th:text="${error}"></p>
+                        </div>
+                    </div>
+                    <!-- Fin mensaje de error -->
+                </form>
+                <!-- FIN FORM -->
+
+                <!-- 
+                    <div class="apartado">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quis laborum consectetur nam
+                    eligendi, maiores distinctio praesentium delectus iure ut saepe? Sit accusantium architecto nulla
+                    possimus, cumque inventore, debitis at tenetur, maxime itaque accusamus illo sunt molestias praesentium
+                    mollitia fugiat sint libero non eius. Iste saepe ex dolor exercitationem deserunt?
+                </div> 
+                -->
+            </div>
+
 
 
         <div class="cont2">
@@ -162,22 +166,23 @@
                     
                 </div>
             </div>
-        </div>
 
-        <div class="foot">
-            <div class="col-md-6 col-sm-6">
-                <div class="">
-                    <a href="#">Laboratory Tests</a>
-                    <!-- <a href="#">Departments</a>
-                    <a href="#">Insurance Policy</a>
-                    <a href="#">Careers</a> -->
+
+            <div class="foot">
+                <div class="col-md-6 col-sm-6">
+                    <div class="footer-link">
+                        <a href="#">Laboratory Tests</a>
+                        <a href="#">Departments</a>
+                        <a href="#">Insurance Policy</a>
+                        <a href="#">Careers</a>
+                    </div>
+
                 </div>
+
             </div>
-
         </div>
-    </div>
-    <script src="/js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
 
-</body>
+    </body>
 
 </html>
