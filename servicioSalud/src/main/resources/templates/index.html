@@ -58,60 +58,70 @@
                 </div>
             </div>
 
-            <div class="cont">
-                <div>
-                    Lorem ipsum dolor sit amet.
+        <div class="cont">
+            <h1>Nuestros Profesionales</h1>
+            <div class="profesionales">
+                <div class="prof">
+                   <img src="images/appointment-image.jpg" alt="">
                 </div>
-            </div>
+                <div class="prof">
+                   <img src="images/appointment-image.jpg" alt="">
+                </div>
+                <div class="prof">
+                   <img src="images/appointment-image.jpg" alt="">
+                </div>
+        </div>
+        </div>
 
-            <!-- INICIO FORM -->
-            <div class="reg">
-                <form id="form" class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data"><!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                    <p class="title">Registro </p>
-                    <p class="message">Registrate ahora para tener acceso completo a nuesta app!</p>
+        <!-- INICIO FORM -->
+        <div class="reg">
+            <form id="form" class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+                <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+                <p class="title">Registro </p>
+                <p class="message">Registrate ahora para acceder a nuestros sesrvicios!</p>
 
-                    <label>
-                        <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
-                        <span>Nombre</span>
-                    </label>
+                <label>
+                    <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
+                    <span>Nombre</span>
+                </label>
 
-                    <label>
-                        <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
-                        <span>Apellido</span>
-                    </label>
+                <label>
+                    <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
+                    <span>Apellido</span>
+                </label>
 
-                    <label>
-                        <input type="number" class="input" required="" name="dni" th:value="${dni}">
-                        <span>DNI</span>
-                    </label>
-                    <label>
-                        <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
-                        <span>Domicilio</span>
-                    </label>
-                    <label>
-                        <input type="email" class="input" required="" name="email" th:value="${email}">
-                        <span>Email</span>
-                    </label>
-                    <label>
-                        <input type="text" class="input" required="" name="telefono" th:value="${telefono}">
-                        <span>Telefono</span>
-                    </label>
-                    <label>
-                        <input required="" type="password" class="input" name="password" th:value="${password}">
-                        <span>Contraseña</span>
-                    </label>
-                    <label>
-                        <input required="" type="password" class="input" name="password2" th:value="${password2}">
-                        <span>Repetir Contraseña</span>
-                    </label>
-                    <button class="submit">Registrarme</button>
-                    <p class="signin">Ya tienes una cuenta? <a href="#">Loguearse</a> </p>
-                    <!-- Inicio Mensaje de Exito -->
-                    <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                        <div class="card-body">
-                            <h5 class="card-title">Exito</h5>
-                            <p class="card-text" th:text="${exito}"></p>
-                        </div>
+                <label>
+                    <input type="number" class="input" required="" name="dni" th:value="${dni}">
+                    <span>DNI</span>
+                </label>
+                <label>
+                    <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
+                    <span>Domicilio</span>
+                </label>
+                <label>
+                    <input type="email" class="input" required="" name="email" th:value="${email}">
+                    <span>Email</span>
+                </label>
+                <label>
+                    <input type="text" class="input" required="" name="telefono" th:value="${telefono}">
+                    <span>Telefono</span>
+                </label>
+                <label>
+                    <input required="" type="password" class="input" name="password" th:value="${password}">
+                    <span>Contraseña</span>
+                </label>
+                <label>
+                    <input required="" type="password" class="input" name="password2" th:value="${password2}">
+                    <span>Repetir Contraseña</span>
+                </label>
+                <button class="submit">Registrarme</button>
+                <p class="signin">Ya tienes una cuenta? <a href="#">Loguearse</a> </p>
+                <!-- Inicio Mensaje de Exito -->
+                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                    <div class="card-body">
+                        <h5 class="card-title">Exito</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+
                     </div>
                     <!-- Fin Mensaje de Exito -->
 
@@ -137,11 +147,26 @@
             </div>
 
 
-            <div class="cont2">
-                <div>
-                    Lorem ipsum dolor sit amet.
+
+        <div class="cont2">
+            <div class="contimag">
+                <img src="images/team-image1.jpg">
+            </div>
+            <div class="context">
+                <h1>Pediatría</h1>
+                <div class="my-3 ">
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        perferendis architecto? Rerum, commodi pariatur ipsa fuga error voluptas repellendus rem
+                        corporis odit ipsum. Repudiandae.</p>
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        perferendis architecto? Rerum, commodi pariatur ipsa fuga error voluptas repellendus rem
+                        corporis odit ipsum. Repudiandae.</p>
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        ae.</p>
+                    
                 </div>
             </div>
+
 
             <div class="foot">
                 <div class="col-md-6 col-sm-6">
@@ -151,6 +176,7 @@
                         <a href="#">Insurance Policy</a>
                         <a href="#">Careers</a>
                     </div>
+
                 </div>
 
             </div>
