@@ -7,7 +7,7 @@
         "cont cont reg "
         "cont2 cont2 reg"
         "foot foot foot";
-background-color: rgb(193, 254, 193);
+    background-color: rgb(193, 254, 193);
 }
 
 /*ESTILO DEL MENU*/
@@ -193,3 +193,11 @@ background-color: rgb(193, 254, 193);
     grid-area: foot;
 }
 
+/*ESTILO LOGO*/
+.logo{
+    width: 95%;
+    height: 100px;
+    background-size: cover;
+    border-radius: 50%;
+    margin-left: 150px;
+}
