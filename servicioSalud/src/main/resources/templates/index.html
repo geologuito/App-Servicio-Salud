@@ -1,15 +1,12 @@
 <!DOCTYPE html>
-<html xmlns: th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<!--! Se agrega fragment del head-->
-
-<head th:replace="/fragments/head :: head"></head>
+<head th:replace="/fragments/head :: head"> </head>
 
 <body>
     <div class="contenedor">
-        <!--! Se agrega fragment del menu -->
-        <div th:replace="/fragments/navbar :: div"></div>
-
+        <div th:replace="/fragments/navbar ::div"> </div>
         <!-- HOME CAROUSEL -->
         <div class="carr">
             <div class="carrusel">
@@ -26,9 +23,8 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
+        </div> <!--Cierra Carrusel-->
 
         <div class="cont">
             <h1>Nuestros Profesionales</h1>
@@ -42,12 +38,13 @@
                 <div class="prof">
                     <img src="images/appointment-image.jpg" alt="">
                 </div>
-        </div>
-        </div>
+            </div>
+        </div> <!--Cierra Contenedor 1-->
+
 
         <!-- INICIO FORM -->
-        <!--! Se agrega fragment delformulario de Registro del Paciente-->
-        <section th:replace="/fragments/reg_pac :: section"></section>
+        <section th:replace="/fragments/reg_pac :: section"> </section>
+
 
         <div class="cont2">
             <div class="contimag">
@@ -64,16 +61,16 @@
                         corporis odit ipsum. Repudiandae.</p>
                     <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
                         ae.</p>
-                    
+
                 </div>
-            </div>
-        </div>
+            </div><!--Cierra texto del contenedor 2-->
 
-        <!--! Se agrega fragment del footer-->
-        <footer th:replace="/fragments/footer :: footer"></footer>    
-    </div>
-    <script src="/js/bootstrap.min.js"></script>
+        </div> <!--Cierra Contenedor 2-->
 
-</body>
+
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </div> <!--Cierra contenedor de a grilla de grid-->
+
+</body> <!--Cierra body-->
 
 </html>
