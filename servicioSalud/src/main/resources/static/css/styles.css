@@ -7,7 +7,6 @@
         "cont cont reg "
         "cont2 cont2 reg"
         "foot foot foot";
-    background-color: rgb(193, 254, 193);
 }
 
 /*ESTILO DEL MENU*/
@@ -33,15 +32,36 @@
 /*ESTILO DEL CONTENEDOR 1*/
 .cont {
     grid-area: cont;
-    background-color: aqua;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 23em;
+    margin-top: 0.5em;
 }
 
+.profesionales {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.prof{
+    width: 18em;
+    padding: 0.2em;
+}
+.prof img{
+    width: 80%;
+    height: 80%;
+    object-fit: cover;
+}
 /*ESTILO DEL REGISTRO*/
 .reg {
     grid-area: reg;
     display:flex;
     justify-content: center;
     align-items: center;
+    background-color: rgb(159, 235, 181);
 }
 
 /*ESTILO FORMULARIO*/
@@ -185,12 +205,29 @@
 /*ESTILO DEL CONTENEDOR 2*/
 .cont2 {
     grid-area: cont2;
-    background-color: aquamarine;
+    display: flex;
+    height: 20em;
+    margin-top: 0.5em;
 }
-
+.contimag{
+    width: 70%;
+}
+.contimag img{
+    margin-top: 1em;
+    width: 60%;
+    height: 100%;
+}
+.context{
+    width: 80%;
+    text-align: justify;
+    padding-right: 0.6em;
+}
 /*ESTILO DEL FOOTER*/
 .foot {
     grid-area: foot;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(122, 218, 164);
 }
 
 /*ESTILO LOGO*/
