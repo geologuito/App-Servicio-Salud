@@ -232,9 +232,9 @@
 
 /*ESTILO LOGO*/
 .logo{
-    width: 95%;
-    height: 100px;
+    width: 80%;
+    height: 75px;
     background-size: cover;
     border-radius: 50%;
-    margin-left: 150px;
+    margin-left: 50px;
 }
