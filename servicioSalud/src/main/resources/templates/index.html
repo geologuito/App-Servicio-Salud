@@ -1,40 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>App Salud</title>
-
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/styles.css">
-</head>
+<head th:replace="/fragments/head :: head"> </head>
 
 <body>
     <div class="contenedor">
-        <div class="navb">
-            <!-- MENU -->
-            <nav class="navbar navbar-expand-md bg-body-tertiary  ">
-                <div class="container-fluid">
-                    <a class="navbar-brand mx-5" href="/">Health Service</a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-                        <div class="navbar-nav container d-flex justify-content-end">
-                            <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
-                            <a class="nav-link mx-2" href="#">Doctores</a>
-                            <a class="nav-link mx-2" href="#">Contacto</a>
-                            <a class="nav-link mx-2 btn btn-custom-green " href="#turnos">Turnos</a>
-                            <a class="nav-link mx-2" href="#">Login</a>
-                            <a class="nav-link mx-2" href="#form">Registro</a>
-                        </div>
-                    </div>
-                </div>
-            </nav>
-        </div>
+        <div th:replace="/fragments/navbar ::div"> </div>
         <!-- HOME CAROUSEL -->
         <div class="carr">
             <div class="carrusel">
@@ -51,109 +23,54 @@
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>
+        </div> <!--Cierra Carrusel-->
 
         <div class="cont">
-            <div>
-                Lorem ipsum dolor sit amet.
+            <h1>Nuestros Profesionales</h1>
+            <div class="profesionales">
+                <div class="prof">
+                    <img src="images/appointment-image.jpg" alt="">
+                </div>
+                <div class="prof">
+                    <img src="images/appointment-image.jpg" alt="">
+                </div>
+                <div class="prof">
+                    <img src="images/appointment-image.jpg" alt="">
+                </div>
             </div>
-        </div>
+        </div> <!--Cierra Contenedor 1-->
+
 
         <!-- INICIO FORM -->
-        <div class="reg">
-            <form id="form" class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data"><!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                <p class="title">Registro </p>
-                <p class="message">Registrate ahora para tener acceso completo a nuesta app!</p>
-
-                <label>
-                    <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
-                    <span>Nombre</span>
-                </label>
-
-                <label>
-                    <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
-                    <span>Apellido</span>
-                </label>
-
-                <label>
-                    <input type="number" class="input" required="" name="dni" th:value="${dni}">
-                    <span>DNI</span>
-                </label>
-                <label>
-                    <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
-                    <span>Domicilio</span>
-                </label>
-                <label>
-                    <input type="email" class="input" required="" name="email" th:value="${email}">
-                    <span>Email</span>
-                </label>
-                <label>
-                    <input type="text" class="input" required="" name="telefono" th:value="${telefono}">
-                    <span>Telefono</span>
-                </label>
-                <label>
-                    <input required="" type="password" class="input" name="password" th:value="${password}">
-                    <span>Contraseña</span>
-                </label>
-                <label>
-                    <input required="" type="password" class="input" name="password2" th:value="${password2}">
-                    <span>Repetir Contraseña</span>
-                </label>
-                <button class="submit">Registrarme</button>
-                <p class="signin">Ya tienes una cuenta? <a href="#">Loguearse</a> </p>
-                <!-- Inicio Mensaje de Exito -->
-                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                    <div class="card-body">
-                        <h5 class="card-title">Exito</h5>
-                        <p class="card-text" th:text="${exito}"></p>
-                    </div>
-                </div>
-                <!-- Fin Mensaje de Exito -->
-
-                <!-- Inicio mensaje de error -->
-                <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                    <div class="card-body">
-                        <h5 class="card-title">Error!!</h5>
-                        <p class="card-text" th:text="${error}"></p>
-                    </div>
-                </div>
-                <!-- Fin mensaje de error -->
-            </form>
-            <!-- FIN FORM -->
-
-            <!-- 
-                <div class="apartado">
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia quis laborum consectetur nam
-                eligendi, maiores distinctio praesentium delectus iure ut saepe? Sit accusantium architecto nulla
-                possimus, cumque inventore, debitis at tenetur, maxime itaque accusamus illo sunt molestias praesentium
-                mollitia fugiat sint libero non eius. Iste saepe ex dolor exercitationem deserunt?
-            </div> 
-            -->
-        </div>
+        <section th:replace="/fragments/reg_pac :: section"> </section>
 
 
         <div class="cont2">
-            <div>
-                Lorem ipsum dolor sit amet.
+            <div class="contimag">
+                <img src="images/team-image1.jpg">
             </div>
-        </div>
+            <div class="context">
+                <h1>Pediatría</h1>
+                <div class="my-3 ">
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        perferendis architecto? Rerum, commodi pariatur ipsa fuga error voluptas repellendus rem
+                        corporis odit ipsum. Repudiandae.</p>
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        perferendis architecto? Rerum, commodi pariatur ipsa fuga error voluptas repellendus rem
+                        corporis odit ipsum. Repudiandae.</p>
+                    <p>Lorem ipsum dolor adipisicing elit. Voluptatem possimus iure fugiat sit, cupiditate accusantium
+                        ae.</p>
 
-        <div class="foot">
-            <div class="col-md-6 col-sm-6">
-                <div class="footer-link">
-                    <a href="#">Laboratory Tests</a>
-                    <a href="#">Departments</a>
-                    <a href="#">Insurance Policy</a>
-                    <a href="#">Careers</a>
                 </div>
-            </div>
+            </div><!--Cierra texto del contenedor 2-->
 
-        </div>
-    </div>
-    <script src="/js/bootstrap.min.js"></script>
+        </div> <!--Cierra Contenedor 2-->
 
-</body>
+
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </div> <!--Cierra contenedor de a grilla de grid-->
+
+</body> <!--Cierra body-->
 
 </html>
