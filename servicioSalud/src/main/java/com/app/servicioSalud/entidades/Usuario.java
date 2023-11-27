@@ -1,6 +1,6 @@
 package com.app.servicioSalud.entidades;
 
-import com.app.servicioSalud.enumeraciones.Rol;
+import com.app.servicioSalud.enumeraciones.RolEnum;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
@@ -10,6 +10,7 @@ import lombok.Data;
 public class Usuario {
 
     @Id
+    @Column(unique = true)
     private String dni;
 
     private String nombre;
@@ -17,14 +18,24 @@ public class Usuario {
     private String email;
     private String password;
     private String domicilio;
-   
-    private String telefono;
 
-   
-    @OneToMany(mappedBy = "usuario")
+    private String telefono;
+    
+    //@OneToOne
+    //private Paciente paciente;
+    
+    //@OneToOne
+    //private Profesional profecional;
+    
+    @Enumerated(EnumType.STRING)
+    private RolEnum rol;
+    }
+
+
+
+    /*@OneToMany(mappedBy = "usuario")
     private List<Turno> turnos;
     @OneToMany(mappedBy = "usuario")
     private List<Profesional> profesionales;
     @Enumerated(EnumType.STRING)
-    private Rol rol;
-}
+    private RolEnum rol;*/

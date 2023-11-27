@@ -1,7 +1,7 @@
 package com.app.servicioSalud.servicios;
 
 import com.app.servicioSalud.entidades.Usuario;
-import com.app.servicioSalud.enumeraciones.Rol;
+import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.UsuarioRepositorio;
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class UsuarioServicio {
         usuario.setDomicilio(domicilio);
         usuario.setTelefono(telefono);
         usuario.setPassword(password);
-        usuario.setRol(Rol.USER);
+        //usuario.setRol(RolEnum.USER);
 
         usuarioRepositorio.save(usuario);
     }
