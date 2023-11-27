@@ -42,7 +42,7 @@ public class UsuarioServicio {
 
     public List<Usuario> listarUsuario() {
 
-        List<Usuario> usuarios = new ArrayList();
+        List<Usuario> usuarios = new ArrayList<>();
 
         usuarios = usuarioRepositorio.findAll();
 
@@ -107,7 +107,7 @@ public class UsuarioServicio {
     }
     
     public Usuario getOne(String id){
-        return usuarioRepositorio.getOne(id);
+        return usuarioRepositorio.getReferenceById(id);
     }
     
     public void eliminarUsuario(String id)throws MiException{
