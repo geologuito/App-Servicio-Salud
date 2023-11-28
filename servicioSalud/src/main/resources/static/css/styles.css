@@ -150,7 +150,9 @@
     align-items: center;
     background-color: rgb(79, 226, 120);
 }
-
+.name{
+    width: 49%;
+}
 /*ESTILO FORMULARIO*/
 .form {
     width: 85%;
