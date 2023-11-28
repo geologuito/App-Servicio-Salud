@@ -1,32 +1,25 @@
 package com.app.servicioSalud.entidades;
 
-import com.app.servicioSalud.enumeraciones.ObraSocialEnum;
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.DiscriminatorValue;
-import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
-import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import lombok.AllArgsConstructor;
+import com.app.servicioSalud.enumeraciones.*;
+import java.util.List;
+import javax.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
-/**
- * @author Luciano Otegui
- */
-@Data
-@EqualsAndHashCode(callSuper = true)
-@NoArgsConstructor
-@AllArgsConstructor
-//@DiscriminatorValue("paciente")
 @Entity
-public class Paciente extends Usuario {
+@Data
+public class Paciente {
+
     @Id
-    @Column(unique = true)
     private String dni;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private String password;
+    private String telefono;
+    private String domicilio;
+
+    @Enumerated(EnumType.STRING)
+    private RolEnum rol;
     
     @Enumerated(EnumType.STRING)
     private ObraSocialEnum obraSocial;
@@ -34,3 +27,13 @@ public class Paciente extends Usuario {
     @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL)
     private HistoriaClinica historiaClinica;
 }
+
+    
+
+
+    /*@OneToMany(mappedBy = "usuario")
+    private List<Turno> turnos;
+    @OneToMany(mappedBy = "usuario")
+    private List<Profesional> profesionales;
+    @Enumerated(EnumType.STRING)
+    private RolEnum rol;*/

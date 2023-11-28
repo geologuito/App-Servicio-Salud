@@ -9,18 +9,20 @@ import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
-@EqualsAndHashCode(callSuper = true)
 //@Table(name = "profesional")
-public class Profesional extends Usuario{
+public class Profesional{
 
+    
     @Id
-    private String dni;
     @Column(unique = true)
     private String Matricula;
-    //private String nombre;
-    //private String apellido;
-    //private String email;
-    //private String password;
+    private String dni;
+    private String nombre;
+    private String apellido;
+    private String email;
+    private String password;
+    private String domicilio;
+    private String telefono;
     private Boolean activo;
     private String especialidad;
     private Integer consulta;

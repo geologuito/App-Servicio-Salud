@@ -5,7 +5,7 @@ package com.app.servicioSalud.enumeraciones;
  * @author gonza
  */
 public enum RolEnum {
-    USER,
+    PACIENTE,
     ADMIN,
     PROFESIONAL;
 }
