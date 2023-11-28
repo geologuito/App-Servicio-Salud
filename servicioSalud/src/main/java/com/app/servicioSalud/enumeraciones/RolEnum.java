@@ -4,8 +4,8 @@ package com.app.servicioSalud.enumeraciones;
  *
  * @author gonza
  */
-public enum Rol {
-    USER,
+public enum RolEnum {
+    PACIENTE,
     ADMIN,
     PROFESIONAL;
 }
