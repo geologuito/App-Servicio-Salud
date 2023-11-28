@@ -49,52 +49,57 @@
     <!-- Fin Header -->
 
     <!-- Inicio Formulario Registro -->
-    <div class="container">
-        <div class="row mb-5 justify-content-center">
-            <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
-                <form th:action="@{/registro}" method="POST" class="form-box" enctype="multipart/form-data">
-                    <p class="title">Registro </p>
-                    <div class="row">
-                        <div class="col-12 mb-3 d-flex justify-content-around">
-                            <input type="text" class="form-control me-3" name="nombre" placeholder="Nombre"
-                                th:value="${nombre}">
-                            <input type="text" class="form-control " name="apellido" placeholder="Apellido"
-                                th:value="${apellido}">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="number" class="form-control" name="dni" placeholder="DNI" th:value="${dni}">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="text" class="form-control" name="email" placeholder="Correo"
-                                th:value="${email}">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="password" class="form-control" name="password" placeholder="Password"
-                                th:value="${password}">
-                        </div>
-                        <div class="col-12 mb-3">
-                            <input type="password" class="form-control" name="password2" placeholder="Repetir Password"
-                                th:value="${password2}">
-                        </div>
-                        <div class="col-12">
-                            <input type="submit" value="Registrarme" class="btn btn-primary">
-                            <a th:href="@{/}" class="btn btn-primary ms-4">Volver</a>
-                        </div>
-                    </div>
-                </form>
+    <form id="form" class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+        <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+        <p class="title">Registro </p>
+        <p class="message">Registrate ahora para acceder a nuestros sesrvicios!</p>
+        <div class="d-flex justify-content-between">
+            <label class="name">
+                <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
+                <span>Nombre</span>
+            </label>
+            <label class="name">
+                <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
+                <span>Apellido</span>
+            </label>
+        </div>
+        <label>
+            <input type="number" class="input" required="" name="dni" th:value="${dni}">
+            <span>DNI</span>
+        </label>
+        <label>
+            <input type="email" class="input" required="" name="email" th:value="${email}">
+            <span>Email</span>
+        </label>
+        <label>
+            <input type="password" class="input" required="" name="password" th:value="${password}">
+            <span>Contraseña</span>
+        </label>
+        <label>
+            <input type="password" class="input" required="" name="password2" th:value="${password2}">
+            <span>Repetir Contraseña</span>
+        </label>
+        <button class="submit">Registrarme</button>
+        <p class="signin">Ya tienes una cuenta? <a href="#">Loguearse</a> </p>
+        <!-- Inicio Mensaje de Exito -->
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+            <div class="card-body">
+                <h5 class="card-title">Exito</h5>
+                <p class="card-text" th:text="${exito}"></p>
             </div>
         </div>
-    </div>
-    <!-- Fin Formulario Registro -->
+        <!-- Fin Mensaje de Exito -->
 
-    <!-- Inicio mensaje de error -->
-    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-        <div class="card-body">
-            <h5 class="card-title">Error!!</h5>
-            <p class="card-text" th:text="${error}"></p>
+        <!-- Inicio mensaje de error -->
+        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+            <div class="card-body">
+                <h5 class="card-title">Error!!</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
         </div>
-    </div>
-    <!-- Fin mensaje de error -->
+        <!-- Fin mensaje de error -->
+    </form>
+
     <script src="../static/js/bootstrap.min.js"></script>
 
 </body>
