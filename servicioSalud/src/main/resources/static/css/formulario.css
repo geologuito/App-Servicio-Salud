@@ -13,13 +13,29 @@ body {
 }
 
 /*ESTILO NAVBAR*/
+.navb {
+    grid-area: navb;
+    height: auto;
+    
+}
+.nav-link:hover {
+    color: rgb(0, 255, 26);
+}
+/*ESTILO LOGO*/
+.logo{
+    width: 100%;
+    height: 70px;
+    background-size: cover;
+    border-radius: 30%;
+    margin-left: 40px;
+}
 /*EN NAVBAR.CSS*/
 
 /*ESTILO DEL REGISTRO*/
 .reg {
     grid-area: reg;
     display:flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 80vh;
     margin-top: 2em;
@@ -46,6 +62,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    margin-left: 3em;
     padding-left: 30px;
 }
 
@@ -57,7 +74,7 @@ body {
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: rgb(89, 225, 65);
 }
 
 .title::before {
@@ -76,6 +93,7 @@ body {
 .signin {
     color: rgba(88, 87, 87, 0.822);
     font-size: 14px;
+    margin-left: 3em;
 }
 
 .signin {
@@ -160,6 +178,33 @@ body {
         opacity: 0;
     }
 }
-
+/*ESTILO beneficios pac*/
+.beneficios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    height: 35vw;
+    background-color: rgba(27, 26, 26, 0.482);
+    margin-top: 1em;
+}
+.paci{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1em;
+}
+.ico{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+footer{
+    grid-area: foot;
+    margin-top: 4em;
+    display: flex;
+    justify-content: center;
+}
 /*ESTILO FOOTER*/
 /*EN FOOTER.CSS*/
