@@ -1,35 +1,34 @@
 package com.app.servicioSalud.entidades;
 
-import java.util.Date;
-import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
+import javax.persistence.OneToOne;
 import lombok.Data;
 
-
-@Entity
+/**
+ * @author Luciano Otegui
+ */
 @Data
-public class Turno {
+@Entity
+public class HistoriaClinica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTurno;
-    @Temporal(TemporalType.DATE)
-    private Date fecha;
-    @Temporal(TemporalType.DATE)
-    private Date hora;
+    private Long id;
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "profesional_id")
+    @ManyToOne(fetch = FetchType.EAGER)
     private Profesional profesional;
-    
-    @ManyToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+
+    //@JsonIgnore
+    //@OneToMany(mappedBy = "historiaClinica", cascade = CascadeType.ALL, orphanRemoval = true)
+    //private List<RegistroConsulta> registrosConsultas = new ArrayList<>();
 }
