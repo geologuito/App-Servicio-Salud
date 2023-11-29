@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.Id;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 /**
  * @author Luciano Otegui
@@ -15,7 +14,6 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 public class Admin{
-
     @Id
     private String id;
      @Enumerated(EnumType.STRING)
