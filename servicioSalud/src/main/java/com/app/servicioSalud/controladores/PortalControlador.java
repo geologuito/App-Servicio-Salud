@@ -12,11 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
-/**
- *
- * @author gonza
- */
 @Controller
 @RequestMapping("/")  //localhost:8080
 public class PortalControlador {
