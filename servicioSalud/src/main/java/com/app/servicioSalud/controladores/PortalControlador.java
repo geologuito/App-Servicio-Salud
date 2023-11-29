@@ -21,8 +21,8 @@ public class PortalControlador {
 
     @Autowired
     private PacienteServicio usuarioServicio;
-    
-    @GetMapping("/")    //localhost:8080/ este queda en portal
+
+    @GetMapping("/") // localhost:8080/ este queda en portal
     public String index() {
         return "index.html";
     }
@@ -58,6 +58,6 @@ public class PortalControlador {
         return "index.html";
 
     }
-    //agregar login,perfil. agregar todo el controlador de admin.
-    
+    // agregar login,perfil. agregar todo el controlador de admin.
+
 }

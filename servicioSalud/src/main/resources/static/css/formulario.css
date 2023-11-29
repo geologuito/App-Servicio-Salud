@@ -22,18 +22,20 @@ body {
     justify-content: center;
     align-items: center;
     height: 80vh;
+    margin-top: 2em;
 }
 
 /*ESTILO FORMULARIO*/
 .form {
-    width: 85%;
+    width: 75vh;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #fff;
+    background-color: #ffffff00;
     padding: 20px;
     border-radius: 30px;
     position: relative;
+    margin-top: 2em;
 }
 
 .title {
