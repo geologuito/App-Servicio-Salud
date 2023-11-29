@@ -1,7 +1,6 @@
 
 package com.app.servicioSalud.servicios;
 
-import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;

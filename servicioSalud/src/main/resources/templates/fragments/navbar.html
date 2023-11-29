@@ -1,4 +1,6 @@
+
 <div class="navb">
+    <link rel="stylesheet" href="/css/navbar.css">
     <!-- MENU -->
     <nav class="navbar navbar-expand-md bg-body-tertiary  ">
         <div class="container-fluid">
@@ -17,14 +19,14 @@
                     <a class="nav-link mx-2" href="#">Contactos</a>
                     <a class="nav-link mx-2" href="#">Servicios</a>
                     <a class="nav-link mx-2 btn btn-custom-green " href="#turnos">Turnos</a>
-                    <a class="nav-link mx-2" href="#">Login</a>
+                    <a class="nav-link mx-2" th:href="@{/login}">Login</a>
                     <div class="nav-item dropdown">
                         <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             Registro
                         </a>
                         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="paciente.html">Pacientes</a>
-                            <a class="dropdown-item" href="registro.html">Profesional</a>
+                            <a class="dropdown-item" th:href="@{/registrar}">Pacientes</a>
+                            <a class="dropdown-item" th:href="@{/registrar}">Profesional</a>
                         </div>
                     </div>
                     <!--<a class="nav-link mx-2" href="#form">Registro</a>-->

@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
@@ -21,7 +20,7 @@ public class Profesional{
     private String apellido;
     private String email;
     private String password;
-    private String domicilio; //decidir si se deja o lo sacamos 
+    private String domicilio; //decidir si se deja o lo sacamos
     private String telefono;
     private Boolean activo;
     private String especialidad;
