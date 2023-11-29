@@ -17,9 +17,19 @@
 /*ESTILO DEL MENU*/
 .navb {
     grid-area: navb;
+    height: 5.5em;
+    
 }
 .nav-link:hover {
     color: rgb(0, 255, 26);
+}
+/*ESTILO LOGO*/
+.logo{
+    width: 70%;
+    height: 70px;
+    background-size: cover;
+    border-radius: 40%;
+    margin-left: 40px;
 }
 
 /*ESTILO DEL CARRUSEL*/
@@ -27,6 +37,7 @@
     grid-area: carr;
     justify-content: center;
     align-items: center;
+    margin-top: 0em;
 }
 
 .carousel-item img {
@@ -312,11 +323,3 @@
     padding-right: 0.6em;
 }
 
-/*ESTILO LOGO*/
-.logo{
-    width: 80%;
-    height: 75px;
-    background-size: cover;
-    border-radius: 50%;
-    margin-left: 50px;
-}
