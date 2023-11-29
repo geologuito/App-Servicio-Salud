@@ -97,5 +97,4 @@ public class ProfesionalControlador {
             return new ResponseEntity<>("Error al eliminar el Profesional: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
 }

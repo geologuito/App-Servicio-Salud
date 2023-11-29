@@ -5,7 +5,6 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
-import lombok.EqualsAndHashCode;
 
 @Entity
 @Data
@@ -15,13 +14,13 @@ public class Profesional{
     
     @Id
     @Column(unique = true)
-    private String Matricula;
+    private String matricula; 
     private String dni;
     private String nombre;
     private String apellido;
     private String email;
     private String password;
-    private String domicilio;
+    private String domicilio; //decidir si se deja o lo sacamos
     private String telefono;
     private Boolean activo;
     private String especialidad;

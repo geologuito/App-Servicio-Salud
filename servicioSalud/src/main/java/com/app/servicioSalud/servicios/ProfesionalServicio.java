@@ -1,4 +1,3 @@
-
 package com.app.servicioSalud.servicios;
 
 import com.app.servicioSalud.entidades.Profesional;
@@ -29,8 +28,10 @@ public class ProfesionalServicio implements UserDetailsService{
     private ProfesionalRepositorio profesionalRepositorio;
     
     @Transactional
-    public void registrar(String matricula, String dni, String nombre, String apellido,String email, String password,String password2, String domicilio,String telefono,Boolean activo,String especialidad,Integer consulta,Date horario)throws  MiException{
+    public void registrar(String matricula,String dni,String nombre, String apellido,String email, String password,String password2, String domicilio,String telefono,Boolean activo,String especialidad,Integer consulta,Date horario)throws  MiException{
     
+        validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, especialidad);
+        
         Profesional profesional = new Profesional();
         
         profesional.setMatricula(matricula);
@@ -61,6 +62,8 @@ public class ProfesionalServicio implements UserDetailsService{
     
     
     public void modificarProfesional(String matricula,String dni,String nombre, String apellido,String email, String password,String password2, String domicilio,String telefono,Boolean activo,String especialidad,Integer consulta,Date horario)throws MiException{
+        
+        validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, especialidad);
         
         Optional<Profesional> respuesta = profesionalRepositorio.findById(matricula);
         if (respuesta.isPresent()) {

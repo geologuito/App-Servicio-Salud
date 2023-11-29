@@ -1,7 +1,6 @@
 
 package com.app.servicioSalud.controladores;
 
-
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,27 +12,28 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
-@RequestMapping("/")  //localhost:8080
+@RequestMapping("/") // localhost:8080
 public class PortalControlador {
 
     @Autowired
     private PacienteServicio usuarioServicio;
-    
-    @GetMapping("/")    //localhost:8080/
+
+    @GetMapping("/") // localhost:8080/ este queda en portal
     public String index() {
-        return "index";
+        return "index.html";
     }
 
-    @GetMapping("/registrar")//localhost:8080/registrar
+    @GetMapping("/registrar") // localhost:8080/registrar
     public String registrar() {
-      
-        return "registro.html";
+
+        return "registroPaciente.html";
     }
-    
-        @PostMapping("/registro")
+
+    @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
 
-            @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono, @RequestParam String password, String password2, ModelMap modelo) {
+            @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
+            @RequestParam String password, String password2, ModelMap modelo) {
 
         try {
             usuarioServicio.registrar(dni, nombre, apellido, email, domicilio, telefono, password, password2);
@@ -49,9 +49,11 @@ public class PortalControlador {
             modelo.put("domicilio", domicilio);
             modelo.put("telefono", telefono);
 
-            return "registro";
+            return "registroPaciente.html";
         }
-        return "index";
+        return "index.html";
 
     }
+    // agregar login,perfil. agregar todo el controlador de admin.
+
 }
