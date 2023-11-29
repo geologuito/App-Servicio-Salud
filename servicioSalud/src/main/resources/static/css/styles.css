@@ -16,13 +16,12 @@
     background-size: cover;
 }
 
-/*ESTILO DEL NAVBAR EN navbar.css*/
-
 /*ESTILO DEL CARRUSEL*/
 .carr {
     grid-area: carr;
     justify-content: center;
     align-items: center;
+    margin-top: 0em;
 }
 
 .carousel-item img {
