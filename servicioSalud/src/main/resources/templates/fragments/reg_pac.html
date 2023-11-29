@@ -3,39 +3,30 @@
         <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
         <p class="title">Registro </p>
         <p class="message">Registrate ahora para acceder a nuestros sesrvicios!</p>
-
-        <label>
-            <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
-            <span>Nombre</span>
-        </label>
-
-        <label>
-            <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
-            <span>Apellido</span>
-        </label>
-
+        <div class="d-flex justify-content-between">
+            <label class="name">
+                <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
+                <span>Nombre</span>
+            </label>
+            <label class="name">
+                <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
+                <span>Apellido</span>
+            </label>
+        </div>
         <label>
             <input type="number" class="input" required="" name="dni" th:value="${dni}">
             <span>DNI</span>
-        </label>
-        <label>
-            <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
-            <span>Domicilio</span>
         </label>
         <label>
             <input type="email" class="input" required="" name="email" th:value="${email}">
             <span>Email</span>
         </label>
         <label>
-            <input type="text" class="input" required="" name="telefono" th:value="${telefono}">
-            <span>Telefono</span>
-        </label>
-        <label>
-            <input required="" type="password" class="input" name="password" th:value="${password}">
+            <input type="password" class="input" required="" name="password" th:value="${password}">
             <span>Contraseña</span>
         </label>
         <label>
-            <input required="" type="password" class="input" name="password2" th:value="${password2}">
+            <input type="password" class="input" required="" name="password2" th:value="${password2}">
             <span>Repetir Contraseña</span>
         </label>
         <button class="submit">Registrarme</button>
