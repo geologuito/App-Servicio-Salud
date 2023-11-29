@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+    <title>App Salud</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div th:replace="/fragments/navbar ::div"> </div>
+        <section class="reg">
+            <form id="form" class="form" th:action="@{/profesional/registro}" method="POST" enctype="multipart/form-data">
+                <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+                <p class="title">Registro Profesional</p>
+                <p class="message text-white">Registrate ahora para acceder a nuestros sesrvicios!</p>
+                <div class="d-flex justify-content-between">
+                    <label class="name">
+                        <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
+                        <span>Nombre</span>
+                    </label>
+                    <label class="name">
+                        <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
+                        <span>Apellido</span>
+                    </label>
+                </div>
+                <div class="d-flex justify-content-between">
+                    <label>
+                        <input type="number" class="input" required="" name="dni" th:value="${dni}">
+                        <span>DNI</span>
+                    </label>
+                    <label class="name">
+                        <input type="text" class="input" required="" name="edad" th:value="${edad}">
+                        <span>Año / Edad / F Nac</span>
+                    </label>
+                </div>
+                <label>
+                    <input type="number" class="input" required="" name="matricula" th:value="${matricula}">
+                    <span>Matricula</span>
+                </label>
+                <label>
+                    <input type="email" class="input" required="" name="email" th:value="${email}">
+                    <span>Email</span>
+                </label>
+                <label>
+                    <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
+                    <span>Domicilio</span>
+                </label>
+                <label>
+                    <input type="number" class="input" required="" name="telefono" th:value="${telefono}">
+                    <span>Telefono</span>
+                </label>
+                <label>
+                    <input type="password" class="input" required="" name="password" th:value="${password}">
+                    <span>Contraseña</span>
+                </label>
+                <label>
+                    <input type="password" class="input" required="" name="password2" th:value="${password2}">
+                    <span>Repetir Contraseña</span>
+                </label>
+                <button class="submit">Registrarme</button>
+                <p class="signin text-white">Ya tienes una cuenta? <a class="text-white" href="#">Loguearse</a> </p>
+                <!-- Inicio Mensaje de Exito -->
+                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                    <div class="card-body">
+                        <h5 class="card-title">Exito</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div>
+                <!-- Fin Mensaje de Exito -->
+
+                <!-- Inicio mensaje de error -->
+                <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                    <div class="card-body">
+                        <h5 class="card-title">Error!!</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <!-- Fin mensaje de error -->
+            </form>
+            <!-- FIN FORM -->
+            <div class="beneficios">
+                <div class="paci text-white">
+                    <ul>
+                        <li class="my-3">Beneficio 1</li>
+                        <li class="my-3">Beneficio 2</li>
+                        <li class="my-3">Beneficio 3</li>
+                        <li class="my-3">Beneficio 4</li>
+                        <li class="my-3">Beneficio 5</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+
+</body>
+
+</html>

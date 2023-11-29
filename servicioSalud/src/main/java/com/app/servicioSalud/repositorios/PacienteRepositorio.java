@@ -1,15 +1,17 @@
 package com.app.servicioSalud.repositorios;
 
 import com.app.servicioSalud.entidades.Paciente;
-import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface ProfesionalRepositorio extends JpaRepository<Profesional,String> {
+public interface PacienteRepositorio extends JpaRepository<Paciente,String> {
+ 
+    @Query ("select p from Paciente p where p.dni = :dni")
+    public Paciente buscarPorDNI(@Param("dni") String dni);
     
-    @Query("select p from Profesional p where p.email = :email")
-    public Profesional buscarPorEmail(@Param("email") String email);
+    @Query("select p from Paciente p where p.email = :email")
+    public Paciente buscarPorEmail(@Param("email") String email);
 }
