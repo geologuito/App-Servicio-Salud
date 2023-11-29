@@ -3,7 +3,7 @@ package com.app.servicioSalud.controladores;
 
 
 import com.app.servicioSalud.excepciones.MiException;
-import com.app.servicioSalud.servicios.UsuarioServicio;
+import com.app.servicioSalud.servicios.PacienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -22,7 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PortalControlador {
 
     @Autowired
-    private UsuarioServicio usuarioServicio;
+    private PacienteServicio usuarioServicio;
     
     @GetMapping("/")    //localhost:8080/
     public String index() {
@@ -32,7 +32,7 @@ public class PortalControlador {
     @GetMapping("/registrar")//localhost:8080/registrar
     public String registrar() {
       
-        return "registro";
+        return "registro.html";
     }
     
         @PostMapping("/registro")
