@@ -15,9 +15,15 @@ import lombok.EqualsAndHashCode;
 @Entity
 @Data
 public class Admin{
+<<<<<<< HEAD
     @Id
     private String id;
     
+=======
+
+    @Id
+    private String id;
+>>>>>>> developer
      @Enumerated(EnumType.STRING)
     private RolEnum rol;
     
