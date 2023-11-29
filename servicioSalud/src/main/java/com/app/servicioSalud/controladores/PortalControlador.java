@@ -26,7 +26,7 @@ public class PortalControlador {
     
     @GetMapping("/")    //localhost:8080/
     public String index() {
-        return "index";
+        return "servicios";
     }
 
     @GetMapping("/registrar")//localhost:8080/registrar
