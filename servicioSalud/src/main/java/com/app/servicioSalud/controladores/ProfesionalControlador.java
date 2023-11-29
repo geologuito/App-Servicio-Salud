@@ -3,10 +3,14 @@ package com.app.servicioSalud.controladores;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
+import java.util.Date;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -28,7 +32,7 @@ public class ProfesionalControlador {
 
     @PostMapping("/registro")
     public String registro(@RequestParam(required = false) String matricula, @RequestParam String dni, @RequestParam(required = false) String nombre,
-            @RequestParam String apellido, @RequestParam String email, @RequestParam String password, @RequestParam String domicilio, @RequestParam String telefono, @RequestParam Boolean activo, @RequestParam String especialidad, @RequestParam Integer consulta, ModelMap modelo) {
+            @RequestParam String apellido, @RequestParam String email, @RequestParam String password, @RequestParam String domicilio, @RequestParam String telefono, @RequestParam Boolean activo, @RequestParam String especialidad, @RequestParam Integer consulta, @RequestParam Date horario, ModelMap modelo) {
 
         try {
 
@@ -64,11 +68,10 @@ public class ProfesionalControlador {
     }
 
     @PostMapping("/modificar/{matricula}")
-    public String modificar(@PathVariable String matricula, String titulo, String idAutor, String idEditorial, Integer ejemplares, ModelMap modelo) {
-
+    public String modificar(@PathVariable String matricula, String nombre, String apellido, String email, String password, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario, ModelMap modelo) {
         try {
 
-            libroServicio.modificarLibro(isbn, titulo, idAutor, idEditorial, ejemplares);
+            profesionalServicio.modificarProfesional(matricula, email, nombre, apellido, email, password, password, domicilio, telefono, activo, especialidad, consulta, horario);
             return "redirect:../lista";
 
         } catch (MiException ex) {
@@ -78,30 +81,20 @@ public class ProfesionalControlador {
         }
     }
 
-    @GetMapping("/eliminar/{isbn}")
-    public String eliminarNoticia(@PathVariable Long isbn, ModelMap modelo) throws MiException {
+    @GetMapping("/eliminar/{matricula}")
+    public String eliminarNoticia(@PathVariable String matricula, ModelMap modelo) throws MiException {
 
-        profesionalServicio.eliminarProfesional(id);
+        profesionalServicio.eliminarProfesional(matricula);
         return "redirect:../lista";
-        /*    try {
-
-            noticiaServicio.eliminarNoticias(id);
-            return "redirect:../lista";
-
-        } catch (MiException ex) {
-
-            modelo.put("error", ex.getMessage());
-            return "noticiaEliminar.html";
-        } */
     }
 
-    @DeleteMapping("/eliminar/{isbn}")
-    public ResponseEntity<String> eliminarLibro(@PathVariable Long isbn) {
+    @DeleteMapping("/eliminar/{matricula}")
+    public ResponseEntity<String> eliminarProfesional(@PathVariable String matricula) {
         try {
-            libroServicio.eliminarLibro(isbn);
-            return new ResponseEntity<>("Libro eliminado con éxito", HttpStatus.OK);
+            profesionalServicio.eliminarProfesional(matricula);
+            return new ResponseEntity<>("Profesional eliminado con éxito", HttpStatus.OK);
         } catch (MiException ex) {
-            return new ResponseEntity<>("Error al eliminar el Libro: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
+            return new ResponseEntity<>("Error al eliminar el Profesional: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 
