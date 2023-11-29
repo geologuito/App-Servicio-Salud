@@ -1,0 +1,7 @@
+/*ESTILO DEL FOOTER*/
+.foot {
+    grid-area: foot;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(122, 218, 164);
+}
