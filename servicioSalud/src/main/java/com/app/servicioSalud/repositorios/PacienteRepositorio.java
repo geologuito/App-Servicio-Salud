@@ -9,16 +9,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PacienteRepositorio extends JpaRepository<Paciente,String> {
  
-<<<<<<< HEAD
     @Query ("select p from Paciente p  where p.dni = :dni")
     public Paciente buscarPorDNI(@Param("dni") String dni);
     
-    @Query("select p from Paciente p  where p.email = :email")
-=======
-    @Query ("select p from Paciente p where p.dni = :dni")
-    public Paciente buscarPorDNI(@Param("dni") String dni);
-    
     @Query("select p from Paciente p where p.email = :email")
->>>>>>> developer
     public Paciente buscarPorEmail(@Param("email") String email);
 }

@@ -12,20 +12,12 @@ import org.springframework.stereotype.Service;
 import com.app.servicioSalud.repositorios.PacienteRepositorio;
 import javax.servlet.http.HttpSession;
 //import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
-<<<<<<< HEAD
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-=======
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 //import org.springframework.security.core.userdetails.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.User;
->>>>>>> developer
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -151,10 +143,7 @@ public class PacienteServicio implements UserDetailsService{
             HttpSession session = attr.getRequest().getSession(true);
 
             session.setAttribute("pacientesession", paciente);
-<<<<<<< HEAD
-=======
-            
->>>>>>> developer
+
             return new User(paciente.getEmail(), paciente.getPassword(), permisos);
         } else {
             return null;
