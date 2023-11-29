@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>App Salud</title>
+
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+</head>
+
+<body>
+
+    <div class="contenedor">
+        <div th:replace="/fragments/navbar ::div"> </div>
+        <!-- Inicio Formulario Registro -->
+        <div class="reg">
+            <div class="row mb-5 justify-content-center">
+                <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
+                    <form id="form" class="form" th:action="@{/registro}" method="POST" enctype="multipart/form-data">
+                        <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+                        <p class="title">Registro </p>
+                        <p class="message">Registrate ahora para acceder a nuestros servicios!</p>
+                        
+                        <label>
+                            <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
+                            <span>Nombre</span>
+                        </label>
+                
+                        <label>
+                            <input type="text" class="input" required="" name="apellido" th:value="${apellido}">
+                            <span>Apellido</span>
+                        </label>
+                
+                        <label>
+                            <input type="number" class="input" required="" name="dni" th:value="${dni}">
+                            <span>DNI</span>
+                        </label>
+                        <label>
+                            <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
+                            <span>Domicilio</span>
+                        </label>
+                        <label>
+                            <input type="email" class="input" required="" name="email" th:value="${email}">
+                            <span>Email</span>
+                        </label>
+                        <label>
+                            <input type="text" class="input" required="" name="telefono" th:value="${telefono}">
+                            <span>Telefono</span>
+                        </label>
+                        <label>
+                            <input required="" type="password" class="input" name="password" th:value="${password}">
+                            <span>Contraseña</span>
+                        </label>
+                        <label>
+                            <input required="" type="password" class="input" name="password2" th:value="${password2}">
+                            <span>Repetir Contraseña</span>
+                        </label>
+                        <label>
+                            <input required="" type="input" class="input" name="matricula" th:value="${}">
+                            <span>Matricula</span>
+                        </label>
+                        <button class="submit">Registrarme</button>
+                        <p class="signin">Ya tienes una cuenta? <a href="#">Loguearse</a> </p>
+                        <!-- Inicio Mensaje de Exito -->
+                        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                            <div class="card-body">
+                                <h5 class="card-title">Exito</h5>
+                                <p class="card-text" th:text="${exito}"></p>
+                            </div>
+                        </div>
+                        <!-- Fin Mensaje de Exito -->
+                
+                        <!-- Inicio mensaje de error -->
+                        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                            <div class="card-body">
+                                <h5 class="card-title">Error!!</h5>
+                                <p class="card-text" th:text="${error}"></p>
+                            </div>
+                        </div>
+                        <!-- Fin mensaje de error -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- Fin Formulario Registro -->
+
+        <!-- Inicio Mensaje de Exito -->
+        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+            <div class="card-body">
+                <h5 class="card-title">Exito</h5>
+                <p class="card-text" th:text="${exito}"></p>
+            </div>
+        </div>
+        <!-- Fin Mensaje de Exito -->
+
+        <!-- Inicio mensaje de error -->
+        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+            <div class="card-body">
+                <h5 class="card-title">Error!!</h5>
+                <p class="card-text" th:text="${error}"></p>
+            </div>
+        </div>
+        <!-- Fin mensaje de error -->
+    </div>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>

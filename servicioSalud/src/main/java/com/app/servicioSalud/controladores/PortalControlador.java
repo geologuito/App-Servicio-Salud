@@ -32,7 +32,7 @@ public class PortalControlador {
     @GetMapping("/registrar")//localhost:8080/registrar
     public String registrar() {
       
-        return "registro.html";
+        return "registroPaciente";
     }
     
         @PostMapping("/registro")
