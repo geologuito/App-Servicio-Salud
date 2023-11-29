@@ -12,14 +12,13 @@ body {
                         "foot foot foot";
 }
 
-/*ESTILO NAVBAR*/
 /*EN NAVBAR.CSS*/
 
 /*ESTILO DEL REGISTRO*/
 .reg {
     grid-area: reg;
     display:flex;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
     height: 80vh;
     margin-top: 2em;
@@ -38,6 +37,10 @@ body {
     margin-top: 2em;
 }
 
+.name {
+    width: 49%;
+}
+
 .title {
     font-size: 28px;
     color: royalblue;
@@ -46,6 +49,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
+    margin-left: 3em;
     padding-left: 30px;
 }
 
@@ -57,7 +61,7 @@ body {
     width: 16px;
     border-radius: 50%;
     left: 0px;
-    background-color: royalblue;
+    background-color: rgb(89, 225, 65);
 }
 
 .title::before {
@@ -76,6 +80,7 @@ body {
 .signin {
     color: rgba(88, 87, 87, 0.822);
     font-size: 14px;
+    margin-left: 3em;
 }
 
 .signin {
@@ -159,6 +164,28 @@ body {
         transform: scale(1.8);
         opacity: 0;
     }
+}
+/*ESTILO beneficios pac*/
+.beneficios{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30vw;
+    height: 35vw;
+    background-color: rgba(27, 26, 26, 0.482);
+    margin-top: 1em;
+}
+.paci{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin-top: 1em;
+}
+.ico{
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /*ESTILO FOOTER*/
