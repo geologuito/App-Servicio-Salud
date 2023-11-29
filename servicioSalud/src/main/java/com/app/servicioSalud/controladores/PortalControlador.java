@@ -2,7 +2,7 @@
 package com.app.servicioSalud.controladores;
 
 import com.app.servicioSalud.excepciones.MiException;
-import com.app.servicioSalud.servicios.UsuarioServicio;
+import com.app.servicioSalud.servicios.PacienteServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -20,9 +20,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 public class PortalControlador {
 
     @Autowired
-    private UsuarioServicio usuarioServicio;
-
-    @GetMapping("/") // localhost:8080/
+    private PacienteServicio usuarioServicio;
+    
+    @GetMapping("/")    //localhost:8080/ este queda en portal
     public String index() {
         return "index.html";
     }
@@ -58,4 +58,6 @@ public class PortalControlador {
         return "index.html";
 
     }
+    //agregar login,perfil. agregar todo el controlador de admin.
+    
 }

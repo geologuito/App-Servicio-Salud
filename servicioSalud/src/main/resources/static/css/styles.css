@@ -1,14 +1,13 @@
 .contenedor {
     text-align: center;
     display: grid;
-    grid-template: auto auto auto auto auto / 35% 30% 1fr;
+    grid-template: auto auto auto auto auto / 50% 28% 1fr;
     grid-template-areas: "navb navb navb  "
         "carr carr carr  "
         "cont cont reg "
         "cont2 cont2 reg"
         "foot foot foot";
 }
-
 #fondo{
     background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
     background-repeat: no-repeat;
@@ -312,7 +311,6 @@
     text-align: justify;
     padding-right: 0.6em;
 }
-
 
 /*ESTILO LOGO*/
 .logo{
