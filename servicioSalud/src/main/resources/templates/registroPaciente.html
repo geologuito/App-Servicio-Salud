@@ -17,7 +17,7 @@
             <form id="form" class="form" th:action="@{/paciente/registro}" method="POST" enctype="multipart/form-data">
                 <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                 <p class="title ">Registro Paciente</p>
-                <p class="message text-white">Registrate ahora para acceder a nuestros sesrvicios!</p>
+                <p class="message text-white">Registrate ahora para acceder a nuestros servicios!</p>
                 <div class="d-flex justify-content-between">
                     <label class="name">
                         <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
@@ -39,11 +39,11 @@
                     </label>
                 </div>
                 <label>
-                    <input type="text" class="input" required="" name="email" th:value="${domicilio}">
+                    <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
                     <span>Domicilio</span>
                 </label>
                 <label>
-                    <input type="number" class="input" required="" name="email" th:value="${telefono}">
+                    <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
                     <span>Telefono</span>
                 </label>
                 <label>
@@ -55,7 +55,7 @@
                     <span>Contraseña</span>
                 </label>
                 <label>
-                    <input type="password" class="input" required="" name="password2" th:value="${password2}">
+                    <input type="password" class="input" required name="password2" th:value="${password2}">
                     <span>Repetir Contraseña</span>
                 </label>
                 <button class="submit">Registrarme</button>
