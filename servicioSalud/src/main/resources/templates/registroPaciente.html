@@ -59,7 +59,7 @@
                     <span>Repetir Contraseña</span>
                 </label>
                 <button class="submit">Registrarme</button>
-                <p class="signin text-white">Ya tienes una cuenta? <a class="text-white" href="#">Loguearse</a> </p>
+                <p class="signin text-white">Ya tienes una cuenta? <a class="text-white" th:href="@{/paciente/login}">Loguearse</a> </p>
                 <!-- Inicio Mensaje de Exito -->
                 <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
                     <div class="card-body">

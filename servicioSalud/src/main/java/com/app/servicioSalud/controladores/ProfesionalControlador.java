@@ -48,7 +48,7 @@ public class ProfesionalControlador {
 
             return "registroProfesional.html";
         }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -58,6 +58,6 @@ public class ProfesionalControlador {
             modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
-        return "login.html";
+        return "loginProfesional.html";
     }
 }

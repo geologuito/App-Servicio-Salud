@@ -46,7 +46,7 @@ public class PacienteControlador {
 
             return "registroPaciente.html";
         }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -56,6 +56,6 @@ public class PacienteControlador {
             modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
-        return "login.html";
+        return "loginPaciente.html";
     }
 }
