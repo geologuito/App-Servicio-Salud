@@ -20,3 +20,9 @@ public class PortalControlador {
 
     }
     // agregar login,perfil. agregar todo el controlador de admin.
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> developer
