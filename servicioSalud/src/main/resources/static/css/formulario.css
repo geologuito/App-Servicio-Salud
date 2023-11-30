@@ -11,7 +11,6 @@ body {
                         "reg reg reg" 
                         "foot foot foot";
 }
-
 /*EN NAVBAR.CSS*/
 
 /*ESTILO DEL REGISTRO*/
@@ -186,7 +185,6 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-}
 
 /*ESTILO FOOTER*/
 /*EN FOOTER.CSS*/
