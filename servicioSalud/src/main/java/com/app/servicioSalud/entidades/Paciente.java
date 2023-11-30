@@ -1,7 +1,6 @@
 package com.app.servicioSalud.entidades;
 
 import com.app.servicioSalud.enumeraciones.*;
-import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
