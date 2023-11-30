@@ -16,36 +16,35 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
+        @Autowired
+        public PacienteServicio pacienteServicio;
 
-    @Autowired
-    public PacienteServicio pacienteServicio;
+        @Autowired
+        public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
 
-    @Autowired
-    public void configuredGlobal(AuthenticationManagerBuilder auth)throws Exception{
+                auth.userDetailsService(pacienteServicio)
+                                .passwordEncoder(new BCryptPasswordEncoder());
+        }
 
-        auth.userDetailsService(pacienteServicio)
-           .passwordEncoder(new BCryptPasswordEncoder());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http
-                .authorizeRequests()
-                .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador
-                .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
-                .permitAll()
-                .and().formLogin()
-                        .loginPage("/login")
-                        .loginProcessingUrl("/logincheck")
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/inicio")
-                        .permitAll()
-                .and().logout()
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
-                        .permitAll()
-                .and().csrf()
-                        .disable();
-    }
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+                http
+                        .authorizeRequests()
+                                .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador
+                                .antMatchers("/css/", "/js/", "/img/*", "/**")
+                                .permitAll()
+                        .and().formLogin()
+                                .loginPage("/login")
+                                .loginProcessingUrl("/logincheck")
+                                .usernameParameter("email")
+                                .passwordParameter("password")
+                                .defaultSuccessUrl("/")
+                                .permitAll()
+                        .and().logout()
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login")
+                                .permitAll()
+                        .and().csrf()
+                                .disable();
+        }
 }
