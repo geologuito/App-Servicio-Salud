@@ -1,4 +1,3 @@
-
 package com.app.servicioSalud.controladores;
 
 import org.springframework.stereotype.Controller;
@@ -14,8 +13,6 @@ public class PortalControlador {
         return "index";
     }
 
-    }
-    // agregar login,perfil. agregar todo el controlador de admin.
-
-
 }
+// agregar login,perfil. agregar todo el controlador de admin.
+
