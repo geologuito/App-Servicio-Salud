@@ -6,6 +6,9 @@
 .nav-link:hover {
     color: rgb(0, 255, 26);
 }
+.bg-custom {
+    background-color: rgb(250, 255, 249);
+}
 /*ESTILO LOGO*/
 .logo{
     width: 80%;
