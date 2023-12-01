@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-/*@Configuration
+@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
@@ -44,11 +44,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                         .loginProcessingUrl("/logincheck")
                         .usernameParameter("email")
                         .passwordParameter("password")
-<<<<<<< HEAD
-                        .defaultSuccessUrl("/paciente/inicio")
-=======
                         .defaultSuccessUrl("/paciente/perfil")
->>>>>>> developer
                         .permitAll()
                 .and().logout()
                         .logoutUrl("/logout")
@@ -56,48 +52,5 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                         .permitAll()
                 .and().csrf()
                         .disable();
-    }*/
-@Configuration
-@EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
-public class SeguridadWeb extends WebSecurityConfigurerAdapter {
-
-    @Autowired
-    public PacienteServicio pacienteServicio;
-
-    @Autowired
-    public void configurarAutenticacion(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(pacienteServicio)
-                .passwordEncoder(new BCryptPasswordEncoder());
-    }
-
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN") // Endpoints para el administrador
-                .antMatchers("/profesional/**").hasRole("PROFESIONAL") // Endpoints para el profesional
-                .antMatchers("/paciente/**").hasRole("PACIENTE") // Endpoints para el paciente
-                .antMatchers("/css/", "/js/", "/img/**", "/**").permitAll()
-                .and().formLogin()
-                    .loginPage("/paciente/login")
-                    .loginProcessingUrl("/paciente/logincheck") // Utilizar una URL específica para el procesamiento del inicio de sesión del paciente
-                    .usernameParameter("email")
-                    .passwordParameter("password")
-                    .defaultSuccessUrl("/") // Especificar la URL de éxito para el paciente
-                    .permitAll()
-                .and().formLogin()
-                    .loginPage("/profesional/login")
-                    .loginProcessingUrl("/profesional/logincheck") // Utilizar una URL específica para el procesamiento del inicio de sesión del profesional
-                    .usernameParameter("email")
-                    .passwordParameter("password")
-                    .defaultSuccessUrl("/") // Especificar la URL de éxito para el profesional
-                    .permitAll()
-                .and().logout()
-                    .logoutUrl("/logout")
-                    .logoutSuccessUrl("/login")
-                    .permitAll()
-                .and().csrf().disable();
     }
 }
-

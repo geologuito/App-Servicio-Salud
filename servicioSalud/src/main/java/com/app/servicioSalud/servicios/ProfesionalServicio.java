@@ -64,13 +64,10 @@ public class ProfesionalServicio implements UserDetailsService {
 
         validarModificar(email, password, password2, domicilio, telefono);
 
-
         Optional<Profesional> respuesta = profesionalRepositorio.findById(matricula);
         if (respuesta.isPresent()) {
 
             Profesional profesional = respuesta.get();
-            
-        profesional.setMatricula(matricula);
 
             profesional.setEmail(email);
             profesional.setPassword(new BCryptPasswordEncoder().encode(password));
@@ -78,6 +75,7 @@ public class ProfesionalServicio implements UserDetailsService {
             profesional.setTelefono(telefono);
 
             profesionalRepositorio.save(profesional);
+
         }
 
     }

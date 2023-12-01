@@ -12,13 +12,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import java.util.List;
-<<<<<<< HEAD
-=======
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
->>>>>>> developer
 import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
@@ -66,11 +63,6 @@ public class PacienteControlador {
 
         return "loginPaciente.html";
     }
-<<<<<<< HEAD
-    
-    @GetMapping("/lista")
-    public String listar(ModelMap modelo){ // lista de pacientes.
-=======
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE','ROLE_ADMIN')")
     @GetMapping("/perfil")
@@ -89,24 +81,10 @@ public class PacienteControlador {
 
     @GetMapping("/lista")
     public String listar(ModelMap modelo) { // lista de pacientes.
->>>>>>> developer
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         modelo.addAttribute("pacientes", pacientes);
         return "listarPacientes"; // para mapear con 
     }
-<<<<<<< HEAD
-    
-    @GetMapping("/modificar/{dni}") 
-    public String modificar(@PathVariable String dni , ModelMap modelo) {
-
-        modelo.put("paciente", pacienteServicio.getOne(dni));
-        List<Paciente> pacientes = pacienteServicio.listarPaciente();        
-        modelo.addAttribute("pacientes", pacientes);
-       
-
-        return "pacienteModificar";// mapear con html
-    }
-=======
 
     @GetMapping("/modificar/{dni}")
     public String modificar(@PathVariable String dni, ModelMap modelo) {
@@ -118,28 +96,21 @@ public class PacienteControlador {
         return "pacienteModificar";// mapear con html
     }
 
->>>>>>> developer
     @PostMapping("/modificar/{dni}")
     public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password, ModelMap modelo) throws MiException {
         try {
 
-
-
             pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
-
 
             return "panelPaciente"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
-
             List<Paciente> pacientes = pacienteServicio.listarPaciente();
             modelo.addAttribute("pacientes", pacientes);
-
             modelo.put("error", ex.getMessage());
             return "pacienteModificar"; // mapear con html
         }
     }
-}
 
     @GetMapping("/eliminar/{dni}")
     public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
@@ -148,7 +119,7 @@ public class PacienteControlador {
         return "redirect:/index"; //Falta vista para saber a donde va cuando elimina prof
     }
 
-    @DeleteMapping("/eliminar/{matricula}")
+    @DeleteMapping("/eliminar/{dni}")
     public ResponseEntity<String> eliminarProfesional(@PathVariable String dni) {
         try {
             pacienteServicio.eliminarPaciente(dni);
@@ -159,4 +130,3 @@ public class PacienteControlador {
 
     }
 }
->>>>>>> developer
