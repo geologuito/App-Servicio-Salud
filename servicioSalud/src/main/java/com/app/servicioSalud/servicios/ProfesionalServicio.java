@@ -159,7 +159,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
             List<GrantedAuthority> permisos = new ArrayList();
 
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + profesional.getRol().toString());
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_PROFESIONAL" + profesional.getRol().toString());
 
             permisos.add(p);
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();

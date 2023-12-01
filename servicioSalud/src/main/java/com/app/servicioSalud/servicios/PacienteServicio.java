@@ -150,7 +150,7 @@ public class PacienteServicio implements UserDetailsService {
 
             List<GrantedAuthority> permisos = new ArrayList();
 
-            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + paciente.getRol().toString());
+            GrantedAuthority p = new SimpleGrantedAuthority("ROLE_PACIENTE" + paciente.getRol().toString());
 
             permisos.add(p);
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();

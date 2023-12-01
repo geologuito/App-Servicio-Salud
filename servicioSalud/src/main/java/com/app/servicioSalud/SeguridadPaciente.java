@@ -11,7 +11,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration
+/*@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
@@ -52,5 +52,41 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                         .permitAll()
                 .and().csrf()
                         .disable();
+    }*/
+   @Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SeguridadPaciente extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private PacienteServicio pacienteServicio;
+
+    @Autowired
+    public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(pacienteServicio)
+            .passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .authorizeRequests()
+                .antMatchers("/paciente/**").hasRole("PACIENTE")
+                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
+                .and()
+            .formLogin()
+                .loginPage("/paciente/login")
+                .loginProcessingUrl("/logincheck")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .defaultSuccessUrl("/paciente/perfil")
+                .permitAll()
+                .and()
+            .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .permitAll()
+                .and()
+            .csrf().disable();
     }
 }
