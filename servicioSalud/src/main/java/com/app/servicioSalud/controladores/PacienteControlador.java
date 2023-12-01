@@ -58,22 +58,21 @@ public class PacienteControlador {
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
 
         if (error != null) {
-            modelo.put("error", "Usuario o ContraseÃ±a invalidos!");
+            modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
         return "loginPaciente.html";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_PACIENTE','ROLE_ADMIN')")
+  @PreAuthorize("hasAnyRole('ROLE_PACIENTE','ROLE_ADMIN')")
     @GetMapping("/perfil")
-    public String perfil(ModelMap modelo, HttpSession session) {
+    public String perfil(HttpSession session) {
 
         Paciente logueado = (Paciente) session.getAttribute("pacientesession");
 
         if (logueado.getRol().toString().equals("ADMIN")) {
             return "redirect:/admin/dashboard";
         }
-        modelo.put("paciente", logueado);
 
         return "panelPaciente.html";
     }
@@ -119,7 +118,7 @@ public class PacienteControlador {
         return "redirect:/index"; //Falta vista para saber a donde va cuando elimina prof
     }
 
-    @DeleteMapping("/eliminar/{matricula}")
+    @DeleteMapping("/eliminar/{dni}")
     public ResponseEntity<String> eliminarProfesional(@PathVariable String dni) {
         try {
             pacienteServicio.eliminarPaciente(dni);
