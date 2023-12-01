@@ -24,6 +24,5 @@ public enum Horario {
     HORARIO_14_30_Hs,
     HORARIO_15_00_Hs,
     HORARIO_15_30_Hs,
-    HORARIO_16_00_Hs,
-   
+    HORARIO_16_00_Hs;
 }
