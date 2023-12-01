@@ -1,7 +1,7 @@
 body {
     background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
     background-size: cover;
-    background-position: center center;
+    background-position: center;
 }
 .contenedor {
     text-align: center;
@@ -21,7 +21,12 @@ body {
     align-items: center;
     margin-top: 2em;
 }
-
+/*ESTILO LOGIN*/
+.login{
+height:46vh;
+margin-top: 5em;
+width:24em;
+}
 /*ESTILO FORMULARIO*/
 .form {
     width: 75vh;
