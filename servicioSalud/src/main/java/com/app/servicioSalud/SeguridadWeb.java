@@ -1,4 +1,4 @@
-    package com.app.servicioSalud;
+   package com.app.servicioSalud;
 
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
