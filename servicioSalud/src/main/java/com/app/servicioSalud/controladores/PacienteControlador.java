@@ -56,6 +56,6 @@ public class PacienteControlador {
             modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
-        return "login.html";
+        return "loginPaciente.html";
     }
 }
