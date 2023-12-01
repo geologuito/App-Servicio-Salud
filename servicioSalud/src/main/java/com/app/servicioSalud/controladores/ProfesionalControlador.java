@@ -32,12 +32,12 @@ public class ProfesionalControlador {
     }
 
     @PostMapping("/registro")
-    public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
+    public String registro(@RequestParam String matricula, @RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
             @RequestParam String password, String password2, ModelMap modelo) {
 
         try {
-            profesionalServicio.registrar(password2, dni, nombre, apellido, email, password, password2, domicilio,
+            profesionalServicio.registrar(matricula, dni, nombre, apellido, email, password, password2, domicilio,
                     telefono, null, password2, null, null);
 
             modelo.put("exito", "Usuario Registrado!");
