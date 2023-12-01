@@ -56,7 +56,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     public PacienteServicio pacienteServicio;
 
     @Autowired
-    public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
+    public void configurarAutenticacion(AuthenticationManagerBuilder auth) throws Exception {
         auth.userDetailsService(pacienteServicio)
                 .passwordEncoder(new BCryptPasswordEncoder());
     }
@@ -65,23 +65,23 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .antMatchers("/admin/**").hasRole("ADMIN") // Admin endpoints
-                .antMatchers("/profesional/**").hasRole("PROFESIONAL") // Profesional endpoints
-                .antMatchers("/paciente/**").hasRole("PACIENTE") // Paciente endpoints
+                .antMatchers("/admin/**").hasRole("ADMIN") // Endpoints para el administrador
+                .antMatchers("/profesional/**").hasRole("PROFESIONAL") // Endpoints para el profesional
+                .antMatchers("/paciente/**").hasRole("PACIENTE") // Endpoints para el paciente
                 .antMatchers("/css/", "/js/", "/img/**", "/**").permitAll()
                 .and().formLogin()
                     .loginPage("/paciente/login")
-                    .loginProcessingUrl("/logincheck")
+                    .loginProcessingUrl("/paciente/logincheck") // Utilizar una URL específica para el procesamiento del inicio de sesión del paciente
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/")
+                    .defaultSuccessUrl("/") // Especificar la URL de éxito para el paciente
                     .permitAll()
                 .and().formLogin()
                     .loginPage("/profesional/login")
-                    .loginProcessingUrl("/logincheck")
+                    .loginProcessingUrl("/profesional/logincheck") // Utilizar una URL específica para el procesamiento del inicio de sesión del profesional
                     .usernameParameter("email")
                     .passwordParameter("password")
-                    .defaultSuccessUrl("/")
+                    .defaultSuccessUrl("/") // Especificar la URL de éxito para el profesional
                     .permitAll()
                 .and().logout()
                     .logoutUrl("/logout")
@@ -90,3 +90,4 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .and().csrf().disable();
     }
 }
+

@@ -61,7 +61,6 @@ public class PacienteControlador {
 
         return "loginPaciente.html";
     }
-<<<<<<< HEAD
     
     @GetMapping("/lista")
     public String listar(ModelMap modelo){ // lista de pacientes.
@@ -95,7 +94,4 @@ public class PacienteControlador {
             return "pacienteModificar"; // mapear con html
         }
     }
-
-=======
->>>>>>> developer
 }

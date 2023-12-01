@@ -64,7 +64,6 @@ public class ProfesionalControlador {
 
         return "loginProfesional.html";
     }
-<<<<<<< HEAD
 
     @GetMapping("/listaProfesionales")
     public String listarProfesional(ModelMap modelo) {
@@ -113,6 +112,3 @@ public class ProfesionalControlador {
         }
     }
 }
-=======
-}
->>>>>>> developer
