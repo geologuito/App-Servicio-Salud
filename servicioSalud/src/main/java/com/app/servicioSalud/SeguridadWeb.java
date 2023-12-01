@@ -35,11 +35,8 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception{
-        http
-                .authorizeRequests()
-                .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador
-                .antMatchers("/paciente/").hasRole("PACIENTE") // le da permiso solo a los admin para el paneladministrador
-                .antMatchers("/profesional/").hasRole("PROFESIONAL") // le da permiso solo a los admin para el paneladministrador
+        http.authorizeRequests()
+                .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador// le da permiso solo a los admin para el paneladministrador
                 .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
                 .permitAll()
                 .and().formLogin()
