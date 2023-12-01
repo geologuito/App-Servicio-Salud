@@ -22,7 +22,7 @@ import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
-public class PacienteServicio implements UserDetailsService{
+public class PacienteServicio implements UserDetailsService {
 
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
@@ -111,6 +111,27 @@ public class PacienteServicio implements UserDetailsService{
         }
     }
 
+    public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
+        if (domicilio == null || domicilio.isEmpty()) {
+            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+        }
+
+        if (email == null || email.isEmpty()) {
+            throw new MiException("el email no puede ser nulo ni estar vacio");
+        }
+
+        if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
+            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+        }
+        if (password == null || password.isEmpty() || password.length() <= 5) {
+            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+        }
+
+        if (!password.equals(password2)) {
+            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+        }
+    }
+
     public Paciente getOne(String id) {
         return pacienteRepositorio.getReferenceById(id);
     }
@@ -136,7 +157,7 @@ public class PacienteServicio implements UserDetailsService{
             HttpSession session = attr.getRequest().getSession(true);
 
             session.setAttribute("pacientesession", paciente);
-            
+
             return new User(paciente.getEmail(), paciente.getPassword(), permisos);
         } else {
             return null;

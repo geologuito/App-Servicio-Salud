@@ -53,7 +53,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
-    public List<Profesional> listaProfesional() {
+    public List<Profesional> listarProfesional() {
 
         List<Profesional> profesionales = new ArrayList<>();
 

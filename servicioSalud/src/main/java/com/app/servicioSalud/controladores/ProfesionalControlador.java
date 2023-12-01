@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
@@ -51,7 +53,7 @@ public class ProfesionalControlador {
 
             return "registroProfesional.html";
         }
-        return "index.html";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -61,15 +63,24 @@ public class ProfesionalControlador {
             modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
-        return "login.html";
+        return "loginProfesional.html";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
+    @GetMapping("/perfil")
+    public String perfil(ModelMap modelo, HttpSession session) {
+
+        Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
+        modelo.put("profesional", profesional);
+        return "panelProfesional";
     }
 
     @GetMapping("/listaProfesionales")
     public String listarProfesional(ModelMap modelo) {
 
-        List<Profesional> profesionales = profesionalServicio.listaProfesional();
-        modelo.addAttribute("profesional", profesionales);
-        return "profesionalList.html";
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesionales);
+        return "listarProfesional.html";
 
     }
 
@@ -95,7 +106,7 @@ public class ProfesionalControlador {
     }
 
     @GetMapping("/eliminar/{matricula}")
-    public String eliminarNoticia(@PathVariable String matricula, ModelMap modelo) throws MiException {
+    public String eliminarProfesional(@PathVariable String matricula, ModelMap modelo) throws MiException {
 
         profesionalServicio.eliminarProfesional(matricula);
         return "redirect:/index"; //Falta vista para saber a donde va cuando elimina prof

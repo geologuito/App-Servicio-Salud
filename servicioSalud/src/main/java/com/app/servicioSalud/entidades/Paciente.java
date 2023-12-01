@@ -16,6 +16,7 @@ public class Paciente {
     private String password;
     private String telefono;
     private String domicilio;
+    private String edad;
 
     @Enumerated(EnumType.STRING)
     private RolEnum rol;

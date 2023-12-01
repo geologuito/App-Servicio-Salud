@@ -1,4 +1,4 @@
-package com.app.servicioSalud;
+    package com.app.servicioSalud;
 
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
@@ -38,14 +38,17 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador
+                .antMatchers("/paciente/").hasRole("PACIENTE") // le da permiso solo a los admin para el paneladministrador
+                .antMatchers("/profesional/").hasRole("PROFESIONAL") // le da permiso solo a los admin para el paneladministrador
                 .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
                 .permitAll()
                 .and().formLogin()
-                        .loginPage("/login")
+                        .loginPage("/paciente/login")
                         .loginProcessingUrl("/logincheck")
                         .usernameParameter("email")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/inicio")
+                        //.defaultSuccessUrl("/inicio") //Reemplazado para probar login
+                        .defaultSuccessUrl("/paciente/perfil")
                         .permitAll()
                 .and().logout()
                         .logoutUrl("/logout")
