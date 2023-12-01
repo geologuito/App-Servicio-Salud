@@ -109,19 +109,14 @@ public class PacienteServicio implements UserDetailsService {
         }
     }
    
-    public void modificarValidacion(String domicilio,String email, String telefono, String password,String password2)throws MiException{
-         if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
-        }
+   
 
-<<<<<<< HEAD
-=======
+
     public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
         if (domicilio == null || domicilio.isEmpty()) {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
 
->>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
         if (email == null || email.isEmpty()) {
             throw new MiException("el email no puede ser nulo ni estar vacio");
         }
@@ -137,12 +132,7 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
-<<<<<<< HEAD
-    
-    
-=======
 
->>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
     public Paciente getOne(String id) {
         return pacienteRepositorio.getReferenceById(id);
     }

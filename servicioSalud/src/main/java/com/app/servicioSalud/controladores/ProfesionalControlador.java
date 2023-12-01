@@ -1,9 +1,5 @@
 package com.app.servicioSalud.controladores;
 
-<<<<<<< HEAD
-import com.app.servicioSalud.entidades.Paciente;
-=======
->>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -77,62 +73,6 @@ public class ProfesionalControlador {
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
         modelo.put("profesional", profesional);
         return "panelProfesional";
-    }
-
-    @GetMapping("/listaProfesionales")
-    public String listarProfesional(ModelMap modelo) {
-
-        List<Profesional> profesionales = profesionalServicio.listarProfesional();
-        modelo.addAttribute("profesionales", profesionales);
-        return "listarProfesional.html";
-
-    }
-
-    @GetMapping("/modificar/{matricula}")
-    public String modificarProfesional(@PathVariable String matricula, ModelMap modelo) {
-
-        modelo.put("profesional", profesionalServicio.getOne(matricula));
-        return "profesionalModificar.html";
-    }
-
-    @PostMapping("/modificar/{matricula}")
-    public String modificar(@PathVariable String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo) {
-        try {
-
-            profesionalServicio.modificarProfesional(matricula, email, password, password, domicilio, telefono);
-            return "redirect:/panelProfesional"; //Decidir donde va cuando modifica prof
-
-        } catch (MiException ex) {
-
-            modelo.put("error", ex.getMessage());
-            return "profesionalModificar.html";
-        }
-    }
-
-    @GetMapping("/eliminar/{matricula}")
-    public String eliminarProfesional(@PathVariable String matricula, ModelMap modelo) throws MiException {
-
-        profesionalServicio.eliminarProfesional(matricula);
-        return "redirect:/index"; //Falta vista para saber a donde va cuando elimina prof
-    }
-
-    @DeleteMapping("/eliminar/{matricula}")
-    public ResponseEntity<String> eliminarProfesional(@PathVariable String matricula) {
-        try {
-            profesionalServicio.eliminarProfesional(matricula);
-            return new ResponseEntity<>("Profesional eliminado con éxito", HttpStatus.OK);
-        } catch (MiException ex) {
-            return new ResponseEntity<>("Error al eliminar el Profesional: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
-    
-       @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
-    @GetMapping("/perfil")
-    public String perfil(ModelMap modelo, HttpSession session) {
-
-        Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
-        modelo.put("profesional", profesional);
-        return "profesional.html";
     }
 
     @GetMapping("/listaProfesionales")

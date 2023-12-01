@@ -14,10 +14,4 @@ public class PortalControlador {
 
         // agregar login,perfil. agregar todo el controlador de admin.
     }
-<<<<<<< HEAD
 }
-=======
-
-}
-    // agregar login,perfil. agregar todo el controlador de admin.
->>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c

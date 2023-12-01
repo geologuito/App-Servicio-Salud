@@ -10,20 +10,7 @@
         <title>App Salud</title>
     </head>
 
-<<<<<<< HEAD
-<body>
-    <div class="contenedor">
-        <div th:replace="/fragments/navbar ::div"> </div>
-        <section class="reg">
-            <form id="form" class="form" th:action="@{/paciente/registro}" method="POST" enctype="multipart/form-data">
-                <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                <p class="title ">Registro Paciente</p>
-                <p class="message text-white">Registrate ahora para acceder a nuestros servicios!</p>
-                <div class="d-flex justify-content-between">
-                    <label class="name">
-                        <input type="text" class="input" required="false" name="nombre" th:value="${nombre}">
-                        <span>Nombre</span>
-=======
+
     <body>
         <div class="contenedor">
             <div th:replace="/fragments/navbar ::div"> </div>
@@ -55,7 +42,7 @@
                     <label>
                         <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
                         <span>Domicilio</span>
->>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
+
                     </label>
                     <label>
                         <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
@@ -69,36 +56,7 @@
                         <input type="password" class="input" required="" name="password" th:value="${password}">
                         <span>Contraseña</span>
                     </label>
-<<<<<<< HEAD
-                </div>
-                <label>
-                    <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
-                    <span>Domicilio</span>
-                </label>
-                <label>
-                    <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
-                    <span>Telefono</span>
-                </label>
-                <label>
-                    <input type="email" class="input" required="" name="email" th:value="${email}">
-                    <span>Email</span>
-                </label>
-                <label>
-                    <input type="password" class="input" required="" name="password" th:value="${password}">
-                    <span>Contraseña</span>
-                </label>
-                <label>
-                    <input type="password" class="input" required="" name="password2" th:value="${password2}">
-                    <span>Repetir Contraseña</span>
-                </label>
-                <button class="submit">Registrarme</button>
-                <p class="signin text-white">Ya tienes una cuenta? <a class="text-white" href="#">Loguearse</a> </p>
-                <!-- Inicio Mensaje de Exito -->
-                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                    <div class="card-body">
-                        <h5 class="card-title">Exito</h5>
-                        <p class="card-text" th:text="${exito}"></p>
-=======
+
                     <label>
                         <input type="password" class="input" required="" name="password2" th:value="${password2}">
                         <span>Repetir Contraseña</span>
@@ -151,7 +109,7 @@
                             <div class="mx-4 my-2">Atención humana, transparente y multidisciplinaria por profesionales
                                 reconocidos internacionalmente</div>
                         </div>
->>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
+
                     </div>
                 </div>
             </section>
