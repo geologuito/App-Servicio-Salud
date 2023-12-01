@@ -11,10 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.servicioSalud.repositorios.PacienteRepositorio;
 import javax.servlet.http.HttpSession;
-//import org.springframework.boot.autoconfigure.security.SecurityProperties.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
-//import org.springframework.security.core.userdetails.*;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.User;
@@ -23,12 +21,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-/**
- *
- * @author gonza
- */
 @Service
-public class PacienteServicio implements UserDetailsService{
+public class PacienteServicio implements UserDetailsService {
 
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
@@ -108,6 +102,27 @@ public class PacienteServicio implements UserDetailsService{
             throw new MiException("el telefono no puede ser nulo ni estar vacio");
         }
 
+        if (password == null || password.isEmpty() || password.length() <= 5) {
+            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+        }
+
+        if (!password.equals(password2)) {
+            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+        }
+    }
+
+    public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
+        if (domicilio == null || domicilio.isEmpty()) {
+            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+        }
+
+        if (email == null || email.isEmpty()) {
+            throw new MiException("el email no puede ser nulo ni estar vacio");
+        }
+
+        if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
+            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+        }
         if (password == null || password.isEmpty() || password.length() <= 5) {
             throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
         }

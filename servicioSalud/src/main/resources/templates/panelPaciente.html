@@ -5,6 +5,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 >>>>>>> developer
 
+<<<<<<< HEAD
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -17,6 +18,17 @@
 >>>>>>> developer
     <title>App Salud</title>
 </head>
+=======
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/formulario.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+        <title>App Salud</title>
+    </head>
+>>>>>>> developer
 
 <body>
 <<<<<<< HEAD
@@ -135,7 +147,6 @@
     </div>
     <section class="reg">
         <div class="panel">
-           
             <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
             <div>
                 <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
@@ -163,48 +174,50 @@
                             <h5 class="card-title">Exito</h5>
                             <p class="card-text" th:text="${exito}"></p>
                         </div>
-                    </div>
-                    <!-- Fin Mensaje de Exito -->
+                        <!-- Fin Mensaje de Exito -->
 
-                    <!-- Inicio mensaje de error -->
-                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                        <div class="card-body">
-                            <h5 class="card-title">Error!!</h5>
-                            <p class="card-text" th:text="${error}"></p>
+                        <!-- Inicio mensaje de error -->
+                        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                            <div class="card-body">
+                                <h5 class="card-title">Error!!</h5>
+                                <p class="card-text" th:text="${error}"></p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Fin mensaje de error -->
-                </form>
-            </div>
+                        <!-- Fin mensaje de error -->
+                    </form>
+                </div>
 
-            <!--? SOLICITAR TURNOS ARMAR FRAGMENT-->
+                <!--? SOLICITAR TURNOS ARMAR FRAGMENT-->
 
-            
-            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
-                <option selected>Especialidad</option>
-                <option value="1">Boleto Gratuito a recorrer el mundo</option>
-                <option value="2">Un año Sabatico</option>
-                <option value="3">Sigamos Codeando</option>
-            </select>
 
-            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                <option selected>Doctor</option>
-                <option value="1">Doctor House</option>
-                <option value="2">Grace Anatomy</option>
-                <option value="3">New Amsterdam</option>
-            </select>
-        </div><!-- Cierra div del panel contenedor -->
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                    <option selected>Especialidad</option>
+                    <option value="1">Boleto Gratuito a recorrer el mundo</option>
+                    <option value="2">Un año Sabatico</option>
+                    <option value="3">Sigamos Codeando</option>
+                </select>
 
-        <!--* SIDEBAR--> -->
-        <section th:replace="/fragments/sidebar :: section"></section>
+                <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                    <option selected>Doctor</option>
+                    <option value="1">Doctor House</option>
+                    <option value="2">Grace Anatomy</option>
+                    <option value="3">New Amsterdam</option>
+                </select>
+            </div><!-- Cierra div del panel contenedor -->
 
-            
-    </section> <!--? cierra el contendedor reg--> -->
+            <!--* SIDEBAR--> -->
+            <section th:replace="/fragments/sidebar :: section"></section>
+
+
+        </section> <!--? cierra el contendedor reg--> -->
     </div>
-    </section>
+</section>
 
+<<<<<<< HEAD
     <footer th:replace="/fragments/footer :: footer"></footer>
 >>>>>>> developer
+=======
+<footer th:replace="/fragments/footer :: footer"></footer>
+>>>>>>> developer
 </body>
-
 </html>

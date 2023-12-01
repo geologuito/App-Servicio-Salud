@@ -1,6 +1,7 @@
-package com.app.servicioSalud;
+    package com.app.servicioSalud;
 
 import com.app.servicioSalud.servicios.PacienteServicio;
+import com.app.servicioSalud.servicios.ProfesionalServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -20,9 +21,15 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     public PacienteServicio pacienteServicio;
 
     @Autowired
+    public ProfesionalServicio profesionalServicio;
+    
+    @Autowired
     public void configuredGlobal(AuthenticationManagerBuilder auth)throws Exception{
 
         auth.userDetailsService(pacienteServicio)
+           .passwordEncoder(new BCryptPasswordEncoder());
+        
+        auth.userDetailsService(profesionalServicio)
            .passwordEncoder(new BCryptPasswordEncoder());
     }
 
@@ -31,6 +38,8 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
         http
                 .authorizeRequests()
                 .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador
+                .antMatchers("/paciente/").hasRole("PACIENTE") // le da permiso solo a los admin para el paneladministrador
+                .antMatchers("/profesional/").hasRole("PROFESIONAL") // le da permiso solo a los admin para el paneladministrador
                 .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
                 .permitAll()
                 .and().formLogin()
@@ -38,7 +47,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                         .loginProcessingUrl("/logincheck")
                         .usernameParameter("email")
                         .passwordParameter("password")
+<<<<<<< HEAD
                         .defaultSuccessUrl("/paciente/inicio")
+=======
+                        .defaultSuccessUrl("/paciente/perfil")
+>>>>>>> developer
                         .permitAll()
                 .and().logout()
                         .logoutUrl("/logout")
