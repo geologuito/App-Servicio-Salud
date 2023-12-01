@@ -55,22 +55,20 @@ public class PacienteServicio implements UserDetailsService {
 
     }
 
-    public void modificarPaciente(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+    public void modificarPaciente(String dni,String email, String domicilio, String telefono,String password,String password2) throws MiException {
 
-        validar(dni, nombre, apellido, domicilio, telefono, email, password, password2);
+        modificarValidacion(domicilio, email, telefono,password,password2);
 
         Optional<Paciente> respuesta = pacienteRepositorio.findById(dni);
 
         if (respuesta.isPresent()) {
             Paciente paciente = respuesta.get();
 
-            paciente.setNombre(nombre);
-            paciente.setApellido(apellido);
+           
             paciente.setEmail(email);
             paciente.setDomicilio(domicilio);
             paciente.setTelefono(telefono);
-            paciente.setPassword(new BCryptPasswordEncoder().encode(password));
-            paciente.setRol(RolEnum.PACIENTE);
+            paciente.setPassword(new BCryptPasswordEncoder().encode(password));          
             pacienteRepositorio.save(paciente);
         }
 
@@ -110,6 +108,9 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
+   
+   
+
 
     public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
         if (domicilio == null || domicilio.isEmpty()) {

@@ -1,16 +1,15 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/bootstrap.css">
-        <link rel="stylesheet" href="/css/formulario.css">
-        <link rel="stylesheet" href="/css/sidebar.css">
-        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
-        <title>App Salud</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+    <title>App Salud</title>
+</head>
 
 <body>
     <div class="contenedor">
@@ -18,12 +17,13 @@
     </div>
     <section class="reg">
         <div class="panel">
+            
             <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
             <div>
                 <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
                     enctype="multipart/form-data" novalidate>
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                    <p class="title ">Actualizar Datos Paciente</p>
+                    <p class="title ">Actualizar Datos Profesional</p>
                     <label>
                         <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
                         <span>Domicilio</span>
@@ -45,23 +45,25 @@
                             <h5 class="card-title">Exito</h5>
                             <p class="card-text" th:text="${exito}"></p>
                         </div>
-                        <!-- Fin Mensaje de Exito -->
+                    </div>
+                    <!-- Fin Mensaje de Exito -->
 
-                        <!-- Inicio mensaje de error -->
-                        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                            <div class="card-body">
-                                <h5 class="card-title">Error!!</h5>
-                                <p class="card-text" th:text="${error}"></p>
-                            </div>
+                    <!-- Inicio mensaje de error -->
+                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                        <div class="card-body">
+                            <h5 class="card-title">Error!!</h5>
+                            <p class="card-text" th:text="${error}"></p>
                         </div>
-                        <!-- Fin mensaje de error -->
-                    </form>
-                </div>
+                    </div>
+                    <!-- Fin mensaje de error -->
+                </form>
+            </div>
 
             <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
             <section class="tabla">
                 <hr class="my-2">
-                <h2 class="fst-italic text-white">Doctores</h2>
+                <h2 class="fst-italic text-white">Turnos del día</h2>
+                <h3 class="fst-italic text-white">Pacientes</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -95,7 +97,7 @@
 
             <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
             <section>
-                <h2 class="fst-italic text-white">Servicios</h2>
+                <h2 class="fst-italic text-white">Historia Clinica</h2>
                 <div class="conte">
                     <section class="galeria-servicios">
                         <a href="#image1">
@@ -111,20 +113,21 @@
                             <span>Atención telefónica 24/7</span>
                         </a>
                     </section>
-                </div>
+            </div>
             </section>
-            
+            <!--            
+            </select>-->
         </div><!-- Cierra div del panel contenedor -->
 
         <!--* SIDEBAR-->
-        <section th:replace="/fragments/sidebar :: section"></section>
+        <section th:replace="/fragments/sidebarProfesional :: section"></section>
 
 
     </section> <!--? cierra el contendedor reg-->
     </div>
-</section>
+    </section>
 
-<footer th:replace="/fragments/footer :: footer"></footer>
+    <footer th:replace="/fragments/footer :: footer"></footer>
 </body>
-</html>
 
+</html>
