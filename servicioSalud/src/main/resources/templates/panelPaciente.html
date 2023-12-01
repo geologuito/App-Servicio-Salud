@@ -1,15 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/formulario.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
-    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
-    <title>App Salud</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/formulario.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+        <title>App Salud</title>
+    </head>
 
 <body>
     <div class="contenedor">
@@ -17,7 +18,6 @@
     </div>
     <section class="reg">
         <div class="panel">
-            
             <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
             <div>
                 <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
@@ -45,19 +45,18 @@
                             <h5 class="card-title">Exito</h5>
                             <p class="card-text" th:text="${exito}"></p>
                         </div>
-                    </div>
-                    <!-- Fin Mensaje de Exito -->
+                        <!-- Fin Mensaje de Exito -->
 
-                    <!-- Inicio mensaje de error -->
-                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                        <div class="card-body">
-                            <h5 class="card-title">Error!!</h5>
-                            <p class="card-text" th:text="${error}"></p>
+                        <!-- Inicio mensaje de error -->
+                        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                            <div class="card-body">
+                                <h5 class="card-title">Error!!</h5>
+                                <p class="card-text" th:text="${error}"></p>
+                            </div>
                         </div>
-                    </div>
-                    <!-- Fin mensaje de error -->
-                </form>
-            </div>
+                        <!-- Fin mensaje de error -->
+                    </form>
+                </div>
 
             <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
             <section class="tabla">
@@ -112,10 +111,9 @@
                             <span>Atención telefónica 24/7</span>
                         </a>
                     </section>
-            </div>
+                </div>
             </section>
-            <!--            
-            </select>-->
+            
         </div><!-- Cierra div del panel contenedor -->
 
         <!--* SIDEBAR-->
@@ -124,9 +122,9 @@
 
     </section> <!--? cierra el contendedor reg-->
     </div>
-    </section>
+</section>
 
-    <footer th:replace="/fragments/footer :: footer"></footer>
+<footer th:replace="/fragments/footer :: footer"></footer>
 </body>
-
 </html>
+
