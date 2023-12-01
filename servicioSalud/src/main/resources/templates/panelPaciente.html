@@ -1,15 +1,25 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+=======
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+>>>>>>> developer
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/formulario.css">
+<<<<<<< HEAD
+=======
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+>>>>>>> developer
     <title>App Salud</title>
 </head>
 
 <body>
+<<<<<<< HEAD
     <div class="navb">
         <!-- MENU -->
         <nav class="navbar navbar-expand-md bg-body-tertiary  ">
@@ -119,6 +129,82 @@
     <footer th:replace="/fragments/footer :: footer"></footer>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"></script>
+=======
+    <div class="contenedor">
+        <div th:replace="/fragments/navbar ::div"> </div>
+    </div>
+    <section class="reg">
+        <div class="panel">
+           
+            <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
+            <div>
+                <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
+                    enctype="multipart/form-data" novalidate>
+                    <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+                    <p class="title ">Actualizar Datos</p>
+                    <label>
+                        <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
+                        <span>Domicilio</span>
+                    </label>
+                    <label>
+                        <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
+                        <span>Telefono</span>
+                    </label>
+                    <label>
+                        <input type="email" class="input" required="" name="email" th:value="${email}">
+                        <span>Email</span>
+                    </label>
+                    
+                    <button class="submit">Actualizar</button>
+                    
+                    <!-- Inicio Mensaje de Exito -->
+                    <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                        <div class="card-body">
+                            <h5 class="card-title">Exito</h5>
+                            <p class="card-text" th:text="${exito}"></p>
+                        </div>
+                    </div>
+                    <!-- Fin Mensaje de Exito -->
+
+                    <!-- Inicio mensaje de error -->
+                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                        <div class="card-body">
+                            <h5 class="card-title">Error!!</h5>
+                            <p class="card-text" th:text="${error}"></p>
+                        </div>
+                    </div>
+                    <!-- Fin mensaje de error -->
+                </form>
+            </div>
+
+            <!--? SOLICITAR TURNOS ARMAR FRAGMENT-->
+
+            
+            <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+                <option selected>Especialidad</option>
+                <option value="1">Boleto Gratuito a recorrer el mundo</option>
+                <option value="2">Un año Sabatico</option>
+                <option value="3">Sigamos Codeando</option>
+            </select>
+
+            <select class="form-select form-select-sm" aria-label=".form-select-sm example">
+                <option selected>Doctor</option>
+                <option value="1">Doctor House</option>
+                <option value="2">Grace Anatomy</option>
+                <option value="3">New Amsterdam</option>
+            </select>
+        </div><!-- Cierra div del panel contenedor -->
+
+        <!--* SIDEBAR--> -->
+        <section th:replace="/fragments/sidebar :: section"></section>
+
+            
+    </section> <!--? cierra el contendedor reg--> -->
+    </div>
+    </section>
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+>>>>>>> developer
 </body>
 
 </html>
