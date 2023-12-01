@@ -59,35 +59,18 @@ public class ProfesionalServicio implements UserDetailsService {
 
         return profesionales;
     }
-<<<<<<< HEAD
-    
-    
-    public void modificarProfesional(String matricula,String email, String password,String password2, String domicilio,String telefono)throws MiException{
-        
-=======
 
     public void modificarProfesional(String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
 
         validarModificar(email, password, password2, domicilio, telefono);
 
->>>>>>> developer
+
         Optional<Profesional> respuesta = profesionalRepositorio.findById(matricula);
         if (respuesta.isPresent()) {
 
             Profesional profesional = respuesta.get();
-<<<<<<< HEAD
             
         profesional.setMatricula(matricula);
-        
-        profesional.setEmail(email);
-        profesional.setPassword(new BCryptPasswordEncoder().encode(password));
-        profesional.setDomicilio(domicilio);
-        profesional.setTelefono(telefono);
-        profesional.setRol(RolEnum.PROFESIONAL);
-        
-        profesionalRepositorio.save(profesional);
-            
-=======
 
             profesional.setEmail(email);
             profesional.setPassword(new BCryptPasswordEncoder().encode(password));
@@ -95,8 +78,6 @@ public class ProfesionalServicio implements UserDetailsService {
             profesional.setTelefono(telefono);
 
             profesionalRepositorio.save(profesional);
-
->>>>>>> developer
         }
 
     }

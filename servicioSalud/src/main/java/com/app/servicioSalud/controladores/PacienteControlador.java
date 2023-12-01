@@ -123,29 +123,23 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password, ModelMap modelo) throws MiException {
         try {
 
-<<<<<<< HEAD
-            pacienteServicio.modificarValidacion(domicilio, email, telefono, password,password);
-=======
+
+
             pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
->>>>>>> developer
+
 
             return "panelPaciente"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
-<<<<<<< HEAD
-            List<Paciente> pacientes = pacienteServicio.listarPaciente();            
-            modelo.addAttribute("pacientes",pacientes);            
-=======
+
             List<Paciente> pacientes = pacienteServicio.listarPaciente();
             modelo.addAttribute("pacientes", pacientes);
->>>>>>> developer
+
             modelo.put("error", ex.getMessage());
             return "pacienteModificar"; // mapear con html
         }
     }
-<<<<<<< HEAD
 }
-=======
 
     @GetMapping("/eliminar/{dni}")
     public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
