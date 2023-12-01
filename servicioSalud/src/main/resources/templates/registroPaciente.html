@@ -10,7 +10,7 @@
         <title>App Salud</title>
     </head>
 
-    <<<<<<< HEAD
+
     <body>
         <div class="contenedor">
             <div th:replace="/fragments/navbar ::div"> </div>
@@ -42,6 +42,7 @@
                     <label>
                         <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
                         <span>Domicilio</span>
+
                     </label>
                     <label>
                         <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
@@ -55,6 +56,7 @@
                         <input type="password" class="input" required="" name="password" th:value="${password}">
                         <span>Contraseña</span>
                     </label>
+
                     <label>
                         <input type="password" class="input" required="" name="password2" th:value="${password2}">
                         <span>Repetir Contraseña</span>
@@ -107,13 +109,19 @@
                             <div class="mx-4 my-2">Atención humana, transparente y multidisciplinaria por profesionales
                                 reconocidos internacionalmente</div>
                         </div>
+
                     </div>
                 </div>
             </section>
         </div>
 
-        <footer th:replace="/fragments/footer :: footer"></footer>
+                </div>
+            </div> <!--cierra beneficios-->
+        </section>
+    </div>
 
-    </body>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+
+</body>
 
 </html>
