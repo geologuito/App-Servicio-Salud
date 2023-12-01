@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-
-=======
->>>>>>> developer
 package com.app.servicioSalud.enumeraciones;
 
 public enum EspecialidadEnum {
@@ -9,9 +5,4 @@ public enum EspecialidadEnum {
     CARDIOLOGIA,
     GINECOLOGIA,
     PEDIATRIA;
-<<<<<<< HEAD
 }
-
-=======
-}
->>>>>>> developer

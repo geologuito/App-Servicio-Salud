@@ -118,11 +118,7 @@ public class PacienteControlador {
     }
 
     @DeleteMapping("/eliminar/{dni}")
-<<<<<<< HEAD
-    public ResponseEntity<String> eliminarProfesional(@PathVariable String dni) {
-=======
     public ResponseEntity<String> eliminarPaciente(@PathVariable String dni) {
->>>>>>> developer
         try {
             pacienteServicio.eliminarPaciente(dni);
             return new ResponseEntity<>("Paciente eliminado con éxito", HttpStatus.OK);
