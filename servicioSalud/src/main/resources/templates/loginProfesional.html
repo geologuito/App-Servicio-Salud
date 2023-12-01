@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>App Salud</title>
+
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/formulario.css">
+    </head>
+
+    <body>
+        <div class="contenedor">
+            <div th:replace="/fragments/navbar ::div"></div>
+            <div class="reg">
+                <div class="row mb-5 justify-content-center">
+                    <div class="col-lg-5 mx-auto order-1" data-aos="fade-up" data-aos-delay="200">
+                        <form th:action="@{/logincheck}" method="POST" class="form-box" enctype="multipart/form-data">
+                            <p class="title">Iniciar Sesión Profesional</p>
+                            <div class="row">
+                                <div class="col-12 mb-3">
+                                    <input type="text" class="form-control" name="email" placeholder="Email"
+                                           th:value="${email}">
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <input type="password" class="form-control" name="password" placeholder="Password"
+                                           th:value="${password}">
+                                </div>
+                                <div class="col-12">
+                                    <input type="submit" value="Ingresar" class="btn btn-primary">
+                                </div>
+                            </div>
+                            <!-- Inicio mensaje de error -->
+                            <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                                <div class="card-body">
+                                    <h5 class="card-title">Error!!</h5>
+                                    <p class="card-text" th:text="${error}"></p>
+                                </div>
+                            </div>
+                            <!-- Fin mensaje de error -->
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <footer th:replace="/fragments/footer ::footer"></footer>
+        </div>
+    </body>
+
+</html>

@@ -4,10 +4,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-/**
- *
- * @author gonza
- */
 @Controller
 @RequestMapping("/") // localhost:8080
 public class PortalControlador {
@@ -18,4 +14,10 @@ public class PortalControlador {
 
         // agregar login,perfil. agregar todo el controlador de admin.
     }
+<<<<<<< HEAD
 }
+=======
+
+}
+    // agregar login,perfil. agregar todo el controlador de admin.
+>>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c

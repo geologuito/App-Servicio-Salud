@@ -1,4 +1,4 @@
-package com.app.servicioSalud;
+    package com.app.servicioSalud;
 
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
@@ -26,9 +26,15 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     public PacienteServicio pacienteServicio;
 
     @Autowired
+    public ProfesionalServicio profesionalServicio;
+    
+    @Autowired
     public void configuredGlobal(AuthenticationManagerBuilder auth)throws Exception{
 
         auth.userDetailsService(pacienteServicio)
+           .passwordEncoder(new BCryptPasswordEncoder());
+        
+        auth.userDetailsService(profesionalServicio)
            .passwordEncoder(new BCryptPasswordEncoder());
     }
 
@@ -36,9 +42,15 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception{
         http
                 .authorizeRequests()
+<<<<<<< HEAD
                 .antMatchers("/admin/").hasRole("ADMIN")
                 .antMatchers("/profesional/").hasRole("PROFESIONAL")
                 .antMatchers("/paciente/").hasRole("PACIENTE")// le da permiso solo a los admin para el paneladministrador
+=======
+                .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador
+                .antMatchers("/paciente/").hasRole("PACIENTE") // le da permiso solo a los admin para el paneladministrador
+                .antMatchers("/profesional/").hasRole("PROFESIONAL") // le da permiso solo a los admin para el paneladministrador
+>>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
                 .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
                 .permitAll()
                 .and().formLogin()
@@ -47,6 +59,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/paciente/perfil")
+<<<<<<< HEAD
                         .permitAll()
                  .and().formLogin()
                         .loginPage("/profesional/login")
@@ -54,6 +67,8 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                         .usernameParameter("email")
                         .passwordParameter("password")
                         .defaultSuccessUrl("/profesional/perfil")
+=======
+>>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
                         .permitAll()
                 .and().logout()
                         .logoutUrl("/logout")

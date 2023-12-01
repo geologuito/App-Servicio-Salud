@@ -48,7 +48,7 @@ body {
     position: relative;
     display: flex;
     align-items: center;
-    margin-left: 3em;
+    margin-left: 1em;
     padding-left: 30px;
 }
 
@@ -185,6 +185,12 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+/*ESTILO PANEL PACIENTE-PROFESIONAL*/
+.panel{
+    width: 60em;
+    margin-left: 5em;
+}
 /*ESTILO FOOTER*/
 /*EN FOOTER.CSS*/

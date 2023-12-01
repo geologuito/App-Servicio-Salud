@@ -1,4 +1,3 @@
-
 package com.app.servicioSalud.servicios;
 
 import com.app.servicioSalud.entidades.Profesional;
@@ -177,5 +176,8 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
 }
+<<<<<<< HEAD
     
       
+=======
+>>>>>>> cb83b199e8fd7597d02e9cf562f24352a93c401c
