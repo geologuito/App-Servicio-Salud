@@ -1,7 +1,6 @@
 package com.app.servicioSalud;
 
 import com.app.servicioSalud.servicios.PacienteServicio;
-import com.app.servicioSalud.servicios.ProfesionalServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
