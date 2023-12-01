@@ -1,6 +1,7 @@
 
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Paciente;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -11,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.PacienteServicio;
+import java.util.List;
+import org.springframework.web.bind.annotation.PathVariable;
 
 @Controller
 @RequestMapping("/paciente") // localhost:8080/paciente
@@ -58,4 +61,38 @@ public class PacienteControlador {
 
         return "login.html";
     }
+    
+    @GetMapping("/lista")
+    public String listar(ModelMap modelo){ // lista de pacientes.
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();
+        modelo.addAttribute("pacientes", pacientes);
+        return "listarPacientes"; // para mapear con 
+    }
+    
+    @GetMapping("/modificar/{dni}") 
+    public String modificar(@PathVariable String dni , ModelMap modelo) {
+
+        modelo.put("paciente", pacienteServicio.getOne(dni));
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();        
+        modelo.addAttribute("pacientes", pacientes);
+       
+
+        return "pacienteModificar";// mapear con html
+    }
+    @PostMapping("/modificar/{dni}")
+    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password, ModelMap modelo) throws MiException {
+        try {
+
+            pacienteServicio.modificarValidacion(domicilio, email, telefono, password,password);
+
+            return "panelPaciente"; // si esta todo ok va a ir a panelPaciente
+
+        } catch (MiException ex) {
+            List<Paciente> pacientes = pacienteServicio.listarPaciente();            
+            modelo.addAttribute("pacientes",pacientes);            
+            modelo.put("error", ex.getMessage());
+            return "pacienteModificar"; // mapear con html
+        }
+    }
+
 }

@@ -10,7 +10,7 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-@Configuration
+/*@Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
@@ -34,11 +34,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
                 .permitAll()
                 .and().formLogin()
-                        .loginPage("/login")
+                        .loginPage("/paciente/login")
                         .loginProcessingUrl("/logincheck")
                         .usernameParameter("email")
                         .passwordParameter("password")
-                        .defaultSuccessUrl("/inicio")
+                        .defaultSuccessUrl("/paciente/inicio")
                         .permitAll()
                 .and().logout()
                         .logoutUrl("/logout")
@@ -46,5 +46,47 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                         .permitAll()
                 .and().csrf()
                         .disable();
+    }*/
+@Configuration
+@EnableWebSecurity
+@EnableGlobalMethodSecurity(prePostEnabled = true)
+public class SeguridadWeb extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    public PacienteServicio pacienteServicio;
+
+    @Autowired
+    public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        auth.userDetailsService(pacienteServicio)
+                .passwordEncoder(new BCryptPasswordEncoder());
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN") // Admin endpoints
+                .antMatchers("/profesional/**").hasRole("PROFESIONAL") // Profesional endpoints
+                .antMatchers("/paciente/**").hasRole("PACIENTE") // Paciente endpoints
+                .antMatchers("/css/", "/js/", "/img/**", "/**").permitAll()
+                .and().formLogin()
+                    .loginPage("/paciente/login")
+                    .loginProcessingUrl("/logincheck")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/")
+                    .permitAll()
+                .and().formLogin()
+                    .loginPage("/profesional/login")
+                    .loginProcessingUrl("/logincheck")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .defaultSuccessUrl("/")
+                    .permitAll()
+                .and().logout()
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login")
+                    .permitAll()
+                .and().csrf().disable();
     }
 }

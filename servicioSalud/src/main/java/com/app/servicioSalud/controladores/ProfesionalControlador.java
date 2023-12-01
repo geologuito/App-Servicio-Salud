@@ -96,7 +96,7 @@ public class ProfesionalControlador {
     }
 
     @GetMapping("/eliminar/{matricula}")
-    public String eliminarNoticia(@PathVariable String matricula, ModelMap modelo) throws MiException {
+    public String eliminarProfecional(@PathVariable String matricula, ModelMap modelo) throws MiException {
 
         profesionalServicio.eliminarProfesional(matricula);
         return "redirect:/index"; //Falta vista para saber a donde va cuando elimina prof
