@@ -13,10 +13,9 @@
   }
   
   .sidebar {
-	height: 100%;
 	width: 0;
 	position: fixed;
-	top: 9.5em;
+	top: 6.5em;
 	right: 0;
 	background-color: #11111170;
 	overflow-x: hidden;
