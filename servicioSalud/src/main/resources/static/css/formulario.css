@@ -19,7 +19,6 @@ body {
     display:flex;
     justify-content: space-around;
     align-items: center;
-    height: 80vh;
     margin-top: 2em;
 }
 
@@ -29,11 +28,11 @@ body {
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #ffffff00;
+    background-color: #0b0b0b17;
     padding: 20px;
     border-radius: 30px;
     position: relative;
-    margin-top: 2em;
+    margin-top: 1em;
 }
 
 .name {
@@ -172,7 +171,6 @@ body {
     width: 30vw;
     height: 35vw;
     background-color: rgba(27, 26, 26, 0.482);
-    margin-top: 1em;
 }
 .paci{
     width: 80%;
@@ -190,7 +188,30 @@ body {
 /*ESTILO PANEL PACIENTE-PROFESIONAL*/
 .panel{
     width: 60em;
-    margin-left: 5em;
+    margin-top: 3em;
+    margin-left: 2em;
 }
+hr{
+    color: #fff;
+}
+h2{
+    margin-left: 12em;
+}
+
+/** GALERIA SERVICIOS*/
+.conte{
+    max-width: 30em;
+}
+.galeria-servicios {    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 200%;
+    margin: auto;
+    grid-gap: 5px;
+    padding: 40px 0;
+    overflow: hidden;
+    /* Otros estilos específicos para la segunda galería */
+}
+
+
 /*ESTILO FOOTER*/
 /*EN FOOTER.CSS*/

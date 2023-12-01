@@ -23,7 +23,7 @@
                 <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
                     enctype="multipart/form-data" novalidate>
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                    <p class="title ">Actualizar Datos Paciente</p>
+                    <p class="title ">Actualizar Datos Profesional</p>
                     <label>
                         <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
                         <span>Domicilio</span>
@@ -62,7 +62,8 @@
             <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
             <section class="tabla">
                 <hr class="my-2">
-                <h2 class="fst-italic text-white">Doctores</h2>
+                <h2 class="fst-italic text-white">Turnos del día</h2>
+                <h3 class="fst-italic text-white">Pacientes</h3>
                 <table class="table">
                     <thead>
                         <tr>
@@ -96,7 +97,7 @@
 
             <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
             <section>
-                <h2 class="fst-italic text-white">Servicios</h2>
+                <h2 class="fst-italic text-white">Historia Clinica</h2>
                 <div class="conte">
                     <section class="galeria-servicios">
                         <a href="#image1">
@@ -119,7 +120,7 @@
         </div><!-- Cierra div del panel contenedor -->
 
         <!--* SIDEBAR-->
-        <section th:replace="/fragments/sidebar :: section"></section>
+        <section th:replace="/fragments/sidebarProfesional :: section"></section>
 
 
     </section> <!--? cierra el contendedor reg-->
