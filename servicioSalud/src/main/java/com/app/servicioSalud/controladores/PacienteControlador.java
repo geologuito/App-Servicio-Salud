@@ -51,7 +51,7 @@ public class PacienteControlador {
 
             return "registroPaciente.html";
         }
-        return "redirect:/";
+        return "loginPaciente";
     }
 
     @GetMapping("/login")
