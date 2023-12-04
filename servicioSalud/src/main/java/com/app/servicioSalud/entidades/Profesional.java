@@ -36,4 +36,6 @@ public class Profesional{
     
     @Enumerated(EnumType.STRING)
     private RolEnum rol;
+    @OneToOne
+    private Imagen imagen;
 }
