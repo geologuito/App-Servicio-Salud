@@ -16,26 +16,32 @@
         <div th:replace="/fragments/navbar ::div"> </div>
     </div>
     <section class="reg">
+        
         <div class="panel">
             
             <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
-            <div>
-                <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
+            <div class="actualizar"> <!-- Contenedor de actualizar-->
+               
+                <form id="form" class="form" th:action="@{/perfil/__${session.profesionalsession.matricula}__}" method="POST"
                     enctype="multipart/form-data" novalidate>
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                     <p class="title ">Actualizar Datos Profesional</p>
+                    <input hidden th:value="${matricula}" name="matricula">
                     <label>
-                        <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
+                        <input type="text" class="input" required="" name="domicilio" th:value="${profesional.domicilio}">
                         <span>Domicilio</span>
                     </label>
                     <label>
-                        <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
+                        <input type="tel" class="input" required="" name="telefono" th:value="${profesional.telefono}">
                         <span>Telefono</span>
                     </label>
                     <label>
-                        <input type="email" class="input" required="" name="email" th:value="${email}">
+                        <input type="email" class="input" required="" name="email" th:value="${profesional.email}">
                         <span>Email</span>
                     </label>
+                    <div class="form-group my-3">
+                        <input type="file" class="form-control" name="archivo">
+                    </div>
 
                     <button class="submit">Actualizar</button>
 
@@ -57,7 +63,13 @@
                     </div>
                     <!-- Fin mensaje de error -->
                 </form>
-            </div>
+                <div class="imagenP ">
+                    
+                    <h3 class="fst-italic"th:if="${session.profesionalsession != null}" th:text=" 'Dr. '+ ${session.profesionalsession.nombre} " ></h3>
+                    <img class="imgPerfil"  th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt=" usuario" >
+                    
+                </div>
+            </div> <!-- cierra el contenedor ded actualizar -->
 
             <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
             <section class="tabla">
