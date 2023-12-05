@@ -163,6 +163,14 @@ body {
         opacity: 0;
     }
 }
+
+/*ESTILO LOGIN*/
+.login{
+height: 46vh;
+margin-top: 5em;
+width: 24em;
+}
+
 /*ESTILO beneficios pac*/
 .beneficios{
     display: flex;
@@ -186,6 +194,15 @@ body {
 }
 
 /*ESTILO PANEL PACIENTE-PROFESIONAL*/
+/** Estilo panel dinamico*/
+.opcion.active {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+.contenedora.active {
+    opacity: 1; /* Se muestran al tener la clase active */
+    pointer-events: auto; /* Se pueden interactuar */
+}
 .panel{
     width: 60em;
     margin-top: 3em;
