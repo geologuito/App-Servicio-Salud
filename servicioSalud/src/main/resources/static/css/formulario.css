@@ -33,7 +33,7 @@ width:24em;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #0b0b0b17;
+    background-color: #00000030;
     padding: 20px;
     border-radius: 30px;
     position: relative;
@@ -46,7 +46,7 @@ width:24em;
 
 .title {
     font-size: 28px;
-    color: royalblue;
+    color: rgb(62, 88, 165);
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -212,6 +212,18 @@ width: 24em;
     width: 60em;
     margin-top: 3em;
     margin-left: 2em;
+}
+.actualizar{
+    display: flex;
+    justify-content: space-evenly;
+}
+.imagenP{
+    width: 13em;
+    
+}
+.imgPerfil{
+    margin-top: 1em;
+    width: 80%;
 }
 hr{
     color: #fff;
