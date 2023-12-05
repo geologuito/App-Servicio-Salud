@@ -13,6 +13,8 @@ public class Admin {
 
     @Id
     private String id;
+    private String email;
+    private String password;
     @Enumerated(EnumType.STRING)
     private RolEnum rol;
 

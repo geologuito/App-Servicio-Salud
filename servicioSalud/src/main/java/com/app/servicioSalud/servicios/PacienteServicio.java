@@ -1,5 +1,6 @@
 package com.app.servicioSalud.servicios;
 
+import com.app.servicioSalud.entidades.Imagen;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;
@@ -20,16 +21,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PacienteServicio implements UserDetailsService {
 
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
+    @Autowired
+    private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
-        validar(dni, nombre, apellido, domicilio, telefono, email, password, password2);
+    public void registrar(MultipartFile archivo, String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+
+        validarPaciente(dni, nombre, apellido, domicilio, telefono, email, password, password2);
 
         Paciente paciente = new Paciente();
 
@@ -37,6 +42,8 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setNombre(nombre);
         paciente.setApellido(apellido);
         paciente.setEmail(email);
+        Imagen imagen = imagenServicio.guardar(archivo);
+        paciente.setImagen(imagen);
         paciente.setDomicilio(domicilio);
         paciente.setTelefono(telefono);
         paciente.setPassword(new BCryptPasswordEncoder().encode(password));
@@ -45,36 +52,46 @@ public class PacienteServicio implements UserDetailsService {
         pacienteRepositorio.save(paciente);
     }
 
-    public List<Paciente> listarPaciente() {
+    @Transactional
+    public void modificarPaciente(MultipartFile archivo, String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
-        List<Paciente> pacientes = new ArrayList<>();
-
-        pacientes = pacienteRepositorio.findAll();
-
-        return pacientes;
-
-    }
-
-    public void modificarPaciente(String dni,String email, String domicilio, String telefono,String password,String password2) throws MiException {
-
-        modificarValidacion(domicilio, email, telefono,password,password2);
+        modificarValidacion(domicilio, email, telefono, password, password2);
 
         Optional<Paciente> respuesta = pacienteRepositorio.findById(dni);
 
         if (respuesta.isPresent()) {
+
             Paciente paciente = respuesta.get();
 
-           
             paciente.setEmail(email);
             paciente.setDomicilio(domicilio);
             paciente.setTelefono(telefono);
-            paciente.setPassword(new BCryptPasswordEncoder().encode(password));          
+            paciente.setPassword(new BCryptPasswordEncoder().encode(password));
+
+            String idImagen = null;
+
+            if (paciente.getImagen() != null) {
+                idImagen = paciente.getImagen().getId();
+            }
+
+            Imagen imagen = imagenServicio.modificar(archivo, idImagen);
+
+            paciente.setImagen(imagen);
+
             pacienteRepositorio.save(paciente);
         }
 
     }
 
-    private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2) throws MiException {
+    @Transactional()
+    public List<Paciente> listarPacientes() {
+
+        List<Paciente> pacientes = new ArrayList();
+
+        return pacienteRepositorio.findAll();
+    }
+
+    private void validarPaciente(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2) throws MiException {
 
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("el nombre no puede ser nulo ni estar vacio");
@@ -108,9 +125,6 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
-   
-   
-
 
     public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
         if (domicilio == null || domicilio.isEmpty()) {
@@ -133,12 +147,12 @@ public class PacienteServicio implements UserDetailsService {
         }
     }
 
-    public Paciente getOne(String id) {
-        return pacienteRepositorio.getReferenceById(id);
+    public Paciente getOne(String dni) {
+        return pacienteRepositorio.getOne(dni);
     }
 
-    public void eliminarPaciente(String id) throws MiException {
-        pacienteRepositorio.deleteById(id);
+    public void eliminarPaciente(String dni) throws MiException {
+        pacienteRepositorio.deleteById(dni);
     }
 
     @Override

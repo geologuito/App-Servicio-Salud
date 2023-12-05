@@ -20,10 +20,10 @@ public class ImagenControlador {
     @Autowired
     ProfesionalServicio profesionalServicio;
     
-    @GetMapping("/perfil/{id}")
-    public ResponseEntity<byte[]> imagenProfesional(@PathVariable String id) {
+    @GetMapping("/perfil/{matricula}")
+    public ResponseEntity<byte[]> imagenProfesional(@PathVariable String matricula) {
     
-        Profesional profesional = profesionalServicio.getOne(id);
+        Profesional profesional = profesionalServicio.getOne(matricula);
         
         byte[] imagen = profesional.getImagen().getContenido();
 
