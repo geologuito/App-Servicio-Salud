@@ -1,5 +1,6 @@
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Imagen;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
+import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
@@ -17,6 +19,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
+
 
 @Controller
 @RequestMapping("/profesional") // localhost:8080/profesional
@@ -31,7 +35,7 @@ public class ProfesionalControlador {
 
     }
 
-    @PostMapping("/registro")
+/*     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
             @RequestParam String password, String password2, ModelMap modelo) {
@@ -39,6 +43,33 @@ public class ProfesionalControlador {
         try {
             profesionalServicio.registrar(password2, dni, nombre, apellido, email, password, password2, domicilio,
                     telefono, null, password2, null, null);
+
+            modelo.put("exito", "Usuario Registrado!");
+
+        } catch (MiException ex) {
+            modelo.put("error", ex.getMessage());
+            modelo.put("dni", dni);
+            modelo.put("nombre", nombre);
+            modelo.put("apellido", apellido);
+            modelo.put("email", email);
+            modelo.put("domicilio", domicilio);
+            modelo.put("telefono", telefono);
+
+            return "registroProfesional.html";
+        }
+        return "redirect:/";
+    }
+ */
+@PostMapping("/registro")
+    public String registro(@RequestParam String matricula, @RequestParam String dni,
+            @RequestParam String nombre, @RequestParam String apellido,
+            @RequestParam String email, @RequestParam String password, String password2,
+            @RequestParam String domicilio, @RequestParam String telefono, @RequestParam String especialidad,
+            Boolean activo, Integer consulta, Date horario,
+            ModelMap modelo, MultipartFile archivo) {
+
+        try {
+            profesionalServicio.registrar(archivo, matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, activo, especialidad, consulta, horario);
 
             modelo.put("exito", "Usuario Registrado!");
 
@@ -92,10 +123,10 @@ public class ProfesionalControlador {
     }
 
     @PostMapping("/modificar/{matricula}")
-    public String modificar(@PathVariable String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo) {
+    public String modificar(@PathVariable MultipartFile archivo,String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo) {
         try {
 
-            profesionalServicio.modificarProfesional(matricula, email, password, password, domicilio, telefono);
+            profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio, telefono);
             return "redirect:/panelProfesional"; //Decidir donde va cuando modifica prof
 
         } catch (MiException ex) {
