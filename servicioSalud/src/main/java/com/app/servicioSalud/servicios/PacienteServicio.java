@@ -110,9 +110,11 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
+   
+   
 
-    public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2)
-            throws MiException {
+
+    public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
         if (domicilio == null || domicilio.isEmpty()) {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
@@ -132,6 +134,7 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
+
 
     public Paciente getOne(String id) {
         return pacienteRepositorio.getReferenceById(id);

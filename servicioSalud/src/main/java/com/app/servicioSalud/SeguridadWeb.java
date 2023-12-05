@@ -13,7 +13,6 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
-
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
@@ -106,7 +105,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                                 .successHandler(new CustomAuthenticationSuccessHandler())
                                 .and().logout()
                                 .logoutUrl("/logout")
-                                .logoutSuccessUrl("/")
+                                .logoutSuccessUrl("/login")
                                 .and().csrf().disable();
 
         }
