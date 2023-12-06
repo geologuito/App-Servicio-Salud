@@ -86,22 +86,11 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
+                        <tr th:each="paciente : ${pacientes}">
+                            <td th:text="${paciente.apellido}"></td>
+                            <td th:text="${paciente.nombre}"></td>
+                            <td th:text="${paciente.email}"></td>
+                            <td th:text="${paciente.telefono}"></td>
                         </tr>
                     </tbody>
                 </table>
@@ -125,7 +114,7 @@
                             <span>Atención telefónica 24/7</span>
                         </a>
                     </section>
-            </div>
+                </div>
             </section>
             <!--            
             </select>-->
