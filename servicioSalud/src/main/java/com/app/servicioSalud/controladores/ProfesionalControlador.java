@@ -30,6 +30,8 @@ public class ProfesionalControlador {
 
     @Autowired
     private ProfesionalServicio profesionalServicio;
+    @Autowired
+    private PacienteServicio pacienteServicio;
 
     @Autowired
     private PacienteServicio pacienteServicio;
@@ -106,6 +108,7 @@ public class ProfesionalControlador {
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
+        
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
     
         // Obtener la lista de profesionales
@@ -115,6 +118,7 @@ public class ProfesionalControlador {
         modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
         modelo.addAttribute("profesional", profesional); // muestra los datos del prof del perfil
     
+
         return "panelProfesional";
     }
 
@@ -164,4 +168,6 @@ public class ProfesionalControlador {
             return new ResponseEntity<>("Error al eliminar el Profesional: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    
 }

@@ -52,5 +52,6 @@
   /* Cambia el color del botón al pasar el ratón sobre él */
 .toggle-btn:hover {
 	background-color: #444;
-}
+
+  }
   
