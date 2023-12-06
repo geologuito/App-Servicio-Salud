@@ -33,9 +33,9 @@ public class PacienteServicio implements UserDetailsService {
 
     @Transactional
 
+
     public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
        
-
         validar(dni, nombre, apellido, domicilio, telefono, email, password, password2);
 
         Paciente paciente = new Paciente();
@@ -55,11 +55,7 @@ public class PacienteServicio implements UserDetailsService {
 
     public List<Paciente> listarPaciente() {
 
-        List<Paciente> pacientes = new ArrayList<>();
-
-        pacientes = pacienteRepositorio.findAll();
-
-        return pacientes;
+        return pacienteRepositorio.findAll();
 
     }
 

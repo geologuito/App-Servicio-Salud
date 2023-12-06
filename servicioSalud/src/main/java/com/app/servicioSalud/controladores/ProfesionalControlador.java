@@ -33,6 +33,9 @@ public class ProfesionalControlador {
     @Autowired
     private PacienteServicio pacienteServicio;
 
+    @Autowired
+    private PacienteServicio pacienteServicio;
+
     @GetMapping("/registrar") // localhost:8080/profesional/registrar
     public String registrar() {
         return "registroProfesional";
@@ -107,14 +110,14 @@ public class ProfesionalControlador {
 
         
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
-        
-
+    
         // Obtener la lista de profesionales
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
-
-        // Agregar pacientes y el profesional actual al modelo
-        modelo.addAttribute("pacientes", pacientes);
-        modelo.addAttribute("profesional", profesional);
+    
+        // Agregar profesionales y el profesional actual al modelo
+        modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
+        modelo.addAttribute("profesional", profesional); // muestra los datos del prof del perfil
+    
 
         return "panelProfesional";
     }

@@ -63,19 +63,18 @@
                     </div>
                     <!-- Fin mensaje de error -->
                 </form>
-                <div class="imagenP ">
-                    
-                    <h3 class="fst-italic"th:if="${session.profesionalsession != null}" th:text=" 'Dr. '+ ${session.profesionalsession.nombre} " ></h3>
-                    <img class="imgPerfil"  th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt=" usuario" >
-                    
+                <div class="imagenP" th:unless="${session.profesionalsession == null}">
+                    <h3 class="fst-italic" th:text="'Dr. ' + ${session.profesionalsession.nombre}"></h3>
+                    <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt="usuario">
                 </div>
             </div> <!-- cierra el contenedor ded actualizar -->
 
-            <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
+            <!--? LISTAR Prof ARMAR FRAGMENT-->
             <section class="tabla">
                 <hr class="my-2">
                 <h2 class="fst-italic text-white">Turnos del día</h2>
                 <h3 class="fst-italic text-white">Pacientes</h3>
+
                 <table class="table">
                     <thead>
                         <tr>

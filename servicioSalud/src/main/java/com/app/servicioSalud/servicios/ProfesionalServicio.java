@@ -68,6 +68,7 @@ public class ProfesionalServicio implements UserDetailsService {
         
         return profesionales;
     }
+    
 
     public void modificarProfesional(MultipartFile archivo,String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
 
