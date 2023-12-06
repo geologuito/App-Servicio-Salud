@@ -10,7 +10,6 @@
         <title>App Salud</title>
     </head>
 
-
     <body>
         <div class="contenedor">
             <div th:replace="/fragments/navbar ::div"> </div>
@@ -36,7 +35,7 @@
                         </label>
                         <label class="name">
                             <input type="text" class="input" required="" name="edad" th:value="${edad}">
-                            <span>Año / Edad / F Nac</span>
+                            <span>Edad</span>
                         </label>
                     </div>
                     <label>
@@ -52,6 +51,7 @@
                         <input type="email" class="input" required="" name="email" th:value="${email}">
                         <span>Email</span>
                     </label>
+                    
                     <label>
                         <input type="password" class="input" required="" name="password" th:value="${password}">
                         <span>Contraseña</span>
@@ -118,6 +118,11 @@
                 </div>
             </div> <!--cierra beneficios-->
         </section>
+    </div>
+
+    </div>
+    </div> <!--cierra beneficios-->
+    </section>
     </div>
 
     <footer th:replace="/fragments/footer :: footer"></footer>
