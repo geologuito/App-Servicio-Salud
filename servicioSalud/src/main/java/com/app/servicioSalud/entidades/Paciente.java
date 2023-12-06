@@ -18,8 +18,8 @@ public class Paciente {
     private String domicilio;
     private String edad;
 
-    //@OneToOne
-    //private Imagen imagen;
+    @OneToOne
+    private Imagen imagen;
 
     @Enumerated(EnumType.STRING)
     private RolEnum rol;

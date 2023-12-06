@@ -37,9 +37,9 @@ public class AdminControlador {
     }
 
     @GetMapping("/modificarPaciente/{dni}")
-    public String modificarPaciente(@PathVariable String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+    public String modificarPaciente(@PathVariable String dni, MultipartFile archivo, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
-        pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password2);
+        pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password2);
 
         return "redirect:/admin/pacientes";
     }

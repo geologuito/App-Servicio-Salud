@@ -1,5 +1,6 @@
 package com.app.servicioSalud.servicios;
 
+import com.app.servicioSalud.entidades.Imagen;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;
@@ -20,18 +21,21 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
+import org.springframework.web.multipart.MultipartFile;
 
 @Service
 public class PacienteServicio implements UserDetailsService {
 
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
-    
+
+    //@Autowired
+    //private CorreoServicio correoServicio;
     @Autowired
-    private CorreoServicio correoServicio;
+    private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2, String edad) throws MiException {
+    public void registrar(MultipartFile archivo, String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2, String edad) throws MiException {
 
         validar(dni, nombre, apellido, domicilio, telefono, email, password, password2, edad);
 
@@ -46,9 +50,11 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setPassword(new BCryptPasswordEncoder().encode(password));
         paciente.setEdad(edad);
         paciente.setRol(RolEnum.PACIENTE);
+        Imagen imagen = imagenServicio.guardar(archivo);
+        paciente.setImagen(imagen);
 
         pacienteRepositorio.save(paciente);
-        correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
+        //correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
     }
 
     public List<Paciente> listarPaciente() {
@@ -57,7 +63,7 @@ public class PacienteServicio implements UserDetailsService {
 
     }
 
-    public void modificarPaciente(String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+    public void modificarPaciente(MultipartFile archivo, String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
         modificarValidacion(domicilio, email, telefono, password, password2);
 
@@ -70,6 +76,14 @@ public class PacienteServicio implements UserDetailsService {
             paciente.setDomicilio(domicilio);
             paciente.setTelefono(telefono);
             paciente.setPassword(new BCryptPasswordEncoder().encode(password));
+
+            String idImagen = null;
+            if (paciente.getImagen() != null) {
+                idImagen = paciente.getImagen().getId();
+            }
+            Imagen imagen = imagenServicio.modificar(archivo, idImagen);
+            paciente.setImagen(imagen);
+
             pacienteRepositorio.save(paciente);
         }
 
@@ -92,7 +106,7 @@ public class PacienteServicio implements UserDetailsService {
         if (edad == null || edad.isEmpty()) {
             throw new MiException("La Edad no puede ser nula ni estar vacia");
         }
-        
+
         if (domicilio == null || domicilio.isEmpty()) {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
