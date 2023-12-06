@@ -47,7 +47,7 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setRol(RolEnum.PACIENTE);
 
         pacienteRepositorio.save(paciente);
-        correoServicio.envioRegistro(paciente.getEmail());
+        correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
     }
 
     public List<Paciente> listarPaciente() {

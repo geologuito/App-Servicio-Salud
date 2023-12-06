@@ -63,7 +63,6 @@ public class ProfesionalServicio implements UserDetailsService {
     public List<Profesional> listarProfesional() {
 
         List<Profesional> profesionales = new ArrayList<>();
-
         
         profesionales = profesionalRepositorio.findAll();
         

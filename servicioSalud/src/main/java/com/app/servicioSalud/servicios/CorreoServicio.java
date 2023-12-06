@@ -17,11 +17,11 @@ public class CorreoServicio {
     @Autowired
     private JavaMailSender javaMailSender;
     
-    public void envioRegistro (String userEmail){
+    public void envioRegistro (String userEmail, String userName){
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(userEmail);
-        message.setSubject("Registro exitoso");
-        message.setText("Gracias por registrarte en nuestro sitio. Bienvenido!");
+        message.setSubject("Registro exitoso ");
+        message.setText("Hola " + userName + " Gracias por registrarte en nuestro sitio.");
 
         javaMailSender.send(message);
     }
