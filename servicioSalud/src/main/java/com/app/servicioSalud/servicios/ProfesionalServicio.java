@@ -29,12 +29,12 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Autowired
     private ProfesionalRepositorio profesionalRepositorio;
-    
+
     @Autowired
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrar(MultipartFile archivo,String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario) throws MiException {
+    public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario) throws MiException {
 
         validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, especialidad);
 
@@ -63,9 +63,8 @@ public class ProfesionalServicio implements UserDetailsService {
     public List<Profesional> listarProfesional() {
         return profesionalRepositorio.findAll();
     }
-    
 
-    public void modificarProfesional(MultipartFile archivo,String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
+    public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
 
         validarModificar(email, password, password2, domicilio, telefono);
 
@@ -78,10 +77,10 @@ public class ProfesionalServicio implements UserDetailsService {
             profesional.setPassword(new BCryptPasswordEncoder().encode(password));
             profesional.setDomicilio(domicilio);
             profesional.setTelefono(telefono);
-            
+
             String idImagen = null;
             if (profesional.getImagen() != null) {
-                idImagen = profesional.getImagen().getId();      
+                idImagen = profesional.getImagen().getId();
             }
             Imagen imagen = imagenServicio.modificar(archivo, idImagen);
             profesional.setImagen(imagen);
@@ -183,7 +182,5 @@ public class ProfesionalServicio implements UserDetailsService {
         } else {
             return null;
         }
-
     }
-
 }

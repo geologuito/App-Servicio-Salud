@@ -58,37 +58,36 @@
                     </form>
                 </div>
 
-<div class="contenedor">
-            <div th:replace="/fragments/navbar ::div"> </div>
-            <section class="reg">
-                <section class="tabla">
-                    <hr class="my-2">
-                    <h2 class="fst-italic text-white">Turnos del día</h2>
-                    <a class="dropdown-item" th:href="@{/profesional/listaProfesionales}">Listar Profe</a></li>
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Matricula</th>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Telefono</th>
-                            </tr>
-                        </thead>
-                        <tbody th:each="profesional : ${profesionales}">
-                            <tr>
-                                <th scope="row" th:text="${profesional.matricula}"></th>
-                                <td th:text="${profesional.apellido}"></td>
-                                <td th:text="${profesional.nombre}"></td>
-                                <td th:text="${profesional.email}"></td>
-                                <td th:text="${profesional.telefono}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section>
-                <!-- FIN FORM -->
-            </section>
-        </div> <!--cierra beneficios-->
+                <div class="contenedor">
+                    <section class="reg">
+                        <section class="tabla">
+                            <hr class="my-2">
+                            <h2 class="fst-italic text-white">Turnos del día</h2>
+                            <h2 class="fst-italic text-white" th:href="@{/profesional/listaProfesionales}">Lista de Profesionales</h2>
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Matricula</th>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Telefono</th>
+                                    </tr>
+                                </thead>
+                                <tbody th:each="profesional : ${profesionales}">
+                                    <tr>
+                                        <th scope="row" th:text="${profesional.matricula}"></th>
+                                        <td th:text="${profesional.apellido}"></td>
+                                        <td th:text="${profesional.nombre}"></td>
+                                        <td th:text="${profesional.email}"></td>
+                                        <td th:text="${profesional.telefono}"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section>
+                        <!-- FIN FORM -->
+                    </section>
+                </div> <!--cierra beneficios-->
 
                 <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
                 <div class="contenedora" id="servicios">

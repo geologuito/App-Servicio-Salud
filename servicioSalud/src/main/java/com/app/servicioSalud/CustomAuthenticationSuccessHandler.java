@@ -1,5 +1,15 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.app.servicioSalud;
 
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+/**
+ *
+ * @author EduRiu
+ */
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -29,3 +39,4 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         }
     }
 }
+

@@ -37,11 +37,11 @@ public class PacienteControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, ModelMap modelo) {
+            @RequestParam String password, String password2, String edad, ModelMap modelo) {
 
         try {
 
-            pacienteServicio.registrar(dni, nombre, apellido, email, domicilio, telefono, password, password2);
+            pacienteServicio.registrar(dni, nombre, apellido, email, domicilio, telefono, password, password2, edad);
 
             modelo.put("exito", "Usuario Registrado!");
 
@@ -57,6 +57,7 @@ public class PacienteControlador {
             modelo.put("email", email);
             modelo.put("domicilio", domicilio);
             modelo.put("telefono", telefono);
+            modelo.put("edad", edad);
 
             return "registroPaciente.html";
         }
@@ -73,12 +74,16 @@ public class PacienteControlador {
         return "loginPaciente.html";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_PACIENTE', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         modelo.put("paciente", paciente);
+
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesionales);
+        modelo.addAttribute("paciente", paciente);
         return "panelPaciente";
     }
 

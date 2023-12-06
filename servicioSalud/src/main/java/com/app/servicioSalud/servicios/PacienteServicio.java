@@ -26,13 +26,11 @@ public class PacienteServicio implements UserDetailsService {
 
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
-    @Autowired
-    private CorreoServicio correoServicio;
 
     @Transactional
-    public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+    public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2, String edad) throws MiException {
 
-        validarPaciente(dni, nombre, apellido, domicilio, telefono, email, password, password2);
+        validar(dni, nombre, apellido, domicilio, telefono, email, password, password2, edad);
 
         Paciente paciente = new Paciente();
 
@@ -43,13 +41,18 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setDomicilio(domicilio);
         paciente.setTelefono(telefono);
         paciente.setPassword(new BCryptPasswordEncoder().encode(password));
+        paciente.setEdad(edad);
         paciente.setRol(RolEnum.PACIENTE);
 
         pacienteRepositorio.save(paciente);
-        correoServicio.envioRegistro(paciente.getEmail());
     }
 
-    @Transactional
+    public List<Paciente> listarPaciente() {
+
+        return pacienteRepositorio.findAll();
+
+    }
+
     public void modificarPaciente(String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
         modificarValidacion(domicilio, email, telefono, password, password2);
@@ -57,27 +60,18 @@ public class PacienteServicio implements UserDetailsService {
         Optional<Paciente> respuesta = pacienteRepositorio.findById(dni);
 
         if (respuesta.isPresent()) {
-
             Paciente paciente = respuesta.get();
 
             paciente.setEmail(email);
             paciente.setDomicilio(domicilio);
             paciente.setTelefono(telefono);
             paciente.setPassword(new BCryptPasswordEncoder().encode(password));
-
             pacienteRepositorio.save(paciente);
         }
 
     }
 
-    public List<Paciente> listarPaciente() {
-
-        List<Paciente> pacientes = new ArrayList();
-
-        return pacienteRepositorio.findAll();
-    }
-
-    private void validarPaciente(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2) throws MiException {
+    private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2, String edad) throws MiException {
 
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("el nombre no puede ser nulo ni estar vacio");
@@ -91,6 +85,10 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("se requiere DNI valido");
         }
 
+        if (edad == null || edad.isEmpty()) {
+            throw new MiException("La Edad no puede ser nula ni estar vacia");
+        }
+        
         if (domicilio == null || domicilio.isEmpty()) {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
@@ -133,12 +131,12 @@ public class PacienteServicio implements UserDetailsService {
         }
     }
 
-    public Paciente getOne(String dni) {
-        return pacienteRepositorio.getOne(dni);
+    public Paciente getOne(String id) {
+        return pacienteRepositorio.getReferenceById(id);
     }
 
-    public void eliminarPaciente(String dni) throws MiException {
-        pacienteRepositorio.deleteById(dni);
+    public void eliminarPaciente(String id) throws MiException {
+        pacienteRepositorio.deleteById(id);
     }
 
     @Override

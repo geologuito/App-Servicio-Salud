@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
+
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -74,17 +75,20 @@ public class ProfesionalControlador {
         return "loginProfesional.html";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL', 'ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
-        
-        List<Paciente> pacientes = pacienteServicio.listarPaciente();
-        
-        modelo.put("pacientes", pacientes);
         modelo.put("profesional", profesional);
-        
+
+        // Obtener la lista de profesionales
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();
+
+        // Agregar pacientes y el profesional actual al modelo
+        modelo.addAttribute("pacientes", pacientes);
+        modelo.addAttribute("profesional", profesional);
+
         return "panelProfesional";
     }
 
@@ -105,7 +109,7 @@ public class ProfesionalControlador {
     }
 
     @PostMapping("/modificar/{matricula}")
-    public String modificar(@PathVariable MultipartFile archivo, String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo) {
+    public String modificar(@PathVariable String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo, MultipartFile archivo) {
         try {
 
             profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio, telefono);
