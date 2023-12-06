@@ -10,7 +10,7 @@
 }
 
 #fondo {
-    background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
+    background: linear-gradient(to right, #08080844, #08080884), url(../images/news-image1.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -154,7 +154,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(79, 226, 120);
 }
 
 /*ESTILO FORMULARIO*/
