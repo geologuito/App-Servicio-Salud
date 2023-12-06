@@ -12,12 +12,14 @@ public enum Horario {
 
     HORARIO_8_00_Hs,
     HORARIO_8_30_Hs,
-    HORARIO_9_00_Hs, //desayuno
+    HORARIO_9_00_Hs,
+    HORARIO_9_30_HS,
     HORARIO_10_00_Hs,
     HORARIO_10_30_Hs,
     HORARIO_11_00_Hs,
     HORARIO_11_30_Hs,
-    HORARIO_12_00_Hs, //almuerza
+    HORARIO_12_00_Hs,
+    HORARIO_12_30_Hs,
     HORARIO_13_00_Hs,
     HORARIO_13_30_Hs,
     HORARIO_14_00_Hs,
