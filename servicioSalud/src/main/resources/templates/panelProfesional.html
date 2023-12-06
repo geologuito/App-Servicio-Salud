@@ -16,19 +16,20 @@
         <div th:replace="/fragments/navbar ::div"> </div>
     </div>
     <section class="reg">
-        
+
         <div class="panel">
-            
+
             <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
             <div class="actualizar"> <!-- Contenedor de actualizar-->
-               
-                <form id="form" class="form" th:action="@{/perfil/__${session.profesionalsession.matricula}__}" method="POST"
-                    enctype="multipart/form-data" novalidate>
+
+                <form id="form" class="form" th:action="@{/perfil/__${session.profesionalsession.matricula}__}"
+                    method="POST" enctype="multipart/form-data" novalidate>
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                     <p class="title ">Actualizar Datos Profesional</p>
                     <input hidden th:value="${matricula}" name="matricula">
                     <label>
-                        <input type="text" class="input" required="" name="domicilio" th:value="${profesional.domicilio}">
+                        <input type="text" class="input" required="" name="domicilio"
+                            th:value="${profesional.domicilio}">
                         <span>Domicilio</span>
                     </label>
                     <label>
@@ -65,11 +66,12 @@
                 </form>
                 <div class="imagenP" th:unless="${session.profesionalsession == null}">
                     <h3 class="fst-italic" th:text="'Dr. ' + ${session.profesionalsession.nombre}"></h3>
-                    <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt="usuario">
+                    <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}"
+                        alt="usuario">
                 </div>
             </div> <!-- cierra el contenedor ded actualizar -->
 
-            <!--? LISTAR Prof ARMAR FRAGMENT-->
+            <!--? LISTAR PACIENTES -->
             <section class="tabla">
                 <hr class="my-2">
                 <h2 class="fst-italic text-white">Turnos del día</h2>
@@ -114,15 +116,12 @@
                         </a>
                     </section>
                 </div>
-            </section>
-            <!--            
-            </select>-->
+            </section><!-- Cierra section servicios -->
+            
         </div><!-- Cierra div del panel contenedor -->
 
         <!--* SIDEBAR-->
         <section th:replace="/fragments/sidebarProfesional :: section"></section>
-
-
     </section> <!--? cierra el contendedor reg-->
     </div>
     </section>

@@ -33,9 +33,6 @@ public class ProfesionalControlador {
     @Autowired
     private PacienteServicio pacienteServicio;
 
-    @Autowired
-    private PacienteServicio pacienteServicio;
-
     @GetMapping("/registrar") // localhost:8080/profesional/registrar
     public String registrar() {
         return "registroProfesional";
