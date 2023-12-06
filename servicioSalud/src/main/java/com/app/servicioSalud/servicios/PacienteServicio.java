@@ -26,6 +26,10 @@ public class PacienteServicio implements UserDetailsService {
 
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
+    
+    @Autowired
+    private CorreoServicio correoServicio;
+            
 
     @Transactional
     public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono,
@@ -43,6 +47,8 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setPassword(new BCryptPasswordEncoder().encode(password));
         paciente.setRol(RolEnum.PACIENTE);
 
+        pacienteRepositorio.save(paciente);
+        correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
     }
 
     public List<Paciente> listarPaciente() {

@@ -61,7 +61,12 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
     public List<Profesional> listarProfesional() {
-        return profesionalRepositorio.findAll();
+
+        List<Profesional> profesionales = new ArrayList<>();
+        
+        profesionales = profesionalRepositorio.findAll();
+        
+        return profesionales;
     }
     
 
@@ -154,6 +159,7 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
     public Profesional getOne(String id) {
+       
         return profesionalRepositorio.getReferenceById(id);
     }
 
