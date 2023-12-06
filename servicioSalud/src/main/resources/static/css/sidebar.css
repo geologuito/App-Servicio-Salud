@@ -1,5 +1,5 @@
   
-  .toggle-btn {
+.toggle-btn {
 	font-size: 20px;
 	cursor: pointer;
 	background-color: #111;
@@ -7,16 +7,15 @@
 	color: white;
 	padding: 10px;
 	position: fixed;
-	top: 5.1em;
+	top: 4.3em;
 	right: 0;
 	z-index: 2; /* Asegura que el botón esté encima del sidebar */
-  }
+}
   
-  .sidebar {
-	height: 100%;
+.sidebar {
 	width: 0;
 	position: fixed;
-	top: 9.5em;
+	top: 5.3em;
 	right: 0;
 	background-color: #11111170;
 	overflow-x: hidden;
@@ -24,34 +23,35 @@
 	color: white;
 	transition: 0.5s;
 	z-index: 1; /* Coloca el sidebar detrás del contenido principal */
-  }
+}
   
-  .sidebar h2 {
+.sidebar h2 {
 	text-align: center;
-  }
+}
   
-  .sidebar ul {
+.sidebar ul {
 	list-style-type: none;
 	padding: 0;
-  }
+}
   
-  .sidebar li {
+.sidebar li {
 	padding: 15px;
 	text-align: center;
-  }
+}
   
-  .sidebar a {
+.sidebar a {
 	text-decoration: none;
 	color: white;
 	font-size: 18px;
-  }
+}
   
-  .sidebar-toggle-open {
+.sidebar-toggle-open {
 	display: none; /* Oculta el botón cuando el sidebar está abierto */
-  }
+}
   
   /* Cambia el color del botón al pasar el ratón sobre él */
-  .toggle-btn:hover {
+.toggle-btn:hover {
 	background-color: #444;
+
   }
   

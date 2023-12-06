@@ -1,7 +1,17 @@
 /*ESTILO DEL FOOTER*/
-footer{
+footer {
     grid-area: foot;
-    margin-top: 4em;
+    /* position: fixed;  */
+    bottom: 0; 
+    width: 100%;
     display: flex;
     justify-content: center;
+    background-color: #f1e5e5; 
+    color: white; 
+    padding: 10px; 
+    color: rgb(54, 52, 52); 
+}
+a{
+    text-decoration: none;
+    color: rgb(54, 52, 52);
 }

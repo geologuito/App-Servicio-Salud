@@ -10,7 +10,7 @@
 }
 
 #fondo {
-    background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
+    background: linear-gradient(to right, #08080844, #08080884), url(../images/news-image1.jpg);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -154,7 +154,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(79, 226, 120);
 }
 
 /*ESTILO FORMULARIO*/
@@ -302,21 +301,54 @@
     grid-area: cont2;
     display: flex;
     height: 20em;
-    margin-top: 0.5em;
+    flex-direction: column;
+}
+/*section de galeria servicios*/
+
+/** GALERIA SERVICIOS*/
+
+.galeria-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    grid-gap: 5px;
+    padding: 40px 0;
+    overflow: hidden;
+    /* Otros estilos específicos para la segunda galería */
+}
+.galeria-servicios > a{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgb(9, 9, 9);
+    }
+    .galeria-servicios > a span {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        color: white;
+        padding: 10px;
+        text-align: center;
+        opacity: 0;
+        transition: opacity 0.5s;
+    }
+    
+    .galeria-servicios > a:hover span {
+        opacity: 1;
+    }
+.galeria-servicios img {
+    margin-left: 0.5em;
+    max-width: 100%;
+    vertical-align: top;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.8s;
+    /* Otros estilos específicos para las imágenes de la segunda galería */
 }
 
-.contimag {
-    width: 70%;
-}
-
-.contimag img {
-    margin-top: 1em;
-    width: 60%;
-    height: 100%;
-}
-
-.context {
-    width: 80%;
-    text-align: justify;
-    padding-right: 0.6em;
+.galeria-servicios a:hover img{
+    filter: blur(2px);
+    transform: rotate(10deg) scale(1.3);
 }

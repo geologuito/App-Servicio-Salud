@@ -1,33 +1,63 @@
-    package com.app.servicioSalud;
+package com.app.servicioSalud;
 
-
+import com.app.servicioSalud.servicios.PacienteServicio;
+import com.app.servicioSalud.servicios.ProfesionalServicio;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.core.annotation.Order;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true)
-@Order(100)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
+        @Autowired
+        public PacienteServicio pacienteServicio;
 
+        @Autowired
+        public ProfesionalServicio profesionalServicio;
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception{
-        http.authorizeRequests()
-                .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin para el paneladministrador// le da permiso solo a los admin para el paneladministrador
-                .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
-                .permitAll()
-                .and().logout()
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/login")
-                        .permitAll()
-                .and().csrf()
-                        .disable();
-    }
+        @Autowired
+        public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
+                CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
+                                profesionalServicio, pacienteServicio);
+
+                auth.userDetailsService(compositeUserDetailsService)
+                                .passwordEncoder(new BCryptPasswordEncoder());
+        }
+
+      
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+                http.authorizeRequests()
+                                .antMatchers("/admin/").hasRole("ADMIN")
+                                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
+                                .antMatchers("/paciente/login").permitAll()
+                                .antMatchers("/profesional/login").permitAll()
+                                .antMatchers("/paciente/**").hasRole("PACIENTE")
+                                .antMatchers("/profesional/**").hasRole("PROFESIONAL")
+                                .and().formLogin()
+                                .loginProcessingUrl("/logincheck")
+                                .usernameParameter("email")
+                                .passwordParameter("password")
+                                .successHandler(new CustomAuthenticationSuccessHandler())
+                                .and().logout()
+                                .logoutUrl("/logout")
+                                .logoutSuccessUrl("/login")
+                                .and().csrf().disable();
+
+        }
+
+        @Bean
+        public AuthenticationSuccessHandler authenticationSuccessHandler() {
+                return new CustomAuthenticationSuccessHandler();
+        }
+
 }

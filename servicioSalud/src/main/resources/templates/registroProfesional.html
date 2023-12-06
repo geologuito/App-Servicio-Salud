@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/bootstrap.css">
     <link rel="stylesheet" href="/css/formulario.css">
+    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
     <title>App Salud</title>
 </head>
 
@@ -13,7 +14,8 @@
     <div class="contenedor">
         <div th:replace="/fragments/navbar ::div"> </div>
         <section class="reg">
-            <form id="form" class="form" th:action="@{/profesional/registro}" method="POST" enctype="multipart/form-data">
+            <form id="form" class="form" th:action="@{/profesional/registro}" method="POST"
+                enctype="multipart/form-data">
                 <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                 <p class="title">Registro Profesional</p>
                 <p class="message text-white">Registrate ahora para acceder a nuestros servicios!</p>
@@ -34,7 +36,7 @@
                     </label>
                     <label class="name">
                         <input type="text" class="input" required="" name="edad" th:value="${edad}">
-                        <span>Año / Edad / F Nac</span>
+                        <span>Edad</span>
                     </label>
                 </div>
                 <label>
@@ -42,9 +44,16 @@
                     <span>Matricula</span>
                 </label>
                 <label>
+                    <input type="text" class="input" required="" name="especialidad" th:value="${especialidad}">
+                    <span>Especialidad</span>
+                </label>
+                <label>
                     <input type="email" class="input" required="" name="email" th:value="${email}">
                     <span>Email</span>
                 </label>
+                <div class="form-group my-3">
+                    <input type="file" class="form-control" name="archivo">
+                </div>
                 <label>
                     <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
                     <span>Domicilio</span>
@@ -62,7 +71,7 @@
                     <span>Repetir Contraseña</span>
                 </label>
                 <button class="submit">Registrarme</button>
-                <p class="signin text-white">Ya tienes una cuenta? <a class="text-white" href="#">Loguearse</a> </p>
+                <p class="signin text-white">Ya tienes una cuenta? <a class="text-white" th:href="@{/profesional/login}">Loguearse</a> </p>
                 <!-- Inicio Mensaje de Exito -->
                 <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
                     <div class="card-body">
@@ -82,17 +91,36 @@
                 <!-- Fin mensaje de error -->
             </form>
             <!-- FIN FORM -->
-            <div class="beneficios">
+            <div class="beneficios text-white">
+                <h1 class="fst-italic my-3">Beneficios</h1>
                 <div class="paci text-white">
-                    <ul>
-                        <li class="my-3">Beneficio 1</li>
-                        <li class="my-3">Beneficio 2</li>
-                        <li class="my-3">Beneficio 3</li>
-                        <li class="my-3">Beneficio 4</li>
-                        <li class="my-3">Beneficio 5</li>
-                    </ul>
+                    <div class="ico">
+                        <span class="fa-solid fa-flask-vial" style="color: #fcfcfc;" title=""></span>
+                        <div class="mx-4 my-2">Laboratorios</div>
+                    </div>
+                    <div class="ico">
+                        <span class="fa-solid fa-headset" style="color: #fcfcfc;" title=""></span>
+                        <div class="mx-4 my-2">Atención Telefónica 24 horas</div>
+                    </div>
+                    <div class="ico">
+                        <span class="fa-solid fa-computer" style="color: #fcfcfc;" title=""></span>
+                        <div class="mx-4 my-2">Equipamiento de última generación para el Diagnóstico por Imágenes y
+                            excelencia en el informe
+                            médico</div>
+                    </div>
+                    <div class="ico">
+                        <span class="fa-solid fa-user-doctor" style="color: #fcfcfc;" title=""></span>
+                        <div class="mx-4 my-2">Somos Especialistas en Chequeos Médicos para el Control Preventivo de
+                            salud</div>
+                    </div>
+                    <div class="ico">
+                        <span class="fa-solid fa-user-nurse" style="color: #fcfcfc;" title=""></span>
+                        <div class="mx-4 my-2">Atención humana, transparente y multidisciplinaria por profesionales
+                            reconocidos internacionalmente</div>
+                    </div>
+
                 </div>
-            </div>
+            </div> <!--cierra beneficios-->
         </section>
     </div>
 
