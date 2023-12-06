@@ -66,7 +66,7 @@ public class PacienteControlador {
 
    
     
-      @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
+    @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
@@ -80,7 +80,7 @@ public class PacienteControlador {
     public String listarPaciente(ModelMap modelo){ // lista de pacientes.
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         modelo.addAttribute("pacientes", pacientes);
-        return "listarPaciente"; // para mapear con 
+        return "listarProfesional.html"; // para mapear con 
     }
     
     @GetMapping("/modificar/{dni}") 

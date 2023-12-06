@@ -63,49 +63,39 @@
                     </div>
                     <!-- Fin mensaje de error -->
                 </form>
-                <div class="imagenP ">
-                    
-                    <h3 class="fst-italic"th:if="${session.profesionalsession != null}" th:text=" 'Dr. '+ ${session.profesionalsession.nombre} " ></h3>
-                    <img class="imgPerfil"  th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt=" usuario" >
-                    
+                <div class="imagenP" th:unless="${session.profesionalsession == null}">
+                    <h3 class="fst-italic" th:text="'Dr. ' + ${session.profesionalsession.nombre}"></h3>
+                    <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt="usuario">
                 </div>
             </div> <!-- cierra el contenedor ded actualizar -->
 
-            <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
+            <!--? LISTAR Prof ARMAR FRAGMENT-->
             <section class="tabla">
                 <hr class="my-2">
                 <h2 class="fst-italic text-white">Turnos del día</h2>
-                <h3 class="fst-italic text-white">Pacientes</h3>
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Telefono</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-                            <td>Otto</td>
-                            <td>@mdo</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-                            <td>Thornton</td>
-                            <td>@fat</td>
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td colspan="2">Larry the Bird</td>
-                            <td>@twitter</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section><!--Cierra la tabla-->
+                <h3 class="fst-italic text-white">Pacientes
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Telefono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="paciente : ${pacientes}">
+                                <td th:text="${paciente.apellido}"></td>
+                                <td th:text="${paciente.nombre}"></td>
+                                <td th:text="${paciente.email}"></td>
+                                <td th:text="${paciente.telefono}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section><!--Cierra la tabla para listar prof-->
+
+            <!--? LISTAR PACIENTES 2 prueba ARMAR FRAGMENT-->
+            
 
             <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
             <section>
