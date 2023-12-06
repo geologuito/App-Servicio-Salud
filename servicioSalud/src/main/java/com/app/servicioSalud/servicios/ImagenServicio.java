@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
-
 @Service
 public class ImagenServicio {
 
@@ -23,9 +22,9 @@ public class ImagenServicio {
                 Imagen imagen = new Imagen();
                 imagen.setMime(archivo.getContentType());
 
-                imagen.setNombre(archivo.getName()); 
+                imagen.setNombre(archivo.getName());
 
-                imagen.setContenido(archivo.getBytes()); 
+                imagen.setContenido(archivo.getBytes());
 
                 return imagenRepositorio.save(imagen);
 
@@ -65,7 +64,7 @@ public class ImagenServicio {
         return null;
 
     }
-    
+
     public void eliminar(String id) throws MiException {
         imagenRepositorio.deleteById(id);
     }

@@ -30,23 +30,23 @@ public class AdminControlador {
 
     @GetMapping("/pacientes")
     public String listarPacientes(ModelMap modelo) {
-        List<Paciente> pacientes = pacienteServicio.listarPacientes();
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();
         modelo.addAttribute("pacientes", pacientes);
 
         return "pacienteList";
     }
 
     @GetMapping("/modificarPaciente/{dni}")
-    public String modificarPaciente(@PathVariable String dni, String email, String domicilio, String telefono, String password, String password2, MultipartFile archivo) throws MiException {
+    public String modificarPaciente(@PathVariable String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
-        pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password2);
+        pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password2);
 
         return "redirect:/admin/pacientes";
     }
 
     @GetMapping("/profesional")
     public String listarProfesionales(ModelMap modelo) {
-        List<Profesional> profesionales = profesionalServicio.listarProfesionales();
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
         modelo.addAttribute("profesional", profesionales);
 
         return "profesionalList";
