@@ -16,26 +16,33 @@
             <div th:replace="/fragments/navbar ::div"> </div>
         </div>
         <section class="reg">
+
             <div class="panel">
 
                 <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
-                <div>
-                    <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
-                          enctype="multipart/form-data" novalidate>
+                <div class="actualizar"> <!-- Contenedor de actualizar-->
+
+                    <form id="form" class="form" th:action="@{/perfil/__${session.profesionalsession.matricula}__}"
+                          method="POST" enctype="multipart/form-data" novalidate>
                         <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                         <p class="title ">Actualizar Datos Profesional</p>
+                        <input hidden th:value="${matricula}" name="matricula">
                         <label>
-                            <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
+                            <input type="text" class="input" required="" name="domicilio"
+                                   th:value="${profesional.domicilio}">
                             <span>Domicilio</span>
                         </label>
                         <label>
-                            <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
+                            <input type="tel" class="input" required="" name="telefono" th:value="${profesional.telefono}">
                             <span>Telefono</span>
                         </label>
                         <label>
-                            <input type="email" class="input" required="" name="email" th:value="${email}">
+                            <input type="email" class="input" required="" name="email" th:value="${profesional.email}">
                             <span>Email</span>
                         </label>
+                        <div class="form-group my-3">
+                            <input type="file" class="form-control" name="archivo">
+                        </div>
 
                         <button class="submit">Actualizar</button>
 
@@ -57,39 +64,38 @@
                         </div>
                         <!-- Fin mensaje de error -->
                     </form>
-                </div>
+                    <div class="imagenP" th:unless="${session.profesionalsession == null}">
+                        <h3 class="fst-italic" th:text="'Dr. ' + ${session.profesionalsession.nombre}"></h3>
+                        <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}"
+                             alt="usuario">
+                    </div>
+                </div> <!-- cierra el contenedor ded actualizar -->
 
-                <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
-                <div class="contenedor">
-                    <section class="reg">
-                        <section class="tabla">
-                            <hr class="my-2">
-                            <h2 class="fst-italic text-white">Turnos del día</h2>
-                            <h2 class="fst-italic text-white" th:href="@{/profesional/listaProfesionales}">Lista de Pacientes</h2>
-                            <table class="table">
-                                <thead>
-                                    <tr>
-                                        <th scope="col">DNI</th>
-                                        <th scope="col">Apellido</th>
-                                        <th scope="col">Nombre</th>
-                                        <th scope="col">Correo</th>
-                                        <th scope="col">Telefono</th>
-                                    </tr>
-                                </thead>
-                                <tbody th:each="paciente : ${pacientes}">
-                                    <tr>
-                                        <th scope="row" th:text="${paciente.dni}"></th>
-                                        <td th:text="${paciente.apellido}"></td>
-                                        <td th:text="${paciente.nombre}"></td>
-                                        <td th:text="${paciente.email}"></td>
-                                        <td th:text="${paciente.telefono}"></td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </section>
-                        <!-- FIN FORM -->
-                    </section>
-                </div> <!--cierra beneficios-->
+                <!--? LISTAR PACIENTES -->
+                <section class="tabla">
+                    <hr class="my-2">
+                    <h2 class="fst-italic text-white">Turnos del día</h2>
+                    <h3 class="fst-italic text-white">Pacientes</h3>
+
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Telefono</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="paciente : ${pacientes}">
+                                <td th:text="${paciente.apellido}"></td>
+                                <td th:text="${paciente.nombre}"></td>
+                                <td th:text="${paciente.email}"></td>
+                                <td th:text="${paciente.telefono}"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section><!--Cierra la tabla-->
 
                 <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
                 <section>
@@ -110,20 +116,15 @@
                             </a>
                         </section>
                     </div>
-                </section>
-                <!--            
-                </select>-->
+                </section><!-- Cierra section servicios -->
+
             </div><!-- Cierra div del panel contenedor -->
+        </section>
+        <!--* SIDEBAR-->
+        <section th:replace="/fragments/sidebarProfesional :: section"></section>
 
-            <!--* SIDEBAR-->
-            <section th:replace="/fragments/sidebarProfesional :: section"></section>
 
-
-        </section> <!--? cierra el contendedor reg-->
-    </div>
-</section>
-
-<footer th:replace="/fragments/footer :: footer"></footer>
-</body>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 
 </html>

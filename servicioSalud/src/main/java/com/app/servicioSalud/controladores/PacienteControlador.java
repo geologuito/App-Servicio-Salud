@@ -69,7 +69,7 @@ public class PacienteControlador {
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
 
         if (error != null) {
-            modelo.put("error", "Usuario o ContraseÃ±a invalidos!");
+            modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
         return "loginPaciente.html";
@@ -77,25 +77,23 @@ public class PacienteControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @GetMapping("/perfil")
-    public String perfil(ModelMap modelo, HttpSession session) {
+    public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
 
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
-        
+
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("paciente", paciente);
-        
+
         return "panelPaciente";
     }
 
     @GetMapping("/listaPacientes")
-    public String listarPaciente(ModelMap modelo) { // lista de pacientes
-        
+    public String listarPaciente(ModelMap modelo) { // lista de pacientes.
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         modelo.addAttribute("pacientes", pacientes);
-        
-        return "listarPaciente"; // para mapear con 
+        return "listarPaciente"; // para mapear con
     }
 
     @GetMapping("/modificar/{dni}")
@@ -109,7 +107,8 @@ public class PacienteControlador {
     }
 
     @PostMapping("/modificar/{dni}")
-    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password, ModelMap modelo) throws MiException {
+    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
+            ModelMap modelo) throws MiException {
         try {
 
             pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
@@ -128,7 +127,7 @@ public class PacienteControlador {
     public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
 
         pacienteServicio.eliminarPaciente(dni);
-        return "redirect:/index"; //Falta vista para saber a donde va cuando elimina paciente
+        return "redirect:/index"; // Falta vista para saber a donde va cuando elimina paciente
     }
 
     @DeleteMapping("/eliminar/{dni}")

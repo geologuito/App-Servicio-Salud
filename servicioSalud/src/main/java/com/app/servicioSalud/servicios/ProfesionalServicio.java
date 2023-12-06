@@ -61,7 +61,9 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
     public List<Profesional> listarProfesional() {
+
         return profesionalRepositorio.findAll();
+
     }
 
     public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
@@ -110,8 +112,8 @@ public class ProfesionalServicio implements UserDetailsService {
             throw new MiException("el apellido no puede ser nulo ni estar vacio");
         }
 
-        if (email == null || email.isEmpty()) {
-            throw new MiException("el email no puede ser nulo ni estar vacio");
+        if (email == null || email.isEmpty() || correoBD != null) {
+            throw new MiException("el email no puede ser nulo ni estar vacio o esta repetido");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
             throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");

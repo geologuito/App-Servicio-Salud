@@ -12,6 +12,7 @@ public class CorreoServicio {
     private JavaMailSender javaMailSender;
 
     public void envioRegistro(String userEmail, String userName) {
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setTo(userEmail);
         message.setSubject("Registro exitoso ");

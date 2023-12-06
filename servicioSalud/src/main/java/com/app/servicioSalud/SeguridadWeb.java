@@ -26,7 +26,8 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
     @Autowired
     public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
-        CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(profesionalServicio, pacienteServicio);
+        CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
+                profesionalServicio, pacienteServicio);
 
         auth.userDetailsService(compositeUserDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
@@ -50,10 +51,12 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/login")
                 .and().csrf().disable();
+
     }
 
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return new CustomAuthenticationSuccessHandler();
     }
+
 }

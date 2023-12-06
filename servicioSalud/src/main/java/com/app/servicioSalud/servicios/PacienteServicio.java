@@ -29,8 +29,9 @@ public class PacienteServicio implements UserDetailsService {
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
 
-    //@Autowired
-    //private CorreoServicio correoServicio;
+    @Autowired
+    private CorreoServicio correoServicio;
+    
     @Autowired
     private ImagenServicio imagenServicio;
 
@@ -54,7 +55,9 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setImagen(imagen);
 
         pacienteRepositorio.save(paciente);
+
         //correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
+
     }
 
     public List<Paciente> listarPaciente() {
@@ -91,6 +94,8 @@ public class PacienteServicio implements UserDetailsService {
 
     private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2, String edad) throws MiException {
 
+        Paciente correoBD = pacienteRepositorio.buscarPorEmail(email);
+
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("el nombre no puede ser nulo ni estar vacio");
         }
@@ -111,8 +116,8 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
 
-        if (email == null || email.isEmpty()) {
-            throw new MiException("el email no puede ser nulo ni estar vacio");
+        if (email == null || email.isEmpty() || correoBD != null) {
+            throw new MiException("el email no puede ser nulo ni estar vacio o esta repetido");
         }
 
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
