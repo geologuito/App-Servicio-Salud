@@ -10,12 +10,12 @@ public class PortalControlador {
 
     @GetMapping("/") // localhost:8080/ este queda en portal
     public String index() {
-<<<<<<< HEAD
-        return "servicios";
-=======
+
         return "index";
 
+        /*return "index";*/
+
         // agregar login,perfil. agregar todo el controlador de admin.
->>>>>>> developer
+
     }
 }
