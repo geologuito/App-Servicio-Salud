@@ -32,8 +32,10 @@ public class PacienteServicio implements UserDetailsService {
             
 
     @Transactional
-    public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono,
-            String password, String password2) throws MiException {
+
+
+    public void registrar(String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+       
         validar(dni, nombre, apellido, domicilio, telefono, email, password, password2);
 
         Paciente paciente = new Paciente();
@@ -57,27 +59,30 @@ public class PacienteServicio implements UserDetailsService {
 
     }
 
-    public void modificarPaciente(String dni,String email, String domicilio, String telefono,String password,String password2) throws MiException {
+    public void modificarPaciente(String dni, String email, String domicilio, String telefono, String password,
+            String password2) throws MiException {
 
-        modificarValidacion(domicilio, email, telefono,password,password2);
+        modificarValidacion(domicilio, email, telefono, password, password2);
 
         Optional<Paciente> respuesta = pacienteRepositorio.findById(dni);
 
         if (respuesta.isPresent()) {
             Paciente paciente = respuesta.get();
 
-           
             paciente.setEmail(email);
             paciente.setDomicilio(domicilio);
             paciente.setTelefono(telefono);
-            paciente.setPassword(new BCryptPasswordEncoder().encode(password));          
+            paciente.setPassword(new BCryptPasswordEncoder().encode(password));
             pacienteRepositorio.save(paciente);
         }
 
     }
 
-    private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2) throws MiException {
+    private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email,
+            String password, String password2) throws MiException {
 
+        Paciente correoBD = pacienteRepositorio.buscarPorEmail(email);
+        
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("el nombre no puede ser nulo ni estar vacio");
         }
@@ -94,8 +99,8 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
 
-        if (email == null || email.isEmpty()) {
-            throw new MiException("el email no puede ser nulo ni estar vacio");
+        if (email == null || email.isEmpty() || correoBD != null) {
+            throw new MiException("el email no puede ser nulo ni estar vacio o esta repetido");
         }
 
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
@@ -134,6 +139,7 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
+
 
     public Paciente getOne(String id) {
         return pacienteRepositorio.getReferenceById(id);
