@@ -79,16 +79,18 @@ public class PacienteControlador {
     public String perfil(ModelMap modelo, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-        modelo.put("paciente", paciente);
 
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
+        
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("paciente", paciente);
+        
         return "panelPaciente";
     }
 
     @GetMapping("/listaPacientes")
-    public String listarPaciente(ModelMap modelo) { // lista de pacientes.
+    public String listarPaciente(ModelMap modelo) { // lista de pacientes
+        
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         modelo.addAttribute("pacientes", pacientes);
         return "listarPaciente"; // para mapear con 

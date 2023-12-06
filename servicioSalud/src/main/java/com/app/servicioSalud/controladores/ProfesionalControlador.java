@@ -80,14 +80,13 @@ public class ProfesionalControlador {
     public String perfil(ModelMap modelo, HttpSession session) {
 
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
-        modelo.put("profesional", profesional);
 
         // Obtener la lista de profesionales
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
 
-        // Agregar pacientes y el profesional actual al modelo
-        modelo.addAttribute("pacientes", pacientes);
-        modelo.addAttribute("profesional", profesional);
+        // Agregar profesionales y el profesional actual al modelo
+        modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
+        modelo.addAttribute("profesional", profesional); // muestra los datos del prof del perfil
 
         return "panelProfesional";
     }
