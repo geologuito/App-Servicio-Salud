@@ -1,6 +1,7 @@
 package com.app.servicioSalud.controladores;
 
 import com.app.servicioSalud.entidades.Imagen;
+import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -10,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
+import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.Date;
 import java.util.List;
@@ -28,6 +30,8 @@ public class ProfesionalControlador {
 
     @Autowired
     private ProfesionalServicio profesionalServicio;
+    @Autowired
+    private PacienteServicio pacienteServicio;
 
     @GetMapping("/registrar") // localhost:8080/profesional/registrar
     public String registrar() {
@@ -101,8 +105,17 @@ public class ProfesionalControlador {
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
+        
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
-        modelo.put("profesional", profesional);
+        
+
+        // Obtener la lista de profesionales
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();
+
+        // Agregar pacientes y el profesional actual al modelo
+        modelo.addAttribute("pacientes", pacientes);
+        modelo.addAttribute("profesional", profesional);
+
         return "panelProfesional";
     }
 
