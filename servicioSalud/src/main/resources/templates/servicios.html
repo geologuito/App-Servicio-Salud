@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+
+<html>
+    <head th:replace="/fragments/head :: head"> </head>
+    <!-- <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <html  lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+        <link href="">
+        <link rel="stylesheet" href="/css/styles.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+        
+        
+    </head> -->
+    
+    <body>
+        <div class="contenedor">
+            <div th:replace="/fragments/navbar ::div"> </div>
+             </div>
+        
+        <header>
+            <h1>Servicios</h1>
+        </header>
+        <main>
+            <section class="galeria"><!-- Galería marvel -->
+            <img src="images/ambulancias.webp" class="d-block" alt="">
+            <img src="images/equipamiento.jpg" class="d-block" alt="">
+            <img src="images/laboratorio2.jpg" class="d-block" alt="">
+            <img src="images/call.webp" class="d-block" alt="">
+        </section>
+<div class="contenedor">
+            <section class="galeria-servicios"><!-- Galeria servicios -->
+                <a href="#image1">
+                    <img src="images/ambulancias.webp" alt=""></a>
+                <a href="#image2">
+                    <img src="images/equipamiento.jpg" alt=""></a>
+                <a href="#image3">
+                    <img src="images/laboratorio2.jpg" alt=""></a>
+                <a href="#image4">
+                    <img src="images/call.webp" alt=""></a>
+            </section>
+    </div>
+        </main>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
+</html>
