@@ -352,3 +352,147 @@
     filter: blur(2px);
     transform: rotate(10deg) scale(1.3);
 }
+
+/*ESTILO LOGO*/
+.logo{
+    width: 80%;
+    height: 75px;
+    background-size: cover;
+    border-radius: 50%;
+    margin-left: 50px;
+}
+/*Estilo servicios*/
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+/*De aca para bajo galerias marvel y servicios*/
+/*galeria marvel*/
+.contenedor .galeria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 20vh;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    position: relative;
+    z-index: 1;
+}
+
+.contenedor .galeria img {
+    width: 100%;
+    max-width: 250px;
+    height: auto;
+}
+
+.galeria{
+    width: 100%;
+    margin:0 auto;
+    height: 85vh;
+    background: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border:0.5px solid gray;
+}
+
+.galeria img{
+    width: 0px;
+    height:100%;
+    flex-grow: 1;/*que dentro de la caja flexible ocupe todo el espacio que pueda*/
+    object-fit: cover;
+    opacity: 0.8;
+    transition: .5s ease;
+}
+
+.galeria img:hover{
+    width: 40%;
+    opacity: 1;
+    filter:contrast(120%);
+}
+
+@media screen and (max-width: 768px){
+    section{
+        flex-wrap: wrap;
+    }
+    .galeria img{
+        height: 80%;
+    }
+    .galeria img:hover{
+        width: 70%;
+        
+    }
+}
+
+/*galeria servicios*/
+
+.contenedor .galeria-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    width: 200%;
+    margin: auto;
+    grid-gap: 10px;
+    padding: 40px 0;
+    overflow: hidden;
+    background: #087990;
+    /* Otros estilos específicos para la segunda galería */
+}
+
+.galeria-servicios > a{
+    display: block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgb(0, 0, .5);
+}
+
+.contenedor .galeria-servicios img {
+    max-width: 100%;
+    vertical-align: top;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.8s;
+    /* Otros estilos específicos para las imágenes de la segunda galería */
+}
+
+.galeria-servicios a:hover img{
+    filter: blur(2px);
+    transform: rotate(10deg) scale(1.3);
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: -1;
+}
+header{
+    text-align: center;
+    padding: 20px;
+}
+footer{
+    text-align: center;
+    margin-top:10px;
+    
+}
+
+
+
+
+@media screen and (max-width: 768px){
+    section{
+        flex-wrap: wrap;
+    }
+    galeria-servicios img{
+        height: 80%;
+    }
+    galeria-servicios img:hover{
+        width: 70%;
+        
+    }
+}
