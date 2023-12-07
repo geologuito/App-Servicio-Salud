@@ -1,0 +1,61 @@
+body {
+   background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.contenedor {
+    text-align: center;
+    display: grid;
+    grid-template: auto auto auto / 100% 0% 1fr;
+    grid-template-areas:    "navb navb navb "
+                            "lista lista side"
+                            "foot foot foot";
+    
+}
+
+/*  navabar*/
+.menu
+{background-color: #111;
+    
+}
+.lista{
+grid-area: lista;
+text-align: center;
+}
+.side{
+   
+}
+.panel-body{
+    background-color: #11111170;
+}
+.panel{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items:start;
+}
+.panel-item{
+    padding-top: 3em;
+}
+.dashboard-section {
+    display: none;
+}
+
+/* Agregar estilos específicos para cada sección del dashboard */
+/* #crearProfesional {
+    background-color: rgb(255, 21, 0);
+} */
+.profesional{
+   
+   
+}
+
+.paciente{
+    
+}
+
+.tabla{
+    margin-left: 6em;
+}

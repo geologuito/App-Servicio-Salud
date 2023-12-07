@@ -83,7 +83,9 @@
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo</th>
-                                <th scope="col">Telefono</th>
+                                <th scope="col">TelefonoCelular</th>
+                                <th scope="col">Historia Clinica</th>
+
                             </tr>
                         </thead>
                         <tbody>
@@ -92,6 +94,11 @@
                                 <td th:text="${paciente.nombre}"></td>
                                 <td th:text="${paciente.email}"></td>
                                 <td th:text="${paciente.telefono}"></td>
+                                <td>
+                                    <a th:href= "@{/hc/crear/__${paciente.dni}__}"> crear  </a>
+                                    <a th:href= "@{/hc/listar/__${paciente.dni}__}">  ver </a>
+                                </td>
+
                             </tr>
                         </tbody>
                     </table>
@@ -119,12 +126,14 @@
                 </section><!-- Cierra section servicios -->
 
             </div><!-- Cierra div del panel contenedor -->
-        </section>
-        <!--* SIDEBAR-->
-        <section th:replace="/fragments/sidebarProfesional :: section"></section>
 
+            <!--* SIDEBAR-->
+            <section th:replace="/fragments/sidebarProfesional :: section"></section>
+        </section> <!--? cierra el contendedor reg-->
+    </div>
+</section>
 
-        <footer th:replace="/fragments/footer :: footer"></footer>
-    </body>
+<footer th:replace="/fragments/footer :: footer"></footer>
+</body>
 
 </html>
