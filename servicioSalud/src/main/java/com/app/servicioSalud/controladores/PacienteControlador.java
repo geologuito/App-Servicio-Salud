@@ -2,7 +2,6 @@ package com.app.servicioSalud.controladores;
 
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -14,13 +13,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
-
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/paciente") // localhost:8080/paciente
@@ -39,14 +38,19 @@ public class PacienteControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, ModelMap modelo) {
+            @RequestParam String password, String password2, String edad, ModelMap modelo, MultipartFile archivo) {
 
         try {
-            pacienteServicio.registrar(dni, nombre, apellido, email, domicilio, telefono, password, password2);
+
+            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2, edad);
 
             modelo.put("exito", "Usuario Registrado!");
 
         } catch (MiException ex) {
+
+            List<Profesional> profesionales = profesionalServicio.listarProfesional();
+            modelo.addAttribute("profesionales", profesionales);
+
             modelo.put("error", ex.getMessage());
             modelo.put("dni", dni);
             modelo.put("nombre", nombre);
@@ -54,6 +58,7 @@ public class PacienteControlador {
             modelo.put("email", email);
             modelo.put("domicilio", domicilio);
             modelo.put("telefono", telefono);
+            modelo.put("edad", edad);
 
             return "registroPaciente.html";
         }
@@ -64,7 +69,7 @@ public class PacienteControlador {
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
 
         if (error != null) {
-            modelo.put("error", "Usuario o ContraseÃ±a invalidos!");
+            modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
         return "loginPaciente.html";
@@ -72,13 +77,15 @@ public class PacienteControlador {
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @GetMapping("/perfil")
-    public String perfil(ModelMap modelo, HttpSession session) {
+    public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
 
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
+
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("paciente", paciente);
+
         return "panelPaciente";
     }
 
