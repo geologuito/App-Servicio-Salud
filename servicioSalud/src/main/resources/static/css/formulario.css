@@ -2,6 +2,7 @@ body {
     background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
     background-size: cover;
     background-position: center;
+    
 }
 
 .contenedor {

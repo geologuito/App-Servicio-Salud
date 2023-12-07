@@ -73,11 +73,12 @@ public class PacienteControlador {
     public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-
+        System.out.println("perfil");
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("paciente", paciente);
-        return "panelPaciente";
+
+        return "panelPaciente"; 
     }
 
     @GetMapping("/listaPacientes")
@@ -91,26 +92,23 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, ModelMap modelo) {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
-        List<Paciente> pacientes = pacienteServicio.listarPaciente();
-        modelo.addAttribute("pacientes", pacientes);
-
-        return "pacienteModificar";// mapear con html
+        System.out.println("modificar");
+        return "panelPaciente";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
     public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
             ModelMap modelo) throws MiException {
         try {
-
+                //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
             pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
 
-            return "panelPaciente"; // si esta todo ok va a ir a panelPaciente
+            return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
-            List<Paciente> pacientes = pacienteServicio.listarPaciente();
-            modelo.addAttribute("pacientes", pacientes);
+        
             modelo.put("error", ex.getMessage());
-            return "pacienteModificar"; // mapear con html
+            return "pacienteRegistro"; // mapear con html
         }
     }
 

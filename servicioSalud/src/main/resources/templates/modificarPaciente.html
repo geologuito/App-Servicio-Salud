@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <form id="form" class="form" th:action="@{/perfil/modificar/__${paciente.dni}__}" method="POST"
+                    enctype="multipart/form-data" novalidate>
+                    <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+                    <p class="title ">Actualizar Datos Paciente</p>
+                    <input hidden th value="${dni}" name="dni">
+                    <label >
+                        <input type="text" class="input" required="" name="domicilio" th:value="${paciente.domicilio}" re>
+                        <span>Domicilio</span>
+                    </label>
+                    <label>
+                        <input type="tel" class="input" required="" name="telefono" th:value="${paciente.telefono}">
+                        <span>Telefono</span>
+                    </label>
+                    <label>
+                        <input type="email" class="input" required="" name="email" th:value="${paciente.email}">
+                        <span>Email</span>
+                    </label>
+
+                    <button class="submit">Actualizar</button>
+
+                    <!-- Inicio Mensaje de Exito -->
+                    <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                        <div class="card-body">
+                            <h5 class="card-title">Exito</h5>
+                            <p class="card-text" th:text="${exito}"></p>
+                        </div>
+                        <!-- Fin Mensaje de Exito -->
+
+                        <!-- Inicio mensaje de error -->
+                        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                            <div class="card-body">
+                                <h5 class="card-title">Error!!</h5>
+                                <p class="card-text" th:text="${error}"></p>
+                            </div>
+                        </div>
+                        <!-- Fin mensaje de error -->
+                </form>
+</body>
+</html>
