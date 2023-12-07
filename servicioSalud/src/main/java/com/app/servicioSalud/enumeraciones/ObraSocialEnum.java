@@ -1,9 +1,5 @@
-
 package com.app.servicioSalud.enumeraciones;
 
-/**
- * @author Luciano Otegui
- */
 public enum ObraSocialEnum {
     
     OSECAC,
