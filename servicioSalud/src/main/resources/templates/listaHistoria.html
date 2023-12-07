@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+
+        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+
+        <br>
+        <section class="tabla">
+            <hr class="my-2">
+            <h2 class="fst-italic text-white">Turnos del día</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Titulo</th>
+                        <th scope="col">Doctor</th>
+                         <th scope="col">Acciones</th>
+
+                    </tr>
+                </thead>
+                <tbody th:each="hc : ${hc}">
+                    <tr>
+                        <td th:text="${hc.alta}"></td>
+                        <td th:text="${hc.titulo}"></td>
+                        <td th:text="${hc.profesional.nombre}"></td>
+                        <td>
+                             <a th:href= "@{/hc/accion/__${hc.id}__}">  ver </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+    </body>
+</html>
