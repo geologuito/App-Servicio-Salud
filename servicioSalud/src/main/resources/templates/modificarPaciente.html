@@ -30,7 +30,11 @@
                         <span>Telefono</span>
                     </label>
                     <label>
-                        <input type="email" class="input" required="" name="email" th:value="${email}">
+                        <input type="file" class="input" required="" name="archivo" th:value="${paciente.archivo}">
+                        <span>Imagen</span>
+                    </label>
+                    <label>
+                        <input type="email" class="input" required="" name="email" th:value="${paciente.email}">
                         <span>Email</span>
                     </label>
                     <label>

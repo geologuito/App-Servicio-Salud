@@ -1,6 +1,7 @@
 package com.app.servicioSalud.controladores;
 
-import com.app.servicioSalud.entidades.Imagen;
+
+
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
-
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
