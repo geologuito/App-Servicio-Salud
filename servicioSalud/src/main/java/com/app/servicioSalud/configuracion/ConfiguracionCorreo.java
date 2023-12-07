@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.servicioSalud.configuracion;
 
 import org.springframework.context.annotation.Bean;
@@ -10,13 +6,9 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.JavaMailSenderImpl;
 import java.util.Properties;
 
-/**
- *
- * @author EduRiu
- */
 @Configuration
 public class ConfiguracionCorreo {
-    
+
     @Bean
     public JavaMailSender javaMailSender() {
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
@@ -33,5 +25,3 @@ public class ConfiguracionCorreo {
         return mailSender;
     }
 }
-    
-

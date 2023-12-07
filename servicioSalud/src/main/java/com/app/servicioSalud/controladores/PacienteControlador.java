@@ -19,6 +19,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.multipart.MultipartFile;
 
 @Controller
 @RequestMapping("/paciente") // localhost:8080/paciente
@@ -31,20 +32,25 @@ public class PacienteControlador {
 
     @GetMapping("/registrar") // localhost:8080/paciente/registrar
     public String registrar() {
-        return "registroPaciente";
+        return "registroPaciente.html";
     }
 
     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, ModelMap modelo) {
+            @RequestParam String password, String password2, String edad, ModelMap modelo, MultipartFile archivo) {
 
         try {
-            pacienteServicio.registrar(dni, nombre, apellido, email, domicilio, telefono, password, password2);
+
+            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2, edad);
 
             modelo.put("exito", "Usuario Registrado!");
 
         } catch (MiException ex) {
+
+            List<Profesional> profesionales = profesionalServicio.listarProfesional();
+            modelo.addAttribute("profesionales", profesionales);
+
             modelo.put("error", ex.getMessage());
             modelo.put("dni", dni);
             modelo.put("nombre", nombre);
@@ -52,6 +58,7 @@ public class PacienteControlador {
             modelo.put("email", email);
             modelo.put("domicilio", domicilio);
             modelo.put("telefono", telefono);
+            modelo.put("edad", edad);
 
             return "registroPaciente.html";
         }
@@ -73,11 +80,14 @@ public class PacienteControlador {
     public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-
+        System.out.println("perfil");
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
+
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("paciente", paciente);
+
         return "panelPaciente";
+
     }
 
     @GetMapping("/listaPacientes")
@@ -91,26 +101,23 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, ModelMap modelo) {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
-        List<Paciente> pacientes = pacienteServicio.listarPaciente();
-        modelo.addAttribute("pacientes", pacientes);
-
-        return "pacienteModificar";// mapear con html
+        System.out.println("modificar");
+        return "modificarlPaciente.html";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
     public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
             ModelMap modelo) throws MiException {
         try {
-
+                //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
             pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
 
-            return "panelPaciente"; // si esta todo ok va a ir a panelPaciente
+            return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
-            List<Paciente> pacientes = pacienteServicio.listarPaciente();
-            modelo.addAttribute("pacientes", pacientes);
+        
             modelo.put("error", ex.getMessage());
-            return "pacienteModificar"; // mapear con html
+            return "modificarlPaciente.html"; // mapear con html
         }
     }
 

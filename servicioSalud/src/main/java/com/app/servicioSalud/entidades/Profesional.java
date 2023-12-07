@@ -10,8 +10,7 @@ import lombok.Data;
 @Data
 //@Table(name = "profesional")
 public class Profesional{
-
-    
+ 
     @Id
     @Column(unique = true)
     private String matricula; 
@@ -22,7 +21,7 @@ public class Profesional{
     private String password;
     private String domicilio; //decidir si se deja o lo sacamos
     private String telefono;
-    private Boolean activo;
+    private Boolean activo = false;
     private String especialidad;
     private Integer consulta;
     @Temporal(TemporalType.DATE)
@@ -36,6 +35,7 @@ public class Profesional{
     
     @Enumerated(EnumType.STRING)
     private RolEnum rol;
+    
     @OneToOne
     private Imagen imagen;
 }
