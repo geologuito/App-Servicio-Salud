@@ -7,11 +7,11 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface PacienteRepositorio extends JpaRepository<Paciente,String> {
- 
-    @Query ("select p from Paciente p where p.dni = :dni")
+public interface PacienteRepositorio extends JpaRepository<Paciente, String> {
+
+    @Query("SELECT p FROM Paciente p WHERE p.dni = :dni")
     public Paciente buscarPorDNI(@Param("dni") String dni);
-    
-    @Query("select p from Paciente p where p.email = :email")
+
+    @Query("SELECT p FROM Paciente p WHERE p.email = :email")
     public Paciente buscarPorEmail(@Param("email") String email);
 }
