@@ -106,7 +106,7 @@ public class PacienteControlador {
     }
 
     @PostMapping("/modificar/{dni}")
-    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
+    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,MultipartFile archivo,
             ModelMap modelo) throws MiException {
         try {
                 //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
