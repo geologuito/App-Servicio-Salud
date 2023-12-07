@@ -1,7 +1,9 @@
 
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
+import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -19,6 +21,9 @@ public class ImagenControlador {
     
     @Autowired
     ProfesionalServicio profesionalServicio;
+
+    @Autowired
+    PacienteServicio pacienteServicio;
     
     @GetMapping("/perfil/{id}")
     public ResponseEntity<byte[]> imagenProfesional(@PathVariable String id) {
@@ -32,5 +37,19 @@ public class ImagenControlador {
         headers.setContentType(MediaType.IMAGE_JPEG);
         
         return new ResponseEntity<>(imagen, headers , HttpStatus.OK);
-}
+    }
+
+     @GetMapping("/paciente/{id}")
+    public ResponseEntity<byte[]> imagenPaciente(@PathVariable String id) {
+
+        Paciente paciente = pacienteServicio.getOne(id);
+
+        byte[] imagen = paciente.getImagen().getContenido();
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setContentType(MediaType.IMAGE_JPEG);
+
+        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+    }
 }

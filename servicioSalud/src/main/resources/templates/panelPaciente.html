@@ -44,9 +44,11 @@
                                 </tr>
                             </tbody>
                         </table>
-                        <P>FOTO PACIENTE</P>
+                        <div class="imagenP mx-3 bg-info" th:unless="${session.pacientesession == null}">
+                            <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.pacientesession.dni}__}"
+                                alt="usuario">
+                        </div>
                     </div><!--Cierra contenedor de datos detalles-->
-                    <a th:href= "@{/paciente/modificar}"><i class="fas fa-feather-alt"></i> Modificar </a>
                 </section><!--Cierra la tabla-->
                 
             </div>
