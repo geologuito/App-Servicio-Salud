@@ -31,8 +31,11 @@ public class HistoriaClinica {
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
     
-    private String dx;
+    private String titulo;
+    private String dx;    
+    private String tratamiento;
     
+       
     @Temporal(TemporalType.DATE)
     private Date alta;
 

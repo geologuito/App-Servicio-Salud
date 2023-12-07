@@ -9,7 +9,8 @@
         <div>TODO write content</div>
 
         <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
-
+         <p>REGISTRO: <span th:text="${hc.id}"></span></p>
+         <p>REGISTRO: <span th:text="${hc.titulo}"></span></p>
         <br>
         <section class="tabla">
             <hr class="my-2">
@@ -19,19 +20,19 @@
                 <thead>
                     <tr>
                         <th scope="col">Fecha</th>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Doctor</th>
-                         <th scope="col">Acciones</th>
+                        <th scope="col">Diagnostico</th>
+                        <th scope="col">Tratamiento</th>
+                         <th scope="col">Modificar (ver)</th>
 
                     </tr>
                 </thead>
                 <tbody th:each="hc : ${hc}">
                     <tr>
                         <td th:text="${hc.alta}"></td>
-                        <td th:text="${hc.titulo}"></td>
-                        <td th:text="${hc.profesional.nombre}"></td>
+                        <td th:text="${hc.dx}"></td>
+                        <td th:text="${hc.tratamiento}"></td>
                         <td>
-                             <a th:href= "@{/hc/accion/__${hc.id}__}">  ver </a>
+                             <a th:href= "@{/hc/modificar/__${hc.id}__}">  ver </a>
                         </td>
                     </tr>
                 </tbody>

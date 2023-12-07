@@ -12,39 +12,46 @@
 
         <br>
         <section class="tabla">
-                <hr class="my-2">
-                <h2 class="fst-italic text-white">Turnos del día</h2>
+            <hr class="my-2">
+            <h2 class="fst-italic text-white">Turnos del día</h2>
 
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">dni</th>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Nombre</th>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">dni</th>
+                        <th scope="col">Apellido</th>
+                        <th scope="col">Nombre</th>
 
-                        </tr>
-                    </thead>
-                    <tbody th:each="paciente : ${paciente}">
-                        <tr>
-                            <th scope="row" th:text="${paciente.dni}"></th>
-                            <td th:text="${paciente.apellido}"></td>
-                            <td th:text="${paciente.nombre}"></td>
+                    </tr>
+                </thead>
+                <tbody th:each="paciente : ${paciente}">
+                    <tr>
+                        <th scope="row" th:text="${paciente.dni}"></th>
+                        <td th:text="${paciente.apellido}"></td>
+                        <td th:text="${paciente.nombre}"></td>
 
-                    </tbody>
-                </table>
-            </section>
+                </tbody>
+            </table>
+        </section>
         <form th:action="@{/hc/creada}" method="post">
             <label>Matricula profesional</label>
             <input type=text th:value="${session.profesionalsession.matricula}" name="profesional_id">
             <br>
-             <label>DNI paciente</label>
+            <label>DNI paciente</label>
             <input type=text th:value="${paciente.dni}" name="paciente_id">
             <br>
+            <label>Titulo</label>
+            <input type=text name="titulo">
             <label>Diagnostico</label>
+            <br>
             <textarea  name="dx" rows="10" cols="40"></textarea>
-           
+
+            <label>Tratamiento</label>
+            <br>
+            <textarea  name="tratamiento" rows="10" cols="40"></textarea>
+
             <input type="submit" value="Envio" />
-            
+
         </form>
 
     </body>

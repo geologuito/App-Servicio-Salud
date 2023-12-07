@@ -52,27 +52,41 @@ public class HistoriaClinicaControlador {
     }
 
     @PostMapping("/creada")
-    public String registro( @RequestParam Paciente paciente_id,
-            @RequestParam Profesional profesional_id, @RequestParam String dx) {
-        
+    public String registro(@RequestParam Paciente paciente_id,
+            @RequestParam Profesional profesional_id, @RequestParam String titulo,
+            @RequestParam String dx, @RequestParam String tratamiento) {
+
         System.out.println("antes del exito");
-        
-        historiaClinicaServicio.crearHC(profesional_id, paciente_id, dx);
-        
+
+        historiaClinicaServicio.crearHC(profesional_id, paciente_id, titulo, dx, tratamiento);
+
         System.out.println("creada con exito");
-        
+
         return "redirect:/";
     }
 
-    
     @GetMapping("/listar/{id}") // localhost:8080/paciente/registrar
-    public String Listar(ModelMap modelo, HttpSession session, @PathVariable String id){
-        
-      List<HistoriaClinica> hc = historiaClinicaServicio.listarPorDNI(id);
+    public String Listar(ModelMap modelo, HttpSession session, @PathVariable String id) {
+
+        List<HistoriaClinica> hc = historiaClinicaServicio.listarPorDNI(id);
 
         modelo.addAttribute("hc", hc);
-               
+
         return "listaHistoria";
-        
+
     }
+
+    @GetMapping("/accion/{id}") // localhost:8080/paciente/registrar
+    public String Accion(ModelMap modelo, HttpSession session, @PathVariable String id) {
+
+        HistoriaClinica hc = historiaClinicaServicio.getOne(id);
+
+        modelo.addAttribute("hc", hc);
+
+        return "listarConsulta";
+
+    }
+    
+    
+
 }
