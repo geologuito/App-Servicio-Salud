@@ -1,6 +1,7 @@
 package com.app.servicioSalud.entidades;
 
 import com.app.servicioSalud.enumeraciones.*;
+import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
 
@@ -24,6 +25,6 @@ public class Paciente {
     @Enumerated(EnumType.STRING)
     private ObraSocialEnum obraSocial;
 
-    @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL)
-    private HistoriaClinica historiaClinica;
+    @ManyToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
+    private List<HistoriaClinica> historiaClinica;
 }
