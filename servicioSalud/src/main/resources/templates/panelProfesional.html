@@ -19,57 +19,46 @@
 
         <div class="panel">
 
-            <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
-            <div class="actualizar"> <!-- Contenedor de actualizar-->
-
-                <form id="form" class="form" th:action="@{/perfil/__${session.profesionalsession.matricula}__}"
-                    method="POST" enctype="multipart/form-data" novalidate>
-                    <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                    <p class="title ">Actualizar Datos Profesional</p>
-                    <input hidden th:value="${matricula}" name="matricula">
-                    <label>
-                        <input type="text" class="input" required="" name="domicilio"
-                            th:value="${profesional.domicilio}">
-                        <span>Domicilio</span>
-                    </label>
-                    <label>
-                        <input type="tel" class="input" required="" name="telefono" th:value="${profesional.telefono}">
-                        <span>Telefono</span>
-                    </label>
-                    <label>
-                        <input type="email" class="input" required="" name="email" th:value="${profesional.email}">
-                        <span>Email</span>
-                    </label>
-                    <div class="form-group my-3">
-                        <input type="file" class="form-control" name="archivo">
+            <!--* FICHA DEL PROFESIONAL-->
+            <div class="contenedora" id="form">
+                <section>
+                    <hr class="my-2">
+                    <h3 class="fst-italic text-white">Datos del Profesional</h3>
+                    <div class="datos d-flex">
+                        <table class="table table-success table-striped table-hover w-75 h-25">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody >
+                                <tr >
+                                    <td th:text="${profesional.apellido}"></td>
+                                    <td th:text="${profesional.nombre}"></td>
+                                    <td th:text="${profesional.email}"></td>
+                                    <td th:text="${profesional.telefono}"></td>
+                                    <td th:text="${profesional.especialidad}"></td>
+                                    <td>
+                                        <a th:href= "@{/profesional/modificar}"><i class="fas fa-feather-alt"></i> Modificar </a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table> 
+                        <div class="imagenP mx-3 bg-info" th:unless="${session.profesionalsession == null}">
+                            <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}"
+                                alt="usuario">
+                        </div>  
                     </div>
+                    
+                </section><!--Cierra la tabla-->
 
-                    <button class="submit">Actualizar</button>
-
-                    <!-- Inicio Mensaje de Exito -->
-                    <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                        <div class="card-body">
-                            <h5 class="card-title">Exito</h5>
-                            <p class="card-text" th:text="${exito}"></p>
-                        </div>
-                    </div>
-                    <!-- Fin Mensaje de Exito -->
-
-                    <!-- Inicio mensaje de error -->
-                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                        <div class="card-body">
-                            <h5 class="card-title">Error!!</h5>
-                            <p class="card-text" th:text="${error}"></p>
-                        </div>
-                    </div>
-                    <!-- Fin mensaje de error -->
-                </form>
-                <div class="imagenP" th:unless="${session.profesionalsession == null}">
-                    <h3 class="fst-italic" th:text="'Dr. ' + ${session.profesionalsession.nombre}"></h3>
-                    <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}"
-                        alt="usuario">
-                </div>
-            </div> <!-- cierra el contenedor ded actualizar -->
+            </div>
+                
 
             <!--? LISTAR PACIENTES -->
             <section class="tabla">

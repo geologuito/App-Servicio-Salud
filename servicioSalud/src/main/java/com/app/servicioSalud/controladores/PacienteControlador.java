@@ -31,7 +31,7 @@ public class PacienteControlador {
 
     @GetMapping("/registrar") // localhost:8080/paciente/registrar
     public String registrar() {
-        return "registroPaciente";
+        return "registroPaciente.html";
     }
 
     @PostMapping("/registro")
@@ -93,7 +93,7 @@ public class PacienteControlador {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
         System.out.println("modificar");
-        return "panelPaciente";// mapear con html
+        return "modificarlPaciente.html";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
@@ -108,7 +108,7 @@ public class PacienteControlador {
         } catch (MiException ex) {
         
             modelo.put("error", ex.getMessage());
-            return "pacienteRegistro"; // mapear con html
+            return "modificarlPaciente.html"; // mapear con html
         }
     }
 

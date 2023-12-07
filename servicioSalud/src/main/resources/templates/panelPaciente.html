@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
@@ -19,37 +18,37 @@
     <section class="reg">
 
         <div class="panel"> <!--? estes div solo contiene el form para lo interactivo-->
-            
+
             <!--* FICHA DEL PACIENTE -->
 
             <div class="contenedora" id="form">
-                <section class="tabla">
+                <section class="tabla ">
                     <hr class="my-2">
                     <h3 class="fst-italic text-white">Datos del Paciente</h3>
-    
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Telefono</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr >
-                                <td th:text="${paciente.apellido}"></td>
-                                <td th:text="${paciente.nombre}"></td>
-                                <td th:text="${paciente.email}"></td>
-                                <td th:text="${paciente.telefono}"></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="imagenP" >
-                        <img class="imgPerfil">
-                            
-                    </div>
+                    <div class="datos d-flex">
+                        <table class="table table-success table-striped table-hover w-75">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Telefono</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td th:text="${paciente.apellido}"></td>
+                                    <td th:text="${paciente.nombre}"></td>
+                                    <td th:text="${paciente.email}"></td>
+                                    <td th:text="${paciente.telefono}"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <P>FOTO PACIENTE</P>
+                    </div><!--Cierra contenedor de datos detalles-->
+                    <a th:href= "@{/paciente/modificar}"><i class="fas fa-feather-alt"></i> Modificar </a>
                 </section><!--Cierra la tabla-->
+                
             </div>
 
             <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
