@@ -24,18 +24,6 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
         @Autowired
         public ProfesionalServicio profesionalServicio;
 
-        /*
-         * @Autowired
-         * public void configuredGlobal(AuthenticationManagerBuilder auth) throws
-         * Exception {
-         * 
-         * auth.userDetailsService(profesionalServicio)
-         * .passwordEncoder(new BCryptPasswordEncoder());
-         * auth.userDetailsService(pacienteServicio)
-         * .passwordEncoder(new BCryptPasswordEncoder());
-         * 
-         * }
-         */
         @Autowired
         public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
                 CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
@@ -45,50 +33,6 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                                 .passwordEncoder(new BCryptPasswordEncoder());
         }
 
-        /*
-         * @Override
-         * protected void configure(HttpSecurity http) throws Exception{
-         * http.authorizeRequests()
-         * .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin
-         * para el paneladministrador// le da permiso solo a los admin para el
-         * paneladministrador
-         * .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
-         * .permitAll()
-         * .and().formLogin()
-         * .loginPage("/paciente/login")
-         * .loginProcessingUrl("/logincheck")
-         * .usernameParameter("email")
-         * .passwordParameter("password")
-         * .defaultSuccessUrl("/paciente/perfil")
-         * .permitAll()
-         * .and().logout()
-         * .logoutUrl("/logout")
-         * .logoutSuccessUrl("/login")
-         * .permitAll()
-         * .and().csrf()
-         * .disable();
-         * 
-         * http.authorizeRequests()
-         * .antMatchers("/admin/").hasRole("ADMIN") // le da permiso solo a los admin
-         * para el paneladministrador// le da permiso solo a los admin para el
-         * paneladministrador
-         * .antMatchers("/css/" , "/js/" ,"/img/*", "/**" )
-         * .permitAll()
-         * .and().formLogin()
-         * .loginPage("/profesional/login")
-         * .loginProcessingUrl("/logincheck")
-         * .usernameParameter("email")
-         * .passwordParameter("password")
-         * .defaultSuccessUrl("/profesional/perfil")
-         * .permitAll()
-         * .and().logout()
-         * .logoutUrl("/logout")
-         * .logoutSuccessUrl("/login")
-         * .permitAll()
-         * .and().csrf()
-         * .disable();
-         * }
-         */
         @Override
         protected void configure(HttpSecurity http) throws Exception {
                 http.authorizeRequests()
