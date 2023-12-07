@@ -1,12 +1,27 @@
 HELP.md
 target/
+<<<<<<< HEAD
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+=======
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+nbactions.xml
+release.properties
+dependency-reduced-pom.xml
+buildNumber.properties
+.mvn/timing.properties
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn/wrapper/maven-wrapper.jar
+>>>>>>> developer
 
 ### STS ###
 .apt_generated
 .classpath
+<<<<<<< HEAD
 .factorypath
 .project
 .settings
@@ -31,3 +46,9 @@ build/
 
 ### VS Code ###
 .vscode/
+=======
+*.properties
+servicioSalud/src/main/resources/application.properties
+servicioSalud/src/main/resources/application.properties
+*.properties
+>>>>>>> developer

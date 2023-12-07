@@ -3,20 +3,22 @@ body {
     background-size: cover;
     background-position: center;
 }
+
 .contenedor {
     text-align: center;
     display: grid;
     grid-template: auto auto auto / 100% 0% 1fr;
-    grid-template-areas:"navb navb navb"
-                        "reg reg reg" 
-                        "foot foot foot";
+    grid-template-areas: "navb navb navb"
+        "reg reg reg"
+        "foot foot foot";
 }
+
 /*EN NAVBAR.CSS*/
 
 /*ESTILO DEL REGISTRO*/
 .reg {
     grid-area: reg;
-    display:flex;
+    display: flex;
     justify-content: space-around;
     align-items: center;
     margin-top: 2em;
@@ -33,7 +35,7 @@ width:24em;
     display: flex;
     flex-direction: column;
     gap: 10px;
-    background-color: #0b0b0b17;
+    background-color: #00000030;
     padding: 20px;
     border-radius: 30px;
     position: relative;
@@ -46,7 +48,7 @@ width:24em;
 
 .title {
     font-size: 28px;
-    color: royalblue;
+    color: rgb(62, 88, 165);
     font-weight: 600;
     letter-spacing: -1px;
     position: relative;
@@ -168,8 +170,16 @@ width:24em;
         opacity: 0;
     }
 }
+
+/*ESTILO LOGIN*/
+.login{
+height: 46vh;
+margin-top: 5em;
+width: 24em;
+}
+
 /*ESTILO beneficios pac*/
-.beneficios{
+.beneficios {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -177,24 +187,47 @@ width:24em;
     height: 35vw;
     background-color: rgba(27, 26, 26, 0.482);
 }
-.paci{
+
+.paci {
     width: 80%;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     margin-top: 1em;
 }
-.ico{
+
+.ico {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
 /*ESTILO PANEL PACIENTE-PROFESIONAL*/
+/** Estilo panel dinamico*/
+.opcion.active {
+    background-color: #f0f0f0;
+    color: #333;
+  }
+.contenedora.active {
+    opacity: 1; /* Se muestran al tener la clase active */
+    pointer-events: auto; /* Se pueden interactuar */
+}
 .panel{
     width: 60em;
     margin-top: 3em;
     margin-left: 2em;
+}
+.actualizar{
+    display: flex;
+    justify-content: space-evenly;
+}
+.imagenP{
+    width: 13em;
+    
+}
+.imgPerfil{
+    margin-top: 1em;
+    width: 80%;
 }
 hr{
     color: #fff;
@@ -311,6 +344,5 @@ h2{
         
     }
 }
-
 /*ESTILO FOOTER*/
 /*EN FOOTER.CSS*/

@@ -25,6 +25,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
         @Autowired
         public ProfesionalServicio profesionalServicio;
 
+<<<<<<< HEAD
         /*
          * @Autowired
          * public void configuredGlobal(AuthenticationManagerBuilder auth) throws
@@ -108,12 +109,48 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                                 .logoutUrl("/logout")
                                 .logoutSuccessUrl("/login")
                                 .and().csrf().disable();
+=======
+    @Autowired
+    public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
+                profesionalServicio, pacienteServicio);
+>>>>>>> developer
 
         }
 
+<<<<<<< HEAD
         @Bean
         public AuthenticationSuccessHandler authenticationSuccessHandler() {
                 return new CustomAuthenticationSuccessHandler();
         }
 
 }
+=======
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.authorizeRequests()
+                .antMatchers("/admin/").hasRole("ADMIN")
+                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
+                .antMatchers("/paciente/login").permitAll()
+                .antMatchers("/profesional/login").permitAll()
+                .antMatchers("/paciente/**").hasRole("PACIENTE")
+                .antMatchers("/profesional/**").hasRole("PROFESIONAL")
+                .and().formLogin()
+                .loginProcessingUrl("/logincheck")
+                .usernameParameter("email")
+                .passwordParameter("password")
+                .successHandler(new CustomAuthenticationSuccessHandler())
+                .and().logout()
+                .logoutUrl("/logout")
+                .logoutSuccessUrl("/login")
+                .and().csrf().disable();
+
+    }
+
+    @Bean
+    public AuthenticationSuccessHandler authenticationSuccessHandler() {
+        return new CustomAuthenticationSuccessHandler();
+    }
+
+}
+>>>>>>> developer

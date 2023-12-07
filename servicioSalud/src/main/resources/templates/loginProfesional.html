@@ -5,7 +5,6 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>App Salud</title>
-
         <link rel="stylesheet" href="/css/bootstrap.css">
         <link rel="stylesheet" href="/css/formulario.css">
     </head>
@@ -30,6 +29,7 @@
                                 <div class="col-12">
                                     <input type="submit" value="Ingresar" class="btn btn-primary">
                                 </div>
+                                <a class="text-white" th:href="@{/profesional/login}">Olvide mi contraseña</a>
                             </div>
                             <!-- Inicio mensaje de error -->
                             <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
