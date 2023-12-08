@@ -1,12 +1,14 @@
 /*ESTILO DEL MENU*/
 .navb {
     grid-area: navb;
+    font-size: 1.1em;
 }
 .nav-link:hover {
-    color: rgb(0, 255, 26);
+    color: rgb(249, 250, 249);
+    border-radius: 10%;
 }
 .bg-custom {
-    background-color: #f1e5e5; 
+    background-color: #27d1a9e3; 
 }
 /*ESTILO LOGO*/
 .logo{
