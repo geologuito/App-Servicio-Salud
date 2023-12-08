@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/formulario.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+        <title>App Salud</title>
+    </head>
+    <body>
+        <div class="contenedor">
+            <div th:replace="/fragments/navbar ::div"> </div>
+        </div>
+        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+
+        <br>
+        <section class="tabla">
+            <hr class="my-2">
+            <h2 class="fst-italic text-white">Listado de Historia/s Clinica/s</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">DX</th>
+                        <th scope="col">Datos Dr.</th>
+
+                    </tr>
+                </thead>
+                <tbody th:each="hc : ${hc}">
+                    <tr>
+                        <td th:text="${hc.alta}"></td>
+                        <td th:text="${hc.dx}"></td>
+                        <td th:text="${hc.profesional.nombre} + ' ' + ${hc.profesional.apellido}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <!--* SIDEBAR-->
+        <section th:replace="/fragments/sidebarProfesional :: section"></section>
+
+
+        <footer th:replace="/fragments/footer :: footer"></footer>
+
+    </body>
+</html>

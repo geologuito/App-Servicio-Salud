@@ -91,8 +91,6 @@ public class PacienteControlador {
 
     @GetMapping("/listaPacientes")
     public String listarPaciente(ModelMap modelo) { // lista de pacientes.
-        List<Paciente> pacientes = pacienteServicio.listarPaciente();
-        modelo.addAttribute("pacientes", pacientes);
         return "listarPaciente"; // para mapear con
     }
 
@@ -100,8 +98,6 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, ModelMap modelo) {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
-        List<Paciente> pacientes = pacienteServicio.listarPaciente();
-        modelo.addAttribute("pacientes", pacientes);
 
         return "pacienteModificar";// mapear con html
     }
@@ -116,8 +112,7 @@ public class PacienteControlador {
             return "panelPaciente"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
-            List<Paciente> pacientes = pacienteServicio.listarPaciente();
-            modelo.addAttribute("pacientes", pacientes);
+
             modelo.put("error", ex.getMessage());
             return "pacienteModificar"; // mapear con html
         }

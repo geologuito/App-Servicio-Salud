@@ -29,4 +29,8 @@ public class Paciente {
 
     @OneToOne(mappedBy = "paciente", cascade = CascadeType.ALL)
     private HistoriaClinica historiaClinica;
+    
+    @ManyToOne
+    @JoinColumn(name = "profesional_matricula")
+    private Profesional profesional;
 }

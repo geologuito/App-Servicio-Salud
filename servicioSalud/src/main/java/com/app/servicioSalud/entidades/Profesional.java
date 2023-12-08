@@ -28,7 +28,7 @@ public class Profesional{
     private Date horario;
 
     @ManyToOne
-    @JoinColumn(name = "paciente_id")
+    @JoinColumn(name = "paciente_dni")
     private Paciente paciente;
     @OneToMany(mappedBy = "profesional")
     private List<Turno> turno;

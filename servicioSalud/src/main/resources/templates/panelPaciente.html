@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
     <head>
@@ -17,47 +16,43 @@
             <div th:replace="/fragments/navbar ::div"> </div>
         </div>
         <section class="reg">
+
             <div class="panel"> <!--? estes div solo contiene el form para lo interactivo-->
-                <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
+
+                <!--* FICHA DEL PACIENTE -->
+
                 <div class="contenedora" id="form">
-                    <form id="form" class="form" th:action="@{/paciente/registro}" method="POST"
-                          enctype="multipart/form-data" novalidate>
-                        <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                        <p class="title ">Actualizar Datos Paciente</p>
-                        <label>
-                            <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
-                            <span>Domicilio</span>
-                        </label>
-                        <label>
-                            <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
-                            <span>Telefono</span>
-                        </label>
-                        <label>
-                            <input type="email" class="input" required="" name="email" th:value="${email}">
-                            <span>Email</span>
-                        </label>
+                    <section class="tabla ">
+                        <hr class="my-2">
+                        <h3 class="fst-italic text-white">Datos del Paciente</h3>
+                        <div class="datos d-flex">
+                            <table class="table table-success table-striped table-hover w-75">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Telefono</th>
+                                        <th scope="col">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td th:text="${paciente.apellido}"></td>
+                                        <td th:text="${paciente.nombre}"></td>
+                                        <td th:text="${paciente.email}"></td>
+                                        <td th:text="${paciente.telefono}"></td>
+                                        <td><a th:href= "@{/paciente/modificar}"><i class="fas fa-feather-alt"></i> Modificar </a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <P>FOTO PACIENTE</P>
+                        </div><!--Cierra contenedor de datos detalles-->
+                        
+                    </section><!--Cierra la tabla-->
 
-                        <button class="submit">Actualizar</button>
-
-                        <!-- Inicio Mensaje de Exito -->
-                        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                            <div class="card-body">
-                                <h5 class="card-title">Exito</h5>
-                                <p class="card-text" th:text="${exito}"></p>
-                            </div>
-                        </div>
-                        <!-- Fin Mensaje de Exito -->
-
-                        <!-- Inicio mensaje de error -->
-                        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                            <div class="card-body">
-                                <h5 class="card-title">Error!!</h5>
-                                <p class="card-text" th:text="${error}"></p>
-                            </div>
-                        </div>
-                        <!-- Fin mensaje de error -->
-                    </form>
                 </div>
+
 
                 <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
                 <div class="contenedora" id="tabla">
