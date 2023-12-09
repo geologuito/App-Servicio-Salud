@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>Calificacion</div>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">CONSULTA</th>
+                    <th scope="col">VALORAR</th>
+                </tr>
+            </thead> <--!<!-- esto es en realidad la historia clinica -->
+            <tbody th:each="paciente : ${paciente}">
+                <tr>
+                    <td th:if="${!paciente.respuesta}"  th:text="${paciente.titulo}"></td>
+                    <td th:if="${!paciente.respuesta}" > 
+                        
+                        <a th:href= "@{/calificacion/valoracion/__${paciente.id}__}">  ver </a>
+                        
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+    </body>
+</html>

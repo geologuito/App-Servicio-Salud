@@ -38,6 +38,8 @@ public class HistoriaClinica {
        
     @Temporal(TemporalType.DATE)
     private Date alta;
+    
+    private Boolean respuesta = false;
 
     //@JsonIgnore
     //@OneToMany(mappedBy = "historiaClinica", cascade = CascadeType.ALL, orphanRemoval = true)

@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <table border="1">
+    <thead>
+        <tr>
+            <th>Puntualidad</th>
+            <th>Atención</th>
+            <th>Mobiliario</th>
+        </tr>
+    </thead>
+    <tbody>
+        <!-- Itera sobre la lista de profesionales -->
+       
+            <!-- Calcula y muestra el promedio para puntualidad -->
+            <td th:text="${promedio.AVG(c.mobiliario)}"></td>
+            <!-- Calcula y muestra el promedio para atención -->
+            <td th:text="${promedio.AVG(c.puntualidad)}"></td>
+            <!-- Calcula y muestra el promedio para mobiliario -->
+            <td th:text="${promedio.AVG(c.atencion)}"></td>
+        </tr>
+    </tbody>
+</table>
+
+</body>
+</html>
+

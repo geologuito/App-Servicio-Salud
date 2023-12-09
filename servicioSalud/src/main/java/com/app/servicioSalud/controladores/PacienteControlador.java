@@ -1,5 +1,6 @@
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Calificacion;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
+import com.app.servicioSalud.servicios.CalificacionServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
@@ -29,6 +31,8 @@ public class PacienteControlador {
     private PacienteServicio pacienteServicio;
     @Autowired
     private ProfesionalServicio profesionalServicio;
+    @Autowired
+    private CalificacionServicio calificacionServicio;
 
     @GetMapping("/registrar") // localhost:8080/paciente/registrar
     public String registrar() {
@@ -109,13 +113,13 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
             ModelMap modelo) throws MiException {
         try {
-                //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
+            //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
             pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
 
             return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
-        
+
             modelo.put("error", ex.getMessage());
             return "modificarlPaciente.html"; // mapear con html
         }
@@ -136,6 +140,16 @@ public class PacienteControlador {
         } catch (MiException ex) {
             return new ResponseEntity<>("Error al eliminar el Paciente: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
+    }
+
+    @GetMapping("/puntuacion/{id}")
+    public String mostrarPuntuacion(ModelMap modelo, @PathVariable String id) {
+
+        // List<Calificacion> calificacion = calificacionServicio.listarCalificacion(id);
+      Calificacion promedio = calificacionServicio.calcularPromedio(id);
+        modelo.addAttribute("promedio", promedio);
+
+        return "Reputacion";
     }
 
 }

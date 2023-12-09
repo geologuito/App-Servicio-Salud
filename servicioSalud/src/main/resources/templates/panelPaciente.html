@@ -65,6 +65,7 @@
                                     <th scope="col">Correo</th>
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Especialidad</th>
+                                    <th scope="col">Reputacion</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -74,6 +75,9 @@
                                     <td th:text="${profesional.email}"></td>
                                     <td th:text="${profesional.telefono}"></td>
                                     <td th:text="${profesional.especialidad}"></td>
+                                    <td>
+                                        <a th:href= "@{/paciente/puntuacion/__${profesional.matricula}__}"> VER </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

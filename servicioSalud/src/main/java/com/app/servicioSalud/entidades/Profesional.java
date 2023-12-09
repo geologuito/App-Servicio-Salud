@@ -38,4 +38,7 @@ public class Profesional{
     
     @OneToOne
     private Imagen imagen;
+    
+    @OneToMany(mappedBy = "profesional")  
+     private List<Calificacion> calificacion;
 }
