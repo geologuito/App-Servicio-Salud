@@ -14,15 +14,11 @@
     <div class="contenedor">
         <div th:replace="/fragments/navbar ::div"> </div>
         <section class="reg">
-            <form id="form" class="form" th:action="@{/profesional/registro}" method="POST"
+            <form id="form" class="form" th:action="@{/profesional/perfil/__${profesional.matricula}__}" method="POST"
                 enctype="multipart/form-data">
                 <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                 <p class="title">Modificar Profesional</p>
                 
-                <label>
-                    <input type="text" class="input" required="" name="especialidad" th:value="${especialidad}">
-                    <span>Especialidad</span>
-                </label>
                 <label>
                     <input type="email" class="input" required="" name="email" th:value="${email}">
                     <span>Email</span>

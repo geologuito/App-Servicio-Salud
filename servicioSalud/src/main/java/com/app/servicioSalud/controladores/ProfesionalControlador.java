@@ -106,7 +106,7 @@ public class ProfesionalControlador {
     public String modificarProfesional(@PathVariable String matricula, ModelMap modelo) {
 
         modelo.put("profesional", profesionalServicio.getOne(matricula));
-        return "profesionalModificar.html";
+        return "modificarProfesional";
     }
 
     @PostMapping("/modificar/{matricula}")
@@ -119,7 +119,7 @@ public class ProfesionalControlador {
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
-            return "profesionalModificar.html";
+            return "modificarProfesional";
         }
     }
 
