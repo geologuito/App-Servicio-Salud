@@ -1,139 +1,123 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/bootstrap.css">
-        <link rel="stylesheet" href="/css/formulario.css">
-        <link rel="stylesheet" href="/css/sidebar.css">
-        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
-        <title>App Salud</title>
-    </head>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+    <title>App Salud</title>
+</head>
 
-    <body>
-        <div class="contenedor">
-            <div th:replace="/fragments/navbar ::div"> </div>
-        </div>
-        <section class="reg">
+<body>
+    <div class="contenedor">
+        <div th:replace="/fragments/navbar ::div"> </div>
+    </div>
+    <section class="reg">
 
-            <div class="panel">
+        <div class="panel">
 
-                <!--* FORMULARIO PARA ACTUALIZAR DATOS ARMAR FRAGMENT-->
-                <div class="actualizar"> <!-- Contenedor de actualizar-->
+            <!--* FICHA DEL PROFESIONAL-->
 
-                    <form id="form" class="form" th:action="@{/perfil/__${session.profesionalsession.matricula}__}"
-                          method="POST" enctype="multipart/form-data" novalidate>
-                        <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                        <p class="title ">Actualizar Datos Profesional</p>
-                        <input hidden th:value="${matricula}" name="matricula">
-                        <label>
-                            <input type="text" class="input" required="" name="domicilio"
-                                   th:value="${profesional.domicilio}">
-                            <span>Domicilio</span>
-                        </label>
-                        <label>
-                            <input type="tel" class="input" required="" name="telefono" th:value="${profesional.telefono}">
-                            <span>Telefono</span>
-                        </label>
-                        <label>
-                            <input type="email" class="input" required="" name="email" th:value="${profesional.email}">
-                            <span>Email</span>
-                        </label>
-                        <div class="form-group my-3">
-                            <input type="file" class="form-control" name="archivo">
-                        </div>
-
-                        <button class="submit">Actualizar</button>
-
-                        <!-- Inicio Mensaje de Exito -->
-                        <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                            <div class="card-body">
-                                <h5 class="card-title">Exito</h5>
-                                <p class="card-text" th:text="${exito}"></p>
-                            </div>
-                        </div>
-                        <!-- Fin Mensaje de Exito -->
-
-                        <!-- Inicio mensaje de error -->
-                        <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                            <div class="card-body">
-                                <h5 class="card-title">Error!!</h5>
-                                <p class="card-text" th:text="${error}"></p>
-                            </div>
-                        </div>
-                        <!-- Fin mensaje de error -->
-                    </form>
-                    <div class="imagenP" th:unless="${session.profesionalsession == null}">
-                        <h3 class="fst-italic" th:text="'Dr. ' + ${session.profesionalsession.nombre}"></h3>
-                        <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}"
-                             alt="usuario">
-                    </div>
-                </div> <!-- cierra el contenedor ded actualizar -->
-
-                <!--? LISTAR PACIENTES -->
+            <div class="contenedora" id="form">
                 <section class="tabla">
                     <hr class="my-2">
-                    <h2 class="fst-italic text-white">Turnos del día</h2>
-                    <h3 class="fst-italic text-white">Pacientes</h3>
-
-                    <table class="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">TelefonoCelular</th>
-                                <th scope="col">Historia Clinica</th>
-
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr th:each="paciente : ${pacientes}">
-                                <td th:text="${paciente.apellido}"></td>
-                                <td th:text="${paciente.nombre}"></td>
-                                <td th:text="${paciente.email}"></td>
-                                <td th:text="${paciente.telefono}"></td>
-                                <td>
-                                    <a th:href= "@{/hc/crear/__${paciente.dni}__}"> crear  </a>
-                                    <a th:href= "@{/hc/listar/__${paciente.dni}__}">  ver </a>
-                                </td>
-
-                            </tr>
-                        </tbody>
-                    </table>
-                </section><!--Cierra la tabla-->
-
-                <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
-                <section>
-                    <h2 class="fst-italic text-white">Historia Clinica</h2>
-                    <div class="conte">
-                        <section class="galeria-servicios">
-                            <a href="#image1">
-                                <img src="/images/ambulancias.webp" alt="">
-                                <span>Servicio de Ambulancias</span>
-                            </a>
-                            <a href="#image2">
-                                <img src="/images/laboratorio3.jpg" alt="">
-                                <span>Laboratorio a Domicilio</span>
-                            </a>
-                            <a href="#image3">
-                                <img src="/images/call.webp" alt="">
-                                <span>Atención telefónica 24/7</span>
-                            </a>
-                        </section>
+                    <h3 class="fst-italic text-white">Datos del Profesional</h3>
+                    <div class="datos d-flex">
+                        <table class="table table-success table-striped table-hover w-75 h-25">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Apellido</th>
+                                    <th scope="col">Nombre</th>
+                                    <th scope="col">Correo</th>
+                                    <th scope="col">Telefono</th>
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Acción</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td th:text="${profesional.apellido}"></td>
+                                    <td th:text="${profesional.nombre}"></td>
+                                    <td th:text="${profesional.email}"></td>
+                                    <td th:text="${profesional.telefono}"></td>
+                                    <td th:text="${profesional.especialidad}"></td>
+                                    <td>
+                                        <a th:href="@{/profesional/modificar__${profesional.matricula}__}"><i class="fas fa-feather-alt"></i>
+                                            Modificar </a>
+                                    </td> 
+                                </tr>
+                            </tbody>
+                        </table>
+                        <div class="imagenP mx-3 bg-info" th:unless="${session.profesionalsession == null}">
+                            <img class="imgPerfil"
+                                th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt="usuario">
+                        </div> <!-- cierra el contenedor ded actualizar -->
                     </div>
-                </section><!-- Cierra section servicios -->
+                </section>
+            </div>
+                        <!--? LISTAR PACIENTES -->
+                        <section class="tabla">
+                            <hr class="my-2">
+                            <h2 class="fst-italic text-white">Turnos del día</h2>
+                            <h3 class="fst-italic text-white">Pacientes</h3>
 
+                            <table class="table table-success table-striped table-hover h-25">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">TelefonoCelular</th>
+                                        <th scope="col" colspan="2">Historia Clinica</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="paciente : ${pacientes}">
+                                        <td th:text="${paciente.apellido}"></td>
+                                        <td th:text="${paciente.nombre}"></td>
+                                        <td th:text="${paciente.email}"></td>
+                                        <td th:text="${paciente.telefono}"></td>
+                                        <td>
+                                            <a class="mx-2" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
+                                            <a class="mx-2" th:href="@{/hc/listar/__${paciente.dni}__}"> ver </a>
+                                        </td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </section><!--Cierra la tabla-->
+
+                        <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
+                        <section>
+                            <h2 class="fst-italic text-white">Historia Clinica</h2>
+                            <div class="conte">
+                                <section class="galeria-servicios">
+                                    <a href="#image1">
+                                        <img src="/images/ambulancias.webp" alt="">
+                                        <span>Servicio de Ambulancias</span>
+                                    </a>
+                                    <a href="#image2">
+                                        <img src="/images/laboratorio3.jpg" alt="">
+                                        <span>Laboratorio a Domicilio</span>
+                                    </a>
+                                    <a href="#image3">
+                                        <img src="/images/call.webp" alt="">
+                                        <span>Atención telefónica 24/7</span>
+                                    </a>
+                                </section>
+                            </div>
+                        </section><!-- Cierra section servicios -->
             </div><!-- Cierra div del panel contenedor -->
 
             <!--* SIDEBAR-->
             <section th:replace="/fragments/sidebarProfesional :: section"></section>
         </section> <!--? cierra el contendedor reg-->
-    </div>
-</section>
 
-<footer th:replace="/fragments/footer :: footer"></footer>
-</body>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 
 </html>
