@@ -33,7 +33,7 @@
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Correo</th>
                                         <th scope="col">Telefono</th>
-                                        <th scope="col">Acciones</th>
+                                        <th scope="col">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -42,13 +42,18 @@
                                         <td th:text="${paciente.nombre}"></td>
                                         <td th:text="${paciente.email}"></td>
                                         <td th:text="${paciente.telefono}"></td>
-                                        <td><a th:href= "@{/paciente/modificar}"><i class="fas fa-feather-alt"></i> Modificar </a></td>
+                                        <td>
+                                            <a th:href="@{/paciente/modificar}"><i class="fas fa-feather-alt"></i>
+                                                Modificar </a>
+                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
-                            <P>FOTO PACIENTE</P>
+                            <div class="imagenP mx-3 bg-info" th:unless="${session.pacientesession == null}">
+                                <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.pacientesession.dni}__}"
+                                     alt="usuario">
+                            </div>
                         </div><!--Cierra contenedor de datos detalles-->
-                        
                     </section><!--Cierra la tabla-->
 
                 </div>
@@ -109,7 +114,6 @@
 
             <!--* SIDEBAR-->
             <section th:replace="/fragments/sidebar :: section"></section>
-
 
         </section> <!--? cierra el contendedor reg-->
 

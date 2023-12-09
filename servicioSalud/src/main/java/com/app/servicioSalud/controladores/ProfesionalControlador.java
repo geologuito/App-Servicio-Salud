@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
-
 import java.util.Date;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -34,8 +33,8 @@ public class ProfesionalControlador {
 
     @GetMapping("/registrar") // localhost:8080/profesional/registrar
     public String registrar() {
-        return "registroProfesional";
 
+        return "registroProfesional";
     }
 
     @PostMapping("/registro")
@@ -79,17 +78,37 @@ public class ProfesionalControlador {
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
-        
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
-    
+
         // Obtener la lista de profesionales
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
-    
+
         // Agregar profesionales y el profesional actual al modelo
         modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
         modelo.addAttribute("profesional", profesional); // muestra los datos del prof del perfil
 
         return "panelProfesional";
+    }
+
+    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
+    @PostMapping("/perfil/{matricula}")
+    public String actualizar(MultipartFile archivo, @PathVariable String matricula, @RequestParam String domicilio, @RequestParam String email, @RequestParam String telefono, @RequestParam String password, @RequestParam String password2, ModelMap modelo) {
+
+        try {
+            profesionalServicio.modificarProfesional(archivo, matricula, email, password, password2, domicilio, telefono);
+
+            modelo.put("exito", "Profesional registrado con Exito");
+            return "panelProfesional.html";
+
+        } catch (MiException ex) {
+
+            modelo.put("error", ex.getMessage());
+            modelo.put("email", email);
+            modelo.put("domicilio", domicilio);
+            modelo.put("telefono", telefono);
+
+            return "modificarProfesional.html";
+        }
     }
 
     @GetMapping("/listaProfesionales")
@@ -98,27 +117,26 @@ public class ProfesionalControlador {
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
         modelo.addAttribute("profesionales", profesionales);
         return "listarProfesional.html";
-
     }
 
     @GetMapping("/modificar/{matricula}")
     public String modificarProfesional(@PathVariable String matricula, ModelMap modelo) {
 
         modelo.put("profesional", profesionalServicio.getOne(matricula));
-        return "profesionalModificar.html";
+        return "modificarProfesional";
     }
 
     @PostMapping("/modificar/{matricula}")
-    public String modificar(@PathVariable String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo, MultipartFile archivo) {
+    public String modificar(@PathVariable String matricula, String email, String domicilio, String telefono, String password, String password2, ModelMap modelo, MultipartFile archivo) {
         try {
 
-            profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio, telefono);
-            return "redirect:/panelProfesional"; //Decidir donde va cuando modifica prof
+            profesionalServicio.modificarProfesional(archivo, matricula, email, domicilio, telefono, password, password2);
+            return "redirect:../panelProfesional"; //Decidir donde va cuando modifica prof
 
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
-            return "profesionalModificar.html";
+            return "modificarProfesional";
         }
     }
 
@@ -138,6 +156,4 @@ public class ProfesionalControlador {
             return new ResponseEntity<>("Error al eliminar el Profesional: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-
-    
 }

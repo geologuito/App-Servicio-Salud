@@ -8,7 +8,6 @@ import lombok.Data;
 
 @Entity
 @Data
-//@Table(name = "profesional")
 public class Profesional{
  
     @Id
@@ -24,12 +23,14 @@ public class Profesional{
     private Boolean activo;
     private String especialidad;
     private Integer consulta;
+    
     @Temporal(TemporalType.DATE)
     private Date horario;
 
     @ManyToOne
     @JoinColumn(name = "paciente_dni")
     private Paciente paciente;
+    
     @OneToMany(mappedBy = "profesional")
     private List<Turno> turno;
     

@@ -13,8 +13,6 @@ public class PortalControlador {
 
         return "index";
 
-        /*return "index";*/
-        // agregar login,perfil. agregar todo el controlador de admin.
     }
 
     @Controller
@@ -29,5 +27,3 @@ public class PortalControlador {
     }
 
 }
-// agregar login,perfil. agregar todo el controlador de admin.
-

@@ -4,10 +4,11 @@
     <nav class="navbar navbar-expand-md bg-custom  ">
         <div class="container-fluid">
             <a href="/" class="navbar-brand d-flex align-items-center">
-                <img class="logo" src="/images/logo.jpg" alt="logo ss">
+                <img class="logo" src="/images/logo1.png" alt="logo ss">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                    aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -18,19 +19,12 @@
                     <a class="nav-link mx-2" href="/servicios">Servicios</a>
 
                     <!-- Botón de cerrar sesión visible solo si está autenticado -->
-                    <a th:if="${#authorization.expression('hasRole(''ROLE_PACIENTE'')')}"
-                       class="nav-link mx-2 btn btn-primary" href="/paciente/perfil">Perfil Paciente</a>
-                    <a th:if="${#authorization.expression('hasRole(''ROLE_PROFESIONAL'')')}"
-                       class="nav-link mx-2 btn btn-primary" href="/profesional/perfil">Perfil Profesional</a>
-
-                    <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2 btn btn-primary"
-                       href="/logout">Cerrar sesión</a>
+                    <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2 btn btn-primary" href="/logout">Cerrar sesión</a>
 
                     <!-- Botón de registro que desaparece cuando está autenticado -->
                     <div th:unless="${#authorization.expression('isAuthenticated()')}">
                         <div class="nav-item dropdown">
-                            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Registro
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -43,8 +37,7 @@
                     <!-- Botón de login que desaparece cuando está autenticado -->
                     <div th:unless="${#authorization.expression('isAuthenticated()')}">
                         <div class="nav-item dropdown">
-                            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Login
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

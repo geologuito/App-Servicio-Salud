@@ -70,7 +70,8 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
-    public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
+    @Transactional
+    public void modificarProfesional(MultipartFile archivo, String matricula, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
         validarModificar(email, password, password2, domicilio, telefono);
 
@@ -80,16 +81,19 @@ public class ProfesionalServicio implements UserDetailsService {
             Profesional profesional = respuesta.get();
 
             profesional.setEmail(email);
-            profesional.setPassword(new BCryptPasswordEncoder().encode(password));
             profesional.setDomicilio(domicilio);
             profesional.setTelefono(telefono);
+            profesional.setPassword(new BCryptPasswordEncoder().encode(password));
+            profesional.setRol(RolEnum.PROFESIONAL);
 
             String idImagen = null;
             if (profesional.getImagen() != null) {
                 idImagen = profesional.getImagen().getId();
             }
-            Imagen imagen = imagenServicio.modificar(archivo, idImagen);
+            
+            Imagen imagen = imagenServicio.modificar(archivo, idImagen);            
             profesional.setImagen(imagen);
+            
             profesionalRepositorio.save(profesional);
 
         }
@@ -144,12 +148,6 @@ public class ProfesionalServicio implements UserDetailsService {
         if (email == null || email.isEmpty()) {
             throw new MiException("el email no puede ser nulo ni estar vacio");
         }
-        if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
-        }
-        if (!password.equals(password2)) {
-            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
-        }
         if (domicilio == null || domicilio.isEmpty()) {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
@@ -157,15 +155,21 @@ public class ProfesionalServicio implements UserDetailsService {
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
             throw new MiException("el telefono no puede ser nulo ni estar vacio");
         }
+        if (password == null || password.isEmpty() || password.length() <= 5) {
+            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+        }
+        if (!password.equals(password2)) {
+            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+        }
 
     }
 
-    public Profesional getOne(String id) {
-        return profesionalRepositorio.getReferenceById(id);
+    public Profesional getOne(String matricula) {
+        return profesionalRepositorio.getOne(matricula);
     }
 
-    public void eliminarProfesional(String id) throws MiException {
-        profesionalRepositorio.deleteById(id);
+    public void eliminarProfesional(String matricula) throws MiException {
+        profesionalRepositorio.deleteById(matricula);
     }
 
     @Override
@@ -180,6 +184,7 @@ public class ProfesionalServicio implements UserDetailsService {
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + profesional.getRol().toString());
 
             permisos.add(p);
+            
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 
             HttpSession session = attr.getRequest().getSession(true);
