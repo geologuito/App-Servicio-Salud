@@ -1,16 +1,18 @@
 .contenedor {
     text-align: center;
     display: grid;
-    grid-template: auto auto auto auto auto / 50% 28% 1fr;
-    grid-template-areas: "navb navb navb  "
-        "carr carr carr  "
-        "cont cont reg "
-        "cont2 cont2 reg"
-        "foot foot foot";
+    grid-template: auto auto auto auto auto / 80% 1fr;
+    grid-template-areas:
+        "navb navb "
+        "carr carr"
+        "cont reg "
+        "cont2 reg"
+        "foot foot";
 }
 
 #fondo {
-    background: linear-gradient(to right, #08080844, #08080884), url(../images/news-image1.jpg);
+    background: linear-gradient(to right, #dad6d644, #a6a2a284),
+        url(../images/sala-de-espera-clinica-medica.webp);
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
@@ -29,6 +31,8 @@
     height: 90vh;
 }
 
+/*ESTILO CUERPO DEL INDEX*/
+
 /*ESTILO DEL CONTENEDOR 1*/
 .cont {
     grid-area: cont;
@@ -39,7 +43,7 @@
     height: 23em;
 }
 
-.profesionales {
+.especialidades {
     width: 65em;
     display: flex;
     justify-content: space-evenly;
@@ -141,7 +145,6 @@
     transform: translate(-50%, -50%) scaleX(1);
 }
 
-
 .prof img {
     width: 80%;
     height: 80%;
@@ -156,146 +159,6 @@
     align-items: center;
 }
 
-/*ESTILO FORMULARIO*/
-.form {
-    width: 85%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 30px;
-    position: relative;
-}
-
-.title {
-    font-size: 28px;
-    color: royalblue;
-    font-weight: 600;
-    letter-spacing: -1px;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding-left: 30px;
-}
-
-.title::before,
-.title::after {
-    position: absolute;
-    content: "";
-    height: 16px;
-    width: 16px;
-    border-radius: 50%;
-    left: 0px;
-    background-color: royalblue;
-}
-
-.title::before {
-    width: 18px;
-    height: 18px;
-    background-color: royalblue;
-}
-
-.title::after {
-    width: 18px;
-    height: 18px;
-    animation: pulse 1s linear infinite;
-}
-
-.message,
-.signin {
-    color: rgba(88, 87, 87, 0.822);
-    font-size: 14px;
-}
-
-.signin {
-    text-align: center;
-}
-
-.signin a {
-    color: royalblue;
-}
-
-.signin a:hover {
-    text-decoration: underline royalblue;
-}
-
-.flex {
-    display: flex;
-    width: 100%;
-    gap: 6px;
-}
-
-.form label {
-    position: relative;
-}
-
-.form label .input {
-    width: 100%;
-    padding: 10px 10px 20px 10px;
-    outline: 0;
-    border: 1px solid rgba(105, 105, 105, 0.397);
-    border-radius: 10px;
-}
-
-.form label .input+span {
-    position: absolute;
-    left: 10px;
-    top: 15px;
-    color: grey;
-    font-size: 0.9em;
-    cursor: text;
-    transition: 0.3s ease;
-}
-
-.form label .input:placeholder-shown+span {
-    top: 15px;
-    font-size: 0.9em;
-}
-
-.form label .input:focus+span,
-.form label .input:valid+span {
-    top: 30px;
-    font-size: 0.7em;
-    font-weight: 600;
-}
-
-.form label .input:valid+span {
-    color: green;
-}
-
-.submit {
-    border: none;
-    outline: none;
-    background-color: royalblue;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    transform: .3s ease;
-}
-
-.submit:hover {
-    background-color: rgb(56, 90, 194);
-}
-
-@keyframes pulse {
-    from {
-        transform: scale(0.9);
-        opacity: 1;
-    }
-
-    to {
-        transform: scale(1.8);
-        opacity: 0;
-    }
-}
-
-.apartado {
-    height: 10em;
-    background-color: rgb(0, 255, 47);
-}
-
 /*ESTILO DEL CONTENEDOR 2*/
 .cont2 {
     grid-area: cont2;
@@ -303,7 +166,10 @@
     height: 20em;
     flex-direction: column;
 }
+
 /*section de galeria servicios*/
+
+/*? SECCION DE TARJETAS*/
 
 /** GALERIA SERVICIOS*/
 
@@ -316,13 +182,15 @@
     overflow: hidden;
     /* Otros estilos específicos para la segunda galería */
 }
-.galeria-servicios > a{
+
+.galeria-servicios>a {
     display: block;
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 6px rgb(9, 9, 9);
 }
-.galeria-servicios > a span {
+
+.galeria-servicios>a span {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -335,9 +203,10 @@
     transition: opacity 0.5s;
 }
 
-.galeria-servicios > a:hover span {
+.galeria-servicios>a:hover span {
     opacity: 1;
 }
+
 .galeria-servicios img {
     margin-left: 0.5em;
     max-width: 100%;
@@ -348,148 +217,7 @@
     /* Otros estilos específicos para las imágenes de la segunda galería */
 }
 
-.galeria-servicios a:hover img{
+.galeria-servicios a:hover img {
     filter: blur(2px);
     transform: rotate(10deg) scale(1.3);
-}
-
-/*ESTILO LOGO*/
-.logo{
-    width: 80%;
-    height: 75px;
-    background-size: cover;
-    border-radius: 50%;
-    margin-left: 50px;
-}
-/*Estilo servicios*/
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-/*De aca para bajo galerias marvel y servicios*/
-/*galeria marvel*/
-.contenedor .galeria {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 20vh;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-    background-size: cover;
-    position: relative;
-    z-index: 1;
-}
-
-.contenedor .galeria img {
-    width: 100%;
-    max-width: 250px;
-    height: auto;
-}
-
-.galeria{
-    width: 100%;
-    margin:0 auto;
-    height: 85vh;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border:0.5px solid gray;
-}
-
-.galeria img{
-    width: 0px;
-    height:100%;
-    flex-grow: 1;/*que dentro de la caja flexible ocupe todo el espacio que pueda*/
-    object-fit: cover;
-    opacity: 0.8;
-    transition: .5s ease;
-}
-
-.galeria img:hover{
-    width: 40%;
-    opacity: 1;
-    filter:contrast(120%);
-}
-
-@media screen and (max-width: 768px){
-    section{
-        flex-wrap: wrap;
-    }
-    .galeria img{
-        height: 80%;
-    }
-    .galeria img:hover{
-        width: 70%;
-
-    }
-}
-
-/*galeria servicios*/
-
-.contenedor .galeria-servicios {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    width: 200%;
-    margin: auto;
-    grid-gap: 10px;
-    padding: 40px 0;
-    overflow: hidden;
-    background: #087990;
-    /* Otros estilos específicos para la segunda galería */
-}
-
-.galeria-servicios > a{
-    display: block;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 6px rgb(0, 0, .5);
-}
-
-.contenedor .galeria-servicios img {
-    max-width: 100%;
-    vertical-align: top;
-    height: 200px;
-    object-fit: cover;
-    transition: transform 0.8s;
-    /* Otros estilos específicos para las imágenes de la segunda galería */
-}
-
-.galeria-servicios a:hover img{
-    filter: blur(2px);
-    transform: rotate(10deg) scale(1.3);
-}
-
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: -1;
-}
-header{
-    text-align: center;
-    padding: 20px;
-}
-footer{
-    text-align: center;
-    margin-top:10px;
-
-}
-
-@media screen and (max-width: 768px){
-    section{
-        flex-wrap: wrap;
-    }
-    galeria-servicios img{
-        height: 80%;
-    }
-    galeria-servicios img:hover{
-        width: 70%;
-
-    }
 }

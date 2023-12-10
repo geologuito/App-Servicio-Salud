@@ -1,0 +1,107 @@
+/*Estilo servicios*/
+
+#fondo {
+    background: linear-gradient(to right, #f2efefb6, #f8f5f5aa), url(../images/ambulancias.webp);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+
+/**GALERIA -CARRUSEL SERVICIOS*/
+.contenedor .galeria {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+    width: 100%;
+}
+
+.galeria img {
+    width: 100%;
+    height: auto;
+}
+
+
+.galeria img {
+    width: 0px;
+    height: 100%;
+    flex-grow: 1;
+    /*que dentro de la caja flexible ocupe todo el espacio que pueda*/
+    object-fit: cover;
+    opacity: 0.8;
+    transition: .5s ease;
+}
+
+.galeria img:hover {
+    width: 40%;
+    opacity: 1;
+    filter: contrast(120%);
+}
+
+@media screen and (max-width: 768px) {
+    section {
+        flex-wrap: wrap;
+    }
+
+    .galeria img {
+        height: 80%;
+    }
+
+    .galeria img:hover {
+        width: 70%;
+
+    }
+}
+
+/*galeria servicios*/
+
+
+.galeria-servicios {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    width: 100%;
+    grid-gap: 5px;
+    padding: 40px 0;
+    overflow: hidden;
+    /* Otros estilos específicos para la segunda galería */
+}
+
+.galeria-servicios>a {
+    display: block;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 0 6px rgb(9, 9, 9);
+}
+
+.galeria-servicios>a span {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px;
+    text-align: center;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.galeria-servicios>a:hover span {
+    opacity: 1;
+}
+
+.galeria-servicios img {
+    margin-left: 0.5em;
+    width: 100%;
+    vertical-align: top;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.8s;
+    /* Otros estilos específicos para las imágenes de la segunda galería */
+}
+
+.galeria-servicios a:hover img {
+    filter: blur(2px);
+    transform: rotate(10deg) scale(1.3);
+}
