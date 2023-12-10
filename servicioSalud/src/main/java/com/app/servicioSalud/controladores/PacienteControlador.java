@@ -15,6 +15,7 @@ import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.CalificacionServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
+import java.sql.Array;
 import java.util.List;
 import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;
@@ -147,10 +148,20 @@ public class PacienteControlador {
     public String mostrarPuntuacion(ModelMap modelo, @PathVariable String id) {
 
         // List<Calificacion> calificacion = calificacionServicio.listarCalificacion(id);
-        List<Tuple> promedio = calificacionServicio.calcularPromedio(id);
-        modelo.addAttribute("tuplas", promedio);
+        Tuple promedio = calificacionServicio.calcularPromedio(id);
+        // Calificacion promedio = calificacionServicio.calcularPromedio(id);
+        //modelo.addAttribute("tuplas", promedio);
 
-        return "Reputacion";
+        // Acceder a los valores de la tupla
+        Double valorColumna1 = promedio.get(0, Double.class);
+        Double valorColumna2 = promedio.get(1, Double.class);
+        Double valorColumna3 = promedio.get(2, Double.class);
+
+        modelo.put("valor1", valorColumna1);
+        modelo.put("valor2", valorColumna2);
+        modelo.put("valor3" , valorColumna3 );
+
+        
+        return "reputacion";
     }
-
 }

@@ -52,9 +52,9 @@ public class CalificacionServicio {
         return calificacion;
     }
     
-    public  List<Tuple> calcularPromedio(String id){
+    public Tuple calcularPromedio(String id){
         
-      List<Tuple> calificacion = calificacionRepositorio.calcularPromedio(id);
+      Tuple calificacion = calificacionRepositorio.calcularPromedio(id);
         
         return calificacion;
     }

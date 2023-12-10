@@ -28,6 +28,6 @@ public interface CalificacionRepositorio extends JpaRepository<Calificacion, Str
     @Query("SELECT ROUND(AVG(c.puntualidad)), ROUND(AVG(c.mobiliario)),ROUND(AVG(c.atencion))"
             + "FROM Calificacion c "
             + "WHERE c.profesional.matricula = :profesionalId")
-    List<Tuple> calcularPromedio(@Param("profesionalId") String profesionalId);
+    Tuple calcularPromedio(@Param("profesionalId") String profesionalId);
 
 }
