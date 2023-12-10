@@ -20,7 +20,7 @@
     <head th:replace="/fragments/head :: head"> </head>
     <!--TOP NAVBAR END-->
     <!--page content star-->
-    <div class="side bg-dark">
+    
         
         <!-- sidebar -->
 
@@ -28,7 +28,7 @@
             aria-labelledby="staticBackdropLabel">
             <div class="offcanvas-header menu">
                 <h5 class="offcanvas-title text-white" id="staticBackdropLabel">Menu</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                <button type="button" class="btn-close bg-info" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
             <div class="offcanvas-body panel-body ">
                 <!-- contenido -->
@@ -57,27 +57,27 @@
                 <!-- fin contenido -->
             </div>
         </div>
-    </div>
+    
 
     </div><!-- fin sidebar -->
 
     <!--* LISTAS -->
 
     
-    <div class="lista">
-
-        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
+    <div class="listaa my-2">
+        
+        <button class="btn  bg-gradient btn-outline-dark" type="button" data-bs-toggle="offcanvas" data-bs-target="#staticBackdrop"
             aria-controls="staticBackdrop">
             Panel
         </button>
         
         <section id="crearProfesional" class="dashboard-section profesional" >
            <!-- < aca va el form para agregar profesional> -->
-           <h3 class="">Profesionales</h3>
+           <h3 class="text-white">Profesionales</h3>
            <section class="tabla">
             <hr class="my-2">
             
-            <table class="table w-75 ">
+            <table class="table table-success table-striped table-hover w-75 ">
                 <thead>
                     <tr>
                         <th scope="col">Apellido</th>
@@ -104,9 +104,10 @@
         </section>
         <section id="crearPaciente" class="dashboard-section paciente">
             <section class="tabla">
-                <hr class="my-2">
+                
                 <h3 class="fst-italic text-white">Pacientes</h3>
-                <table class="table w-75 ">
+                <table class="table table-success table-striped table-hover w-75 ">
+                    <hr class="my-2">
                     <thead>
                         <tr>
                             <th scope="col">Apellido</th>
@@ -130,9 +131,10 @@
         </section>
         <section id="listarProfesional" class="dashboard-section">
             <section class="tabla">
-                <hr class="my-2">
+               
                 <h3 class="fst-italic text-white">Turnos</h3>
-                <table class="table w-75 ">
+                <table class="table table-success table-striped table-hover w-75 ">
+                    <hr class="my-2">
                     <thead>
                         <tr>
                             <th scope="col">Apellido</th>
@@ -156,9 +158,10 @@
         </section>
         <section id="listarPaciente" class="dashboard-section">
             <section class="tabla">
-                <hr class="my-2">
+                
                 <h3 class="fst-italic text-white">Historias</h3>
-                <table class="table w-75 ">
+                <table class="table table-success table-striped table-hover w-75 ">
+                    <hr class="my-2">
                     <thead>
                         <tr>
                             <th scope="col">Apellido</th>
