@@ -3,6 +3,8 @@ package com.app.servicioSalud.controladores;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
 
 @Controller
 @RequestMapping("/") // localhost:8080
@@ -18,4 +20,10 @@ public class PortalControlador {
         
         return "servicios";
     }
+    @GetMapping("/profesionales")
+    public String profesionales() {
+
+        return "profesionales";
+    }
+    
 }
