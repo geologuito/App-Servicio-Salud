@@ -49,7 +49,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .successHandler(new CustomAuthenticationSuccessHandler())
                 .and().logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
+                .logoutSuccessUrl("/")
                 .and().csrf().disable();
 
     }
