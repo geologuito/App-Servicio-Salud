@@ -114,7 +114,7 @@ public class ProfesionalControlador {
         try {
 
             profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio, telefono);
-            return "redirect:/panelProfesional"; //Decidir donde va cuando modifica prof
+            return "redirect:../perfil"; //Decidir donde va cuando modifica prof
 
         } catch (MiException ex) {
 
