@@ -16,6 +16,7 @@ import com.app.servicioSalud.servicios.CalificacionServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
+import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -146,8 +147,8 @@ public class PacienteControlador {
     public String mostrarPuntuacion(ModelMap modelo, @PathVariable String id) {
 
         // List<Calificacion> calificacion = calificacionServicio.listarCalificacion(id);
-        List<Calificacion[]> promedio = calificacionServicio.calcularPromedio(id);
-        modelo.addAttribute("promedio", promedio);
+        List<Tuple> promedio = calificacionServicio.calcularPromedio(id);
+        modelo.addAttribute("tuplas", promedio);
 
         return "Reputacion";
     }

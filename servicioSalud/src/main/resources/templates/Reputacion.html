@@ -12,26 +12,22 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
     <body>
         <div>TODO write content</div>
         <table border="1">
-    <thead>
-        <tr>
-            <th>Puntualidad</th>
-            <th>Atención</th>
-            <th>Mobiliario</th>
-        </tr>
-    </thead>
-    <tbody>
-        <!-- Itera sobre la lista de profesionales -->
-       
-            <!-- Calcula y muestra el promedio para puntualidad -->
-            <td th:text="${promedio[0]}"></td>
-            <!-- Calcula y muestra el promedio para atención -->
-            <td th:text="${promedio[1]}"></td>
-            <!-- Calcula y muestra el promedio para mobiliario -->
-            <td th:text="${promedio[2]}"></td>
-        </tr>
-    </tbody>
-</table>
+            <thead>
+                <tr>
+                    <th>Puntualidad</th>
+                    <th>Atención</th>
+                    <th>Mobiliario</th>
+                </tr>
+            </thead>
+            <tbody >
+                <tr th:each="tupla : ${tuplas}"  th:if="${#lists.size(tupla) >= 3}">
+                    <td th:text="${tupla[0]}"></td>
+                    <td th:text="${tupla[1]}"></td>
+                    <td th:text="${tupla[2]}"></td>
+                </tr>
+            </tbody> 
+        </table>
 
-</body>
+    </body>
 </html>
 

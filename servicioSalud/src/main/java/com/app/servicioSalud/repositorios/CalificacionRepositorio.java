@@ -7,6 +7,7 @@ package com.app.servicioSalud.repositorios;
 import com.app.servicioSalud.entidades.Calificacion;
 
 import java.util.List;
+import javax.persistence.Tuple;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -26,7 +27,7 @@ public interface CalificacionRepositorio extends JpaRepository<Calificacion, Str
 
     @Query("SELECT ROUND(AVG(c.puntualidad)), ROUND(AVG(c.mobiliario)),ROUND(AVG(c.atencion))"
             + "FROM Calificacion c "
-            + "WHERE c.profesional.matricula = :profesionalId")           
-    List<Calificacion[]> calcularPromedio(@Param("profesionalId") String profesionalId);
+            + "WHERE c.profesional.matricula = :profesionalId")
+    List<Tuple> calcularPromedio(@Param("profesionalId") String profesionalId);
 
 }

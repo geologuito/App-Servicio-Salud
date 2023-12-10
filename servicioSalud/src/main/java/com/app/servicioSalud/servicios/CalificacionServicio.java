@@ -8,6 +8,7 @@ import com.app.servicioSalud.entidades.Calificacion;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.repositorios.CalificacionRepositorio;
 import java.util.List;
+import javax.persistence.Tuple;
 import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -51,9 +52,9 @@ public class CalificacionServicio {
         return calificacion;
     }
     
-    public  List<Calificacion[]> calcularPromedio(String id){
+    public  List<Tuple> calcularPromedio(String id){
         
-      List<Calificacion[]> calificacion = calificacionRepositorio.calcularPromedio(id);
+      List<Tuple> calificacion = calificacionRepositorio.calcularPromedio(id);
         
         return calificacion;
     }
