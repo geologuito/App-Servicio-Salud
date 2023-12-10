@@ -24,10 +24,9 @@ public interface CalificacionRepositorio extends JpaRepository<Calificacion, Str
     @Query("SELECT c FROM Calificacion c WHERE c.profesional.matricula = :profesionalId")
     List<Calificacion> buscarPorMatricula(@Param("profesionalId") String profesionalId);
 
-    @Query("SELECT  AVG(c.puntualidad),AVG(c.mobiliario), AVG(c.puntualidad)"
+    @Query("SELECT ROUND(AVG(c.puntualidad)), ROUND(AVG(c.mobiliario)),ROUND(AVG(c.atencion))"
             + "FROM Calificacion c "
-            + "WHERE c.profesional.matricula = :profesionalId")
-           
-   Calificacion calcularPromedio(@Param("profesionalId") String profesionalId);
+            + "WHERE c.profesional.matricula = :profesionalId")           
+    List<Calificacion[]> calcularPromedio(@Param("profesionalId") String profesionalId);
 
 }

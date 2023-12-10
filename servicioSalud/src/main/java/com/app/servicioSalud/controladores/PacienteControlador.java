@@ -146,7 +146,7 @@ public class PacienteControlador {
     public String mostrarPuntuacion(ModelMap modelo, @PathVariable String id) {
 
         // List<Calificacion> calificacion = calificacionServicio.listarCalificacion(id);
-      Calificacion promedio = calificacionServicio.calcularPromedio(id);
+        List<Calificacion[]> promedio = calificacionServicio.calcularPromedio(id);
         modelo.addAttribute("promedio", promedio);
 
         return "Reputacion";

@@ -23,11 +23,11 @@ Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this temp
         <!-- Itera sobre la lista de profesionales -->
        
             <!-- Calcula y muestra el promedio para puntualidad -->
-            <td th:text="${promedio.AVG(c.mobiliario)}"></td>
+            <td th:text="${promedio[0]}"></td>
             <!-- Calcula y muestra el promedio para atención -->
-            <td th:text="${promedio.AVG(c.puntualidad)}"></td>
+            <td th:text="${promedio[1]}"></td>
             <!-- Calcula y muestra el promedio para mobiliario -->
-            <td th:text="${promedio.AVG(c.atencion)}"></td>
+            <td th:text="${promedio[2]}"></td>
         </tr>
     </tbody>
 </table>

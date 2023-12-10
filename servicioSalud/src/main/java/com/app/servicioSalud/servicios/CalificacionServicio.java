@@ -51,9 +51,9 @@ public class CalificacionServicio {
         return calificacion;
     }
     
-    public Calificacion calcularPromedio(String id){
+    public  List<Calificacion[]> calcularPromedio(String id){
         
-        Calificacion calificacion = calificacionRepositorio.calcularPromedio(id);
+      List<Calificacion[]> calificacion = calificacionRepositorio.calcularPromedio(id);
         
         return calificacion;
     }
