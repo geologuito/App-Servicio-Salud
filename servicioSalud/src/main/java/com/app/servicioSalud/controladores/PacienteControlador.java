@@ -1,5 +1,6 @@
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Calificacion;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,9 +12,12 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
+import com.app.servicioSalud.servicios.CalificacionServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
+import java.sql.Array;
 import java.util.List;
+import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +33,8 @@ public class PacienteControlador {
     private PacienteServicio pacienteServicio;
     @Autowired
     private ProfesionalServicio profesionalServicio;
+    @Autowired
+    private CalificacionServicio calificacionServicio;
 
     @GetMapping("/registrar") // localhost:8080/paciente/registrar
     public String registrar() {
@@ -109,13 +115,13 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,MultipartFile archivo,
             ModelMap modelo) throws MiException {
         try {
-                //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
+            //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
             pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
 
             return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
-        
+
             modelo.put("error", ex.getMessage());
             return "modificarlPaciente.html"; // mapear con html
         }
@@ -138,4 +144,24 @@ public class PacienteControlador {
         }
     }
 
+    @GetMapping("/puntuacion/{id}")
+    public String mostrarPuntuacion(ModelMap modelo, @PathVariable String id) {
+
+        // List<Calificacion> calificacion = calificacionServicio.listarCalificacion(id);
+        Tuple promedio = calificacionServicio.calcularPromedio(id);
+        // Calificacion promedio = calificacionServicio.calcularPromedio(id);
+        //modelo.addAttribute("tuplas", promedio);
+
+        // Acceder a los valores de la tupla
+        Double valorColumna1 = promedio.get(0, Double.class);
+        Double valorColumna2 = promedio.get(1, Double.class);
+        Double valorColumna3 = promedio.get(2, Double.class);
+
+        modelo.put("valor1", valorColumna1);
+        modelo.put("valor2", valorColumna2);
+        modelo.put("valor3" , valorColumna3 );
+
+        
+        return "reputacion";
+    }
 }
