@@ -12,6 +12,7 @@ import com.app.servicioSalud.servicios.HistoriaClinicaServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,11 +34,18 @@ public class CalificacionControlador {
 
     @Autowired
     private HistoriaClinicaServicio historiaClinicaServicio;
-
+    
+    @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @GetMapping("/crear/{id}") // localhost:8080/paciente/registrar
-    public String registrar(ModelMap modelo, HttpSession session, @PathVariable String id) {
-
-        //Paciente paciente =(Paciente) session.getAttribute("pacientesession");
+    public String registrar(ModelMap modelo, HttpSession session) {
+        
+        //  @PathVariable String id - aca vamos a usar el login
+        Paciente user =(Paciente) session.getAttribute("pacientesession");
+        
+        String id;
+        id = user.getDni();
+        
+        
         List<HistoriaClinica> paciente = historiaClinicaServicio.listarPorDNI(id);
 
         modelo.addAttribute("paciente", paciente);
