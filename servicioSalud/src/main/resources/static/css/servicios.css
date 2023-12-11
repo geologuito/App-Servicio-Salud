@@ -23,34 +23,31 @@
 }
 
 
-.galeria img {
+.galeria img{
     width: 0px;
-    height: 100%;
-    flex-grow: 1;
-    /*que dentro de la caja flexible ocupe todo el espacio que pueda*/
+    height:100%;
+    flex-grow: 1;/*que dentro de la caja flexible ocupe todo el espacio que pueda*/
     object-fit: cover;
     opacity: 0.8;
     transition: .5s ease;
 }
 
-.galeria img:hover {
+.galeria img:hover{
     width: 40%;
     opacity: 1;
-    filter: contrast(120%);
+    filter:contrast(120%);
 }
 
-@media screen and (max-width: 768px) {
-    section {
+@media screen and (max-width: 768px){
+    section{
         flex-wrap: wrap;
     }
-
-    .galeria img {
+    .galeria img{
         height: 80%;
     }
-
-    .galeria img:hover {
+    .galeria img:hover{
         width: 70%;
-
+        
     }
 }
 
@@ -65,16 +62,14 @@
     padding: 40px 0;
     overflow: hidden;
     /* Otros estilos específicos para la segunda galería */
-}
-
-.galeria-servicios>a {
+  }
+  .galeria-servicios > a {
     display: block;
     position: relative;
     overflow: hidden;
     box-shadow: 0 0 6px rgb(9, 9, 9);
-}
-
-.galeria-servicios>a span {
+  }
+  .galeria-servicios > a span {
     position: absolute;
     bottom: 0;
     left: 0;
@@ -85,13 +80,12 @@
     text-align: center;
     opacity: 0;
     transition: opacity 0.5s;
-}
-
-.galeria-servicios>a:hover span {
+  }
+  
+  .galeria-servicios > a:hover span {
     opacity: 1;
-}
-
-.galeria-servicios img {
+  }
+  .galeria-servicios img {
     margin-left: 0.5em;
     width: 100%;
     vertical-align: top;
@@ -99,9 +93,9 @@
     object-fit: cover;
     transition: transform 0.8s;
     /* Otros estilos específicos para las imágenes de la segunda galería */
-}
-
-.galeria-servicios a:hover img {
+  }
+  
+  .galeria-servicios a:hover img {
     filter: blur(2px);
     transform: rotate(10deg) scale(1.3);
-}
+  }

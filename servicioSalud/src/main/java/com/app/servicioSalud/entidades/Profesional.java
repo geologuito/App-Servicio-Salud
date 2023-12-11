@@ -21,7 +21,7 @@ public class Profesional{
     private String password;
     private String domicilio; //decidir si se deja o lo sacamos
     private String telefono;
-    private Boolean activo;
+    private Boolean activo = false;
     private String especialidad;
     private Integer consulta;
     @Temporal(TemporalType.DATE)
@@ -38,4 +38,7 @@ public class Profesional{
     
     @OneToOne
     private Imagen imagen;
+    
+    @OneToMany(mappedBy = "profesional")  
+     private List<Calificacion> calificacion;
 }

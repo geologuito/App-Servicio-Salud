@@ -1,48 +1,43 @@
 body {
-    background: linear-gradient(to right, #f7f5f55a, #f1eeeeea), url(../images/dashboard.webp);
+   background: linear-gradient(to right, #f7f5f55a, #f1eeeeea), url(../images/dashboard.webp);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     height: 100vh;
-
+    
 }
 
 .contenedor {
     text-align: center;
     display: grid;
     grid-template: auto auto auto / 100% 0% 1fr;
-    grid-template-areas: "navb navb navb "
-        "lista lista side"
-        "foot foot foot";
-
+    grid-template-areas:    "navb navb navb "
+                            "lista lista side"
+                            "foot foot foot";
+    
 }
-
 /*  navabar*/
-.menu {
-    background-color: #111;
-
+.menu
+{background-color: #111;
+    
+}
+.lista{
+grid-area: lista;
+text-align: center;
 }
 
-.lista {
-    grid-area: lista;
-    text-align: center;
-}
-
-.panel-body {
+.panel-body{
     background-color: #11111170;
 }
-
-.panel {
+.panel{
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    align-items: start;
+    align-items:start;
 }
-
-.panel-item {
+.panel-item{
     padding-top: 3em;
 }
-
 .dashboard-section {
     display: none;
 }
@@ -50,11 +45,15 @@ body {
 /* Agregar estilos específicos para cada sección del dashboard */
 /* #crearProfesional {
     background-color: rgb(255, 21, 0);
- } */
-.profesional {}
+} */
+.profesional{
 
-.paciente {}
+}
 
-.tabla {
+.paciente{
+    
+}
+
+.tabla{
     margin-left: 6em;
 }

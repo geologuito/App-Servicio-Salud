@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/profesionales.css">
+    <title>Profesionales</title>
+
+    <!-- Agrega otros enlaces a tus archivos CSS, scripts, etc. según sea necesario -->
+</head>
+<body>
+    <div class="contenedor" id="fondo">
+        <div th:replace="/fragments/navbar ::div"> </div>
+        <main>
+            <section class="galeria"><!-- Galería marvel -->
+                <img src="images/doc1.jpeg" class="d-block" alt="">
+                <img src="images/doc2.jpeg" class="d-block" alt="">
+                <img src="images/doc3.jpg" class="d-block" alt="">
+                <img src="images/doc4.jpeg" class="d-block" alt="">
+            </section>
+            <div class="row mx-3">
+                <div class="title">
+                    <h2>Profesionales</h2>
+                </div>
+                <div class="serv d-flex justify-content-evenly">
+                    <div class="card">
+                        <div class="personaje">
+                            <div class="imagen_personaje"></div>
+                            <div class="detalle">
+                                <h4>Dr. House</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, ex inventore, provident corporis natus esse dolore.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="personaje_2">
+                            <div class="imagen_personaje_2"></div>
+                            <div class="detalle">
+                                <h4>Grey's Anatomy</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, ex inventore, provident corporis natus esse dolore.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="personaje_3">
+                            <div class="imagen_personaje_3"></div>
+                            <div class="detalle">
+                                <h4>New Amsterdam</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, ex inventore, provident corporis natus esse dolore.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="personaje_4">
+                            <div class="imagen_personaje_4"></div>
+                            <div class="detalle">
+                                <h4>New Amsterdam</h4>
+                                <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Harum, ex inventore, provident corporis natus esse dolore.</p>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--cierra las tarjetas-->
+            </div> <!--cierra el contenedor de la seccion-->
+            <!--cierra el contenedor de la seccion-->
+            
+            <section class="galeria-servicios">
+                <a href="#image1">
+                    <img src="/images/ambulancias.webp" alt="">
+                    <span>Servicio de Ambulancias</span>
+                </a>
+                <a href="#image2">
+                    <img src="/images/laboratorio3.jpg" alt="">
+                    <span>Laboratorio a Domicilio</span>
+                </a>
+                <a href="#image3">
+                    <img src="/images/call.webp" alt="">
+                    <span>Atención telefónica 24/7</span>
+                </a>
+                <a href="#image3">
+                    <img src="/images/laboratorio2.jpg" alt="">
+                    <span>Exámenes Especializados</span>
+                </a>
+            </section>
+
+    </div>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>
+</html>
