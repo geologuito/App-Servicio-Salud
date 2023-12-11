@@ -50,9 +50,9 @@
                             </tbody>
                         </table>
                         <div class="imagenP mx-3 bg-info" th:unless="${session.pacientesession == null}">
-                            <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.pacientesession.dni}__}"
-                                alt="usuario">
-                        </div>
+                            <img class="imgPerfil"
+                                th:src="@{/imagen/paciente/__${session.pacientesession.dni}__}" alt="usuario">
+                        </div> 
                     </div><!--Cierra contenedor de datos detalles-->
                 </section><!--Cierra la tabla-->
 
