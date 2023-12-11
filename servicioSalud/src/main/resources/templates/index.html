@@ -4,7 +4,7 @@
 <head th:replace="/fragments/head :: head"> </head>
 
 <body>
-    <div class="contenedor">
+    <div class="contenedor" id="fondo">
         <div th:replace="/fragments/navbar ::div"> </div>
         <!-- HOME CAROUSEL -->
         <div class="carr">
@@ -26,67 +26,93 @@
             </div>
         </div>
         <!--Cierra Carrusel-->
-        <div class="cont">
-            <h1 class="fst-italic">Especialidades</h1>
-            <div class="profesionales">
-                <div class="card">
-                    <div class="image-box">
-                        <img src="images/pediatria.jpg" alt="">
-                    </div>
-                    <div class="text-box">
-                        <div class="main">
-                            <span>Pediatría</span>
+        
+        
+            <div class="cont">
+                <h1 class="fst-italic">Especialidades</h1>
+                <div class="especialidades">
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/pediatria.jpg" alt="">
                         </div>
-                        <div class="sub">
-                            <span>Ver más</span>
+                        <div class="text-box">
+                            <div class="main">
+                                <span>Pediatría</span>
+                            </div>
+                            <div class="sub">
+                                <span>Ver más</span>
+                            </div>
                         </div>
-                    </div>
-                </div> <!--cierra el cntenedor tarjeta-->
-                <div class="card">
-                    <div class="image-box">
-                        <img src="images/cardio.jpg" alt="">
-                    </div>
-                    <div class="text-box">
-                        <div class="main">
-                            <span>Cardiología</span>
+                    </div> <!--cierra el cntenedor tarjeta-->
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/cardio.jpg" alt="">
                         </div>
-                        <div class="sub">
-                            <span>Ver más</span>
+                        <div class="text-box">
+                            <div class="main">
+                                <span>Cardiología</span>
+                            </div>
+                            <div class="sub">
+                                <span>Ver más</span>
+                            </div>
                         </div>
-                    </div>
-                </div> <!--cierra el cntenedor tarjeta-->
-                <div class="card">
-                    <div class="image-box">
-                        <img src="images/odonto.jpg" alt="">
-                    </div>
-                    <div class="text-box">
-                        <div class="main">
-                            <span>Odontología</span>
+                    </div> <!--cierra el cntenedor tarjeta-->
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/odonto.jpg" alt="">
                         </div>
-                        <div class="sub">
-                            <span>Ver más</span>
+                        <div class="text-box">
+                            <div class="main">
+                                <span>Odontología</span>
+                            </div>
+                            <div class="sub">
+                                <span>Ver más</span>
+                            </div>
                         </div>
-                    </div>
-                </div> <!--cierra el cntenedor tarjeta-->
-                <div class="card">
-                    <div class="image-box">
-                        <img src="images/trauma.jpg" alt="">
-                    </div>
-                    <div class="text-box">
-                        <div class="main">
-                            <span>Kinesiología</span>
+                    </div> <!--cierra el cntenedor tarjeta-->
+                    <div class="card">
+                        <div class="image-box">
+                            <img src="images/trauma.jpg" alt="">
                         </div>
-                        <div class="sub">
-                            <span>Ver más</span>
+                        <div class="text-box">
+                            <div class="main">
+                                <span>Kinesiología</span>
+                            </div>
+                            <div class="sub">
+                                <span>Ver más</span>
+                            </div>
                         </div>
-                    </div>
-                </div> <!--cierra el cntenedor tarjeta-->
-            </div> <!--cierra el cntenedor prosesionales-->
-        </div> <!--Cierra Contenedor 1-->
-        <!-- INICIO FORM -->
+                    </div> <!--cierra el cntenedor tarjeta-->
+                </div> <!--cierra el cntenedor prosesionales-->
+            </div> <!--Cierra Contenedor 1-->
+    
+            <div class="cont2 ">
+                <h1 class="fst-italic">Servicios</h1>
+    
+                <section class="galeria-servicios">
+                    <a href="#image1">
+                        <img src="/images/ambulancias.webp" alt="">
+                        <span>Servicio de Ambulancias</span>
+                    </a>
+                    <a href="#image2">
+                        <img src="/images/laboratorio3.jpg" alt="">
+                        <span>Laboratorio a Domicilio</span>
+                    </a>
+                    <a href="#image3">
+                        <img src="/images/call.webp" alt="">
+                        <span>Atención telefónica 24/7</span>
+                    </a>
+                    <a href="#image3">
+                        <img src="/images/laboratorio2.jpg" alt="">
+                        <span>Exámenes Especializados</span>
+                    </a>
+                </section>
+            </div> <!--Cierra Contenedor 2-->
+       
+        <!-- INICIO APARTADO-->
         <div class="reg">
             <div class="news">
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 15rem;">
                     <div class="card-body">
                         <h5 class="card-title">Declaración de la OMS sobre los brotes de
                             enfermedades respiratorias en niños en el norte de China</h5>
@@ -96,7 +122,7 @@
                             class="btn btn-primary" target="_blank">Ir a Sitio</a>
                     </div>
                 </div><!--cierra card-->
-                <div class="card" style="width: 18rem;">
+                <div class="card" style="width: 15rem;">
                     <div class="card-body">
                         <h5 class="card-title">Los envíos a los países africanos anuncian los últimos pasos hacia una
                             vacunación de mayor alcance contra el paludismo </h5>
@@ -108,29 +134,7 @@
             </div><!--cierra div news-->
         </div><!--cierra area reg-->
 
-        <div class="cont2 ">
-            <h1 class="fst-italic">Servicios</h1>
-
-            <section class="galeria-servicios">
-                <a href="#image1">
-                    <img src="/images/ambulancias.webp" alt="">
-                    <span>Servicio de Ambulancias</span>
-                </a>
-                <a href="#image2">
-                    <img src="/images/laboratorio3.jpg" alt="">
-                    <span>Laboratorio a Domicilio</span>
-                </a>
-                <a href="#image3">
-                    <img src="/images/call.webp" alt="">
-                    <span>Atención telefónica 24/7</span>
-                </a>
-                <a href="#image3">
-                    <img src="/images/laboratorio2.jpg" alt="">
-                    <span>Exámees Especializados</span>
-                </a>
-            </section>
-        </div> <!--Cierra Contenedor 2-->
-
+        
         <footer th:replace="/fragments/footer :: footer"></footer>
     </div> <!--Cierra contenedor de a grilla de grid-->
 

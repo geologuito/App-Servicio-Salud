@@ -1,27 +1,39 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+    <title>Historial Clinico</title>
+</head>
 
-        <br>
-        <section class="tabla">
+<body>
+    <div class="contenedor">
+        <div th:replace="/fragments/navbar ::div"> </div>
+    </div>
+    <section class="reg">
+
+        <div class="panel">
+
+        
+            <p class="text-white">ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+
+
+            <section class="tabla">
             <hr class="my-2">
-            <h2 class="fst-italic text-white">Turnos del día</h2>
+            <h2 class="fst-italic text-white">Historial Clínico</h2>
 
-            <table class="table">
+            <table class="table table-success table-striped table-hover h-25">
                 <thead>
                     <tr>
                         <th scope="col">Fecha</th>
                         <th scope="col">Titulo</th>
                         <th scope="col">Doctor</th>
-                         <th scope="col">Acciones</th>
+                        <th scope="col">Acciones</th>
 
                     </tr>
                 </thead>
@@ -31,13 +43,16 @@
                         <td th:text="${hc.titulo}"></td>
                         <td th:text="${hc.profesional.nombre}"></td>
                         <td>
-                             <a th:href= "@{/hc/accion/__${hc.id}__}">  ver </a>
+                            <a th:href="@{/hc/accion/__${hc.id}__}"> ver </a>
                         </td>
                     </tr>
                 </tbody>
             </table>
-        </section>
+            </section>
+        </div> 
+    </section>
 
 
-    </body>
+</body>
+
 </html>
