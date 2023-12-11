@@ -9,8 +9,8 @@
         <div>TODO write content</div>
 
         <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
-         <p>REGISTRO: <span th:text="${hc.id}"></span></p>
-         <p>REGISTRO: <span th:text="${hc.titulo}"></span></p>
+        <p>REGISTRO: <span th:text="${hc.id}"></span></p>
+        <p>REGISTRO: <span th:text="${hc.titulo}"></span></p>
         <br>
         <section class="tabla">
             <hr class="my-2">
@@ -22,7 +22,7 @@
                         <th scope="col">Fecha</th>
                         <th scope="col">Diagnostico</th>
                         <th scope="col">Tratamiento</th>
-                         <th scope="col">Modificar (ver)</th>
+                        <th scope="col">Modificar (ver)</th>
 
                     </tr>
                 </thead>
@@ -32,7 +32,7 @@
                         <td th:text="${hc.dx}"></td>
                         <td th:text="${hc.tratamiento}"></td>
                         <td>
-                             <a th:href= "@{/hc/modificar/__${hc.id}__}">  ver </a>
+                            <a th:href= "@{/hc/modificar/__${hc.id}__}">  ver </a>
                         </td>
                     </tr>
                 </tbody>

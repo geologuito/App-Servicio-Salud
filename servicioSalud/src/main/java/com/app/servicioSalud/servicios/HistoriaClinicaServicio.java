@@ -75,5 +75,20 @@ public class HistoriaClinicaServicio {
     public HistoriaClinica getOne(String id) {
         return historiaClinicaRepositorio.getReferenceById(id);
     }
+    
+     public void modificacionEstado(String id) {
+
+        Optional<HistoriaClinica> respuesta = historiaClinicaRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
+            HistoriaClinica historiaClinica = respuesta.get();
+
+           historiaClinica.setRespuesta(Boolean.TRUE);
+
+            historiaClinicaRepositorio.save(historiaClinica);
+
+        }
+
+    }
 
 }

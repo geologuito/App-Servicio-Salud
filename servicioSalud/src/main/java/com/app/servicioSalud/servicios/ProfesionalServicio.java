@@ -32,6 +32,9 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Autowired
     private ImagenServicio imagenServicio;
+    
+    @Autowired
+    private CorreoServicio correoServicio;
 
     @Transactional
     public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario) throws MiException {
@@ -57,6 +60,9 @@ public class ProfesionalServicio implements UserDetailsService {
         profesional.setImagen(imagen);
 
         profesionalRepositorio.save(profesional);
+        correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
+        correoServicio.altaProfesional(matricula);
+        
 
     }
 

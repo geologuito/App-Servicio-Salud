@@ -21,7 +21,6 @@ body {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-top: 2em;
 }
 /*ESTILO LOGIN*/
 .login{
@@ -214,7 +213,7 @@ width: 24em;
 }
 .panel{
     width: 60em;
-    margin-top: 3em;
+    margin-top: 1em;
     margin-left: 2em;
 }
 .actualizar{
@@ -222,13 +221,13 @@ width: 24em;
     justify-content: space-evenly;
 }
 .imagenP{
-    width: 13em;
-    display: flex;
-    justify-content: center;
-    align-items: center;    
+    width: 8em;
+     height: 8em;   
 }
 .imgPerfil{
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 hr{
     color: #fff;
@@ -237,10 +236,6 @@ h2{
     margin-left: 12em;
 }
 
-/** DATOS DEL PACIENTE*/
-.datos{
-    
-}
 
 /** GALERIA SERVICIOS*/
 .conte{
