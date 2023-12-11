@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Servicios</title>
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/servicios.css">
+
+    <!-- Agrega otros enlaces a tus archivos CSS, scripts, etc. según sea necesario -->
+</head>
+
+<body>
+    <div class="contenedor" id="fondo">
+        <div th:replace="/fragments/navbar ::div"> </div>
+        <main>
+            <section class="galeria"><!-- Galería marvel -->
+                <img src="images/ambulancias.webp" class="d-block" alt="">
+                <img src="images/equipamiento.jpg" class="d-block" alt="">
+                <img src="images/laboratorio2.jpg" class="d-block" alt="">
+                <img src="images/call.webp" class="d-block" alt="">
+            </section>
+            <div class="row mx-3">
+                <div class="title">
+                    <h2>Servicios</h2>
+                </div>
+                <div class="serv d-flex justify-content-evenly">
+                    <div class="card " style="max-width: 540px;"> <!--tarjeta con img nro 1-->
+                        <div class="row g-0">
+                            <div class="col-md-4 img-serv">
+                                <img src="images/ambulancias1.jpg" class="img-fluid my-3 mx-2 h-75" alt="...">
+                            </div>
+                            <div class="col-md-8 ">
+                                <div class="card-body">
+                                    <h5 class="card-title">Ambulancias</h5>
+                                    <p class="card-text">Te brindamos la tranquilidad de contar con una atención rápida ante situaciones de urgencia .
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card " style="max-width: 540px;"> <!--tarjeta con img nro 1-->
+                        <div class="row g-0">
+                            <div class="col-md-4 img-serv">
+                                <img src="images/laboratorio5.jpg" class="img-fluid my-3 mx-2 h-75" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Laboratorios Especializados</h5>
+                                    <p class="card-text">La validación de reactivos en el laboratorio
+                                         es esencial para garantizar la precisión y confiabilidad de los resultados de las pruebas.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--cierra las tarjetas-->
+            </div> <!--cierra el contenedor de la seccion-->
+            <div class="row mx-3 my-3">
+                
+                <div class="serv d-flex justify-content-evenly">
+                    <div class="card " style="max-width: 540px;"> <!--tarjeta con img nro 1-->
+                        <div class="row g-0">
+                            <div class="col-md-4 img-serv">
+                                <img src="images/operadora.webp" class="img-fluid my-3 mx-2 h-75" alt="...">
+                            </div>
+                            <div class="col-md-8 ">
+                                <div class="card-body">
+                                    <h5 class="card-title">Atención Telefónica</h5>
+                                    <p class="card-text">Nuestro personal de atención está capacitado para detectar una posible sintomatología y guiarlos para los primeros auxilios.                  </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card " style="max-width: 540px;"> <!--tarjeta con img nro 1-->
+                        <div class="row g-0">
+                            <div class="col-md-4 img-serv">
+                                <img src="images/domicilio.jpeg" class="img-fluid my-3 mx-2 h-75" alt="...">
+                            </div>
+                            <div class="col-md-8">
+                                <div class="card-body">
+                                    <h5 class="card-title">Laboratorios a Domicilio</h5>
+                                    <p class="card-text">Llevamos el laboratorio a tu domicilio para aquellos con dificultad de traslados, garantizando tu comodidad.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div> <!--cierra las tarjetas-->
+            </div> <!--cierra el contenedor de la seccion-->
+
+            <section class="galeria-servicios">
+                <a href="#image1">
+                    <img src="/images/ambulancias.webp" alt="">
+                    <span>Servicio de Ambulancias</span>
+                </a>
+                <a href="#image2">
+                    <img src="/images/laboratorio3.jpg" alt="">
+                    <span>Laboratorio a Domicilio</span>
+                </a>
+                <a href="#image3">
+                    <img src="/images/call.webp" alt="">
+                    <span>Atención telefónica 24/7</span>
+                </a>
+                <a href="#image3">
+                    <img src="/images/laboratorio2.jpg" alt="">
+                    <span>Exámenes Especializados</span>
+                </a>
+            </section>
+
+    </div>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+</body>
+
+</html>

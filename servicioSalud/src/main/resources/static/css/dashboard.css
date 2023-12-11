@@ -1,8 +1,10 @@
 body {
-   background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
+   background: linear-gradient(to right, #f7f5f55a, #f1eeeeea), url(../images/dashboard.webp);
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
+    height: 100vh;
+    
 }
 
 .contenedor {
@@ -14,7 +16,6 @@ body {
                             "foot foot foot";
     
 }
-
 /*  navabar*/
 .menu
 {background-color: #111;
@@ -24,9 +25,7 @@ body {
 grid-area: lista;
 text-align: center;
 }
-.side{
-   
-}
+
 .panel-body{
     background-color: #11111170;
 }
