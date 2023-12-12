@@ -103,8 +103,6 @@ public class ProfesionalServicio implements UserDetailsService {
     private void validar(String matricula, String dni, String nombre, String apellido, String email, String password,
             String password2, String domicilio, String telefono, String especialidad) throws MiException {
 
-        Profesional correoBD = profesionalRepositorio.buscarPorEmail(email);
-
         if (matricula == null || matricula.isEmpty()) {
             throw new MiException("La matricula no puede ser nulo ni estar vacio");
         }
@@ -131,8 +129,8 @@ public class ProfesionalServicio implements UserDetailsService {
 
     private void validarModificar(String email, String password, String password2, String domicilio, String telefono)
             throws MiException {
-
-        if (email == null || email.isEmpty()) {
+        Profesional correoBD = profesionalRepositorio.buscarPorEmail(email);
+        if (email == null || email.isEmpty() || correoBD != null) {
             throw new MiException("el email no puede ser nulo ni estar vacio");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
