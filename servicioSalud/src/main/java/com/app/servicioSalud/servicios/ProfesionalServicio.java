@@ -60,8 +60,8 @@ public class ProfesionalServicio implements UserDetailsService {
         profesional.setImagen(imagen);
 
         profesionalRepositorio.save(profesional);
-        correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
-        correoServicio.altaProfesional(matricula);
+        //correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
+        //correoServicio.altaProfesional(matricula);
 
     }
 

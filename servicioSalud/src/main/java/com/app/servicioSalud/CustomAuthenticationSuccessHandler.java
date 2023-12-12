@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.util.Collection;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 public class CustomAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 

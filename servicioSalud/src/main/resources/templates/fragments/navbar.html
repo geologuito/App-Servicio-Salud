@@ -1,3 +1,4 @@
+
 <div class="navb">
     <link rel="stylesheet" href="/css/navbar.css">
     <!-- MENU -->
@@ -7,8 +8,8 @@
                 <img class="logo" src="/images/logo1.png" alt="logo ss">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
-                    aria-label="Toggle navigation">
+                data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -17,14 +18,10 @@
                     <a class="nav-link mx-2" href="/profesionales">Doctores</a>
                     <a class="nav-link mx-2" href="#">Especialidades</a>
                     <a class="nav-link mx-2" href="/servicios">Servicios</a>
-<<<<<<< HEAD
-
-=======
                     
->>>>>>> developer
                     <!-- Botón de cerrar sesión visible solo si está autenticado -->
                     <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2 btn btn-primary" href="/logout">Cerrar sesión</a>
-
+                    
                     <!-- Botón de registro que desaparece cuando está autenticado -->
                     <div th:unless="${#authorization.expression('isAuthenticated()')}">
                         <div class="nav-item dropdown">
@@ -37,7 +34,7 @@
                             </div>
                         </div>
                     </div>
-
+                    
                     <!-- Botón de login que desaparece cuando está autenticado -->
                     <div th:unless="${#authorization.expression('isAuthenticated()')}">
                         <div class="nav-item dropdown">

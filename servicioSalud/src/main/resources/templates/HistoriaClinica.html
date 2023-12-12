@@ -1,34 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="/css/bootstrap.css">
-        <link rel="stylesheet" href="/css/formulario.css">
-        <link rel="stylesheet" href="/css/sidebar.css">
-        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
-        <title>App Salud</title>
-    </head>
-    <body>
-        <div class="contenedor">
-            <div th:replace="/fragments/navbar ::div"> </div>
-        </div>
-
-        <p>ID de la Sesión: <span th:text="${session.profesionalsession.id}"></span></p>
-
-        <br>
-        <section class="tabla">
-            <hr class="my-2">
-            <h2 class="fst-italic text-white">Historia Clinica</h2>
-
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Dni</th>
-                        <th scope="col">Apellido</th>
-                        <th scope="col">Nombre</th>
-=======
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <head>
@@ -60,7 +30,6 @@
                         <th scope="col">Apellido</th>
                         <th scope="col">Nombre</th>
                         
->>>>>>> developer
 
                     </tr>
                 </thead>
@@ -72,38 +41,6 @@
 
                 </tbody>
             </table>
-<<<<<<< HEAD
-        </section>
-        <form th:action="@{/hc/creada}" method="post">
-            <label>Matricula profesional</label>
-            <input type=text th:value="${session.profesionalsession.id}" name="profesional_id">
-            <br>
-            <label>DNI paciente</label>
-            <input type=text th:value="${paciente.dni}" name="paciente_dni">
-            <br>
-            <label>Título</label>
-            <input type="text" th:value="${hc.titulo}" name="titulo">
-            <br>
-            <label>Diagnostico</label>
-            <textarea name="dx" rows="10" cols="40" th:value="${hc.dx}" name="dx"></textarea>
-            <br>
-            <label>Tratamiento</label>
-            <input type="text" th:value="${hc.tratamiento}" name="tratamiento">
-            <br>
-
-            <input type="submit" value="Envio" />
-
-        </form>
-
-        <!--* SIDEBAR-->
-        <section th:replace="/fragments/sidebarProfesional :: section"></section>
-
-
-        <footer th:replace="/fragments/footer :: footer"></footer>
-
-    </body>
-</html>
-=======
             <form class="form-box" th:action="@{/hc/creada}" method="post">
                 <p class="title">Crear Historia</p>
                 <div class="row text-white">
@@ -145,4 +82,3 @@
 </body>
 
 </html>
->>>>>>> developer

@@ -1,4 +1,6 @@
+
 package com.app.servicioSalud.controladores;
+
 
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
@@ -12,25 +14,27 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
+
 @Controller
 @RequestMapping("/imagen")
 public class ImagenControlador {
-
+    
     @Autowired
     ProfesionalServicio profesionalServicio;
-
+    
     @GetMapping("/perfil/{id}")
     public ResponseEntity<byte[]> imagenProfesional(@PathVariable String id) {
-
+    
         Profesional profesional = profesionalServicio.getOne(id);
-
+        
         byte[] imagen = profesional.getImagen().getContenido();
 
         HttpHeaders headers = new HttpHeaders();
-
+        
         headers.setContentType(MediaType.IMAGE_JPEG);
-
-        return new ResponseEntity<>(imagen, headers, HttpStatus.OK);
+        
+        return new ResponseEntity<>(imagen, headers , HttpStatus.OK);
     }
-
+    
 }
