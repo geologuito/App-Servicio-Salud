@@ -45,7 +45,7 @@
                                         <td th:text="${profesional.telefono}"></td>
                                         <td th:text="${profesional.especialidad}"></td>
                                         <td>
-                                            <a th:href="@{/profesional/modificar/__${profesional.matricula}__}"><i class="fas fa-feather-alt"></i>
+                                            <a th:href="@{/profesional/modificar/__${profesional.id}__}"><i class="fas fa-feather-alt"></i>
                                                 Modificar </a>
                                         </td> 
                                     </tr>
@@ -53,7 +53,7 @@
                             </table>
                             <div class="imagenP mx-3 bg-info" th:unless="${session.profesionalsession == null}">
                                 <img class="imgPerfil"
-                                     th:src="@{/imagen/perfil/__${session.profesionalsession.matricula}__}" alt="usuario">
+                                     th:src="@{/imagen/perfil/__${session.profesionalsession.id}__}" alt="usuario">
                             </div> <!-- cierra el contenedor ded actualizar -->
                         </div>
                     </section>
@@ -82,8 +82,8 @@
                                 <td th:text="${paciente.email}"></td>
                                 <td th:text="${paciente.telefono}"></td>
                                 <td>
-                                    <a class="mx-2" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
-                                    <a class="mx-2" th:href="@{/hc/listar/__${paciente.dni}__}"> ver </a>
+                                    <a class="mx-2" th:href="@{/hc/crear/__${paciente.id}__}">Crear</a>
+                                    <a class="mx-2" th:href="@{/hc/listar/__${paciente.id}__}">Ver</a>
                                 </td>
 
                             </tr>

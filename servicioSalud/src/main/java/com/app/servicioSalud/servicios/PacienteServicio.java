@@ -29,14 +29,13 @@ public class PacienteServicio implements UserDetailsService {
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
 
-    @Autowired
-    private CorreoServicio correoServicio;
-    
+    //@Autowired
+    //private CorreoServicio correoServicio;
     @Autowired
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrar(MultipartFile archivo, String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2, String edad) throws MiException {
+    public void registrar(MultipartFile archivo, String nombre, String apellido, String dni, String email, String domicilio, String telefono, String password, String password2, String edad) throws MiException {
 
         validar(dni, nombre, apellido, domicilio, telefono, email, password, password2, edad);
 
@@ -57,39 +56,51 @@ public class PacienteServicio implements UserDetailsService {
         pacienteRepositorio.save(paciente);
 
         //correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
-
     }
 
-    public List<Paciente> listarPaciente() {
+    @Transactional
+    public void actualizar(MultipartFile archivo, String idPaciente, String nombre, String apellido, String dni, String email, String domicilio, String telefono, String password, String password2, String edad) throws MiException {
 
-        return pacienteRepositorio.findAll();
+        validar(dni, nombre, apellido, domicilio, telefono, email, password, password2, edad);
 
-    }
-
-    public void modificarPaciente(MultipartFile archivo, String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
-
-        modificarValidacion(domicilio, email, telefono, password, password2);
-
-        Optional<Paciente> respuesta = pacienteRepositorio.findById(dni);
+        Optional<Paciente> respuesta = pacienteRepositorio.findById(idPaciente);
 
         if (respuesta.isPresent()) {
+
             Paciente paciente = respuesta.get();
 
-            paciente.setEmail(email);
+            paciente.setNombre(nombre);
+            paciente.setApellido(apellido);
             paciente.setDomicilio(domicilio);
             paciente.setTelefono(telefono);
+            paciente.setEmail(email);
             paciente.setPassword(new BCryptPasswordEncoder().encode(password));
+            paciente.setRol(RolEnum.PACIENTE);
 
             String idImagen = null;
+
             if (paciente.getImagen() != null) {
                 idImagen = paciente.getImagen().getId();
             }
-            Imagen imagen = imagenServicio.modificar(archivo, idImagen);
+
+            Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
+
             paciente.setImagen(imagen);
+            paciente.setEdad(edad);
 
             pacienteRepositorio.save(paciente);
         }
 
+    }
+
+    @Transactional
+    public List<Paciente> listarPacientes() {
+
+        List<Paciente> pacientes = new ArrayList();
+
+        pacientes = pacienteRepositorio.findAll();
+
+        return pacientes;
     }
 
     private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2, String edad) throws MiException {
@@ -133,29 +144,8 @@ public class PacienteServicio implements UserDetailsService {
         }
     }
 
-    public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
-        if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
-        }
-
-        if (email == null || email.isEmpty()) {
-            throw new MiException("el email no puede ser nulo ni estar vacio");
-        }
-
-        if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
-            throw new MiException("el telefono no puede ser nulo ni estar vacio");
-        }
-        if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
-        }
-
-        if (!password.equals(password2)) {
-            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
-        }
-    }
-
     public Paciente getOne(String id) {
-        return pacienteRepositorio.getReferenceById(id);
+        return pacienteRepositorio.getOne(id);
     }
 
     public void eliminarPaciente(String id) throws MiException {

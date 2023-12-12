@@ -1,25 +1,22 @@
 package com.app.servicioSalud.entidades;
 
-import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
-public class HistoriaClinica {
+public class Calificacion {
 
     //@Id
     //@GeneratedValue(strategy = GenerationType.IDENTITY)
     //private Integer id;
-
+    
     @Id
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
@@ -29,20 +26,9 @@ public class HistoriaClinica {
     @JoinColumn(name = "profesional_id")
     private Profesional profesional;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "paciente_id")
-    private Paciente paciente;
+    private Double puntualidad;
+    private Double mobiliario;
+    private Double atencion;
+    private String comentario;
 
-    private String titulo;
-    private String dx;
-    private String tratamiento;
-
-    @Temporal(TemporalType.DATE)
-    private Date alta;
-
-    private Boolean respuesta = false;
-
-    //@JsonIgnore
-    //@OneToMany(mappedBy = "historiaClinica", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<RegistroConsulta> registrosConsultas = new ArrayList<>();
 }

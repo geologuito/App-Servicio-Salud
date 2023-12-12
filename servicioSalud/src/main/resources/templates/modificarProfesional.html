@@ -15,13 +15,40 @@
             <div th:replace="/fragments/navbar ::div"> </div>
             <section class="reg">
 
-                <form id="form" class="form" th:action="@{/profesional/perfil/__${profesional.matricula}__}" method="POST"
+                <form id="form" class="form" th:action="@{/profesional/modificar/__${profesional.id}__}" method="POST"
                       enctype="multipart/form-data">
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                     <p class="title">Modificar Profesional</p>
 
-                    <input hidden th:value="${matricula}" name="matricula">
+                    <input hidden th:value="${id}" name="matricula">
 
+                    <label class="name">
+                        <input type="text" class="input" required="false" name="nombre" th:value="${profesional.nombre}">
+                        <span>Nombre</span>
+                    </label>
+                    <label class="name">
+                        <input type="text" class="input" required="" name="apellido" th:value="${profesional.apellido}">
+                        <span>Apellido</span>
+                    </label>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <label class="name">
+                            <input type="number" class="input" required="" name="dni" th:value="${profesional.dni}">
+                            <span>DNI</span>
+                        </label>
+                        <label class="name">
+                            <input type="text" class="input" required="" name="edad" th:value="${profesional.edad}">
+                            <span>Edad</span>
+                        </label>
+                    </div>
+                    <label>
+                        <input type="text" class="input" required="" name="matricula" th:value="${profesional.matricula}">
+                        <span>Matricula</span>
+                    </label>
+                    <label>
+                        <input type="text" class="input" required="" name="especialidad" th:value="${profesional.especialidad}">
+                        <span>Especialidad</span>
+                    </label>
                     <label>
                         <input type="email" class="input" required="" name="email" th:value="${profesional.email}">
                         <span>Email</span>

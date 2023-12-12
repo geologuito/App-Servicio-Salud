@@ -29,6 +29,7 @@
                             <table class="table table-success table-striped table-hover w-75">
                                 <thead>
                                     <tr>
+                                        <th scope="col">DNI</th>
                                         <th scope="col">Apellido</th>
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Correo</th>
@@ -38,24 +39,29 @@
                                 </thead>
                                 <tbody>
                                     <tr>
+                                        <td th:text="${paciente.dni}"></td>
                                         <td th:text="${paciente.apellido}"></td>
                                         <td th:text="${paciente.nombre}"></td>
                                         <td th:text="${paciente.email}"></td>
                                         <td th:text="${paciente.telefono}"></td>
                                         <td>
-                                            <a th:href="@{/paciente/modificar}"><i class="fas fa-feather-alt"></i>
+                                            <a th:href="@{/paciente/modificar/__${paciente.id}__}"><i class="fas fa-feather-alt"></i>
                                                 Modificar </a>
-                                        </td>
+                                        </td> 
                                     </tr>
                                 </tbody>
                             </table>
                             <div class="imagenP mx-3 bg-info" th:unless="${session.pacientesession == null}">
-                                <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.pacientesession.dni}__}"
-                                     alt="usuario">
-                            </div>
+                                <img class="imgPerfil"
+                                     th:src="@{/imagen/perfil/__${session.pacientesession.id}__}" alt="usuario">
+                            </div> <!-- cierra el contenedor ded actualizar -->
                         </div><!--Cierra contenedor de datos detalles-->
                     </section><!--Cierra la tabla-->
 
+                </div>
+
+                <div>
+                    <a th:href= "@{/calificacion/crear/__${session.pacientesession.id}__}"><i class="fas fa-feather-alt"></i> Calificar </a>
                 </div>
 
 
@@ -67,20 +73,26 @@
                         <table class="table">
                             <thead>
                                 <tr>
+                                    <th scope="col">Matricula</th>
                                     <th scope="col">Apellido</th>
                                     <th scope="col">Nombre</th>
-                                    <th scope="col">Correo</th>
+                                    <th scope="col">E-mail</th>
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Especialidad</th>
+                                    <th scope="col">Reputacion</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr th:each="profesional : ${profesionales}">
+                                    <td th:text="${profesional.matricula}"></td>
                                     <td th:text="${profesional.apellido}"></td>
                                     <td th:text="${profesional.nombre}"></td>
                                     <td th:text="${profesional.email}"></td>
                                     <td th:text="${profesional.telefono}"></td>
                                     <td th:text="${profesional.especialidad}"></td>
+                                    <td>
+                                        <a th:href= "@{/paciente/puntuacion/__${profesional.id}__}"> VER </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>

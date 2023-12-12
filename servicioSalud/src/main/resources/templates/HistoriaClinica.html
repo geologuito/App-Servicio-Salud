@@ -14,7 +14,7 @@
             <div th:replace="/fragments/navbar ::div"> </div>
         </div>
 
-        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+        <p>ID de la Sesión: <span th:text="${session.profesionalsession.id}"></span></p>
 
         <br>
         <section class="tabla">
@@ -41,13 +41,20 @@
         </section>
         <form th:action="@{/hc/creada}" method="post">
             <label>Matricula profesional</label>
-            <input type=text th:value="${session.profesionalsession.matricula}" name="profesional_id">
+            <input type=text th:value="${session.profesionalsession.id}" name="profesional_id">
             <br>
             <label>DNI paciente</label>
-            <input type=text th:value="${paciente.dni}" name="paciente_id">
+            <input type=text th:value="${paciente.dni}" name="paciente_dni">
+            <br>
+            <label>Título</label>
+            <input type="text" th:value="${hc.titulo}" name="titulo">
             <br>
             <label>Diagnostico</label>
-            <textarea  name="dx" rows="10" cols="40"></textarea>
+            <textarea name="dx" rows="10" cols="40" th:value="${hc.dx}" name="dx"></textarea>
+            <br>
+            <label>Tratamiento</label>
+            <input type="text" th:value="${hc.tratamiento}" name="tratamiento">
+            <br>
 
             <input type="submit" value="Envio" />
 
