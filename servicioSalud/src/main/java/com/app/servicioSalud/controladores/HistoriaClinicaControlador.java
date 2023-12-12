@@ -10,7 +10,6 @@ import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.servicios.CorreoServicio;
 import com.app.servicioSalud.servicios.HistoriaClinicaServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
-import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +31,6 @@ public class HistoriaClinicaControlador {
 
     @Autowired
     private HistoriaClinicaServicio historiaClinicaServicio;
-
-    @Autowired
-    private ProfesionalServicio profesionalServicio;
 
     @Autowired
     private PacienteServicio pacienteServicio;
