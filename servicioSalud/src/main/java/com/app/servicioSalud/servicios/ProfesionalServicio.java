@@ -32,12 +32,14 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Autowired
     private ImagenServicio imagenServicio;
-    
+
     @Autowired
     private CorreoServicio correoServicio;
 
     @Transactional
-    public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario) throws MiException {
+    public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido,
+            String email, String password, String password2, String domicilio, String telefono, Boolean activo,
+            String especialidad, Integer consulta, Date horario) throws MiException {
 
         validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, especialidad);
 
@@ -62,7 +64,6 @@ public class ProfesionalServicio implements UserDetailsService {
         profesionalRepositorio.save(profesional);
         correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
         correoServicio.altaProfesional(matricula);
-        
 
     }
 
@@ -72,7 +73,8 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
-    public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
+    public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password,
+            String password2, String domicilio, String telefono) throws MiException {
 
         validarModificar(email, password, password2, domicilio, telefono);
 
@@ -98,9 +100,8 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
-    private void validar(String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, String especialidad) throws MiException {
-
-        Profesional correoBD = profesionalRepositorio.buscarPorEmail(email);
+    private void validar(String matricula, String dni, String nombre, String apellido, String email, String password,
+            String password2, String domicilio, String telefono, String especialidad) throws MiException {
 
         if (matricula == null || matricula.isEmpty()) {
             throw new MiException("La matricula no puede ser nulo ni estar vacio");
@@ -118,22 +119,7 @@ public class ProfesionalServicio implements UserDetailsService {
             throw new MiException("el apellido no puede ser nulo ni estar vacio");
         }
 
-        if (email == null || email.isEmpty() || correoBD != null) {
-            throw new MiException("el email no puede ser nulo ni estar vacio o esta repetido");
-        }
-        if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
-        }
-        if (!password.equals(password2)) {
-            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
-        }
-        if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
-        }
-
-        if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
-            throw new MiException("el telefono no puede ser nulo ni estar vacio");
-        }
+        validarModificar(email, password, password2, domicilio, telefono);
 
         if (especialidad == null || especialidad.isEmpty()) {
             throw new MiException("La especialidad no puede ser nulo ni estar vacio");
@@ -141,9 +127,10 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
-    private void validarModificar(String email, String password, String password2, String domicilio, String telefono) throws MiException {
-
-        if (email == null || email.isEmpty()) {
+    private void validarModificar(String email, String password, String password2, String domicilio, String telefono)
+            throws MiException {
+        Profesional correoBD = profesionalRepositorio.buscarPorEmail(email);
+        if (email == null || email.isEmpty() || correoBD != null) {
             throw new MiException("el email no puede ser nulo ni estar vacio");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
@@ -177,7 +164,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
         if (profesional != null) {
 
-            List<GrantedAuthority> permisos = new ArrayList();
+            List<GrantedAuthority> permisos = new ArrayList<>();
 
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + profesional.getRol().toString());
 

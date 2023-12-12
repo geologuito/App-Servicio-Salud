@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reservar Turno</title>
+    <title>Reserva de Turno</title>
 </head>
 <body>
     <h1>Crear Calendario </h1>
@@ -10,7 +10,7 @@
             
     <form th:action="@{/turno/creado}" method="post">
         <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required ><br><br>
+        <input type="text" id="fecha" name="fecha" required><br><br>
         
         <label for="horaa">Hora Inicio:</label>
         <input type="text" name="horaInicio" required><br><br>
@@ -25,8 +25,18 @@
             
         <button type="submit">crear</button>
     </form>
+    
+    <div th:if="${exito}" style="color: green;">
+        <p th:text="${exito}"></p>
+    </div>
+    
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
 </body>
 </html>
+
+
 
 
 

@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.servicioSalud.controladores;
 
 import com.app.servicioSalud.entidades.HistoriaClinica;
@@ -10,7 +6,6 @@ import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.servicios.CorreoServicio;
 import com.app.servicioSalud.servicios.HistoriaClinicaServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
-import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
 import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,9 +27,6 @@ public class HistoriaClinicaControlador {
 
     @Autowired
     private HistoriaClinicaServicio historiaClinicaServicio;
-
-    @Autowired
-    private ProfesionalServicio profesionalServicio;
 
     @Autowired
     private PacienteServicio pacienteServicio;
