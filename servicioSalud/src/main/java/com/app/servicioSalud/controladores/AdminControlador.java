@@ -24,8 +24,14 @@ public class AdminControlador {
     private ProfesionalServicio profesionalServicio;
 
     @GetMapping("/dashboard")
-    public String panelAdministrativo() {
-        return "panelAdmin.html";
+    public String panelAdministrativo(ModelMap modelo) {
+
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
+        modelo.addAttribute("pacientes", pacientes);
+        modelo.addAttribute("profesional", profesionales);
+
+        return "dashboard";
     }
 
     @GetMapping("/pacientes")
@@ -37,7 +43,8 @@ public class AdminControlador {
     }
 
     @GetMapping("/modificarPaciente/{dni}")
-    public String modificarPaciente(@PathVariable String dni, MultipartFile archivo, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+    public String modificarPaciente(@PathVariable String dni, MultipartFile archivo, String email, String domicilio,
+            String telefono, String password, String password2) throws MiException {
 
         pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password2);
 
@@ -49,15 +56,16 @@ public class AdminControlador {
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
         modelo.addAttribute("profesional", profesionales);
 
-        return "profesionalList";
+        return "listarProfesional";
     }
 
     @GetMapping("/modificarProfesional/{matricula}")
-    public String modificarProfesional(@PathVariable String matricula, MultipartFile archivo, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+    public String modificarProfesional(@PathVariable String matricula, MultipartFile archivo, String email,
+            String domicilio, String telefono, String password, String password2) throws MiException {
 
         profesionalServicio.modificarProfesional(archivo, matricula, email, password, password2, domicilio, telefono);
 
-        return "redirect:/admin/profesionales";
+        return "redirect:/admin/profesional";
     }
 
 }

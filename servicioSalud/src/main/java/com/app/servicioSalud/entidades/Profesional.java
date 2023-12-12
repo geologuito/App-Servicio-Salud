@@ -8,18 +8,18 @@ import lombok.Data;
 
 @Entity
 @Data
-//@Table(name = "profesional")
-public class Profesional{
- 
+// @Table(name = "profesional")
+public class Profesional {
+
     @Id
     @Column(unique = true)
-    private String matricula; 
+    private String matricula;
     private String dni;
     private String nombre;
     private String apellido;
     private String email;
     private String password;
-    private String domicilio; //decidir si se deja o lo sacamos
+    private String domicilio; // decidir si se deja o lo sacamos
     private String telefono;
     private Boolean activo = false;
     private String especialidad;
@@ -32,13 +32,13 @@ public class Profesional{
     private Paciente paciente;
     @OneToMany(mappedBy = "profesional")
     private List<Turno> turno;
-    
+
     @Enumerated(EnumType.STRING)
     private RolEnum rol;
-    
+
     @OneToOne
     private Imagen imagen;
-    
-    @OneToMany(mappedBy = "profesional")  
-     private List<Calificacion> calificacion;
+
+    @OneToMany(mappedBy = "profesional")
+    private List<Calificacion> calificacion;
 }

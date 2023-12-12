@@ -24,7 +24,9 @@
             <div class="contenedora" id="form">
                 <section class="tabla ">
                     <hr class="my-2">
-                    <h3 class="fst-italic text-white">Datos del Paciente</h3>
+                    <h3 class="fst-italic text-white" th:if="${session.pacientesession != null}"
+                        th:text=" 'Panel '+ ${session.pacientesession.nombre} + ' ' + ${session.pacientesession.apellido} ">
+                    </h3>
                     <div class="datos d-flex">
                         <table class="table table-success table-striped table-hover w-75">
                             <thead>
@@ -43,14 +45,15 @@
                                     <td th:text="${paciente.email}"></td>
                                     <td th:text="${paciente.telefono}"></td>
                                     <td>
-                                        <a th:href="@{/paciente/modificar}"><i class="fas fa-feather-alt"></i>
+                                        <a th:href="@{/paciente/modificar/__${paciente.dni}__}"><i
+                                                class="fas fa-feather-alt"></i>
                                             Modificar </a>
                                     </td>
                                 </tr>
                             </tbody>
                         </table>
                         <div class="imagenP mx-3 bg-info" th:unless="${session.pacientesession == null}">
-                            <img class="imgPerfil" th:src="@{/imagen/perfil/__${session.pacientesession.dni}__}"
+                            <img class="imgPerfil" th:src="@{/imagen/paciente/__${session.pacientesession.dni}__}"
                                 alt="usuario">
                         </div>
                     </div><!--Cierra contenedor de datos detalles-->
@@ -75,7 +78,7 @@
                 <section class="tabla">
                     <hr class="my-2">
                     <h2 class="fst-italic text-white">Doctores</h2>
-                    <table class="table">
+                    <table class="table table-success table-striped table-hover">
                         <thead>
                             <tr>
                                 <th scope="col">Apellido</th>

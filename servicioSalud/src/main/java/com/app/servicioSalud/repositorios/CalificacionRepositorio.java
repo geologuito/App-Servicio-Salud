@@ -18,7 +18,7 @@ import org.springframework.stereotype.Repository;
  * @author EduRiu
  */
 @Repository
-public interface CalificacionRepositorio extends JpaRepository<Calificacion, String> {
+public interface CalificacionRepositorio extends JpaRepository<Calificacion, Integer> {
 
 //    @Query("SELECT c FROM Calificacion c WHERE c.profesional.matricula = :profesionalId")
 //    List<Calificacion> buscarPorMatricula(@Param("profesioanlId") String profesionalId);
