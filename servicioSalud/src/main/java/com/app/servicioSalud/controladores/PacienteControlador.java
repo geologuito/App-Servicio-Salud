@@ -101,23 +101,22 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, ModelMap modelo) {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
-        System.out.println("modificar");
-        return "modificarlPaciente.html";// mapear con html
+        
+        return "modificarPaciente.html";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
     public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,MultipartFile archivo,
-            ModelMap modelo) throws MiException {
+            ModelMap modelo) {
         try {
-                //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
-            pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
+                pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password);
 
             return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
         
             modelo.put("error", ex.getMessage());
-            return "modificarlPaciente.html"; // mapear con html
+            return "modificarPaciente.html"; // mapear con html
         }
     }
 

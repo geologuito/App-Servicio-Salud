@@ -25,5 +25,10 @@ public class PortalControlador {
 
         return "profesionales";
     }
+    @GetMapping("/us")
+    public String us() {
+
+        return "us";
+    }
     
 }
