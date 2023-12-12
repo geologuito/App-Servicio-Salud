@@ -5,16 +5,14 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 @Entity
 @Data
+//@Table(name = "profesional")
 public class Profesional {
 
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
-    private String id;
+    @Column(unique = true)
     private String matricula;
     private String dni;
     private String nombre;
@@ -26,14 +24,12 @@ public class Profesional {
     private Boolean activo = false;
     private String especialidad;
     private Integer consulta;
-
     @Temporal(TemporalType.DATE)
     private Date horario;
 
     @ManyToOne
-    @JoinColumn(name = "paciente_dni")
+    @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-
     @OneToMany(mappedBy = "profesional")
     private List<Turno> turno;
 
@@ -42,7 +38,7 @@ public class Profesional {
 
     @OneToOne
     private Imagen imagen;
-    
-    @OneToMany(mappedBy = "profesional")  
-     private List<Calificacion> calificacion;
+
+    @OneToMany(mappedBy = "profesional")
+    private List<Calificacion> calificacion;
 }

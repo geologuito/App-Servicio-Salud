@@ -11,6 +11,10 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ *
+ * @author EduRiu
+ */
 @Service
 public class HistoriaClinicaServicio {
 
@@ -21,7 +25,6 @@ public class HistoriaClinicaServicio {
     public void crearHC(Profesional profesional_id, Paciente paciente_id, String titulo, String dx, String tratamiento) {
 
         HistoriaClinica historiaClinica = new HistoriaClinica();
-
         historiaClinica.setProfesional(profesional_id);
         historiaClinica.setPaciente(paciente_id);
         historiaClinica.setTitulo(titulo);
@@ -33,7 +36,7 @@ public class HistoriaClinicaServicio {
 
     }
 
-    public void modificacionHC(String id, Profesional profesional_id, Paciente paciente_id, String titulo, String dx, String tratamiento) {
+    public void modificacionHC(String id, Profesional profesional_id, Paciente paciente_id,String titulo, String dx, String tratamiento) {
 
         Optional<HistoriaClinica> respuesta = historiaClinicaRepositorio.findById(id);
 
@@ -55,26 +58,26 @@ public class HistoriaClinicaServicio {
         return historiaClinicaRepositorio.findAll();
 
     }
-
-    public List<HistoriaClinica> listarPorDNI(String paciente_id) {
-
+    
+    public List<HistoriaClinica> listarPorDNI(String paciente_id){
+        
         List<HistoriaClinica> hc = historiaClinicaRepositorio.buscarPorDNI(paciente_id);
-
+        
         return hc;
     }
 
     public HistoriaClinica getOne(String id) {
         return historiaClinicaRepositorio.getReferenceById(id);
     }
-
-    public void modificacionEstado(String id) {
+    
+     public void modificacionEstado(String id) {
 
         Optional<HistoriaClinica> respuesta = historiaClinicaRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
             HistoriaClinica historiaClinica = respuesta.get();
 
-            historiaClinica.setRespuesta(Boolean.TRUE);
+           historiaClinica.setRespuesta(Boolean.TRUE);
 
             historiaClinicaRepositorio.save(historiaClinica);
 

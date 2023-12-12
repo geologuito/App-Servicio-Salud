@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.app.servicioSalud.controladores;
 
 import com.app.servicioSalud.entidades.HistoriaClinica;
@@ -17,6 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ *
+ * @author EduRiu
+ */
 @Controller
 @RequestMapping("/hc")
 public class HistoriaClinicaControlador {
@@ -53,7 +61,8 @@ public class HistoriaClinicaControlador {
         System.out.println("antes del exito");
 
         historiaClinicaServicio.crearHC(profesional_id, paciente_id, titulo, dx, tratamiento);
-
+        
+            
         correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
         System.out.println("creada con exito");
 

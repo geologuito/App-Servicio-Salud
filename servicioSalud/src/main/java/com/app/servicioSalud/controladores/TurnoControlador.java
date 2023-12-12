@@ -68,7 +68,7 @@ public class TurnoControlador {
 
     @GetMapping("/buscarPorFecha")
     public String buscarTurnosPorFecha(ModelMap modelo, @RequestParam LocalDate fecha) {
-
+        
         List<Turno> turnos = turnoServicio.listarTurnoPorFecha(fecha);
         modelo.addAttribute("turnos", turnos);
         return "lista_turnos";

@@ -4,6 +4,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+
 @Controller
 @RequestMapping("/") // localhost:8080
 public class PortalControlador {
@@ -13,17 +14,20 @@ public class PortalControlador {
 
         return "index";
     }
-
     @GetMapping("/servicios")
-    public String servicios() {
-
+    public String servicios(){
+        
         return "servicios";
     }
-
     @GetMapping("/profesionales")
     public String profesionales() {
 
         return "profesionales";
     }
+    @GetMapping("/us")
+    public String us() {
 
+        return "us";
+    }
+    
 }

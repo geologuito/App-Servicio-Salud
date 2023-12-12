@@ -12,29 +12,32 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
 
+/**
+ * @author Luciano Otegui
+ */
 @Data
 @Entity
 public class HistoriaClinica {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "profesional_id")
+    @JoinColumn (name = "profesional_id")
     private Profesional profesional;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-
+    
     private String titulo;
-    private String dx;
+    private String dx;    
     private String tratamiento;
-
+    
+       
     @Temporal(TemporalType.DATE)
     private Date alta;
-
+    
     private Boolean respuesta = false;
 
     //@JsonIgnore

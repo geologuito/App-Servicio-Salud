@@ -6,10 +6,16 @@ footer {
     width: 100%;
     display: flex;
     justify-content: center;
-    background-color: #f1e5e5; 
+    background-color: #27d1a9e3; 
     color: white; 
     padding: 10px; 
     color: rgb(54, 52, 52); 
+}
+span{
+    font-weight: 700;
+}
+p {
+    height: 10px;
 }
 a{
     text-decoration: none;

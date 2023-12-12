@@ -32,7 +32,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Autowired
     private ImagenServicio imagenServicio;
-
+    
     @Autowired
     private CorreoServicio correoServicio;
 
@@ -62,6 +62,7 @@ public class ProfesionalServicio implements UserDetailsService {
         profesionalRepositorio.save(profesional);
         //correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
         //correoServicio.altaProfesional(matricula);
+        
 
     }
 

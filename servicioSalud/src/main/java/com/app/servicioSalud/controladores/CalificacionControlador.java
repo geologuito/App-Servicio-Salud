@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
 package com.app.servicioSalud.controladores;
 
 import com.app.servicioSalud.entidades.HistoriaClinica;
@@ -17,7 +21,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-
+/**
+ *
+ * @author EduRiu
+ */
 @Controller
 @RequestMapping("/calificacion")
 public class CalificacionControlador {
