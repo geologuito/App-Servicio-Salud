@@ -1,17 +1,14 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.servicioSalud;
-
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  *
  * @author EduRiu
  */
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -27,8 +24,9 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             Authentication authentication) throws IOException, ServletException {
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-
-        if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_PACIENTE"))) {
+        if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
+            response.sendRedirect("/admin/dashboard");
+        } else if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_PACIENTE"))) {
             response.sendRedirect("/paciente/perfil");
         } else if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_PROFESIONAL"))) {
             response.sendRedirect("/profesional/perfil");

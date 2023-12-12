@@ -23,9 +23,14 @@ import org.hibernate.annotations.GenericGenerator;
 public class Calificacion {
     
     @Id
+<<<<<<< HEAD
     @GeneratedValue(generator = "uuid")
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
+=======
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Integer id;
+>>>>>>> developer
     
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "profesional_id")

@@ -1,44 +1,47 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
-    <body>
-        <div>TODO write content</div>
 
-        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
-        <p>REGISTRO: <span th:text="${hc.id}"></span></p>
-        <p>REGISTRO: <span th:text="${hc.titulo}"></span></p>
-        <br>
-        <section class="tabla">
-            <hr class="my-2">
-            <h2 class="fst-italic text-white">Turnos del día</h2>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
 
-            <table class="table">
-                <thead>
-                    <tr>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Diagnostico</th>
-                        <th scope="col">Tratamiento</th>
-                        <th scope="col">Modificar (ver)</th>
+<body>
+    <div>TODO write content</div>
 
-                    </tr>
-                </thead>
-                <tbody th:each="hc : ${hc}">
-                    <tr>
-                        <td th:text="${hc.alta}"></td>
-                        <td th:text="${hc.dx}"></td>
-                        <td th:text="${hc.tratamiento}"></td>
-                        <td>
-                            <a th:href= "@{/hc/modificar/__${hc.id}__}">  ver </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-        </section>
+    <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+    <p>REGISTRO: <span th:text="${hc.id}"></span></p>
+    <p>REGISTRO: <span th:text="${hc.titulo}"></span></p>
+    <br>
+    <section class="tabla">
+        <hr class="my-2">
+        <h2 class="fst-italic text-white">Turnos del día</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Fecha</th>
+                    <th scope="col">Diagnostico</th>
+                    <th scope="col">Tratamiento</th>
+                    <th scope="col">Modificar (ver)</th>
+
+                </tr>
+            </thead>
+            <tbody th:each="hc : ${hc}">
+                <tr>
+                    <td th:text="${hc.alta}"></td>
+                    <td th:text="${hc.dx}"></td>
+                    <td th:text="${hc.tratamiento}"></td>
+                    <td>
+                        <a th:href="@{/hc/modificar/__${hc.id}__}"> ver </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
 
-    </body>
+</body>
+
 </html>
