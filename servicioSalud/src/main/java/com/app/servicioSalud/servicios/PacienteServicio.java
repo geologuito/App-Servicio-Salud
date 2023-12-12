@@ -56,7 +56,7 @@ public class PacienteServicio implements UserDetailsService {
 
         pacienteRepositorio.save(paciente);
 
-        // correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
+        correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
 
     }
 
@@ -169,7 +169,7 @@ public class PacienteServicio implements UserDetailsService {
 
         if (paciente != null) {
 
-            List<GrantedAuthority> permisos = new ArrayList();
+            List<GrantedAuthority> permisos = new ArrayList<>();
 
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + paciente.getRol().toString());
 

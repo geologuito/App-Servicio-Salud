@@ -1,13 +1,8 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package com.app.servicioSalud.servicios;
 
 import com.app.servicioSalud.entidades.HistoriaClinica;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
-import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.HistoriaClinicaRepositorio;
 import java.util.Date;
 import java.util.List;
@@ -30,7 +25,6 @@ public class HistoriaClinicaServicio {
     public void crearHC(Profesional profesional_id, Paciente paciente_id, String titulo, String dx, String tratamiento) {
 
         HistoriaClinica historiaClinica = new HistoriaClinica();
-     
         historiaClinica.setProfesional(profesional_id);
         historiaClinica.setPaciente(paciente_id);
         historiaClinica.setTitulo(titulo);
@@ -74,6 +68,21 @@ public class HistoriaClinicaServicio {
 
     public HistoriaClinica getOne(String id) {
         return historiaClinicaRepositorio.getReferenceById(id);
+    }
+    
+     public void modificacionEstado(String id) {
+
+        Optional<HistoriaClinica> respuesta = historiaClinicaRepositorio.findById(id);
+
+        if (respuesta.isPresent()) {
+            HistoriaClinica historiaClinica = respuesta.get();
+
+           historiaClinica.setRespuesta(Boolean.TRUE);
+
+            historiaClinicaRepositorio.save(historiaClinica);
+
+        }
+
     }
 
 }
