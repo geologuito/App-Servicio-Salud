@@ -35,25 +35,25 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
-                .antMatchers("/admin/").hasRole("ADMIN")
-                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
-                .antMatchers("/paciente/login").permitAll()
-                .antMatchers("/profesional/login").permitAll()
-                .antMatchers("/paciente/**").hasRole("PACIENTE")
-                .antMatchers("/profesional/**").hasRole("PROFESIONAL")
+        http
+                .authorizeRequests()
+                    .antMatchers("/admin/").hasRole("ADMIN")
+                    .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
+                    .antMatchers("/paciente/login").permitAll()
+                    .antMatchers("/profesional/login").permitAll()
+                    .antMatchers("/paciente/**").hasRole("PACIENTE")
+                    .antMatchers("/profesional/**").hasRole("PROFESIONAL")
                 .and().formLogin()
-                .loginProcessingUrl("/logincheck")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .successHandler(new CustomAuthenticationSuccessHandler())
+                    .loginPage("/login")
+                    .loginProcessingUrl("/logincheck")
+                    .usernameParameter("email")
+                    .passwordParameter("password")
+                    .successHandler(new CustomAuthenticationSuccessHandler())
                 .and().logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/login")
+                    .logoutUrl("/logout")
+                    .logoutSuccessUrl("/login")
                 .and().csrf().disable();
-
     }
-
     @Bean
     public AuthenticationSuccessHandler authenticationSuccessHandler() {
         return new CustomAuthenticationSuccessHandler();

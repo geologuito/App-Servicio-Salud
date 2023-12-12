@@ -26,9 +26,9 @@
                     <hr class="my-2">
                     <h3 class="fst-italic text-white">Datos del Paciente</h3>
                     <div class="datos d-flex">
-                        <table class="table table-success table-striped table-hover w-75">
+                        <table class="table table-success table-striped table-hover w-100">
                             <thead>
-                                <tr>
+                                <tr  class="text-center">
                                     <th scope="col">Apellido</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Correo</th>
@@ -37,14 +37,17 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr  class="text-center">
                                     <td th:text="${paciente.apellido}"></td>
                                     <td th:text="${paciente.nombre}"></td>
                                     <td th:text="${paciente.email}"></td>
                                     <td th:text="${paciente.telefono}"></td>
                                     <td>
-                                        <a th:href="@{/paciente/modificar/__${paciente.dni}__}"><i class="fas fa-feather-alt"></i>
+                                        <a th:href="@{/paciente/modificar/__${paciente.dni}__}"  class=" mx-3"><i class="fa-solid fa-pen" style="color: #454242;"></i>
                                             Modificar </a>
+                                            <a th:href="@{/calificacion/crear/__${session.pacientesession.dni}__}">
+                                                <i class="fa-solid fa-star"style="color: #454242;"></i> Calificar
+                                            </a>
                                     </td>
                                 </tr>
                             </tbody>
@@ -54,21 +57,9 @@
                                 alt="usuario">
                         </div>
                     </div><!--Cierra contenedor de datos detalles-->
-
-                    <a th:href="@{/paciente/modificar/__${session.pacientesession.dni}__}"><i
-                            class="fas fa-feather-alt"></i> Modificar </a>
-
                 </section><!--Cierra la tabla-->
 
             </div>
-
-            <div>
-                <a th:href="@{/calificacion/crear/__${session.pacientesession.dni}__}">
-                    <i class="fas fa-feather-alt"></i> Calificar
-                </a>
-            </div>
-
-
 
             <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
             <div class="contenedora" id="tabla">
@@ -94,7 +85,7 @@
                                 <td th:text="${profesional.telefono}"></td>
                                 <td th:text="${profesional.especialidad}"></td>
                                 <td>
-                                    <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> VER </a>
+                                    <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> Ver </a>
                                 </td>
                             </tr>
                         </tbody>

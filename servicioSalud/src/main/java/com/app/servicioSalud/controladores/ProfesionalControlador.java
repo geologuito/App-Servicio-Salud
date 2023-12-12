@@ -63,7 +63,7 @@ public class ProfesionalControlador {
 
             return "registroProfesional.html";
         }
-        return "redirect:/";
+        return "redirect:../login";
     }
 
     @GetMapping("/login")

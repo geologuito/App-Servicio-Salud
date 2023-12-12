@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RequestParam;
  * @author EduRiu
  */
 @Controller
-@RequestMapping("/hc")
+@RequestMapping("/hc") 
 public class HistoriaClinicaControlador {
 
     @Autowired
@@ -66,7 +66,7 @@ public class HistoriaClinicaControlador {
         correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
         System.out.println("creada con exito");
 
-        return "redirect:/";
+        return "redirect:../profesional/perfil";
     }
 
     @GetMapping("/listar/{id}") // localhost:8080/paciente/registrar
