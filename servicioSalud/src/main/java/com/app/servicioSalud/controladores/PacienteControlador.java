@@ -92,7 +92,7 @@ public class PacienteControlador {
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("paciente", paciente);
 
-        return "panelPaciente";
+        return "panelPaciente.html";
 
     }
 
@@ -108,7 +108,7 @@ public class PacienteControlador {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
         System.out.println("modificar");
-        return "modificarlPaciente.html";// mapear con html
+        return "modificarPaciente.html";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
@@ -123,7 +123,7 @@ public class PacienteControlador {
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
-            return "modificarlPaciente.html"; // mapear con html
+            return "modificarPaciente.html"; // mapear con html
         }
     }
 
