@@ -1,6 +1,5 @@
 package com.app.servicioSalud.controladores;
 
-import com.app.servicioSalud.entidades.Calificacion;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +14,6 @@ import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.CalificacionServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
-import java.sql.Array;
 import java.util.List;
 import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;

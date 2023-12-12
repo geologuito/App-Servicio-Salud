@@ -166,7 +166,6 @@
   height: 20em;
   flex-direction: column;
 }
-
 /*section de galeria servicios*/
 
 /*? SECCION DE TARJETAS*/
@@ -204,7 +203,6 @@
 .galeria-servicios > a:hover span {
   opacity: 1;
 }
-
 .galeria-servicios img {
   margin-left: 0.5em;
   max-width: 100%;
