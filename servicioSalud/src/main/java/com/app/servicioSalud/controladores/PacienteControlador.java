@@ -36,7 +36,7 @@ public class PacienteControlador {
 
     @GetMapping("/registrar") // localhost:8080/paciente/registrar
     public String registrar() {
-        return "registroPaciente";
+        return "registroPaciente.html";
     }
 
     @PostMapping("/registro")
@@ -46,16 +46,15 @@ public class PacienteControlador {
 
         try {
 
-            pacienteServicio.registrar(archivo, nombre, apellido, dni, email, domicilio, telefono, password, password2, edad);
+            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2, edad);
 
-            modelo.put("exito", "¡Paciente Registrado!");
-
-            return "index.html";
+            modelo.put("exito", "Usuario Registrado!");
 
         } catch (MiException ex) {
 
-            //   List<Profesional> profesionales = profesionalServicio.listarProfesionales();
-            //   modelo.addAttribute("profesionales", profesionales);
+            List<Profesional> profesionales = profesionalServicio.listarProfesional();
+            modelo.addAttribute("profesionales", profesionales);
+
             modelo.put("error", ex.getMessage());
             modelo.put("dni", dni);
             modelo.put("nombre", nombre);
@@ -67,6 +66,7 @@ public class PacienteControlador {
 
             return "registroPaciente.html";
         }
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -79,84 +79,63 @@ public class PacienteControlador {
         return "loginPaciente.html";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_PACIENTE', 'ROLE_ADMIN')")
-    @GetMapping("/index")
-    public String inicio(HttpSession session) {
-
-        Paciente logueado = (Paciente) session.getAttribute("pacientesession");
-
-        if (logueado.getRol().toString().equals("ADMIN")) {
-            return "redirect:/admin/dashboard";
-        }
-
-        return "index.html";
-    }
-
-    @PreAuthorize("hasAnyRole('ROLE_PACIENTE', 'ROLE_ADMIN')")
-    @GetMapping("/paciente")
-    public String perfil(ModelMap modelo, HttpSession session) {
+    @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
+    @GetMapping("/perfil")
+    public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-
-        List<Profesional> profesionales = profesionalServicio.listarProfesionales();
+        System.out.println("perfil");
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
 
         modelo.addAttribute("profesionales", profesionales);
-        //modelo.addAttribute("paciente", paciente);
+        modelo.addAttribute("paciente", paciente);
 
-        modelo.put("paciente", paciente); //
+        return "panelPaciente";
 
-        return "panelPaciente.html";
-    }
-
-    //  @GetMapping("/modificar/{dni}")
-    //public String modificar(@PathVariable String dni, ModelMap modelo) {
-    //  modelo.put("paciente", pacienteServicio.getOne(dni));
-    //return "pacienteModificar";// mapear con html
-    //}
-    @PreAuthorize("hasAnyRole('ROLE_PACIENTE', 'ROLE_ADMIN')")
-    @PostMapping("/paciente/{id}")
-    public String actualizar(MultipartFile archivo, @PathVariable String id, @RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
-            @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, String edad, ModelMap modelo) throws MiException {
-        try {
-
-            pacienteServicio.actualizar(archivo, id, nombre, apellido, dni, email, domicilio, telefono, password, password2, edad);
-
-            modelo.put("exito", "Paciente registrado con Exito");
-
-            return "panelPaciente.html"; // si esta todo ok va a ir a panelPaciente
-
-        } catch (MiException ex) {
-
-            modelo.put("error", ex.getMessage());
-            modelo.put("dni", dni);
-            modelo.put("nombre", nombre);
-            modelo.put("apellido", apellido);
-            modelo.put("email", email);
-            modelo.put("domicilio", domicilio);
-            modelo.put("telefono", telefono);
-            modelo.put("edad", edad);
-
-            return "pacienteModificar.html"; // mapear con html
-        }
     }
 
     @GetMapping("/listaPacientes")
     public String listarPaciente(ModelMap modelo) { // lista de pacientes.
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();
+        modelo.addAttribute("pacientes", pacientes);
         return "listarPaciente"; // para mapear con
     }
 
-    @GetMapping("/eliminar/{id}")
-    public String eliminarPaciente(@PathVariable String id, ModelMap modelo) throws MiException {
+    @GetMapping("/modificar/{dni}")
+    public String modificar(@PathVariable String dni, ModelMap modelo) {
 
-        pacienteServicio.eliminarPaciente(id);
+        modelo.put("paciente", pacienteServicio.getOne(dni));
+        System.out.println("modificar");
+        return "modificarlPaciente.html";// mapear con html
+    }
+
+    @PostMapping("/modificar/{dni}")
+    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password, MultipartFile archivo,
+            ModelMap modelo) throws MiException {
+        try {
+            //pacienteServicio.modificarPaciente(dni, email, domicilio, telefono, password, password);
+            pacienteServicio.modificarValidacion(domicilio, email, telefono, password, password);
+
+            return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
+
+        } catch (MiException ex) {
+
+            modelo.put("error", ex.getMessage());
+            return "modificarlPaciente.html"; // mapear con html
+        }
+    }
+
+    @GetMapping("/eliminar/{dni}")
+    public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
+
+        pacienteServicio.eliminarPaciente(dni);
         return "redirect:/index"; // Falta vista para saber a donde va cuando elimina paciente
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarPaciente(@PathVariable String id) {
+    @DeleteMapping("/eliminar/{dni}")
+    public ResponseEntity<String> eliminarPaciente(@PathVariable String dni) {
         try {
-            pacienteServicio.eliminarPaciente(id);
+            pacienteServicio.eliminarPaciente(dni);
             return new ResponseEntity<>("Paciente eliminado con éxito", HttpStatus.OK);
         } catch (MiException ex) {
             return new ResponseEntity<>("Error al eliminar el Paciente: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
@@ -182,5 +161,4 @@ public class PacienteControlador {
 
         return "reputacion";
     }
-
 }

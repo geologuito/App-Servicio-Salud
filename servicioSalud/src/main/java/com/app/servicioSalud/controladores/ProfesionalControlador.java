@@ -33,8 +33,8 @@ public class ProfesionalControlador {
 
     @GetMapping("/registrar") // localhost:8080/profesional/registrar
     public String registrar() {
-
         return "registroProfesional";
+
     }
 
     @PostMapping("/registro")
@@ -81,7 +81,7 @@ public class ProfesionalControlador {
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
 
         // Obtener la lista de profesionales
-        List<Paciente> pacientes = pacienteServicio.listarPacientes();
+        List<Paciente> pacientes = pacienteServicio.listarPaciente();
 
         // Agregar profesionales y el profesional actual al modelo
         modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
@@ -90,67 +90,47 @@ public class ProfesionalControlador {
         return "panelProfesional";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
-    @PostMapping("/perfil/{matricula}")
-    public String actualizar(MultipartFile archivo, @PathVariable String idProfesional, @RequestParam String matricula, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String domicilio, @RequestParam String email, @RequestParam String telefono, @RequestParam String password, @RequestParam String password2, @RequestParam String especialidad, @RequestParam Date horario, ModelMap modelo) {
-
-        try {
-            profesionalServicio.actualizar(archivo, idProfesional, matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, Boolean.TRUE, especialidad, Integer.MIN_VALUE, horario);
-
-            modelo.put("exito", "Profesional registrado con Exito");
-            return "panelProfesional.html";
-
-        } catch (MiException ex) {
-
-            modelo.put("error", ex.getMessage());
-            modelo.put("email", email);
-            modelo.put("domicilio", domicilio);
-            modelo.put("telefono", telefono);
-
-            return "modificarProfesional.html";
-        }
-    }
-
     @GetMapping("/listaProfesionales")
     public String listarProfesional(ModelMap modelo) {
 
-        List<Profesional> profesionales = profesionalServicio.listarProfesionales();
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
         modelo.addAttribute("profesionales", profesionales);
         return "listarProfesional.html";
+
     }
 
-    @GetMapping("/modificar/{id}")
-    public String modificar(@PathVariable String id, ModelMap modelo) {
+    @GetMapping("/modificar/{matricula}")
+    public String modificarProfesional(@PathVariable String matricula, ModelMap modelo) {
 
-        modelo.put("profesional", profesionalServicio.getOne(id));
-        return "modificarProfesional.html";
+        modelo.put("profesional", profesionalServicio.getOne(matricula));
+        return "modificarProfesional";
     }
 
-    @PostMapping("/modificar/{id}")
-    public String modificar(MultipartFile archivo, @PathVariable String idProfesional, @RequestParam String matricula, @RequestParam String nombre, @RequestParam String apellido, @RequestParam String dni, @RequestParam String domicilio, @RequestParam String email, @RequestParam String telefono, @RequestParam String password, @RequestParam String password2, @RequestParam String especialidad, @RequestParam Date horario, ModelMap modelo) {
+    @PostMapping("/modificar/{matricula}")
+    public String modificar(@PathVariable String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo, MultipartFile archivo) {
         try {
 
-            profesionalServicio.actualizar(archivo, idProfesional, matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, Boolean.TRUE, domicilio, Integer.MIN_VALUE, horario);
-            return "redirect:../"; //Decidir donde va cuando modifica prof
+            profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio, telefono);
+            return "redirect:../perfil"; //Decidir donde va cuando modifica prof
 
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
-            return "modificarProfesional.html";
+            return "modificarProfesional";
         }
     }
 
-    @GetMapping("/eliminar/{id}")
-    public String eliminarProfesional(@PathVariable String id, ModelMap modelo) throws MiException {
+    @GetMapping("/eliminar/{matricula}")
+    public String eliminarProfesional(@PathVariable String matricula, ModelMap modelo) throws MiException {
 
-        profesionalServicio.eliminarProfesional(id);
+        profesionalServicio.eliminarProfesional(matricula);
         return "redirect:/index"; //Falta vista para saber a donde va cuando elimina prof
     }
 
-    @DeleteMapping("/eliminar/{id}")
-    public ResponseEntity<String> eliminarProfesional(@PathVariable String id) {
+    @DeleteMapping("/eliminar/{matricula}")
+    public ResponseEntity<String> eliminarProfesional(@PathVariable String matricula) {
         try {
-            profesionalServicio.eliminarProfesional(id);
+            profesionalServicio.eliminarProfesional(matricula);
             return new ResponseEntity<>("Profesional eliminado con éxito", HttpStatus.OK);
         } catch (MiException ex) {
             return new ResponseEntity<>("Error al eliminar el Profesional: " + ex.getMessage(), HttpStatus.BAD_REQUEST);

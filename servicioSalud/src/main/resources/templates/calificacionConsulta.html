@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div>TODO write content</div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">CONSULTA</th>
+
+                </tr></thead> <!-- esto es en realidad la historia clinica -->
+            <tbody th:each="puntual : ${puntual}">
+                <tr>
+                    <td  th:text="${puntual.id}"></td>
+
+
+            <form th:action="@{/calificacion/creada}" method="post">
+                ID CONSULTA
+                <input type=text th:value="${puntual.id}"  name="id" >
+                <label>Matricula profesional</label>
+                <input type=text th:value="${puntual.profesional.matricula}"  name="profesional_id">
+                <br>
+                <label>Puntualidad</label>
+                <input type=text name="puntualidad">
+                <br>
+                <label>Mobiliario</label>
+                <input type=text name="mobiliario">
+                <br>
+                <label>Atencion</label>
+                <input type=text name="atencion">
+                <br>
+                <label>Comentario</label>
+                <br>
+                <textarea  name="comentario" rows="10" cols="40"></textarea>
+
+                <input type="submit" value="Envio" />
+
+            </form>
+
+
+
+
+    </body>
+</html>

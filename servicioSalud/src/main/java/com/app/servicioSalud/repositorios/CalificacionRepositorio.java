@@ -1,7 +1,6 @@
 package com.app.servicioSalud.repositorios;
 
 import com.app.servicioSalud.entidades.Calificacion;
-
 import java.util.List;
 import javax.persistence.Tuple;
 import org.springframework.data.jpa.repository.JpaRepository;

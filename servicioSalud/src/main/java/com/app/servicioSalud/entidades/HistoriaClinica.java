@@ -4,25 +4,20 @@ import java.util.Date;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
-import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
 public class HistoriaClinica {
 
-    //@Id
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    //private Integer id;
-
     @Id
-    @GeneratedValue(generator = "uuid")
-    @GenericGenerator(name = "uuid", strategy = "uuid2")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String id;
 
     @ManyToOne(fetch = FetchType.EAGER)

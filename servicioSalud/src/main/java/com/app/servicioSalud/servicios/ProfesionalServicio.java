@@ -33,8 +33,9 @@ public class ProfesionalServicio implements UserDetailsService {
     @Autowired
     private ImagenServicio imagenServicio;
 
-    //@Autowired
-    //private CorreoServicio correoServicio;
+    @Autowired
+    private CorreoServicio correoServicio;
+
     @Transactional
     public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario) throws MiException {
 
@@ -59,56 +60,41 @@ public class ProfesionalServicio implements UserDetailsService {
         profesional.setImagen(imagen);
 
         profesionalRepositorio.save(profesional);
-        //correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
+        correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
+        correoServicio.altaProfesional(matricula);
 
     }
 
-    public void actualizar(MultipartFile archivo, String idProfesional, String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario) throws MiException {
+    public List<Profesional> listarProfesional() {
 
-        validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, especialidad);
+        return profesionalRepositorio.findAll();
 
-        Optional<Profesional> respuesta = profesionalRepositorio.findById(idProfesional);
+    }
+
+    public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
+
+        validarModificar(email, password, password2, domicilio, telefono);
+
+        Optional<Profesional> respuesta = profesionalRepositorio.findById(matricula);
         if (respuesta.isPresent()) {
 
             Profesional profesional = respuesta.get();
 
-            profesional.setMatricula(matricula);
-            profesional.setDni(dni);
-            profesional.setNombre(nombre);
-            profesional.setApellido(apellido);
             profesional.setEmail(email);
             profesional.setPassword(new BCryptPasswordEncoder().encode(password));
             profesional.setDomicilio(domicilio);
             profesional.setTelefono(telefono);
-            profesional.setActivo(activo);
-            profesional.setEspecialidad(especialidad);
-            profesional.setConsulta(consulta);
-            profesional.setHorario(horario);
 
             String idImagen = null;
             if (profesional.getImagen() != null) {
                 idImagen = profesional.getImagen().getId();
             }
-
-            Imagen imagen = imagenServicio.actualizar(archivo, idImagen);
+            Imagen imagen = imagenServicio.modificar(archivo, idImagen);
             profesional.setImagen(imagen);
-
-            profesional.setRol(RolEnum.PROFESIONAL);
-
             profesionalRepositorio.save(profesional);
 
         }
 
-    }
-
-    @Transactional
-    public List<Profesional> listarProfesionales() {
-
-        List<Profesional> profesionales = new ArrayList();
-
-        profesionales = profesionalRepositorio.findAll();
-
-        return profesionales;
     }
 
     private void validar(String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, String especialidad) throws MiException {
@@ -154,8 +140,29 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
+    private void validarModificar(String email, String password, String password2, String domicilio, String telefono) throws MiException {
+
+        if (email == null || email.isEmpty()) {
+            throw new MiException("el email no puede ser nulo ni estar vacio");
+        }
+        if (password == null || password.isEmpty() || password.length() <= 5) {
+            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+        }
+        if (!password.equals(password2)) {
+            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+        }
+        if (domicilio == null || domicilio.isEmpty()) {
+            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+        }
+
+        if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
+            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+        }
+
+    }
+
     public Profesional getOne(String id) {
-        return profesionalRepositorio.getOne(id);
+        return profesionalRepositorio.getReferenceById(id);
     }
 
     public void eliminarProfesional(String id) throws MiException {
@@ -174,7 +181,6 @@ public class ProfesionalServicio implements UserDetailsService {
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + profesional.getRol().toString());
 
             permisos.add(p);
-
             ServletRequestAttributes attr = (ServletRequestAttributes) RequestContextHolder.currentRequestAttributes();
 
             HttpSession session = attr.getRequest().getSession(true);

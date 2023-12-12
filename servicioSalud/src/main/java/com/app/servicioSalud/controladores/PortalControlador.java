@@ -12,18 +12,18 @@ public class PortalControlador {
     public String index() {
 
         return "index";
-
     }
 
-    @Controller
-    public class serviciosControlador {
+    @GetMapping("/servicios")
+    public String servicios() {
 
-        @GetMapping("/servicios")
-        public String servicios() {
+        return "servicios";
+    }
 
-            return "servicios";
+    @GetMapping("/profesionales")
+    public String profesionales() {
 
-        }
+        return "profesionales";
     }
 
 }
