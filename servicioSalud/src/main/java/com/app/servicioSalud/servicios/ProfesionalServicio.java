@@ -176,7 +176,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
         if (profesional != null) {
 
-            List<GrantedAuthority> permisos = new ArrayList();
+            List<GrantedAuthority> permisos = new ArrayList<>();
 
             GrantedAuthority p = new SimpleGrantedAuthority("ROLE_" + profesional.getRol().toString());
 
