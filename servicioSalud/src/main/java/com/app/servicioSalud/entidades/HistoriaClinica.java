@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
+import org.hibernate.annotations.GenericGenerator;
 
 /**
  * @author Luciano Otegui
@@ -20,7 +21,8 @@ import lombok.Data;
 public class HistoriaClinica {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(generator = "uuid")
+    @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
     @ManyToOne(fetch = FetchType.EAGER)
