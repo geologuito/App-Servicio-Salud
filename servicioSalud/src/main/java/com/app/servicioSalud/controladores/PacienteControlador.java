@@ -1,6 +1,5 @@
 package com.app.servicioSalud.controladores;
 
-
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,7 +46,8 @@ public class PacienteControlador {
 
         try {
 
-            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2, edad);
+            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2,
+                    edad);
 
             modelo.put("exito", "Usuario Registrado!");
 
@@ -106,15 +106,16 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, ModelMap modelo) {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
-        
+
         return "modificarPaciente.html";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
-    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,MultipartFile archivo,
+    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
+            MultipartFile archivo,
             ModelMap modelo) {
         try {
-              pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password);
+            pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password);
             return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
 
         } catch (MiException ex) {
@@ -144,10 +145,11 @@ public class PacienteControlador {
     @GetMapping("/puntuacion/{id}")
     public String mostrarPuntuacion(ModelMap modelo, @PathVariable String id) {
 
-        // List<Calificacion> calificacion = calificacionServicio.listarCalificacion(id);
+        // List<Calificacion> calificacion =
+        // calificacionServicio.listarCalificacion(id);
         Tuple promedio = calificacionServicio.calcularPromedio(id);
         // Calificacion promedio = calificacionServicio.calcularPromedio(id);
-        //modelo.addAttribute("tuplas", promedio);
+        // modelo.addAttribute("tuplas", promedio);
 
         // Acceder a los valores de la tupla
         Double valorColumna1 = promedio.get(0, Double.class);
@@ -156,9 +158,8 @@ public class PacienteControlador {
 
         modelo.put("valor1", valorColumna1);
         modelo.put("valor2", valorColumna2);
-        modelo.put("valor3" , valorColumna3 );
+        modelo.put("valor3", valorColumna3);
 
-        
         return "reputacion";
     }
 }

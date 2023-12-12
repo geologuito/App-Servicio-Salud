@@ -19,6 +19,7 @@
 
                     <!-- Botón de perfil segun el rol del usuario -->
                     <a th:if="${#authorization.expression('hasRole(''ROLE_PACIENTE'')')}"
+<<<<<<< HEAD
                         class="nav-link mx-2" href="/paciente/perfil">Perfil Paciente</a>
                     <a th:if="${#authorization.expression('hasRole(''ROLE_PROFESIONAL'')')}"
                         class="nav-link mx-2" href="/profesional/perfil">Perfil Profesional</a>
@@ -26,6 +27,15 @@
                         class="nav-link mx-2" href="/admin/dashboard">Perfil Admin</a>
                     <!-- Botón de cerrar sesión visible solo si está autenticado -->
                     <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2"
+=======
+                        class="nav-link mx-2 btn btn-primary" href="/paciente/perfil">Perfil Paciente</a>
+                    <a th:if="${#authorization.expression('hasRole(''ROLE_PROFESIONAL'')')}"
+                        class="nav-link mx-2 btn btn-primary" href="/profesional/perfil">Perfil Profesional</a>
+                    <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
+                        class="nav-link mx-2 btn btn-primary" href="/admin/dashboard">Perfil Admin</a>
+                    <!-- Botón de cerrar sesión visible solo si está autenticado -->
+                    <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2 btn btn-primary"
+>>>>>>> developer
                         href="/logout">Cerrar sesión</a>
 
                     <!-- Botón de registro que desaparece cuando está autenticado -->
@@ -51,6 +61,11 @@
                 </div>
             </div>
         </div>
+<<<<<<< HEAD
+</div>
+</nav>
+=======
+>>>>>>> developer
 </div>
 </nav>
 </div>

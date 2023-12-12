@@ -24,7 +24,9 @@
             <div class="contenedora" id="form">
                 <section class="tabla ">
                     <hr class="my-2">
-                    <h3 class="fst-italic text-white">Datos del Paciente</h3>
+                    <h3 class="fst-italic text-white" th:if="${session.pacientesession != null}"
+                        th:text=" 'Panel '+ ${session.pacientesession.nombre} + ' ' + ${session.pacientesession.apellido} ">
+                    </h3>
                     <div class="datos d-flex">
                         <table class="table table-success table-striped table-hover w-100">
                             <thead>
