@@ -10,9 +10,6 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
 
-/**
- * @author Luciano Otegui
- */
 @Data
 @Entity
 public class HistoriaClinica {
@@ -31,13 +28,9 @@ public class HistoriaClinica {
     private String titulo;
     private String dx;    
     private String tratamiento;
-    
     @Temporal(TemporalType.DATE)
     private Date alta;
     
     private Boolean respuesta = false;
 
-    //@JsonIgnore
-    //@OneToMany(mappedBy = "historiaClinica", cascade = CascadeType.ALL, orphanRemoval = true)
-    //private List<RegistroConsulta> registrosConsultas = new ArrayList<>();
 }
