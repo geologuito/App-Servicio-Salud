@@ -4,7 +4,6 @@
  */
 package com.app.servicioSalud;
 
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
 /**
  *
