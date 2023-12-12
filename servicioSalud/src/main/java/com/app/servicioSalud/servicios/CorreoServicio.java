@@ -1,31 +1,15 @@
 package com.app.servicioSalud.servicios;
 
-import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
-import org.springframework.web.context.request.RequestContextHolder;
-import org.springframework.web.context.request.ServletRequestAttributes;
 
 @Service
 public class CorreoServicio {
 
     @Autowired
     private JavaMailSender javaMailSender;
-
-    @Autowired
-    private HttpServletRequest request;
-
-    private String obtenerURL() {
-
-        if (request != null) {
-            return ServletRequestAttributes.class.cast(RequestContextHolder.currentRequestAttributes())
-                    .getRequest().getRequestURL().toString();
-        } else {
-            return "http://localhost:8080";
-        }
-    };
 
     public void envioRegistro(String userEmail, String userName) {
 
@@ -75,5 +59,4 @@ public class CorreoServicio {
 
         javaMailSender.send(message);
     }
-
 }

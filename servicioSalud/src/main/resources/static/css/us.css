@@ -1,0 +1,130 @@
+#fondo {
+    background: linear-gradient(to right, #b6b3b3b6, #918f8faa), url(../images/fondo-us.jpg);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.contenedor {
+    text-align: center;
+    display: grid;
+    grid-template: auto auto auto auto auto auto / 100%;
+    grid-template-areas:"navb navb "
+                        "grupo grupo"
+                        "back back"
+                        "front front"
+                        "deve deve"
+                        "foot foot";
+}
+.navb{
+    grid-area: navb;
+   
+}
+.grupo{
+    grid-area: grupo;
+   margin-top: 3em;
+}
+.back{
+    grid-area: back;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-top: 1em;
+}
+.container{
+    position: relative;
+    z-index: 1;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.container .card{
+    position: relative;
+    width: 200px;
+    height: 300px;
+    background: rgba(25, 25, 25, 0.708);
+    margin: 20px;
+    box-shadow: 0, 15px 35px rgba(0,0,0, 0.2);
+    border-radius: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(10px);
+}
+.container .card .content{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    opacity: 0.5;
+    transition: 0.5s;
+}
+.container .card:hover .content{
+    opacity: 1;
+    transform: translateY(-50px);
+}
+.container .card .content .imgBx{
+    position: relative;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 10px solid rgba(0,0,0, 0.2);
+}
+.container .card .content .imgBx img{
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    object-fit: cover;
+}
+.container .card .content .contentBx h3{
+color: white;
+text-transform: uppercase;
+letter-spacing: 2px;
+font-weight: 500;
+font-size: 17px;
+text-align: center;
+margin: 20px 0 10px;
+line-height: 1.1em;
+}
+.container .card .content .contentBx h3 span{
+    font-size: 12px;
+    font-weight: 300;
+    text-transform: initial;
+}
+.container .card .sci{
+    list-style: none;
+    display: flex;
+}
+.container .card .sci li{
+    margin-right: 2.5em;
+    transform: translateY(40px);
+    transition: 0.4s;
+    opacity: 0;
+    transition-delay: calc(0.1s * var(--i));
+}
+.container .card:hover .sci li{
+    transform: translateY(-20px);
+    opacity: 3;
+}
+.container .card .sci li a{
+    color: white;
+    font-size: 20px;
+}
+
+
+.front{
+    grid-area: front;
+    
+}
+
+.deve{
+    grid-area:deve;
+}
+.foot{
+    grid-area: foot;
+    margin-bottom: 1em;
+}
