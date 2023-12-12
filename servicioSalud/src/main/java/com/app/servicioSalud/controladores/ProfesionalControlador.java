@@ -64,16 +64,6 @@ public class ProfesionalControlador {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
-
-        if (error != null) {
-            modelo.put("error", "Usuario o Contraseña invalidos!");
-        }
-
-        return "loginProfesional.html";
-    }
-
     @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {

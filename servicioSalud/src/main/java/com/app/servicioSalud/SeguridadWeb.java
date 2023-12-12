@@ -43,6 +43,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
                 .antMatchers("/paciente/**").hasRole("PACIENTE")
                 .antMatchers("/profesional/**").hasRole("PROFESIONAL")
                 .and().formLogin()
+                .loginPage("/login")
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("password")
