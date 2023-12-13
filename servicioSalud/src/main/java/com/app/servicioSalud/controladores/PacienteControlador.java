@@ -70,16 +70,6 @@ public class PacienteControlador {
         return "redirect:../login";
     }
 
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
-
-        if (error != null) {
-            modelo.put("error", "Usuario o Contraseña invalidos!");
-        }
-
-        return "loginPaciente.html";
-    }
-
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @GetMapping("/perfil")
     public String perfil(HttpSession session, ModelMap modelo) {
