@@ -77,7 +77,7 @@ public class PacienteControlador {
             modelo.put("error", "Usuario o Contraseña invalidos!");
         }
 
-        return "loginPaciente.html";
+        return "redirect:../login";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")

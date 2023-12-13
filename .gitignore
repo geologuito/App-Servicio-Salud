@@ -51,4 +51,8 @@ build/
 servicioSalud/src/main/resources/application.properties
 servicioSalud/src/main/resources/application.properties
 *.properties
+<<<<<<< HEAD
+>>>>>>> developer
+=======
+*.properties
 >>>>>>> developer

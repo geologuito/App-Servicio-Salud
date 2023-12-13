@@ -56,7 +56,7 @@ public class PacienteServicio implements UserDetailsService {
 
         pacienteRepositorio.save(paciente);
 
-        correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
+    //    correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
 
     }
 
