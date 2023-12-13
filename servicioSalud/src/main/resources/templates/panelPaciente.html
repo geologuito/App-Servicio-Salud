@@ -33,19 +33,23 @@
                                     <tr>
                                         <th scope="col">Apellido</th>
                                         <th scope="col">Nombre</th>
-                                        <th scope="col">Correo</th>
+                                        <th scope="col">Domicilio</th>
+                                        <th scope="col">E-mail</th>
                                         <th scope="col">Telefono</th>
-                                        <th scope="col">Acción</th>
+                                        <TH COLSPAN="3" ALIGN="center" VALIGN="center">Acciones</TH>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     <tr>
                                         <td th:text="${paciente.apellido}"></td>
                                         <td th:text="${paciente.nombre}"></td>
+                                        <td th:text="${paciente.domicilio}"></td>
                                         <td th:text="${paciente.email}"></td>
                                         <td th:text="${paciente.telefono}"></td>
                                         <td>
                                             <a th:href="@{/paciente/modificar/__${paciente.dni}__}"><i class="fas fa-feather-alt"></i>
+                                                <a th:href="@{/calificacion/crear/__${session.pacientesession.dni}__}"><i class="fas fa-feather-alt"></i>Calificar</a>
+                                                <a th:href= "@{/turno/buscarFecha/}"><i class="fas fa-feather-alt"></i> TURNO </a>
                                         </td>
                                     </tr>
                                 </tbody>
@@ -55,21 +59,9 @@
                                      alt="usuario">
                             </div>
                         </div><!--Cierra contenedor de datos detalles-->
-
-                        <a th:href="@{/paciente/modificar/__${session.pacientesession.dni}__}"><i
-                                class="fas fa-feather-alt"></i> Modificar </a>
-
                     </section><!--Cierra la tabla-->
 
                 </div>
-
-                <div>
-                    <a th:href="@{/calificacion/crear/__${session.pacientesession.dni}__}">
-                        <i class="fas fa-feather-alt"></i> Calificar
-                    </a>
-                </div>
-
-
 
                 <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
                 <div class="contenedora" id="tabla">

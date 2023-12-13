@@ -75,24 +75,6 @@
                 </form>
                 <!-- FIN FORM -->
 
-                <!-- Inicio Mensaje de Exito -->
-                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                    <div class="card-body">
-                        <h5 class="card-title">Exito</h5>
-                        <p class="card-text" th:text="${exito}"></p>
-                    </div>
-                </div>
-                <!-- Fin Mensaje de Exito -->
-
-                <!-- Inicio mensaje de error -->
-                <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                    <div class="card-body">
-                        <h5 class="card-title">Error!!</h5>
-                        <p class="card-text" th:text="${error}"></p>
-                    </div>
-                </div>
-                <!-- Fin mensaje de error -->
-
                 <div class="beneficios text-white">
                     <h1 class="fst-italic my-3">Beneficios</h1>
                     <div class="paci text-white">

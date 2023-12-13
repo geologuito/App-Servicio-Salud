@@ -17,10 +17,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- *
- * @author EduRiu
- */
 @Controller
 @RequestMapping("/hc")
 public class HistoriaClinicaControlador {
@@ -44,7 +40,7 @@ public class HistoriaClinicaControlador {
         modelo.addAttribute("profesional", profesional);
         modelo.addAttribute("paciente", paciente);
 
-        return "historiaclinica";
+        return "historiaClinica";
     }
 
     @PostMapping("/creada")
@@ -57,9 +53,7 @@ public class HistoriaClinicaControlador {
         System.out.println("antes del exito");
 
         historiaClinicaServicio.crearHC(profesional_id, paciente_id, titulo, dx, tratamiento);
-        
-            
-        correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
+       // correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
         System.out.println("creada con exito");
 
         return "redirect:/";

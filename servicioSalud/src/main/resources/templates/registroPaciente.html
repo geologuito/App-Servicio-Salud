@@ -63,22 +63,20 @@
                     </label>
                     <button class="submit">Registrarme</button>
                     <p class="signin text-white">Ya tienes una cuenta? <a class="text-white" href="#">Loguearse</a> </p>
+
                     <!-- Inicio Mensaje de Exito -->
-                    <div th:if="${exito != null}" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                        <div class="card-body">
-                            <h5 class="card-title">Exito</h5>
-                            <p class="card-text" th:text="${exito}"></p>
-                        </div>
+                    <div th:if="${exito != null}" class="alert alert-success my-3">
+                        <i class="fas fa-check-circle"></i> <strong>Éxito:</strong> <span th:text="${exito}"></span>
                     </div>
+
+
                     <!-- Fin Mensaje de Exito -->
 
                     <!-- Inicio mensaje de error -->
-                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                        <div class="card-body">
-                            <h5 class="card-title">Error!!</h5>
-                            <p class="card-text" th:text="${error}"></p>
-                        </div>
+                    <div th:if="${error != null}" class="alert alert-danger my-3">
+                        <i class="fas fa-exclamation-circle"></i> <strong>Error:</strong> <span th:text="${error}"></span>
                     </div>
+
                     <!-- Fin mensaje de error -->
                 </form>
                 <!-- FIN FORM -->

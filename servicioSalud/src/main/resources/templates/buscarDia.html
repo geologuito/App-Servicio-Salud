@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div>TODO write content</div>
+
+    <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+   
+    <br>
+   
+    
+     <form th:action="@{/turno/citas}" method="post">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required><br><br>
+            
+        <button type="submit">buscar</button>
+    </form>
+
+    
+</body>
+
+</html>
