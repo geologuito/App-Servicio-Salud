@@ -33,6 +33,7 @@ public class ProfesionalControlador {
 
     @GetMapping("/registrar") // localhost:8080/profesional/registrar
     public String registrar() {
+
         return "registroProfesional";
 
     }
@@ -60,18 +61,19 @@ public class ProfesionalControlador {
             modelo.put("domicilio", domicilio);
             modelo.put("telefono", telefono);
 
-            return "registroProfesional.html";
+            return "registroProfesional";
         }
-        return "redirect:/";
+        return "redirect:../login";
     }
 
-    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL''ROLE_ADMIN')")
+    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL','ROLE_ADMIN')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
 
         if (profesional.getRol().toString().equals("ADMIN")) {
+
             return "redirect:/admin/dashboard";
         }
 

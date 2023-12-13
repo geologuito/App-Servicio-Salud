@@ -63,7 +63,6 @@ public class ProfesionalServicio implements UserDetailsService {
         correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
         correoServicio.altaProfesional(matricula);
         
-
     }
 
     public List<Profesional> listarProfesional() {
