@@ -36,7 +36,6 @@
                                     <th scope="col">Telefono</th>
                                     <th scope="col">Especialidad</th>
                                     <th scope="col">Estatus</th>
-                                    <th scope="col">Acción</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -48,10 +47,6 @@
                                     <td th:text="${profesional.especialidad}"></td>
                                     <td>Activo</td>
                                     <td>
-                                        <a th:href="@{/profesional/modificar/__${profesional.matricula}__}"><i
-                                                class="fas fa-feather-alt"></i>
-                                            Modificar </a>
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -67,6 +62,11 @@
             <section class="tabla">
                 <hr class="my-2">
                 <h2 class="fst-italic text-white">Turnos del día</h2>
+                <div>   
+                <div>   
+                    <h3>VER TURNOS</h3>
+                    <a class="mx-2" th:href="@{/turno/buscarDia}"> BUSCAR CALENDARIO </a>
+                </div>
                 <h3 class="fst-italic text-white">Pacientes</h3>
 
                 <table class="table table-success table-striped table-hover h-25">
@@ -88,7 +88,6 @@
                             <td th:text="${paciente.telefono}"></td>
                             <td>
                                 <a class="mx-2" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
-                                <a class="mx-2" th:href="@{/hc/listar/__${paciente.dni}__}"> ver </a>
                             </td>
 
                         </tr>
@@ -97,24 +96,33 @@
             </section><!--Cierra la tabla-->
 
             <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
-            <section>
+            <section class="tabla" id="turnos">
                 <hr class="my-2">
-                <h2 class="fst-italic text-white">Servicios</h2>
-                <div class="conte">
-                    <section class="galeria-servicios">
-                        <a href="#image1">
-                            <img src="/images/ambulancias.webp" alt="">
-                            <span>Servicio de Ambulancias</span>
-                        </a>
-                        <a href="#image2">
-                            <img src="/images/laboratorio3.jpg" alt="">
-                            <span>Laboratorio a Domicilio</span>
-                        </a>
-                        <a href="#image3">
-                            <img src="/images/call.webp" alt="">
-                            <span>Atención telefónica 24/7</span>
-                        </a>
-                    </section>
+                <h2 class="fst-italic text-white">Cargar turnos disponibles</h2>
+                <form th:action="@{/turno/creado}" method="post" class="form-inline">
+                    <div class="form-group mx-2">
+                        <label for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required class="form-control">
+                    </div>
+                    <div class="form-group mx-2">
+                        <label for="horaa">Hora Inicio:</label>
+                        <input type="text" name="horaInicio" required class="form-control">
+                    </div>
+                    <div class="form-group mx-2">
+                        <label for="hora">Hora Final:</label>
+                        <input type="text"  name="horaFin" required class="form-control">
+                    </div>
+                    <input type="hidden" name="profesional_id" th:value="${session.profesionalsession.matricula}" />
+                    <button type="submit" class="btn btn-primary mx-2">crear</button>
+                </form>
+                <div th:if="${exito}" style="color: green;">
+                    <p th:text="${exito}"></p>
+                </div>
+                
+                <div th:if="${error}" style="color: red;">
+                    <p th:text="${error}"></p>
+                </div>
+            </section>
                 </div>
             </section><!-- Cierra section servicios -->
         </div><!-- Cierra div del panel contenedor -->

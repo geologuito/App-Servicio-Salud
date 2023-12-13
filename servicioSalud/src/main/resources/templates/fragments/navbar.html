@@ -12,10 +12,17 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav container d-flex justify-content-end">
-                    <a class="nav-link mx-2 active" aria-current="page" href="/">Home</a>
-                    <a class="nav-link mx-2" href="/profesionales">Doctores</a>
-                    <a class="nav-link mx-2" href="/especialidades">Especialidades</a>
-                    <a class="nav-link mx-2" href="/servicios">Servicios</a>
+                    <!-- Condición para ocultar elementos para el rol de admin -->
+                    <div th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}">
+                        <!-- Este div se mostrará solo para el rol de admin -->
+                    </div>
+                    <!-- Si no es un admin, se mostrarán los elementos de Home, Doctores, Especialidades y Servicios -->
+                    <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2 active" aria-current="page"
+                        href="/">Home</a>
+                    <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/profesionales">Doctores</a>
+                    <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/especialidades">Especialidades</a>
+                    <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/servicios">Servicios</a>
+                    <!-- ... Otros elementos del menú ... -->
 
                     <!-- Botón de perfil segun el rol del usuario -->
                     <a th:if="${#authorization.expression('hasRole(''ROLE_PACIENTE'')')}"
@@ -51,6 +58,5 @@
                 </div>
             </div>
         </div>
-</div>
-</nav>
+    </nav>
 </div>

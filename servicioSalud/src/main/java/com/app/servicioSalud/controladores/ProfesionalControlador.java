@@ -33,7 +33,6 @@ public class ProfesionalControlador {
 
     @GetMapping("/registrar") // localhost:8080/profesional/registrar
     public String registrar() {
-
         return "registroProfesional";
 
     }
@@ -61,9 +60,9 @@ public class ProfesionalControlador {
             modelo.put("domicilio", domicilio);
             modelo.put("telefono", telefono);
 
-            return "registroProfesional";
+            return "registroProfesional.html";
         }
-        return "redirect:../login";
+        return "redirect:/";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL','ROLE_ADMIN')")
@@ -73,7 +72,6 @@ public class ProfesionalControlador {
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
 
         if (profesional.getRol().toString().equals("ADMIN")) {
-
             return "redirect:/admin/dashboard";
         }
 
@@ -84,6 +82,8 @@ public class ProfesionalControlador {
         modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
         modelo.addAttribute("profesional", profesional); // muestra los datos del prof del perfil
 
+        
+        
         return "panelProfesional";
     }
 

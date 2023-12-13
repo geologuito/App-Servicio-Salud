@@ -30,7 +30,7 @@
             <div>
                 <div class="panel"> <!--*Botones side-->
                     <!--Agregar usuarios-->
-                    <a th:href="@{/admin/profesional}" class="btn  panel-item" data-toggle="modal" data-section="crearProfesional">
+                    <a href="crearProfesional" class="btn  panel-item" data-toggle="modal" data-section="crearProfesional">
                         <i class="material-icons">&#xE147;</i>
                         <span>PROFESIONAL</span></a>
 
@@ -38,7 +38,7 @@
                         <i class="material-icons">&#xE147;</i>
                         <span>PACIENTE</span></a>
                     <!--Eliminar usuarios-->
-                    <a href="#" class="btn  panel-item" data-toggle="modal" data-section="listarProfesional">
+                    <a href="listarProfesional" class="btn  panel-item" data-toggle="modal" data-section="listarProfesional">
                         <i class="material-icons">&#xe8ef;</i>
                         <span>TURNOS</span></a>
 
@@ -177,6 +177,7 @@
     </div>
 
     <footer th:replace="/fragments/footer :: footer"></footer>
+    <script href="../js/dashboard.js"></script>
 </body>
 
 </html>

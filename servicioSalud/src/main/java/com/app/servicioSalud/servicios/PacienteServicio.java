@@ -29,8 +29,8 @@ public class PacienteServicio implements UserDetailsService {
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
 
-    @Autowired
-    private CorreoServicio correoServicio;
+    // @Autowired
+    // private CorreoServicio correoServicio;
     
     @Autowired
     private ImagenServicio imagenServicio;
@@ -56,7 +56,7 @@ public class PacienteServicio implements UserDetailsService {
 
         pacienteRepositorio.save(paciente);
 
-        correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
+        // correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
 
     }
 
