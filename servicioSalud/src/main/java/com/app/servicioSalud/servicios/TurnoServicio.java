@@ -1,7 +1,10 @@
 package com.app.servicioSalud.servicios;
 
+import com.app.servicioSalud.entidades.HistoriaClinica;
+import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
+import com.app.servicioSalud.enumeraciones.Horario;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,70 +28,60 @@ public class TurnoServicio {
 
     // Método para crear un turno
     @Transactional
-    public Turno crearTurno(LocalTime hora, LocalDate fecha, String profesional_id) {
+    public void generarTurnos(LocalDate fecha, LocalTime horaInicio, LocalTime horaFin,
+            Profesional profesional_id, Paciente paciente_id, Boolean reservado) {
 
-        Turno turno = new Turno();
+        while (horaInicio.isBefore(horaFin)) {
+            Turno turno = new Turno();
+            turno.setFecha(fecha);
+            turno.setHorario(horaInicio);
+            turno.setProfesional(profesional_id);
+            turno.setPaciente(paciente_id);
+            turno.setReservado(false);
 
-        turno.setFecha(fecha);
-        turno.setHora(hora);
+            turnoRepositorio.save(turno);
 
-        Profesional profesional = profesionalServicio.getOne(profesional_id);
-
-        turno.setProfesional(profesional);
-
-        return turnoRepositorio.save(turno);
-
+            horaInicio = horaInicio.plusMinutes(30);
+        }
     }
 
-    // ----Listado de todos los turnos---//
-    @Transactional
-    public List<Turno> listarTurnos() {
+    public void asignarPaciente(String id, Paciente paciente_id ) {
 
-        List<Turno> turnos = new ArrayList<>();
-
-        return turnos;
-
-    }
-
-    // ---Busqueda por paciente---//
-    @Transactional
-    public List<Turno> listarTurnoPorPaciente(String id) {
-
-        return turnoRepositorio.listarTurnosPorPaciente(id);
-
-    }
-
-    // ---Busqueda por fecha---//
-    @Transactional
-    public List<Turno> listarTurnoPorFecha(LocalDate fecha) {
-
-        return turnoRepositorio.filtrarPorFecha(fecha);
-
-    }
-    @Transactional
-    public void modificarTurno(Long id, LocalDate fecha, LocalTime hora) {
         Optional<Turno> respuesta = turnoRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
             Turno turno = respuesta.get();
-            turno.setFecha(fecha);
-            turno.setHora(hora);
+            
+            turno.setPaciente(paciente_id);
+            turno.setReservado(Boolean.TRUE);
 
             turnoRepositorio.save(turno);
+
         }
 
     }
-    // ---Eliminar turno---//
-    @Transactional
-    public void eliminarTurno(Long id) {
-
-        Optional<Turno> respuesta = turnoRepositorio.findById(id);
-        Turno turno = new Turno();
-
-        if (respuesta.isPresent()) {
-            turno = respuesta.get();
-            turnoRepositorio.delete(turno);
-        }
+    
+    public List<Turno> listarPorDia(String fecha){
+        
+        String fechaComoString = fecha;
+        LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
+        
+        List<Turno> turno = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
+        
+        return turno;
     }
+    
+    
+    public List<Turno> listarPorMatricula(String matricula){
+        
+        List<Turno> turno = turnoRepositorio.filtrarPorMatricula(matricula);
+        
+        return turno;
+    }
+    
+    
+     
+    
+    
 
 }
