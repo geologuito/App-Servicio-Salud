@@ -27,9 +27,9 @@
                     <h3 class="fst-italic text-white" th:if="${session.profesionalsession != null}"
                         th:text=" 'Panel Dr '+ ${session.profesionalsession.apellido} "></h3>
                     <div class="datos d-flex">
-                        <table class="table table-success table-striped table-hover w-75 h-25">
+                        <table class="table table-success table-striped table-hover w-100 h-25 my-3">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="col">Apellido</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Correo</th>
@@ -40,7 +40,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="text-center">
                                     <td th:text="${profesional.apellido}"></td>
                                     <td th:text="${profesional.nombre}"></td>
                                     <td th:text="${profesional.email}"></td>
@@ -48,8 +48,7 @@
                                     <td th:text="${profesional.especialidad}"></td>
                                     <td>Activo</td>
                                     <td>
-                                        <a th:href="@{/profesional/modificar/__${profesional.matricula}__}"><i
-                                                class="fas fa-feather-alt"></i>
+                                        <a class="fw-bold" th:href="@{/profesional/modificar/__${profesional.matricula}__}"><i class="fa-solid fa-pen" style="color: #454242;"></i></i>
                                             Modificar </a>
                                     </td>
                                 </tr>
@@ -71,24 +70,23 @@
 
                 <table class="table table-success table-striped table-hover h-25">
                     <thead>
-                        <tr>
+                        <tr class="text-center">
                             <th scope="col">Apellido</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Correo</th>
-                            <th scope="col">TelefonoCelular</th>
+                            <th scope="col">Telefono</th>
                             <th scope="col" colspan="2">Historia Clinica</th>
-
                         </tr>
                     </thead>
                     <tbody>
-                        <tr th:each="paciente : ${pacientes}">
+                        <tr th:each="paciente : ${pacientes}" class="text-center">
                             <td th:text="${paciente.apellido}"></td>
                             <td th:text="${paciente.nombre}"></td>
                             <td th:text="${paciente.email}"></td>
                             <td th:text="${paciente.telefono}"></td>
                             <td>
-                                <a class="mx-2" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
-                                <a class="mx-2" th:href="@{/hc/listar/__${paciente.dni}__}"> ver </a>
+                                <a class="mx-2 fw-bold" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
+                                <a class="mx-2 fw-bold" th:href="@{/hc/listar/__${paciente.dni}__}"> ver </a>
                             </td>
 
                         </tr>

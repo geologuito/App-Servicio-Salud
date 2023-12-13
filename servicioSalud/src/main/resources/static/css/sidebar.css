@@ -1,7 +1,7 @@
 .toggle-btn {
 	font-size: 20px;
 	cursor: pointer;
-	background-color: #111;
+	background-color: #1b785c98;
 	border: none;
 	color: white;
 	padding: 10px;
@@ -17,7 +17,7 @@
 	position: fixed;
 	top: 5.3em;
 	right: 0;
-	background-color: #11111170;
+	background-color: #1b785c98;
 	overflow-x: hidden;
 	padding-top: 20px;
 	color: white;
@@ -53,6 +53,6 @@
 
 /* Cambia el color del botón al pasar el ratón sobre él */
 .toggle-btn:hover {
-	background-color: #444;
+	background-color: #1b785c98;
 
 }

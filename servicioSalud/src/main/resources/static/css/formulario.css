@@ -2,6 +2,7 @@ body {
     background: linear-gradient(to right, #0808085a, #08080861), url(../images/news-image1.jpg);
     background-size: cover;
     background-position: center;
+    background-repeat: no-repeat;
 }
 
 .contenedor {
@@ -27,6 +28,15 @@ body {
 height:46vh;
 margin-top: 5em;
 width:24em;
+}
+
+.historia{
+    height:55vh;
+    margin-top: 2em;
+}
+.reputacion{
+    height:53vh;
+    margin-top: 2em;
 }
 /*ESTILO FORMULARIO*/
 .form {
@@ -175,13 +185,6 @@ width:24em;
         transform: scale(1.8);
         opacity: 0;
     }
-}
-
-/*ESTILO LOGIN*/
-.login{
-height: 46vh;
-margin-top: 5em;
-width: 24em;
 }
 
 /*ESTILO beneficios pac*/

@@ -41,17 +41,17 @@
 
                 </tbody>
             </table>
-            <form class="form-box" th:action="@{/hc/creada/}" method="post">
+            <form class="form-box" th:action="@{/hc/creada/__${paciente.dni}__}" method="post">
                 <p class="title">Crear Historia</p>
                 <div class="row text-white">
                     <div class="col-4 mb-3">
                         <label>Matricula profesional</label>
                         <input type=text class="form-control" th:value="${session.profesionalsession.matricula}"
-                            name="profesional_id">
+                            name="profesional_id" readonly>
                     </div>
                     <div class="col-4 mb-3">
                         <label>DNI paciente</label>
-                        <input type=text class="form-control" th:value="${paciente.dni}" name="profesional_id">
+                        <input type=text class="form-control" th:value="${paciente.dni}" name="profesional_id" readonly>
                     </div>
                     <div class="col-4 mb-3">
                         <label>Motivo de la visita</label>
@@ -71,10 +71,7 @@
                     <div class="col-12 mb-3 text-center">
                         <input class="btn btn-primary col-4" type="submit" value="Envio" />
                     </div>
-
-
                 </div>
-
             </form>
         </div>
     </section>

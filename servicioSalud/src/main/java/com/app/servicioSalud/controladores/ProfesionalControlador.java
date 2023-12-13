@@ -73,7 +73,7 @@ public class ProfesionalControlador {
 
         if (profesional.getRol().toString().equals("ADMIN")) {
             return "redirect:/admin/dashboard";
-        }
+        } 
 
         // Obtener la lista de profesionales
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
