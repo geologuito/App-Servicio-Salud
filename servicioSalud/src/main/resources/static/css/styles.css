@@ -156,7 +156,13 @@
   grid-area: reg;
   display: flex;
   justify-content: center;
-  align-items: center;
+ 
+}
+/*ESTILO DEL APARTADO O NEWS*/
+.news .card{
+  background-color: rgba(135, 140, 140, 0.604);
+  margin-top: 1em;
+  font-size: 1em;
 }
 
 /*ESTILO DEL CONTENEDOR 2*/
