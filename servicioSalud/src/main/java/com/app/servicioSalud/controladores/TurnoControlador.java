@@ -31,7 +31,7 @@ public class TurnoControlador {
 
     @Autowired
     private TurnoRepositorio turnoRepositorio;
-    
+
     @Autowired
     private PacienteRepositorio PacienteRepositorio;
 
@@ -74,8 +74,8 @@ public class TurnoControlador {
     }
 
     @PostMapping("/buscarTurno")
-    public String reservarTurno(String fecha, ModelMap modelo, HttpSession session) {
-        
+    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session) {
+
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         modelo.addAttribute("paciente", paciente);
 
@@ -83,11 +83,8 @@ public class TurnoControlador {
         LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
 
         List<Turno> turnoDia = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
-       
-     
+
         modelo.addAttribute("turno", turnoDia);
-                    
-        
 
         return "listaTurnoFecha";
     }
@@ -97,11 +94,29 @@ public class TurnoControlador {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         System.out.println(id.toString());
-               
-        turnoServicio.asignarPaciente(id,paciente );
-        
-        
-         return "redirect:/";
+
+        turnoServicio.asignarPaciente(id, paciente);
+
+        return "redirect:/";
     }
 
+    @GetMapping("/buscarDia")
+    public String citas() {
+
+        return "buscarDia";
+    }
+
+    @PostMapping("/citas")
+    public String citaDelDia(@RequestParam String fecha, ModelMap modelo) {
+
+        String fechaComoString = fecha;
+        LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
+
+        List<Turno> turnoDia = turnoRepositorio.turnosDelDia(fechaComoLocalDate);
+
+        modelo.addAttribute("turno", turnoDia);
+
+        return "citas";
+
+    }
 }
