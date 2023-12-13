@@ -36,7 +36,6 @@
                                         <th scope="col">Telefono</th>
                                         <th scope="col">Especialidad</th>
                                         <th scope="col">Estatus</th>
-                                        <th scope="col">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -47,11 +46,6 @@
                                         <td th:text="${profesional.telefono}"></td>
                                         <td th:text="${profesional.especialidad}"></td>
                                         <td>Activo</td>
-                                        <td>
-                                            <a th:href="@{/profesional/modificar/__${profesional.matricula}__}"><i
-                                                    class="fas fa-feather-alt"></i>
-                                                Modificar </a>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
