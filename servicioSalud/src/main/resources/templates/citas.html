@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <div>TODO write content</div>
+
+        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+
+        <section class="tabla">
+            <hr class="my-2">
+            <h2 class="fst-italic text-white">Turnos del día</h2>
+
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">id</th>
+                        <th scope="col">fecha</th>
+                        <th scope="col">horario</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Historia Clinica</th>
+
+                    </tr>
+                </thead>
+                <tbody th:each="turno : ${turno}" th:if="${turno.profesional.matricula == session.profesionalsession.matricula}">>
+                    <tr>
+                        <td th:text ="${turno.idTurno}"></td>
+                        <td th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
+                        <td th:text="${#temporals.format(turno.horario, 'HH:mm')}"></td>             
+                        <td th:text ="${turno.paciente.nombre}"></td>
+                        <td>
+                            <a class="mx-2" th:href="@{/hc/crear/__${turno.paciente.dni}__}"> crear </a>
+                            <a class="mx-2" th:href="@{/hc/listar/__${turno.paciente.dni}__}"> ver </a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+    </body>
+
+</html>
