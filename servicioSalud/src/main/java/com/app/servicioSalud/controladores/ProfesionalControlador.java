@@ -47,7 +47,7 @@ public class ProfesionalControlador {
 
         try {
             profesionalServicio.registrar(archivo, matricula, dni, nombre, apellido, email, password, password2,
-                    domicilio, telefono, activo, especialidad, consulta, horario);
+                    domicilio, telefono, especialidad, consulta, horario);
 
             modelo.put("exito", "Usuario Registrado!");
 
