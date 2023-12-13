@@ -19,7 +19,7 @@ public class HistoriaClinica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private String id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "profesional_id")
