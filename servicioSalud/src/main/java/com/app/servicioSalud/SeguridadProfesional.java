@@ -24,8 +24,7 @@ public class SeguridadProfesional extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
+        http.authorizeRequests()
                 .antMatchers("/profesional/**").hasRole("PROFESIONAL")
                 .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
                 .and()

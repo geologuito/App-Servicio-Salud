@@ -19,7 +19,7 @@ public class Profesional {
     private String apellido;
     private String email;
     private String password;
-    private String domicilio; //decidir si se deja o lo sacamos
+    private String domicilio; // decidir si se deja o lo sacamos
     private String telefono;
     private Boolean activo = false;
     private String especialidad;

@@ -46,7 +46,8 @@ public class ProfesionalControlador {
             ModelMap modelo, MultipartFile archivo) {
 
         try {
-            profesionalServicio.registrar(archivo, matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, activo, especialidad, consulta, horario);
+            profesionalServicio.registrar(archivo, matricula, dni, nombre, apellido, email, password, password2,
+                    domicilio, telefono, activo, especialidad, consulta, horario);
 
             modelo.put("exito", "Usuario Registrado!");
 
@@ -64,21 +65,15 @@ public class ProfesionalControlador {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
-
-        if (error != null) {
-            modelo.put("error", "Usuario o Contraseña invalidos!");
-        }
-
-        return "loginProfesional.html";
-    }
-
-    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
+    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL','ROLE_ADMIN')")
     @GetMapping("/perfil")
     public String perfil(ModelMap modelo, HttpSession session) {
 
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
+
+        if (profesional.getRol().toString().equals("ADMIN")) {
+            return "redirect:/admin/dashboard";
+        }
 
         // Obtener la lista de profesionales
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
@@ -107,11 +102,13 @@ public class ProfesionalControlador {
     }
 
     @PostMapping("/modificar/{matricula}")
-    public String modificar(@PathVariable String matricula, String email, String password, String domicilio, String telefono, ModelMap modelo, MultipartFile archivo) {
+    public String modificar(@PathVariable String matricula, String email, String password, String domicilio,
+            String telefono, ModelMap modelo, MultipartFile archivo) {
         try {
 
-            profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio, telefono);
-            return "redirect:../perfil"; //Decidir donde va cuando modifica prof
+            profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio,
+                    telefono);
+            return "redirect:../perfil"; // Decidir donde va cuando modifica prof
 
         } catch (MiException ex) {
 
@@ -124,7 +121,7 @@ public class ProfesionalControlador {
     public String eliminarProfesional(@PathVariable String matricula, ModelMap modelo) throws MiException {
 
         profesionalServicio.eliminarProfesional(matricula);
-        return "redirect:/index"; //Falta vista para saber a donde va cuando elimina prof
+        return "redirect:/index"; // Falta vista para saber a donde va cuando elimina prof
     }
 
     @DeleteMapping("/eliminar/{matricula}")

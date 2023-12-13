@@ -18,10 +18,11 @@ public class Turno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idTurno;
+    private String idTurno;
 
     private LocalDate fecha;
-    private LocalTime hora;
+
+    private LocalTime horario;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "profesional_id")
@@ -30,4 +31,6 @@ public class Turno {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
+    
+    private Boolean reservado;
 }
