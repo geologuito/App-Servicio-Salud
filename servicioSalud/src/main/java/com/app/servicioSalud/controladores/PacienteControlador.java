@@ -106,11 +106,9 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, ModelMap modelo) {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
-<<<<<<< HEAD
-        System.out.println("modificar");
-=======
 
->>>>>>> developer
+        System.out.println("modificar");
+
         return "modificarPaciente.html";// mapear con html
     }
 

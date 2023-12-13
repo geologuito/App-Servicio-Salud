@@ -35,6 +35,13 @@ public class PortalControlador {
 
         return "profesionales";
     }
+    
+    @GetMapping("/especialidades")
+    public String especialidades() {
+
+        return "especialidades";
+    }
+    
     @GetMapping("/us")
     public String us() {
 
