@@ -1,5 +1,6 @@
 package com.app.servicioSalud;
 
+import com.app.servicioSalud.servicios.AdminServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,12 +20,21 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
+<<<<<<< HEAD
         @Autowired
         public PacienteServicio pacienteServicio;
+=======
+    @Autowired
+    public AdminServicio adminServicio;
+
+    @Autowired
+    public PacienteServicio pacienteServicio;
+>>>>>>> ema
 
         @Autowired
         public ProfesionalServicio profesionalServicio;
 
+<<<<<<< HEAD
         /*
          * @Autowired
          * public void configuredGlobal(AuthenticationManagerBuilder auth) throws
@@ -41,6 +51,12 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
         public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
                 CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
                                 profesionalServicio, pacienteServicio);
+=======
+    @Autowired
+    public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
+        CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
+                profesionalServicio, pacienteServicio, adminServicio);
+>>>>>>> ema
 
                 auth.userDetailsService(compositeUserDetailsService)
                                 .passwordEncoder(new BCryptPasswordEncoder());
@@ -94,20 +110,20 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
                 .antMatchers("/paciente/login").permitAll()
                 .antMatchers("/profesional/login").permitAll()
                 .antMatchers("/paciente/**").hasRole("PACIENTE")
                 .antMatchers("/profesional/**").hasRole("PROFESIONAL")
-            .and().formLogin()
+                .and().formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler(new CustomAuthenticationSuccessHandler())
-            .and().logout()
+                .and().logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .and().csrf().disable();

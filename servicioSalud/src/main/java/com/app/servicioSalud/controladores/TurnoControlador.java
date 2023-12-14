@@ -4,6 +4,7 @@ import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
 import com.app.servicioSalud.repositorios.PacienteRepositorio;
+import com.app.servicioSalud.repositorios.ProfesionalRepositorio;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import com.app.servicioSalud.servicios.TurnoServicio;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -27,13 +28,10 @@ public class TurnoControlador {
     private TurnoServicio turnoServicio;
 
     @Autowired
-    private ProfesionalServicio profesionalServicio;
-
-    @Autowired
     private TurnoRepositorio turnoRepositorio;
 
     @Autowired
-    private PacienteRepositorio PacienteRepositorio;
+    ProfesionalServicio profesionalServicio;
 
     @GetMapping("/calendario")
     public String reservar(ModelMap modelo, HttpSession session) {
@@ -47,6 +45,9 @@ public class TurnoControlador {
             @RequestParam String horaInicio,
             @RequestParam String horaFin,
             @RequestParam Profesional profesional_id) {
+
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesionales);
 
         String fechaComoString = fecha;
         LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);

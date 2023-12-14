@@ -2,13 +2,14 @@
     <link rel="stylesheet" href="/css/sidebar.css">
     <button class="toggle-btn" id="sidebar-toggle">☰ Perfil</button>
     <div class="sidebar" id="sidebar">
-        <h2>Paciente</h2>
         <ul>
-            <li><a href="#" class="opcion" data-target="form">Actualizar datos</a></li>
-            <li><a href="#" class="opcion" data-target="tabla">Doctores</a></li>
-            <li><a href="#" class="opcion" data-target="">Especialidades</a></li>
+            <li><h5 class="fst-italic text-white" th:if="${session.pacientesession != null}"
+                    th:text=" ${session.pacientesession.nombre} + ' ' + ${session.pacientesession.apellido} "></h5></li>
+            <li><a th:href="@{/paciente/modificar/__${paciente.dni}__}" class="opcion" data-target="form">Actualizar datos</a></li>
+            <li><a th:href="/profesionales" class="opcion" data-target="tabla">Doctores</a></li>
+            <li><a th:href="/especialidades" class="opcion" data-target="">Especialidades</a></li>
             <li><a th:href="@{/servicios}" class="opcion" data-target="servicios">Servicios</a></li>
-            <li><a th:href="@{/turno/reservar}" class="opcion" data-target="">Turnos</a></li>
+            <li><a th:href="@{/turno/buscarFecha/}" class="opcion" data-target="">Turnos</a></li>
         </ul>
     </div>
     <script src="/js/sidebar.js"></script>

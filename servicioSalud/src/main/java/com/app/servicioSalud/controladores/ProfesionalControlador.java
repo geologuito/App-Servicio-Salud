@@ -82,8 +82,6 @@ public class ProfesionalControlador {
         modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
         modelo.addAttribute("profesional", profesional); // muestra los datos del prof del perfil
 
-        
-        
         return "panelProfesional";
     }
 

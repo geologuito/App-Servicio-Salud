@@ -2,14 +2,15 @@
     <link rel="stylesheet" href="/css/sidebar.css">
     <button class="toggle-btn" id="sidebar-toggle">☰ Perfil</button>
     <div class="sidebar" id="sidebar">
-      <h2>Profesional</h2>
-      <ul>
-          <li><a href="#">Actualizar datos</a></li>
-          <li><a href="#">Control de Turnos</a></li>
-          <li><a href="#">Historia Clinica</a></li>
-          <li><a href="#">Obras Sociales</a></li>
-      </ul>
-  </div>
+        <ul class="my-5">
+            <li><h5 class="fst-italic text-white" th:if="${session.profesionalsession != null}"
+                    th:text=" ${session.profesionalsession.apellido} "></h5></li>
+            <li><a th:href="@{/profesional/modificar/__${profesional.matricula}__}">Actualizar datos</a></li>
+            <li><a href="#turnos">Control de Turnos</a></li>
+            <li><a th:href="@{/hc/listar}">Historia Clinica</a></li>
+            <li><a href="#">Obras Sociales</a></li>
+        </ul>
     </div>
-    <script src="/js/sidebar.js"></script>
-  </section>
+</div>
+<script src="/js/sidebar.js"></script>
+</section>

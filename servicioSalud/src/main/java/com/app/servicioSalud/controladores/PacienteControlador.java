@@ -17,9 +17,6 @@ import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
 import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -67,7 +64,7 @@ public class PacienteControlador {
 
             return "registroPaciente.html";
         }
-        return "redirect:/paciente/login";
+        return "redirect:/";
     }
 
     @GetMapping("/login")
@@ -113,8 +110,8 @@ public class PacienteControlador {
     }
 
     @PostMapping("/modificar/{dni}")
-    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
-            MultipartFile archivo,
+    public String modificar(@PathVariable String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password,
+            String edad, MultipartFile archivo,
             ModelMap modelo) {
         try {
             pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password);
@@ -124,23 +121,6 @@ public class PacienteControlador {
 
             modelo.put("error", ex.getMessage());
             return "modificarPaciente.html"; // mapear con html
-        }
-    }
-
-    @GetMapping("/eliminar/{dni}")
-    public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
-
-        pacienteServicio.eliminarPaciente(dni);
-        return "redirect:/index"; // Falta vista para saber a donde va cuando elimina paciente
-    }
-
-    @DeleteMapping("/eliminar/{dni}")
-    public ResponseEntity<String> eliminarPaciente(@PathVariable String dni) {
-        try {
-            pacienteServicio.eliminarPaciente(dni);
-            return new ResponseEntity<>("Paciente eliminado con éxito", HttpStatus.OK);
-        } catch (MiException ex) {
-            return new ResponseEntity<>("Error al eliminar el Paciente: " + ex.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
 

@@ -16,7 +16,11 @@ import lombok.Data;
 
 @Entity
 @Data
+<<<<<<< HEAD
 @Table(name = "turno", indexes = @Index(name = "idx_id", columnList = "id"))
+=======
+@Table(name = "turno", indexes = @Index(name = "idx_id", columnList = "idTurno"))
+>>>>>>> ema
 public class Turno {
 
     @Id
@@ -34,6 +38,6 @@ public class Turno {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "paciente_id")
     private Paciente paciente;
-    
+
     private Boolean reservado;
 }

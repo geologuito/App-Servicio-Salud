@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/formulario.css">
+        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+        <title>App Salud</title>
+    </head>
+
+    <body>
+        <div class="contenedor">
+            <div th:replace="/fragments/navbar ::div"> </div>
+            <section class="reg">
+                <form id="form" class="form" th:action="@{/admin/registro}" method="POST" enctype="multipart/form-data" novalidate>
+                    <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
+                    <p class="title">Registro Admin</p>
+                    <div class="d-flex justify-content-between">
+                        <label class="name">
+                            <input type="email" class="input" required="" name="email" th:value="${email}">
+                            <span>Email</span>
+                        </label>
+                    </div>
+                    <label>
+                        <input type="file" class="form-control file" name="archivo">
+                    </label>
+                    <label>
+                        <input type="password" class="input" required="" name="password" th:value="${password}">
+                        <span>Contraseña</span>
+                    </label>
+                    <label>
+                        <input type="password" class="input" required="" name="password2" th:value="${password2}">
+                        <span>Repetir Contraseña</span>
+                    </label>
+                    <button class="submit">Ser Admin</button>
+                    <p class="signin text-white">¿Ya sos ADMIN? <a class="text-white" th:href="@{/login}">Iniciar Sesión</a> </p>
+
+                    <!-- Inicio Mensaje de Exito -->
+                    <div th:if="${exito != null}" class="alert alert-success my-3">
+                        <i class="fas fa-check-circle"></i> <strong>Éxito:</strong> <span th:text="${exito}"></span>
+                    </div>
+
+
+                    <!-- Fin Mensaje de Exito -->
+
+                    <!-- Inicio mensaje de error -->
+                    <div th:if="${error != null}" class="alert alert-danger my-3">
+                        <i class="fas fa-exclamation-circle"></i> <strong>Error:</strong> <span th:text="${error}"></span>
+                    </div>
+
+                    <!-- Fin mensaje de error -->
+                </form>
+                <!-- FIN FORM -->
+            </section>
+        </div>
+    </div> <!--cierra beneficios-->
+
+    <footer th:replace="/fragments/footer :: footer"></footer>
+
+</html>
