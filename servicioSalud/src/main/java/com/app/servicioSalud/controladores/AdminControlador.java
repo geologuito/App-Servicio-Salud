@@ -24,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminControlador {
 
     @Autowired
+    private TurnoServicio turnoServicio;
+    @Autowired
     private PacienteServicio pacienteServicio;
     @Autowired
     private ProfesionalServicio profesionalServicio;
@@ -36,6 +38,7 @@ public class AdminControlador {
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
 
+        List<Turno> turnos = turnoServicio.listarTodos();
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
         List<HistoriaClinica> hc = HistoriaClinicaServicio.listarHC();
@@ -44,7 +47,7 @@ public class AdminControlador {
         modelo.addAttribute("pacientes", pacientes);
         modelo.addAttribute("profesionales", profesionales);
         modelo.addAttribute("hc",hc);
-        
+        modelo.addAttribute("turnos", turnos);
         
         return "dashbo";
     }
