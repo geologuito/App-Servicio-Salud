@@ -9,9 +9,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Entity
+@Setter
 @Data
 @Getter
-@Setter
 //@Table(name = "profesional")
 public class Profesional {
 

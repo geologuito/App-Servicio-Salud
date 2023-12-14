@@ -41,12 +41,13 @@ public class PacienteControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, String edad, ModelMap modelo, MultipartFile archivo) {
+            @RequestParam String password, String password2, String edad, @RequestParam ObraSocial obraSocial,
+            ModelMap modelo, MultipartFile archivo) {
 
         try {
 
             pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2,
-                    edad);
+                    edad, obraSocial);
 
             modelo.put("exito", "Usuario Registrado!");
 
@@ -69,22 +70,12 @@ public class PacienteControlador {
         return "redirect:/";
     }
 
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
-
-        if (error != null) {
-            modelo.put("error", "Usuario o Contraseña invalidos!");
-        }
-
-        return "loginPaciente.html";
-    }
-
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
     @GetMapping("/perfil")
     public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-        System.out.println("perfil");
+        
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
 
         modelo.addAttribute("profesionales", profesionales);
@@ -110,6 +101,8 @@ public class PacienteControlador {
     public String modificar(@PathVariable String dni, ModelMap modelo) {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
+
+        System.out.println("modificar");
 
         return "modificarPaciente.html";// mapear con html
     }

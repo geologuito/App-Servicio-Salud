@@ -12,26 +12,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 @Data
-@Entity
 @Getter
 @Setter
+@Entity
 public class Calificacion {
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
-    
+
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn (name = "profesional_id")
+    @JoinColumn(name = "profesional_id")
     private Profesional profesional;
-    
+
     private Double puntualidad;
     private Double mobiliario;
     private Double atencion;
-    private String comentario; 
-          
-    
-    
-     
-    
+    private String comentario;
+
 }

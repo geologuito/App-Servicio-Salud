@@ -125,7 +125,7 @@ public class AdminControlador {
     public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
 
         pacienteServicio.eliminarPaciente(dni);
-        return "redirect:/dashbo"; // Falta vista para saber a donde va cuando elimina paciente
+        return "dashbo"; // Falta vista para saber a donde va cuando elimina paciente
     }
 
     @DeleteMapping("/eliminar/{dni}")

@@ -1,26 +1,17 @@
 /* Estilos generales */
 body {
-  background: linear-gradient(to right, #f7f5f55a, #f1eeeeea), url(../images/dashboard.webp);
+  background: linear-gradient(to right, #f7f5f55a, #5e5d5dea), url(../images/dashboard.webp);
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
   height: 100vh;
 } 
 
-/* .contenedor {
-  text-align: center;
-  display: grid;
-  grid-template: auto auto auto / 100% 0% 1fr;
-  grid-template-areas: "navb navb navb "
-      "lista lista side"
-      "foot foot foot";
-} */
-  
   /* Estilos del menú */
   .menu {
     display: flex;
     flex-direction: column;
-    background-color: #333;
+    background-color: #3b403faf;
     width: 130px;
     position: absolute;
   }
@@ -36,7 +27,7 @@ body {
   }
   
   .opcion:hover {
-    background-color: #555;
+    background-color: #242726;
   }
   
   .opcion.active {

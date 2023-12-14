@@ -36,7 +36,7 @@ public class PacienteServicio implements UserDetailsService {
     private ImagenServicio imagenServicio;
 
     @Transactional
-    public void registrar(MultipartFile archivo, String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2, String edad) throws MiException {
+    public void registrar(MultipartFile archivo, String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password, String password2, String edad, ObraSocial obraSocial) throws MiException {
 
         validar(dni, nombre, apellido, domicilio, telefono, email, password, password2, edad);
 
@@ -51,10 +51,9 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setPassword(new BCryptPasswordEncoder().encode(password));
         paciente.setEdad(edad);
         paciente.setRol(RolEnum.PACIENTE);
+        paciente.setObraSocial(obraSocial);
         Imagen imagen = imagenServicio.guardar(archivo);
         paciente.setImagen(imagen);
-
-        System.out.println("Obra Social: " + paciente.getObraSocial());
 
         pacienteRepositorio.save(paciente);
 
