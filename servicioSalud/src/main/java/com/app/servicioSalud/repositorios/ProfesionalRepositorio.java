@@ -1,6 +1,7 @@
 package com.app.servicioSalud.repositorios;
 
 import com.app.servicioSalud.entidades.Profesional;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -15,4 +16,7 @@ public interface ProfesionalRepositorio extends JpaRepository<Profesional, Strin
     @Query("SELECT p FROM Profesional p WHERE p.email = :email")
     public Profesional buscarPorEmail(@Param("email") String email);
 
+    @Query("SELECT p FROM Profesional p WHERE p.especialidad = :especialidad")
+    public List<Profesional> buscarPorEspecialidad(@Param("especialidad") String especialidad);
+    
 }
