@@ -21,12 +21,8 @@ import org.hibernate.annotations.GenericGenerator;
 public class HistoriaClinica {
 
     @Id
-<<<<<<< HEAD
-    private Integer id;
-=======
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
->>>>>>> developer
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
+    private long id;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn (name = "profesional_id")

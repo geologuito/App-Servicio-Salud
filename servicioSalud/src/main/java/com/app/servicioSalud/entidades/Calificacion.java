@@ -12,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 /**
@@ -19,6 +21,8 @@ import org.hibernate.annotations.GenericGenerator;
  * @author EduRiu
  */
 @Data
+@Getter
+@Setter
 @Entity
 public class Calificacion {
     
