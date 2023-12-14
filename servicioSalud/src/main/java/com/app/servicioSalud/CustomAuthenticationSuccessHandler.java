@@ -31,7 +31,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_PROFESIONAL"))) {
             response.sendRedirect("/profesional/perfil");
         } else {
-            response.sendRedirect("/index");
+            response.sendRedirect("/");
         }
     }
 }
