@@ -114,7 +114,7 @@ public class TurnoControlador {
         List<Turno> turnoDia = turnoRepositorio.turnosDelDia(fechaComoLocalDate);
 
         modelo.addAttribute("turno", turnoDia);
-        
+
         return "buscarDia";
 
     }

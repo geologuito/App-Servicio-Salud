@@ -97,7 +97,7 @@ public class PacienteControlador {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
 
-        return "modificarPaciente.html";// mapear con html
+        return "modificarPaciente";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
@@ -111,7 +111,7 @@ public class PacienteControlador {
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
-            return "modificarPaciente.html"; // mapear con html
+            return "modificarPaciente"; // mapear con html
         }
     }
 
