@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/dashbo.css" />
+        <title>Panel Admin</title>
+    </head>
+
+    <body>
+        <div th:replace="/fragments/navbar ::div"></div>
+
+        <div class="menu">
+            <button class="opcion" data-target="inicio">Profesional</button>
+            <button class="opcion" data-target="acerca">Paciente</button>
+            <button class="opcion" data-target="contacto">Turno</button>
+        </div>
+
+
+        <div class="contenedores">
+            <div class="contenedor" id="inicio">
+                <h3 class="text-white">Profesionales</h3>
+                <section class="tabla">
+                    <hr class="my-2">
+
+                    <table class="table table-success table-striped table-hover w-100 ">
+                        <thead>
+                            <tr>
+                                <th scope="col">Matricula</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">DNI</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Especialidad</th>
+                                <th scope="col">Reputacion</th>
+                                <th scope="col" colspan="2">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="profesional : ${profesionales}">
+                                <td th:text="${profesional.matricula}"></td>
+                                <td th:text="${profesional.apellido}"></td>
+                                <td th:text="${profesional.nombre}"></td>
+                                <td th:text="${profesional.dni}"></td>
+                                <td th:text="${profesional.email}"></td>
+                                <td th:text="${profesional.telefono}"></td>
+                                <td th:text="${profesional.especialidad}"></td>
+                                <td></td>
+                                <td><a href="#">Modificar </a>
+                                    <a href="#">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </div>
+            <div class="contenedor" id="acerca">
+                <section class="tabla">
+
+                    <h3 class="fst-italic text-white">Pacientes</h3>
+                    <table class="table table-success table-striped table-hover w-75 ">
+                        <hr class="my-2">
+                        <thead>
+                            <tr>
+                                <th scope="col">DNI</th>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">E-mail</th>
+                                <th scope="col">Edad</th>
+                                <th scope="col">Domicilio</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Obra Social</th>
+                                <th scope="col" col-span="2">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="paciente : ${pacientes}">
+                                <td th:text="${paciente.dni}"></td>
+                                <td th:text="${paciente.apellido}"></td>
+                                <td th:text="${paciente.nombre}"></td>
+                                <td th:text="${paciente.email}"></td>
+                                <td th:text="${paciente.edad}"></td>
+                                <td th:text="${paciente.domicilio}"></td>
+                                <td th:text="${paciente.telefono}"></td>
+                                <td></td>
+                                <!--<td th:text="${paciente.obra_social}"></td> -->
+                                <td><a href="#">Modificar </a>
+                                    <a href="#">Eliminar</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+            <div class="contenedor" id="contacto">
+                <section class="tabla">
+
+                    <h3 class="fst-italic text-white">Turnos</h3>
+                    <table class="table table-success table-striped table-hover w-75 ">
+                        <hr class="my-2">
+                        <thead>
+                            <tr>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">Telefono</th>
+                                <th scope="col">Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="paciente : ${pacientes}">
+                                <td th:text="${paciente.apellido}"></td>
+                                <td th:text="${paciente.nombre}"></td>
+                                <td th:text="${paciente.email}"></td>
+                                <td th:text="${paciente.telefono}"></td>
+                                <td><a href="#">Modificar </a><a href="#">Eliminar</a></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </div>
+        </div>
+
+
+        <script src="/js/dashbo.js"></script>
+    </body>
+
+</html>

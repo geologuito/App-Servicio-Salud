@@ -1,5 +1,6 @@
 package com.app.servicioSalud;
 
+import com.app.servicioSalud.servicios.AdminServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    public AdminServicio adminServicio;
+
+    @Autowired
     public PacienteServicio pacienteServicio;
 
     @Autowired
@@ -27,7 +31,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
         CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
-                profesionalServicio, pacienteServicio);
+                profesionalServicio, pacienteServicio, adminServicio);
 
         auth.userDetailsService(compositeUserDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());

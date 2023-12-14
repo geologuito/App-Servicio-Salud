@@ -6,6 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import lombok.Data;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -21,5 +22,8 @@ public class Admin {
     private String password;
     @Enumerated(EnumType.STRING)
     private RolEnum rol;
+
+    @OneToOne
+    private Imagen imagen;
 
 }
