@@ -1,7 +1,10 @@
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
+import com.app.servicioSalud.repositorios.PacienteRepositorio;
+import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import com.app.servicioSalud.servicios.TurnoServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +14,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping("/turno")
@@ -23,81 +29,98 @@ public class TurnoControlador {
     @Autowired
     private ProfesionalServicio profesionalServicio;
 
-    @GetMapping("/reservar")
-    public String reservar(ModelMap modelo) {
-        List<Profesional> profesionales = profesionalServicio.listarProfesional();
-        modelo.addAttribute("profesionales", profesionales);
+    @Autowired
+    private TurnoRepositorio turnoRepositorio;
+
+    @Autowired
+    private PacienteRepositorio PacienteRepositorio;
+
+    @GetMapping("/calendario")
+    public String reservar(ModelMap modelo, HttpSession session) {
+
         return "turnos";
     }
 
-    @PostMapping("/reservado")
-    public String crearTurno(ModelMap modelo, @RequestParam String fecha, @RequestParam String hora, @RequestParam String profesional_id) {
+    @PostMapping("/creado")
+    public String crearTurno(ModelMap modelo,
+            @RequestParam String fecha,
+            @RequestParam String horaInicio,
+            @RequestParam String horaFin,
+            @RequestParam Profesional profesional_id) {
 
-        List<Profesional> profesionales = profesionalServicio.listarProfesional();
-        modelo.addAttribute("profesionales", profesionales);
+        String fechaComoString = fecha;
+        LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
 
-        try {
-            // Convertir String a LocalDate y LocalTime
-            LocalDate fechaLocalDate = LocalDate.parse(fecha);
-            LocalTime horaLocalTime = LocalTime.parse(hora);
+        DateTimeFormatter formato2 = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime horaInicial = LocalTime.parse(horaInicio, formato2);
 
-            turnoServicio.crearTurno(horaLocalTime, fechaLocalDate, profesional_id);
+        DateTimeFormatter formato1 = DateTimeFormatter.ofPattern("HH:mm");
+        LocalTime horaFinal = LocalTime.parse(horaFin, formato1);
 
-            modelo.put("exito", "¡El turno fue registrado!");
+        turnoServicio.generarTurnos(fechaComoLocalDate, horaInicial, horaFinal, profesional_id, null, Boolean.FALSE);
 
-        } catch (Exception ex) {
-            modelo.put("error", ex.getMessage());
-            return "turnos";
-        }
         return "redirect:/";
     }
 
-    @GetMapping("/listar")
-    public String listarTurnos(ModelMap modelo) {
-        List<Turno> turnos = turnoServicio.listarTurnos();
-        modelo.addAttribute("turnos", turnos);
-        return "lista_turnos";
+    @GetMapping("/buscarFecha")
+    public String listarPorDia(ModelMap modelo, HttpSession session) {
+
+        Paciente paciente = (Paciente) session.getAttribute("pacientesession");
+        modelo.addAttribute("paciente", paciente);
+
+        List<Profesional> profesional = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesional);
+
+        return "buscarTurno";
+
     }
 
-    @GetMapping("/buscarPorPaciente")
-    public String buscarTurnosPorPaciente(ModelMap modelo, @RequestParam String id) {
-        List<Turno> turnos = turnoServicio.listarTurnoPorPaciente(id);
-        modelo.addAttribute("turnos", turnos);
-        return "lista_turnos";
+    @PostMapping("/buscarTurno")
+    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session, @RequestParam String matricula) {
+
+        Paciente paciente = (Paciente) session.getAttribute("pacientesession");
+        modelo.addAttribute("paciente", paciente);
+
+        String fechaComoString = fecha;
+        LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
+
+        List<Turno> turnoDia = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
+
+        modelo.addAttribute("turno", turnoDia);
+        modelo.addAttribute("matricula", matricula);
+
+        return "listaTurnoFecha";
     }
 
-    @GetMapping("/buscarPorFecha")
-    public String buscarTurnosPorFecha(ModelMap modelo, @RequestParam LocalDate fecha) {
-        
-        List<Turno> turnos = turnoServicio.listarTurnoPorFecha(fecha);
-        modelo.addAttribute("turnos", turnos);
-        return "lista_turnos";
-    }
+    @GetMapping("/reservado/{id}")
+    public String turnoOK(@PathVariable String id, HttpSession session) {
 
-    @PostMapping("/modificar/{id}")
-    public String modificarTurno(ModelMap modelo, @PathVariable Long id, @RequestParam String fecha, @RequestParam String hora) {
-        try {
-            // Convertir String a LocalDate y LocalTime
-            LocalDate fechaLocalDate = LocalDate.parse(fecha);
-            LocalTime horaLocalTime = LocalTime.parse(hora);
+        Paciente paciente = (Paciente) session.getAttribute("pacientesession");
+        System.out.println(id.toString());
 
-            turnoServicio.modificarTurno(id, fechaLocalDate, horaLocalTime);
+        turnoServicio.asignarPaciente(id, paciente);
 
-            modelo.put("exito", "¡El turno fue modificado!");
-        } catch (Exception ex) {
-            modelo.put("error", ex.getMessage());
-        }
         return "redirect:/";
     }
 
-    @PostMapping("/eliminar/{id}")
-    public String eliminarTurno(ModelMap modelo, @PathVariable Long id) {
-        try {
-            turnoServicio.eliminarTurno(id);
-            modelo.put("exito", "¡El turno fue eliminado!");
-        } catch (Exception ex) {
-            modelo.put("error", ex.getMessage());
-        }
-        return "redirect:/";
+    @GetMapping("/buscarDia")
+    public String citas(ModelMap modelo) {
+
+        return "buscarDia";
     }
+
+    @PostMapping("/citas")
+    public String citaDelDia(@RequestParam String fecha, ModelMap modelo) {
+
+        String fechaComoString = fecha;
+        LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
+
+        List<Turno> turnoDia = turnoRepositorio.turnosDelDia(fechaComoLocalDate);
+
+        modelo.addAttribute("turno", turnoDia);
+
+        return "citas";
+
+    }
+
 }

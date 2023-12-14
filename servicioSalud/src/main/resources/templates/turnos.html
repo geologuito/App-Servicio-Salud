@@ -1,27 +1,42 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Reservar Turno</title>
+    <title>Reserva de Turno</title>
 </head>
 <body>
-    <h1>Reservar Turno</h1>
-    <form th:action="@{/turno/reservado}" method="post" enctype="multipart/form-data">
+    <h1>Crear Calendario </h1>
+    
+            
+    <form th:action="@{/turno/creado}" method="post">
         <label for="fecha">Fecha:</label>
-        <input type="date" id="fecha" name="fecha" required ><br><br>
+        <input type="date" id="fecha" name="fecha" required><br><br>
         
-        <label for="hora">Hora:</label>
-        <input type="time" id="hora" name="hora" required><br><br>
+        <label for="horaa">Hora Inicio:</label>
+        <input type="text" name="horaInicio" required><br><br>
         
-        <select name="profesional_id">
-            <option>Seleccionar Profesional</option>
-            <option th:each="profesional : ${profesionales}" th:value="${profesional.matricula}"th:text="${profesional.nombre}" />
-        </select>
+        <label for="hora">Hora Final</label>
+        <input type="text"  name="horaFin" required><br><br>
         
-        <button type="submit">Reservar</button>
+        <input type="text"  name="profesional_id">
+            
+        
+        
+            
+        <button type="submit">crear</button>
     </form>
+    
+    <div th:if="${exito}" style="color: green;">
+        <p th:text="${exito}"></p>
+    </div>
+    
+    <div th:if="${error}" style="color: red;">
+        <p th:text="${error}"></p>
+    </div>
 </body>
 </html>
+
+
 
 
 

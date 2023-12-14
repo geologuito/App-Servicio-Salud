@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+
+    <body>
+        <div>TODO write content</div>
+
+        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+
+        <br>
+
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Especialidad</th>
+                    <th scope="col">Apellido</th>
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Matricula</th>
+                  
+                </tr>
+            </thead>
+            <tbody th:each="profesional : ${profesionales}">
+                <tr>
+                    <th scope="row" th:text="${profesional.matricula}"></th>
+                    <td th:text="${profesional.apellido}"></td>
+                    <td th:text="${paciente.nombre}"></td>
+                    <td th:text="${profesional.matricula}"></td>
+                    
+                </tr>
+            </tbody>
+
+            <form th:action="@{/turno/citas}" method="post">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required><br><br>
+                <label for="fecha">Matricula</label>
+                <input type="text" id="matricula" name="matricula" required><br><br>
+                
+                <button type="submit">buscar</button>
+            </form>
+
+
+    </body>
+
+</html>
