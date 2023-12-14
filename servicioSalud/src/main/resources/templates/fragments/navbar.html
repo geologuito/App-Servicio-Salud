@@ -20,19 +20,18 @@
                     <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2 active" aria-current="page"
                         href="/">Home</a>
                     <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/profesionales">Doctores</a>
-                    <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/especialidades">Especialidades</a>
                     <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/servicios">Servicios</a>
                     <!-- ... Otros elementos del menú ... -->
 
                     <!-- Botón de perfil segun el rol del usuario -->
                     <a th:if="${#authorization.expression('hasRole(''ROLE_PACIENTE'')')}"
-                        class="nav-link mx-2 btn btn-primary" href="/paciente/perfil">Perfil Paciente</a>
+                        class="nav-link mx-2 btn " href="/paciente/perfil">Perfil Paciente</a>
                     <a th:if="${#authorization.expression('hasRole(''ROLE_PROFESIONAL'')')}"
-                        class="nav-link mx-2 btn btn-primary" href="/profesional/perfil">Perfil Profesional</a>
+                        class="nav-link mx-2 btn " href="/profesional/perfil">Perfil Profesional</a>
                     <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                        class="nav-link mx-2 btn btn-primary" href="/admin/dashboard">Perfil Admin</a>
+                        class="nav-link mx-2 btn " href="/admin/dashboard">Perfil Admin</a>
                     <!-- Botón de cerrar sesión visible solo si está autenticado -->
-                    <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2 btn btn-primary"
+                    <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2 btn "
                         href="/logout">Cerrar sesión</a>
 
                     <!-- Botón de registro que desaparece cuando está autenticado -->

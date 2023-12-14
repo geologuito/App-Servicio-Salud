@@ -102,7 +102,7 @@ public class TurnoControlador {
     @GetMapping("/buscarDia")
     public String citas(ModelMap modelo) {
 
-        return "buscarDia";
+        return "verTurnos";
     }
 
     @PostMapping("/citas")
@@ -115,7 +115,7 @@ public class TurnoControlador {
 
         modelo.addAttribute("turno", turnoDia);
 
-        return "buscarDia";
+        return "verTurnos";
 
     }
 

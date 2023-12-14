@@ -61,6 +61,10 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="agregar">
+                    <a class="dropdown-item text-white" th:href="@{/profesional/registrar}"><i
+                            class="fa-solid fa-user mx-3 fw-" style="color: #ffffff;"></i>Agregar Profesional</a>
+                </div>
         </div>
         <div class="contenedor" id="paciente">
             <section class="tabla">
@@ -99,36 +103,80 @@
                         </tr>
                     </tbody>
                 </table>
+                <div class="agregar">
+                    <a class="dropdown-item text-white" th:href="@{/paciente/registrar}"><i
+                            class="fa-solid fa-user mx-3 fw-" style="color: #ffffff;"></i>Agregar Paciente</a>
+                </div>
             </section>
         </div>
         <div class="contenedor" id="turno">
             <section class="tabla">
-
                 <h3 class="fst-italic text-white">Turnos</h3>
+
+                <!-- Subtabla para turnos reservados -->
                 <table class="table">
                     <thead>
+                        <tr>
+                            <th colspan="6">Turnos Reservados</th>
+                        </tr>
                         <tr>
                             <th scope="col">id</th>
                             <th scope="col">fecha</th>
                             <th scope="col">horario</th>
-                            <th scope="col">reservar</th>
-
+                            <th scope="col">Médico</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">acciones</th>
                         </tr>
                     </thead>
-                    <tbody th:each="turno : ${turno}">
+                    <tbody th:each="turno : ${turnos}" th:if="${turno.reservado}">
                         <tr>
-                            <td th:if="${!turno.reservado}" th:text="${turno.idTurno}"></td>
-                            <td th:if="${!turno.reservado}" th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}">
-                            </td>
-                            <td th:if="${!turno.reservado}" th:text="${#temporals.format(turno.horario, 'HH:mm')}"></td>
+                            <td th:text="${turno.idTurno}"></td>
+                            <td th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${turno.horario}"></td>
+                            <td th:text="${turno.profesional.nombre}"></td>
+                            <td th:text="${turno.paciente.apellido}"></td>
                             <td>
-                                <a th:if="${!turno.reservado}" th:href="@{/turno/reservado/__${turno.idTurno}__}">
-                                    Solicitar </a>
+                                <a class="mx-3"><i class="fa-solid fa-pen " style="color: #1f1e1e;"></i></a>
+                                <a><i class="fa-solid fa-trash " style="color: #1f1e1e;"></i></a>
                             </td>
                         </tr>
                     </tbody>
                 </table>
+                <!-- Subtabla para turnos disponibles -->
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th colspan="5">Turnos Disponibles</th>
+                        </tr>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Horario</th>
+                            <th scope="col">Médico</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="turno : ${turnos}" th:if="${!turno.reservado}">
+                        <tr>
+                            <td th:text="${turno.idTurno}"></td>
+                            <td th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#temporals.format(turno.horario, 'HH:mm')}"></td>
+                            <td th:text="${turno.profesional.nombre}"></td>
+                            <td>
+                                <a class="mx-3"><i class="fa-solid fa-pen " style="color: #1f1e1e;"></i></a>
+                                <a><i class="fa-solid fa-trash " style="color: #1f1e1e;"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+
+                <div class="agregar">
+                    <a class="dropdown-item text-white">
+                        <i class="fa-solid fa-calendar mx-3 fw-" style="color: #ffffff;"></i>Agregar Turno
+                    </a>
+                </div>
             </section>
+
         </div>
         <div class="contenedor" id="historia">
             <section class="tabla">

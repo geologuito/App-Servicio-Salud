@@ -72,5 +72,8 @@ public class TurnoServicio {
         
         return turno;
     }
-
+    
+    public List<Turno> listarTodos(){
+        return turnoRepositorio.findAll();
+    }
 }

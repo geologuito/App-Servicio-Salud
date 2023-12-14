@@ -98,7 +98,13 @@
                                 <td th:text="${profesional.telefono}"></td>
                                 <td th:text="${profesional.especialidad}"></td>
                                 <td>
-                                    <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> VER </a>
+                                    <div class="rating" data-value="3" data-profesional="${profesional.matricula}">
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                        <span class="star">&#9733;</span>
+                                    </div>
                                 </td>
                             </tr>
                         </tbody>

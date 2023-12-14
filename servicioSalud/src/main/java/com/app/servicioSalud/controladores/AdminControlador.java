@@ -3,10 +3,13 @@ package com.app.servicioSalud.controladores;
 import com.app.servicioSalud.entidades.HistoriaClinica;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
+import com.app.servicioSalud.entidades.Turno;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.servicios.HistoriaClinicaServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
+import com.app.servicioSalud.servicios.TurnoServicio;
+
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,16 +30,20 @@ public class AdminControlador {
     private ProfesionalServicio profesionalServicio;
     @Autowired
     private HistoriaClinicaServicio HistoriaClinicaServicio;
+    @Autowired
+    private TurnoServicio turnoServicio;
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
 
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
+        List<Turno> turnos = turnoServicio.listarTodos();
         List<HistoriaClinica> hc = HistoriaClinicaServicio.listarHC();
 
         modelo.addAttribute("pacientes", pacientes);
         modelo.addAttribute("profesionales", profesionales);
+        modelo.addAttribute("turnos", turnos);
         modelo.addAttribute("hc",hc);
         
         return "dashboard";
