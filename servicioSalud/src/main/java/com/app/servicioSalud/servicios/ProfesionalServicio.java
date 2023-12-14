@@ -38,7 +38,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
     @Transactional
     public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido,
-            String email, String password, String password2, String domicilio, String telefono, Boolean activo,
+            String email, String password, String password2, String domicilio, String telefono,
             String especialidad, Integer consulta, Date horario) throws MiException {
 
         validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, especialidad);
@@ -53,7 +53,7 @@ public class ProfesionalServicio implements UserDetailsService {
         profesional.setPassword(new BCryptPasswordEncoder().encode(password));
         profesional.setDomicilio(domicilio);
         profesional.setTelefono(telefono);
-        profesional.setActivo(activo);
+        profesional.setActivo(Boolean.FALSE);
         profesional.setEspecialidad(especialidad);
         profesional.setConsulta(consulta);
         profesional.setHorario(horario);
