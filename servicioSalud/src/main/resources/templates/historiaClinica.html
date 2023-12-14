@@ -38,8 +38,8 @@
                             <td th:text="${paciente.nombre}"></td>
 
                     </tbody>
-                </table>
-                <form class="form-box" th:action="@{/profesional/perfil}" method="post">
+                </table>  
+                <form class="form-box" th:action="@{/hc/creada}" method="post">
                     <p class="title">Crear Historia</p>
                     <div class="row text-white">
                         <div class="col-4 mb-3">
@@ -49,7 +49,7 @@
                         </div>
                         <div class="col-4 mb-3">
                             <label>DNI paciente</label>
-                            <input type=text class="form-control" th:value="${paciente.dni}" name="profesional_id">
+                            <input type=text class="form-control" th:value="${paciente.dni}" name="paciente_id">
                         </div>
                         <div class="col-4 mb-3">
                             <label>Motivo de la visita</label>
@@ -59,7 +59,7 @@
                             <label>
                                 Diagnostico
                             </label>
-                            <textarea type=text class="form-control" name="diagnostico"></textarea>
+                            <textarea type=text class="form-control" name="dx"></textarea>
                         </div>
 
                         <div class="col-6 mb-3">
@@ -70,7 +70,6 @@
                             <input class="btn btn-primary col-4" type="submit" value="Envio" />
                         </div>
                     </div>
-
                 </form>
             </div>
         </section>
