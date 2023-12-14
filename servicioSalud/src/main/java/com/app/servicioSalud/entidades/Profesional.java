@@ -5,8 +5,10 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.*;
 import lombok.Data;
+import lombok.Setter;
 
 @Entity
+@Setter
 @Data
 //@Table(name = "profesional")
 public class Profesional {

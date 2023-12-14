@@ -13,14 +13,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Data
-<<<<<<< HEAD
-@Table(name = "turno", indexes = @Index(name = "idx_id", columnList = "id"))
-=======
+@Setter
+@Getter
 @Table(name = "turno", indexes = @Index(name = "idx_id", columnList = "idTurno"))
->>>>>>> ema
 public class Turno {
 
     @Id

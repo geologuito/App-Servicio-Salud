@@ -17,21 +17,14 @@ import org.hibernate.annotations.GenericGenerator;
 
 @Data
 @Entity
-<<<<<<< HEAD
-=======
 //Sin esto cuando se genera la tabla da error "Falta index". Con esto se genera un indice aparte del id llamado idx_id
->>>>>>> ema
 @Table(name = "historia_clinica", indexes = @Index(name = "idx_id", columnList = "id"))
 public class HistoriaClinica {
 
     @Id
-<<<<<<< HEAD
-    //@GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-=======
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
->>>>>>> ema
+
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "profesional_id")

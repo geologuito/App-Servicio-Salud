@@ -20,21 +20,18 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
-<<<<<<< HEAD
-        @Autowired
-        public PacienteServicio pacienteServicio;
-=======
+
     @Autowired
     public AdminServicio adminServicio;
 
     @Autowired
     public PacienteServicio pacienteServicio;
->>>>>>> ema
+
 
         @Autowired
         public ProfesionalServicio profesionalServicio;
 
-<<<<<<< HEAD
+
         /*
          * @Autowired
          * public void configuredGlobal(AuthenticationManagerBuilder auth) throws
@@ -47,16 +44,11 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
          * 
          * }
          */
-        @Autowired
-        public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
-                CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
-                                profesionalServicio, pacienteServicio);
-=======
+
     @Autowired
     public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
         CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
                 profesionalServicio, pacienteServicio, adminServicio);
->>>>>>> ema
 
                 auth.userDetailsService(compositeUserDetailsService)
                                 .passwordEncoder(new BCryptPasswordEncoder());

@@ -37,21 +37,13 @@ public class PortalControlador {
 
         return "profesionales";
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> ema
     @GetMapping("/especialidades")
     public String especialidades() {
 
         return "especialidades";
     }
-<<<<<<< HEAD
-    
-=======
 
->>>>>>> ema
     @GetMapping("/us")
     public String us() {
 
