@@ -46,6 +46,11 @@
                         <input type="tel" class="input" required="" name="telefono" th:value="${telefono}">
                         <span>Telefono</span>
                     </label>
+
+                    <select id="obraSocial" name="obraSocial">
+                        <option th:each="obraSocial : ${obrasSociales}" th:value="${obraSocial}" th:text="${obraSocial.name()}"></option>
+                    </select>
+
                     <label>
                         <input type="email" class="input" required="" name="email" th:value="${email}">
                         <span>Email</span>

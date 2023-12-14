@@ -1,6 +1,6 @@
 package com.app.servicioSalud.enumeraciones;
 
-public enum ObraSocialEnum {
+public enum ObraSocial {
     
     OSECAC,
     OSPE,
