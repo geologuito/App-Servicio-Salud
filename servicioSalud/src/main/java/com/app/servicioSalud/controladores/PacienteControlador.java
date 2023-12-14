@@ -41,12 +41,13 @@ public class PacienteControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, String edad, ModelMap modelo, MultipartFile archivo) {
+            @RequestParam String password, String password2, String edad,@RequestParam ObraSocial obraSocial,
+            ModelMap modelo, MultipartFile archivo) {
 
         try {
 
             pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2,
-                    edad);
+                    edad, obraSocial);
 
             modelo.put("exito", "Usuario Registrado!");
 

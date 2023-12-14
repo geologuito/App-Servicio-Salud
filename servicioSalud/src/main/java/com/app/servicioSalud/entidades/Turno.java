@@ -18,13 +18,8 @@ import lombok.Setter;
 
 @Entity
 @Data
-<<<<<<< HEAD
-@Setter
-@Getter
-=======
 @Getter
 @Setter
->>>>>>> ema
 @Table(name = "turno", indexes = @Index(name = "idx_id", columnList = "idTurno"))
 public class Turno {
 

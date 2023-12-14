@@ -10,17 +10,12 @@ import javax.persistence.ManyToOne;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
-<<<<<<< HEAD
 import org.hibernate.annotations.GenericGenerator;
-=======
->>>>>>> ema
 
 @Data
 @Getter
 @Setter
 @Entity
-@Getter
-@Setter
 public class Calificacion {
     
     @Id

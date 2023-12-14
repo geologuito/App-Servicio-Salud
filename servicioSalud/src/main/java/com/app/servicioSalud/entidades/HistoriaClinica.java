@@ -13,12 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
-<<<<<<< HEAD
-import org.hibernate.annotations.GenericGenerator;
-=======
 import lombok.Getter;
 import lombok.Setter;
->>>>>>> ema
 
 @Data
 @Entity
