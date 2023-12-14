@@ -12,11 +12,11 @@
 
     <body>
         <div class="contenedor">
-
+            
             <div th:replace="/fragments/navbar ::div"> </div>
-
+            
             <section class="reg">
-                <form id="form" class="form" th:action="${#authorization.expression('hasRole(''ROLE_ADMIN'')') ? '@{/admin/modificar/${paciente.dni}}' : '@{/paciente/modificar/${paciente.dni}}'}" method="POST" enctype="multipart/form-data">
+                <form id="form" class="form" th:action="@{/admin/modificar1/__${dni}__}" method="POST" enctype="multipart/form-data">
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
 
                     <input hidden th:value="${dni}" name="dni">

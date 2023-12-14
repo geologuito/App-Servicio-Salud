@@ -6,11 +6,11 @@ import com.app.servicioSalud.entidades.Turno;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
+import java.util.Optional;
 import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.time.LocalTime;
-import java.util.List;
-import java.util.Optional;
 
 @Service
 public class TurnoServicio {
@@ -69,59 +69,5 @@ public class TurnoServicio {
 
         return turno;
     }
-}
 
-//    // ----Listado de todos los turnos---//
-//    @Transactional
-//    public List<Turno> listarTurnos() {
-//
-//        return turnoRepositorio.findAll();
-//
-//    }
-//
-//    // ---Busqueda por paciente---//
-//    @Transactional
-//    public List<Paciente> listarTurnoPorPaciente(String id) {
-//
-//        return turnoRepositorio.listarTurnosPorPaciente(id);
-//
-//    }
-//
-//    // ---Busqueda por fecha---//
-//    @Transactional
-//    public List<Turno> listarTurnoPorFecha(LocalDate fecha) {
-//
-//        return turnoRepositorio.filtrarPorFecha(fecha);
-//
-//    }
-//
-//    @Transactional
-//    public void modificarTurno(String id, LocalDate horario, LocalDate fecha, Profesional profesional_id, Paciente Paciente_id) {
-//
-//        Optional<Turno> respuesta = turnoRepositorio.findById(id);
-//
-//        if (respuesta.isPresent()) {
-//
-//            Turno turno = respuesta.get();
-//
-//            turno.setProfesional(profesional_id);
-//            turno.setFecha(fecha);
-//            turno.setHorario(horario);
-//
-//            turnoRepositorio.save(turno);
-//        }
-//
-//    }
-//
-//    // ---Eliminar turno---//
-//    @Transactional
-//    public void eliminarTurno(String id) {
-//
-//        Optional<Turno> respuesta = turnoRepositorio.findById(id);
-//        Turno turno = new Turno();
-//
-//        if (respuesta.isPresent()) {
-//            turno = respuesta.get();
-//            turnoRepositorio.delete(turno);
-//        }
-//    }
+}

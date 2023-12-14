@@ -11,18 +11,17 @@
     <div>TODO write content</div>
 
     <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
-   
+
     <br>
-   
-    
-     <form th:action="@{/turno/citas}" method="post">
+
+    <form th:action="@{/turno/citas}" method="post">
         <label for="fecha">Fecha:</label>
         <input type="date" id="fecha" name="fecha" required><br><br>
-            
+
         <button type="submit">buscar</button>
     </form>
 
-    
+
 </body>
 
 </html>

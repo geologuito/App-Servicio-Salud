@@ -29,9 +29,8 @@ public class PacienteServicio implements UserDetailsService {
     @Autowired
     private PacienteRepositorio pacienteRepositorio;
 
-    @Autowired
-    private CorreoServicio correoServicio;
-
+    // @Autowired
+    // private CorreoServicio correoServicio;
     @Autowired
     private ImagenServicio imagenServicio;
 
@@ -56,7 +55,7 @@ public class PacienteServicio implements UserDetailsService {
 
         pacienteRepositorio.save(paciente);
 
-        //correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
+        // correoServicio.envioRegistro(paciente.getEmail(), paciente.getNombre());
     }
 
     public List<Paciente> listarPaciente() {
@@ -65,7 +64,6 @@ public class PacienteServicio implements UserDetailsService {
 
     }
 
-    @Transactional
     public void modificarPaciente(MultipartFile archivo, String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
         modificarValidacion(domicilio, telefono, password, password2);
@@ -93,8 +91,6 @@ public class PacienteServicio implements UserDetailsService {
 
     private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2, String edad) throws MiException {
 
-        Paciente correoBD = pacienteRepositorio.buscarPorEmail(email);
-
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("el nombre no puede ser nulo ni estar vacio");
         }
@@ -106,28 +102,44 @@ public class PacienteServicio implements UserDetailsService {
         if (dni == null || dni.isEmpty() || dni.length() <= 6) {
             throw new MiException("se requiere DNI valido");
         }
-        if (email == null || email.isEmpty() || correoBD != null) {
-            throw new MiException("el email no puede ser nulo ni estar vacio o esta repetido");
-        }
 
         if (edad == null || edad.isEmpty()) {
             throw new MiException("La Edad no puede ser nula ni estar vacia");
         }
 
-        modificarValidacion(domicilio, telefono, password, password2);
-    }
-
-    public void modificarValidacion(String domicilio, String telefono, String password, String password2) throws MiException {
-
         if (domicilio == null || domicilio.isEmpty()) {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
+
+        if (email == null || email.isEmpty()) {
+            throw new MiException("el email no puede ser nulo ni estar vacio");
+        }
+
+        if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
+            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+        }
+
+        if (password == null || password.isEmpty() || password.length() <= 5) {
+            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+        }
+
+        if (!password.equals(password2)) {
+            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+        }
+    }
+
+    public void modificarValidacion(String domicilio, String telefono, String password, String password2) throws MiException {
+        if (domicilio == null || domicilio.isEmpty()) {
+            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+        }
+
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
             throw new MiException("el telefono no puede ser nulo ni estar vacio");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
             throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
         }
+
         if (!password.equals(password2)) {
             throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }

@@ -3,7 +3,6 @@ package com.app.servicioSalud.controladores;
 import com.app.servicioSalud.entidades.HistoriaClinica;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
-import com.app.servicioSalud.servicios.CorreoServicio;
 import com.app.servicioSalud.servicios.HistoriaClinicaServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import java.util.List;
@@ -17,6 +16,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+/**
+ *
+ * @author EduRiu
+ */
 @Controller
 @RequestMapping("/hc")
 public class HistoriaClinicaControlador {
@@ -27,9 +30,8 @@ public class HistoriaClinicaControlador {
     @Autowired
     private PacienteServicio pacienteServicio;
 
-    @Autowired
-    private CorreoServicio correoServicio;
-
+    // @Autowired
+    // private CorreoServicio correoServicio;
     @GetMapping("/crear/{id}") // localhost:8080/paciente/registrar
     public String registrar(ModelMap modelo, HttpSession session, @PathVariable String id) {
 
@@ -40,7 +42,7 @@ public class HistoriaClinicaControlador {
         modelo.addAttribute("profesional", profesional);
         modelo.addAttribute("paciente", paciente);
 
-        return "historiaClinica";
+        return "historiaclinica";
     }
 
     @PostMapping("/creada")
@@ -48,21 +50,20 @@ public class HistoriaClinicaControlador {
             @RequestParam Profesional profesional_id, @RequestParam String titulo,
             @RequestParam String dx, @RequestParam String tratamiento) {
 
-        String correoPaciente = paciente_id.getEmail();
-
         System.out.println("antes del exito");
 
         historiaClinicaServicio.crearHC(profesional_id, paciente_id, titulo, dx, tratamiento);
-       // correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
+
+        // correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
         System.out.println("creada con exito");
 
         return "redirect:/";
     }
 
-    @GetMapping("/listar/{id}") // localhost:8080/paciente/registrar
-    public String Listar(ModelMap modelo, HttpSession session, @PathVariable String id) {
+    @GetMapping("/listar") // localhost:8080/paciente/registrar
+    public String Listar(ModelMap modelo, HttpSession session) {
 
-        List<HistoriaClinica> hc = historiaClinicaServicio.listarPorDNI(id);
+        List<HistoriaClinica> hc = historiaClinicaServicio.listarHC();
 
         modelo.addAttribute("hc", hc);
 

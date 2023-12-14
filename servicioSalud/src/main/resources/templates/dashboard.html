@@ -1,55 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <title>Document</title>
-    <!--- google material icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/dashboard.css">
-</head>
+    <head th:replace="/fragments/head :: head"> </head>
 
-<body class="contenedor">
-    <div th:replace="/fragments/navbar ::div"></div>
-    <!--TOP NAVBAR END-->
-    <!--contenido de pagina-->
+    <body class="contenedor">
+        <div th:replace="/fragments/navbar ::div"></div>
+        <!--TOP NAVBAR END-->
+        <!--contenido de pagina-->
 
-    <div class="offcanvas offcanvas-end bg-transparent" data-bs-backdrop="false" tabindex="-1" id="staticBackdrop"
-        aria-labelledby="staticBackdropLabel">
-        <div class="offcanvas-header menu">
-            <h5 class="offcanvas-title text-white" id="staticBackdropLabel">Menu</h5>
-            <button type="button" class="btn-close bg-info" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-        </div>
-        <div class="offcanvas-body panel-body ">
-            <!-- contenido -->
-            <div>
-                <div class="panel"> <!--*Botones side-->
-                    <!--Agregar usuarios-->
-                    <a th:href="@{/admin/profesional}" class="btn  panel-item" data-toggle="modal" data-section="crearProfesional">
-                        <i class="material-icons">&#xE147;</i>
-                        <span>PROFESIONAL</span></a>
-
-                    <a href="#" class="btn  panel-item" data-toggle="modal" data-section="crearPaciente">
-                        <i class="material-icons">&#xE147;</i>
-                        <span>PACIENTE</span></a>
-                    <!--Eliminar usuarios-->
-                    <a href="#" class="btn  panel-item" data-toggle="modal" data-section="listarProfesional">
-                        <i class="material-icons">&#xe8ef;</i>
-                        <span>TURNOS</span></a>
-
-                    <a href="#" class="btn  panel-item" data-toggle="modal" data-section="listarPaciente">
-                        <i class="material-icons">&#xe8ef;</i>
-                        <span>HISTORIAS CLINICAS</span></a>
-                </div>
+        <div class="offcanvas offcanvas-end bg-transparent" data-bs-backdrop="false" tabindex="-1" id="staticBackdrop"
+             aria-labelledby="staticBackdropLabel">
+            <div class="offcanvas-header menu">
+                <h5 class="offcanvas-title text-white" id="staticBackdropLabel">Menu</h5>
+                <button type="button" class="btn-close bg-info" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
-            <!-- fin contenido -->
+            <div class="offcanvas-body panel-body ">
+                <!-- contenido -->
+                <div>
+                    <div class="panel"> <!--*Botones side-->
+                        <!--Agregar usuarios-->
+                        <a th:href="@{/profesional/registrar}" class="btn  panel-item" data-toggle="modal" data-section="crearProfesional">
+                            <i class="material-icons">&#xE147;</i>
+                            <span>PROFESIONAL</span></a>
+
+                        <a th:href="@{/paciente/registrar}" class="btn  panel-item" data-toggle="modal" data-section="crearPaciente">
+                            <i class="material-icons">&#xE147;</i>
+                            <span>PACIENTE</span></a>
+                        <!--Eliminar usuarios-->
+                        <a href="listarProfesional" class="btn  panel-item" data-toggle="modal" data-section="listarProfesional">
+                            <i class="material-icons">&#xe8ef;</i>
+                            <span>TURNOS</span></a>
+
+                        <a href="#" class="btn  panel-item" data-toggle="modal" data-section="listarPaciente">
+                            <i class="material-icons">&#xe8ef;</i>
+                            <span>HISTORIAS CLINICAS</span></a>
+                    </div>
+                </div>
+                <!-- fin contenido -->
+            </div>
         </div>
-    </div>
 
     </div><!-- fin sidebar -->
 
@@ -58,45 +47,44 @@
     <div class="listaa my-2">
 
         <button class="btn  bg-gradient btn-outline-dark" type="button" data-bs-toggle="offcanvas"
-            data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
+                data-bs-target="#staticBackdrop" aria-controls="staticBackdrop">
             Panel
         </button>
-
+        <br>
+        <br>
         <section id="crearProfesional" class="dashboard-section profesional">
-            <!-- < aca va el form para agregar profesional> -->
-            <h3 class="text-white">Profesionales</h3>
             <section class="tabla">
-                <hr class="my-2">
 
+                <h3 class="fst-italic text-black">Profesionales</h3>
                 <table class="table table-success table-striped table-hover w-75 ">
+                    <hr class="my-2">
                     <thead>
                         <tr>
                             <th scope="col">Apellido</th>
+                            <th scope="col">Nombre</th>
+                            <th scope="col">E-mail</th>
                             <th scope="col">Matricula</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Status</th>
-                            <!-- <th scope="col">Especialidad</th> -->
+                            <th scope="col">Especialidad</th>
                             <th scope="col">Acciones</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr th:each="profesional : ${profesionales}">
                             <td th:text="${profesional.apellido}"></td>
+                            <td th:text="${profesional.nombre}"></td>
+                            <td th:text="${profesional.email}"></td>
                             <td th:text="${profesional.matricula}"></td>
-                            <td th:text="${profesional.telefono}"></td>
-                            <td th:text="${profesional.activo}"></td>
-                            <!-- <td th:text="${profesional.especialidad}"></td> -->
+                            <td th:text="${profesional.especialidad}"></td>
                             <td><a href="#">Modificar </a><a href="#">Eliminar</a></td>
                         </tr>
                     </tbody>
                 </table>
-            </section><!--Cierra la tabla-->
-
+            </section>
         </section>
         <section id="crearPaciente" class="dashboard-section paciente">
             <section class="tabla">
 
-                <h3 class="fst-italic text-white">Pacientes</h3>
+                <h3 class="fst-italic text-black">Pacientes</h3>
                 <table class="table table-success table-striped table-hover w-75 ">
                     <hr class="my-2">
                     <thead>
@@ -114,61 +102,12 @@
                             <td th:text="${paciente.nombre}"></td>
                             <td th:text="${paciente.email}"></td>
                             <td th:text="${paciente.telefono}"></td>
-                            <td><a href="#">Modificar </a><a href="#">Eliminar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </section>
-        <section id="listarProfesional" class="dashboard-section">
-            <section class="tabla">
-
-                <h3 class="fst-italic text-white">Turnos</h3>
-                <table class="table table-success table-striped table-hover w-75 ">
-                    <hr class="my-2">
-                    <thead>
-                        <tr>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="paciente : ${pacientes}">
-                            <td th:text="${paciente.apellido}"></td>
-                            <td th:text="${paciente.nombre}"></td>
-                            <td th:text="${paciente.email}"></td>
-                            <td th:text="${paciente.telefono}"></td>
-                            <td><a href="#">Modificar </a><a href="#">Eliminar</a></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </section>
-        </section>
-        <section id="listarPaciente" class="dashboard-section">
-            <section class="tabla">
-
-                <h3 class="fst-italic text-white">Historias</h3>
-                <table class="table table-success table-striped table-hover w-75 ">
-                    <hr class="my-2">
-                    <thead>
-                        <tr>
-                            <th scope="col">Apellido</th>
-                            <th scope="col">Nombre</th>
-                            <th scope="col">Correo</th>
-                            <th scope="col">Telefono</th>
-                            <th scope="col">Acciones</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="paciente : ${pacientes}">
-                            <td th:text="${paciente.apellido}"></td>
-                            <td th:text="${paciente.nombre}"></td>
-                            <td th:text="${paciente.email}"></td>
-                            <td th:text="${paciente.telefono}"></td>
-                            <td><a href="#">Modificar </a><a href="#">Eliminar</a></td>
+                            <td sec:authorize="hasRole('ADMIN')">
+                                <a th:href="@{/admin/modificar1/__${paciente.dni}__}" ><i class="fas fa-feather-alt"></i> Modificar </a>
+                            </td>
+                            <td sec:authorize="hasRole('ADMIN')">
+                                <a th:href="@{/paciente/eliminar/__${paciente.dni}__}" ><i class="fas fa-feather-alt"></i> Eliminar </a>
+                            </td>
                         </tr>
                     </tbody>
                 </table>
@@ -177,6 +116,7 @@
     </div>
 
     <footer th:replace="/fragments/footer :: footer"></footer>
+    <script href="../js/dashboard.js"></script>
 </body>
 
 </html>
