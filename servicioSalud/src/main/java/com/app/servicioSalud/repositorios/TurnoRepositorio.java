@@ -27,4 +27,7 @@ public interface TurnoRepositorio extends JpaRepository<Turno, String> {
     @Query("SELECT t FROM Turno t WHERE t.fecha = :fecha AND t.reservado = 1")
     List<Turno> turnosDelDia(@Param("fecha") LocalDate fecha);
 
+    @Query("SELECT t FROM Turno t WHERE t.fecha = :fecha AND t.profesional.matricula = :matricula")
+    List<Turno> filtrarPorFechaYProfesional(@Param("fecha") LocalDate fecha, @Param("matricula") String matricula);
+
 }

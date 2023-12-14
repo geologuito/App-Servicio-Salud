@@ -3,8 +3,6 @@ package com.app.servicioSalud.controladores;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
-import com.app.servicioSalud.repositorios.PacienteRepositorio;
-import com.app.servicioSalud.repositorios.ProfesionalRepositorio;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import com.app.servicioSalud.servicios.TurnoServicio;
@@ -102,7 +100,7 @@ public class TurnoControlador {
     }
 
     @GetMapping("/buscarDia")
-    public String citas() {
+    public String citas(ModelMap modelo) {
 
         return "buscarDia";
     }
@@ -116,8 +114,9 @@ public class TurnoControlador {
         List<Turno> turnoDia = turnoRepositorio.turnosDelDia(fechaComoLocalDate);
 
         modelo.addAttribute("turno", turnoDia);
-
-        return "citas";
+        
+        return "buscarDia";
 
     }
+
 }

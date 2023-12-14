@@ -29,7 +29,7 @@ public class AdminControlador {
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
         modelo.addAttribute("pacientes", pacientes);
-        modelo.addAttribute("profesional", profesionales);
+        modelo.addAttribute("profesionales", profesionales);
 
         return "dashboard";
     }
@@ -39,7 +39,7 @@ public class AdminControlador {
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         modelo.addAttribute("pacientes", pacientes);
 
-        return "pacienteList";
+        return "dashboard";
     }
 
     @GetMapping("/modificarPaciente/{dni}")
