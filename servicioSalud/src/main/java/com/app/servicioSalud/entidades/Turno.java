@@ -13,9 +13,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Data
+@Getter
+@Setter
 @Table(name = "turno", indexes = @Index(name = "idx_id", columnList = "idTurno"))
 public class Turno {
 

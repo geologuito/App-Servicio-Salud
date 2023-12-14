@@ -2,6 +2,7 @@ package com.app.servicioSalud.servicios;
 
 import com.app.servicioSalud.entidades.Imagen;
 import com.app.servicioSalud.entidades.Paciente;
+import com.app.servicioSalud.enumeraciones.ObraSocial;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;
 import java.util.ArrayList;
@@ -52,6 +53,8 @@ public class PacienteServicio implements UserDetailsService {
         paciente.setRol(RolEnum.PACIENTE);
         Imagen imagen = imagenServicio.guardar(archivo);
         paciente.setImagen(imagen);
+
+        System.out.println("Obra Social: " + paciente.getObraSocial());
 
         pacienteRepositorio.save(paciente);
 

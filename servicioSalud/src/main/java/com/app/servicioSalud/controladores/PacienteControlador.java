@@ -2,6 +2,7 @@ package com.app.servicioSalud.controladores;
 
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
+import com.app.servicioSalud.enumeraciones.ObraSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -17,6 +18,7 @@ import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
 import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -90,6 +92,11 @@ public class PacienteControlador {
 
         return "panelPaciente";
 
+    }
+
+    @ModelAttribute("obrasSociales")
+    public ObraSocial[] obrasSociales() {
+        return ObraSocial.values();
     }
 
     @GetMapping("/listaPacientes")

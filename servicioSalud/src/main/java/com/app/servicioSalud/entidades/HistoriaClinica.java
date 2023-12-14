@@ -13,9 +13,13 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Data
 @Entity
+@Getter
+@Setter
 //Sin esto cuando se genera la tabla da error "Falta index". Con esto se genera un indice aparte del id llamado idx_id
 @Table(name = "historia_clinica", indexes = @Index(name = "idx_id", columnList = "id"))
 public class HistoriaClinica {
