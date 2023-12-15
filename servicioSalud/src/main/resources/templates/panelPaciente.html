@@ -21,7 +21,7 @@
 
             <!--* FICHA DEL PACIENTE -->
 
-            <div class="contenedora" id="form">
+            <div class="contenedora" >
                 <section class="tabla ">
                     <hr class="my-2">
                     <h3 class="fst-italic text-white" th:if="${session.pacientesession != null}"
@@ -30,25 +30,21 @@
                     <div class="datos d-flex">
                         <table class="table table-success table-striped table-hover w-75">
                             <thead>
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="col">Apellido</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Telefono</th>
-                                    <th scope="col">Acción</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
+                                <tr class="text-center">
                                     <td th:text="${paciente.apellido}"></td>
                                     <td th:text="${paciente.nombre}"></td>
                                     <td th:text="${paciente.email}"></td>
                                     <td th:text="${paciente.telefono}"></td>
-                                    <td>
-                                        <a th:href="@{/paciente/modificar/__${paciente.dni}__}"><i
-                                                class="fas fa-feather-alt"></i>
-                                            Modificar </a>
-                                    </td>
+                                    
                                 </tr>
                             </tbody>
                         </table>
@@ -56,23 +52,16 @@
                             <img class="imgPerfil" th:src="@{/imagen/paciente/__${session.pacientesession.dni}__}"
                                 alt="usuario">
                         </div>
-                    </div><!--Cierra contenedor de datos detalles-->
-
-                    <a th:href="@{/paciente/modificar/__${session.pacientesession.dni}__}"><i
-                            class="fas fa-feather-alt"></i> Modificar </a>
-
+                    </div><!--Cierra contenedor de datos Paciente-->
                 </section><!--Cierra la tabla-->
-
-            </div>
+            </div><!--Cierra la tabla-->
 
             <div>
                 <a th:href="@{/calificacion/crear/__${session.pacientesession.dni}__}">
                     <i class="fas fa-feather-alt"></i> Calificar
                 </a>
             </div>
-            <div>
-                <a th:href="@{/turno/buscarFecha/}"><i class="fas fa-feather-alt"></i> TURNO </a>
-            </div>
+
 
             <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
             <div class="contenedora" id="tabla">
@@ -81,7 +70,7 @@
                     <h2 class="fst-italic text-white">Doctores</h2>
                     <table class="table table-success table-striped table-hover">
                         <thead>
-                            <tr>
+                            <tr class="text-center">
                                 <th scope="col">Apellido</th>
                                 <th scope="col">Nombre</th>
                                 <th scope="col">Correo</th>
@@ -91,14 +80,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr th:each="profesional : ${profesionales}">
+                            <tr class="text-center" th:each="profesional : ${profesionales}">
                                 <td th:text="${profesional.apellido}"></td>
                                 <td th:text="${profesional.nombre}"></td>
                                 <td th:text="${profesional.email}"></td>
                                 <td th:text="${profesional.telefono}"></td>
                                 <td th:text="${profesional.especialidad}"></td>
                                 <td>
-                                    <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> VER </a>
+                                    <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> Ver </a>
                                 </td>
                             </tr>
                         </tbody>

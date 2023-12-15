@@ -58,22 +58,24 @@ public class TurnoControlador {
 
         turnoServicio.generarTurnos(fechaComoLocalDate, horaInicial, horaFinal, profesional_id, null, Boolean.FALSE);
 
-        return "redirect:/";
+        return "redirect:/profesional/perfil";
     }
 
     @GetMapping("/buscarFecha")
     public String listarPorDia(ModelMap modelo, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-
         modelo.addAttribute("paciente", paciente);
+
+        List<Profesional> profesional = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesional);
 
         return "buscarTurno";
 
     }
 
     @PostMapping("/buscarTurno")
-    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session) {
+    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session, @RequestParam String matricula) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         modelo.addAttribute("paciente", paciente);
@@ -84,6 +86,7 @@ public class TurnoControlador {
         List<Turno> turnoDia = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
 
         modelo.addAttribute("turno", turnoDia);
+        modelo.addAttribute("matricula", matricula);
 
         return "listaTurnoFecha";
     }
@@ -94,7 +97,7 @@ public class TurnoControlador {
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         turnoServicio.asignarPaciente(id, paciente);
 
-        return "redirect:/";
+        return "redirect:/paciente/perfil";
     }
 
     @GetMapping("/buscarDia")

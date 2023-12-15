@@ -68,14 +68,13 @@ public class PacienteServicio implements UserDetailsService {
 
     public void modificarPaciente(MultipartFile archivo, String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
-        modificarValidacion(domicilio, email, telefono, password, password2);
+        modificarValidacion(domicilio, telefono, password, password2);
 
         Optional<Paciente> respuesta = pacienteRepositorio.findById(dni);
 
         if (respuesta.isPresent()) {
             Paciente paciente = respuesta.get();
 
-            paciente.setEmail(email);
             paciente.setDomicilio(domicilio);
             paciente.setTelefono(telefono);
             paciente.setPassword(new BCryptPasswordEncoder().encode(password));
@@ -94,7 +93,7 @@ public class PacienteServicio implements UserDetailsService {
 
     private void validar(String dni, String nombre, String apellido, String domicilio, String telefono, String email, String password, String password2, String edad) throws MiException {
 
-        Paciente correoBD = pacienteRepositorio.buscarPorEmail(email);
+        // Paciente correoBD = pacienteRepositorio.buscarPorEmail(email);
 
         if (nombre == null || nombre.isEmpty()) {
             throw new MiException("el nombre no puede ser nulo ni estar vacio");
@@ -116,7 +115,7 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
 
-        if (email == null || email.isEmpty() || correoBD != null) {
+        if (email == null || email.isEmpty() ) {
             throw new MiException("el email no puede ser nulo ni estar vacio o esta repetido");
         }
 
@@ -133,13 +132,9 @@ public class PacienteServicio implements UserDetailsService {
         }
     }
 
-    public void modificarValidacion(String domicilio, String email, String telefono, String password, String password2) throws MiException {
+    public void modificarValidacion(String domicilio,  String telefono, String password, String password2) throws MiException {
         if (domicilio == null || domicilio.isEmpty()) {
             throw new MiException("el domicilio no puede ser nulo ni estar vacio");
-        }
-
-        if (email == null || email.isEmpty()) {
-            throw new MiException("el email no puede ser nulo ni estar vacio");
         }
 
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
