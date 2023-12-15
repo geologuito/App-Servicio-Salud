@@ -33,9 +33,7 @@ public class Calificacion {
     private Double mobiliario;
     private Double atencion;
     private String comentario; 
-          
     
     
-     
     
 }

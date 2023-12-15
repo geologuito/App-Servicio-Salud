@@ -36,7 +36,7 @@ public class PacienteControlador {
 
     @GetMapping("/registrar") // localhost:8080/paciente/registrar
     public String registrar() {
-        return "registroPaciente.html";
+        return "registroPaciente";
     }
 
     @PostMapping("/registro")
@@ -65,18 +65,8 @@ public class PacienteControlador {
             modelo.put("telefono", telefono);
             modelo.put("edad", edad);
 
-            return "registroPaciente.html";
+            return "registroPaciente";
         }
-        return "redirect:/paciente/login";
-    }
-
-    @GetMapping("/login")
-    public String login(@RequestParam(required = false) String error, ModelMap modelo) {
-
-        if (error != null) {
-            modelo.put("error", "Usuario o Contraseña invalidos!");
-        }
-
         return "redirect:../login";
     }
 
@@ -85,7 +75,7 @@ public class PacienteControlador {
     public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-        System.out.println("perfil");
+        
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
 
         modelo.addAttribute("profesionales", profesionales);
@@ -107,7 +97,7 @@ public class PacienteControlador {
 
         modelo.put("paciente", pacienteServicio.getOne(dni));
 
-        return "modificarPaciente.html";// mapear con html
+        return "modificarPaciente";// mapear con html
     }
 
     @PostMapping("/modificar/{dni}")
@@ -121,7 +111,7 @@ public class PacienteControlador {
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
-            return "modificarPaciente.html"; // mapear con html
+            return "modificarPaciente"; // mapear con html
         }
     }
 
