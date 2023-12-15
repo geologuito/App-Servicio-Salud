@@ -3,6 +3,7 @@ package com.app.servicioSalud.servicios;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
+import com.app.servicioSalud.enumeraciones.Horario;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

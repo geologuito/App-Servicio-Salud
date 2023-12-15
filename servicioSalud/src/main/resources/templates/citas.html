@@ -10,7 +10,7 @@
     <body>
         <div>TODO write content</div>
 
-        <p>ID de la Sesión: <span th:text="${session.pacientesession.dni}"></span></p>
+        <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
 
         <section class="tabla">
             <hr class="my-2">
@@ -22,17 +22,20 @@
                         <th scope="col">id</th>
                         <th scope="col">fecha</th>
                         <th scope="col">horario</th>
-                        <th scope="col">reservar</th>
+                        <th scope="col">Paciente</th>
+                        <th scope="col">Historia Clinica</th>
 
                     </tr>
                 </thead>
-                <tbody th:each="turno : ${turno}" th:if="${turno.profesional.matricula == matricula}">
+                <tbody th:each="turno : ${turno}" th:if="${turno.profesional.matricula == session.profesionalsession.matricula}">
                     <tr>
-                        <td th:if="${!turno.reservado}" th:text ="${turno.idTurno}"></td>
-                        <td th:if="${!turno.reservado}" th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
-                        <td th:if="${!turno.reservado}" th:text="${#temporals.format(turno.horario, 'HH:mm')}"></td>             
+                        <td th:text ="${turno.idTurno}"></td>
+                        <td th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
+                        <td th:text="${#temporals.format(turno.horario, 'HH:mm')}"></td>             
+                        <td th:text ="${turno.paciente.nombre}"></td>
                         <td>
-                            <a th:if="${!turno.reservado}" th:href="@{/turno/reservado/__${turno.idTurno}__}"> Solicitar </a>
+                            <a class="mx-2" th:href="@{/hc/crear/__${turno.paciente.dni}__}"> crear </a>
+                            <a class="mx-2" th:href="@{/hc/listar/__${turno.paciente.dni}__}"> ver </a>
                         </td>
                     </tr>
                 </tbody>

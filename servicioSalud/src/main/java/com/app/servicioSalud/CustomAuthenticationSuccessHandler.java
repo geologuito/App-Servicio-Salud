@@ -4,6 +4,7 @@ package com.app.servicioSalud;
  *
  * @author EduRiu
  */
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;

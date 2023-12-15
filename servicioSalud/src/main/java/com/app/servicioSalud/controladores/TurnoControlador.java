@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import javax.servlet.http.HttpSession;
 
 import javax.servlet.http.HttpSession;
 
@@ -44,9 +45,6 @@ public class TurnoControlador {
             @RequestParam String horaFin,
             @RequestParam Profesional profesional_id) {
 
-        List<Profesional> profesionales = profesionalServicio.listarProfesional();
-        modelo.addAttribute("profesionales", profesionales);
-
         String fechaComoString = fecha;
         LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
 
@@ -65,15 +63,17 @@ public class TurnoControlador {
     public String listarPorDia(ModelMap modelo, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-
         modelo.addAttribute("paciente", paciente);
+
+        List<Profesional> profesional = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesional);
 
         return "buscarTurno";
 
     }
 
     @PostMapping("/buscarTurno")
-    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session) {
+    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session, @RequestParam String matricula) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         modelo.addAttribute("paciente", paciente);
@@ -84,6 +84,7 @@ public class TurnoControlador {
         List<Turno> turnoDia = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
 
         modelo.addAttribute("turno", turnoDia);
+        modelo.addAttribute("matricula", matricula);
 
         return "listaTurnoFecha";
     }
