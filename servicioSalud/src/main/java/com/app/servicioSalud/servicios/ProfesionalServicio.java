@@ -2,6 +2,7 @@ package com.app.servicioSalud.servicios;
 
 import com.app.servicioSalud.entidades.Imagen;
 import com.app.servicioSalud.entidades.Profesional;
+import com.app.servicioSalud.enumeraciones.Especialidad;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.ProfesionalRepositorio;
@@ -33,10 +34,12 @@ public class ProfesionalServicio implements UserDetailsService {
     @Autowired
     private ImagenServicio imagenServicio;
 
+    // @Autowired
+    // private CorreoServicio correoServicio;
     @Transactional
-    public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, String especialidad, Integer consulta, Date horario) throws MiException {
+    public void registrar(MultipartFile archivo, String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, Boolean activo, Integer consulta, Date horario, Especialidad especialidad) throws MiException {
 
-        validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, especialidad);
+        validar(matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono);
 
         Profesional profesional = new Profesional();
 
@@ -49,15 +52,16 @@ public class ProfesionalServicio implements UserDetailsService {
         profesional.setDomicilio(domicilio);
         profesional.setTelefono(telefono);
         profesional.setActivo(activo);
-        profesional.setEspecialidad(especialidad);
         profesional.setConsulta(consulta);
         profesional.setHorario(horario);
         profesional.setRol(RolEnum.PROFESIONAL);
+        profesional.setEspecialidad(especialidad);
         Imagen imagen = imagenServicio.guardar(archivo);
         profesional.setImagen(imagen);
 
         profesionalRepositorio.save(profesional);
-        
+        // correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
+        // correoServicio.altaProfesional(matricula);
     }
 
     public List<Profesional> listarProfesional() {
@@ -68,14 +72,13 @@ public class ProfesionalServicio implements UserDetailsService {
 
     public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
 
-        validarModificar(email, password, password2, domicilio, telefono);
+        validarModificar(password, password2, domicilio, telefono);
 
         Optional<Profesional> respuesta = profesionalRepositorio.findById(matricula);
         if (respuesta.isPresent()) {
 
             Profesional profesional = respuesta.get();
 
-            profesional.setEmail(email);
             profesional.setPassword(new BCryptPasswordEncoder().encode(password));
             profesional.setDomicilio(domicilio);
             profesional.setTelefono(telefono);
@@ -92,28 +95,21 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
-    private void validar(String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono, String especialidad) throws MiException {
-
-        Profesional correoBD = profesionalRepositorio.buscarPorEmail(email);
-
+    private void validar(String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono) throws MiException {
         if (matricula == null || matricula.isEmpty()) {
-            throw new MiException("La matricula no puede ser nulo ni estar vacio");
+            throw new MiException("La matricula no puede ser nula o estar vacia");
         }
-
         if (dni == null || dni.isEmpty() || dni.length() <= 6) {
-            throw new MiException("se requiere DNI valido");
+            throw new MiException("Se requiere DNI valido o mayor a 6 digitos");
         }
-
         if (nombre == null || nombre.isEmpty()) {
-            throw new MiException("el nombre no puede ser nulo ni estar vacio");
+            throw new MiException("El nombre no puede ser nulo ni estar vacio");
         }
-
         if (apellido == null || apellido.isEmpty()) {
-            throw new MiException("el apellido no puede ser nulo ni estar vacio");
+            throw new MiException("El apellido no puede ser nulo ni estar vacio");
         }
-
-        if (email == null || email.isEmpty() || correoBD != null) {
-            throw new MiException("el email no puede ser nulo ni estar vacio o esta repetido");
+        if (email == null || email.isEmpty()) {
+            throw new MiException("El email no puede ser nulo ni estar vacio");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
             throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
@@ -127,33 +123,24 @@ public class ProfesionalServicio implements UserDetailsService {
 
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
             throw new MiException("el telefono no puede ser nulo ni estar vacio");
-        }
-
-        if (especialidad == null || especialidad.isEmpty()) {
-            throw new MiException("La especialidad no puede ser nulo ni estar vacio");
         }
 
     }
 
-    private void validarModificar(String email, String password, String password2, String domicilio, String telefono) throws MiException {
+    private void validarModificar(String password, String password2, String domicilio, String telefono) throws MiException {
 
-        if (email == null || email.isEmpty()) {
-            throw new MiException("el email no puede ser nulo ni estar vacio");
-        }
         if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+            throw new MiException("La contraseña no puede estar vacia y debe tener más de 5 caracteres");
         }
         if (!password.equals(password2)) {
-            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+            throw new MiException("Las contraseñas no coinciden, verifica que sean iguales");
         }
         if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+            throw new MiException("El domicilio no puede ser nulo ni estar vacio");
         }
-
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
-            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+            throw new MiException("El telefono no puede ser nulo, estar vacio o tener menos de 6 digitos");
         }
-
     }
 
     public Profesional getOne(String id) {

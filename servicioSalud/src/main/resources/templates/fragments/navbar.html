@@ -7,7 +7,7 @@
                 <img class="logo" src="/images/logo1.png" alt="logo ss">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
-                aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+                    aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -18,27 +18,27 @@
                     </div>
                     <!-- Si no es un admin, se mostrarán los elementos de Home, Doctores, Especialidades y Servicios -->
                     <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2 active" aria-current="page"
-                        href="/">Home</a>
+                       href="/">Home</a>
                     <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/profesionales">Doctores</a>
                     <a th:unless="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}" class="nav-link mx-2" href="/servicios">Servicios</a>
                     <!-- ... Otros elementos del menú ... -->
 
                     <!-- Botón de perfil segun el rol del usuario -->
                     <a th:if="${#authorization.expression('hasRole(''ROLE_PACIENTE'')')}"
-                        class="nav-link mx-2 btn " href="/paciente/perfil">Perfil Paciente</a>
+                       class="nav-link mx-2 btn " href="/paciente/perfil">Perfil Paciente</a>
                     <a th:if="${#authorization.expression('hasRole(''ROLE_PROFESIONAL'')')}"
-                        class="nav-link mx-2 btn " href="/profesional/perfil">Perfil Profesional</a>
+                       class="nav-link mx-2 btn " href="/profesional/perfil">Perfil Profesional</a>
                     <a th:if="${#authorization.expression('hasRole(''ROLE_ADMIN'')')}"
-                        class="nav-link mx-2 btn " href="/admin/dashboard">Perfil Admin</a>
+                       class="nav-link mx-2 btn " href="/admin/dashboard">Perfil Admin</a>
                     <!-- Botón de cerrar sesión visible solo si está autenticado -->
                     <a th:if="${#authorization.expression('isAuthenticated()')}" class="nav-link mx-2 btn "
-                        href="/logout">Cerrar sesión</a>
+                       href="/logout">Cerrar sesión</a>
 
                     <!-- Botón de registro que desaparece cuando está autenticado -->
                     <div th:unless="${#authorization.expression('isAuthenticated()')}">
                         <div class="nav-item dropdown">
                             <a class="nav-link mx-2 dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                               data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 Registro
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">

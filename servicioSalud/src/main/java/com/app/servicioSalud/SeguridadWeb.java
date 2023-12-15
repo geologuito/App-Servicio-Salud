@@ -1,5 +1,6 @@
 package com.app.servicioSalud;
 
+import com.app.servicioSalud.servicios.AdminServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +20,9 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 public class SeguridadWeb extends WebSecurityConfigurerAdapter {
 
     @Autowired
+    public AdminServicio adminServicio;
+
+    @Autowired
     public PacienteServicio pacienteServicio;
 
     @Autowired
@@ -27,7 +31,7 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configuredGlobal(AuthenticationManagerBuilder auth) throws Exception {
         CompositeUserDetailsService compositeUserDetailsService = new CompositeUserDetailsService(
-                profesionalServicio, pacienteServicio);
+                profesionalServicio, pacienteServicio, adminServicio);
 
         auth.userDetailsService(compositeUserDetailsService)
                 .passwordEncoder(new BCryptPasswordEncoder());
@@ -36,18 +40,18 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-            .authorizeRequests()
+                .authorizeRequests()
                 .antMatchers("/admin").hasRole("ADMIN")
                 .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
                 .antMatchers("/paciente/**").hasRole("PACIENTE")
                 .antMatchers("/profesional/**").hasRole("PROFESIONAL")
-            .and().formLogin()
+                .and().formLogin()
                 .loginPage("/login")
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("password")
                 .successHandler(new CustomAuthenticationSuccessHandler())
-            .and().logout()
+                .and().logout()
                 .logoutUrl("/logout")
                 .logoutSuccessUrl("/")
                 .and().csrf().disable();

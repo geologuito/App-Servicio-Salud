@@ -3,15 +3,13 @@ package com.app.servicioSalud.servicios;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
+import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.Optional;
-
 import javax.transaction.Transactional;
-
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -76,4 +74,13 @@ public class TurnoServicio {
     public List<Turno> listarTodos() {
         return turnoRepositorio.findAll();
     }
+
+    public Turno getOne(String idTurno) {
+        return turnoRepositorio.getReferenceById(idTurno);
+    }
+
+    public void eliminarTurno(String idTurno) throws MiException {
+        turnoRepositorio.deleteById(idTurno);
+    }
+
 }

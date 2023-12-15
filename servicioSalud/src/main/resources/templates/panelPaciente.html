@@ -1,131 +1,125 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/css/bootstrap.css">
-    <link rel="stylesheet" href="/css/formulario.css">
-    <link rel="stylesheet" href="/css/sidebar.css">
-    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
-    <title>App Salud</title>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/bootstrap.css">
+        <link rel="stylesheet" href="/css/formulario.css">
+        <link rel="stylesheet" href="/css/sidebar.css">
+        <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+        <title>App Salud</title>
+    </head>
 
-<body>
-    <div class="contenedor">
-        <div th:replace="/fragments/navbar ::div"> </div>
-    </div>
-    <section class="reg">
+    <body>
+        <div class="contenedor">
+            <div th:replace="/fragments/navbar ::div"> </div>
+        </div>
+        <section class="reg">
 
-        <div class="panel"> <!--? estes div solo contiene el form para lo interactivo-->
+            <div class="panel"> <!--? estes div solo contiene el form para lo interactivo-->
 
-            <!--* FICHA DEL PACIENTE -->
+                <!--* FICHA DEL PACIENTE -->
 
-            <div class="contenedora" >
-                <section class="tabla ">
-                    <hr class="my-2">
-                    <h3 class="fst-italic text-white" th:if="${session.pacientesession != null}"
-                        th:text=" 'Panel '+ ${session.pacientesession.nombre} + ' ' + ${session.pacientesession.apellido} ">
-                    </h3>
-                    <div class="datos d-flex">
-                        <table class="table table-success table-striped table-hover w-75">
+                <div class="contenedora" >
+                    <section class="tabla ">
+                        <hr class="my-2">
+                        <h3 class="fst-italic text-white" th:if="${session.pacientesession != null}"
+                            th:text=" 'Panel '+ ${session.pacientesession.nombre} + ' ' + ${session.pacientesession.apellido} ">
+                        </h3>
+                        <div class="datos d-flex">
+                            <table class="table table-success table-striped table-hover w-75">
+                                <thead>
+                                    <tr class="text-center">
+                                        <th scope="col">Apellido</th>
+                                        <th scope="col">Nombre</th>
+                                        <th scope="col">Correo</th>
+                                        <th scope="col">Telefono</th>
+
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="text-center">
+                                        <td th:text="${paciente.apellido}"></td>
+                                        <td th:text="${paciente.nombre}"></td>
+                                        <td th:text="${paciente.email}"></td>
+                                        <td th:text="${paciente.telefono}"></td>
+
+                                    </tr>
+                                </tbody>
+                            </table>
+                            <div class="imagenP mx-3 bg-info" th:unless="${session.pacientesession == null}">
+                                <img class="imgPerfil" th:src="@{/imagen/paciente/__${session.pacientesession.dni}__}"
+                                     alt="usuario">
+                            </div>
+                        </div><!--Cierra contenedor de datos Paciente-->
+                    </section><!--Cierra la tabla-->
+                </div><!--Cierra la tabla-->
+
+
+                <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
+                <div class="contenedora" id="tabla">
+                    <section class="tabla">
+                        <hr class="my-2">
+                        <h2 class="fst-italic text-white">Doctores</h2>
+                        <table class="table table-success table-striped table-hover">
                             <thead>
                                 <tr class="text-center">
                                     <th scope="col">Apellido</th>
                                     <th scope="col">Nombre</th>
                                     <th scope="col">Correo</th>
                                     <th scope="col">Telefono</th>
-                                    
+                                    <th scope="col">Especialidad</th>
+                                    <th scope="col">Reputacion</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr class="text-center">
-                                    <td th:text="${paciente.apellido}"></td>
-                                    <td th:text="${paciente.nombre}"></td>
-                                    <td th:text="${paciente.email}"></td>
-                                    <td th:text="${paciente.telefono}"></td>
-                                    
+                                <tr class="text-center" th:each="profesional : ${profesionales}">
+                                    <td th:text="${profesional.apellido}"></td>
+                                    <td th:text="${profesional.nombre}"></td>
+                                    <td th:text="${profesional.email}"></td>
+                                    <td th:text="${profesional.telefono}"></td>
+                                    <td th:text="${profesional.especialidad}"></td>
+                                    <td>
+                                        <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> Ver </a>
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
-                        <div class="imagenP mx-3 bg-info" th:unless="${session.pacientesession == null}">
-                            <img class="imgPerfil" th:src="@{/imagen/paciente/__${session.pacientesession.dni}__}"
-                                alt="usuario">
+                    </section><!--Cierra la tabla-->
+                </div>
+
+                <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
+                <div class="contenedora" id="servicios">
+                    <section>
+                        <h2 class="fst-italic text-white">Servicios</h2>
+                        <div class="conte">
+                            <section class="galeria-servicios">
+                                <a href="#image1">
+                                    <img src="/images/ambulancias.webp" alt="">
+                                    <span>Servicio de Ambulancias</span>
+                                </a>
+                                <a href="#image2">
+                                    <img src="/images/laboratorio2.jpg" alt="">
+                                    <span>Laboratorio a Domicilio</span>
+                                </a>
+                                <a href="#image3">
+                                    <img src="/images/call.webp" alt="">
+                                    <span>Atención telefónica 24/7</span>
+                                </a>
+                            </section>
                         </div>
-                    </div><!--Cierra contenedor de datos Paciente-->
-                </section><!--Cierra la tabla-->
-            </div><!--Cierra la tabla-->
+                    </section><!-- Cierra servicio -->
+                </div> <!-- Cierra div contenedor servicios-->
 
-            <div>
-                <a th:href="@{/calificacion/crear/__${session.pacientesession.dni}__}">
-                    <i class="fas fa-feather-alt"></i> Calificar
-                </a>
-            </div>
+            </div><!-- Cierra div del panel contenedor -->
 
+            <!--* SIDEBAR-->
+            <section th:replace="/fragments/sidebar :: section"></section>
 
-            <!--? LISTAR DOCTORES ARMAR FRAGMENT-->
-            <div class="contenedora" id="tabla">
-                <section class="tabla">
-                    <hr class="my-2">
-                    <h2 class="fst-italic text-white">Doctores</h2>
-                    <table class="table table-success table-striped table-hover">
-                        <thead>
-                            <tr class="text-center">
-                                <th scope="col">Apellido</th>
-                                <th scope="col">Nombre</th>
-                                <th scope="col">Correo</th>
-                                <th scope="col">Telefono</th>
-                                <th scope="col">Especialidad</th>
-                                <th scope="col">Reputacion</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr class="text-center" th:each="profesional : ${profesionales}">
-                                <td th:text="${profesional.apellido}"></td>
-                                <td th:text="${profesional.nombre}"></td>
-                                <td th:text="${profesional.email}"></td>
-                                <td th:text="${profesional.telefono}"></td>
-                                <td th:text="${profesional.especialidad}"></td>
-                                <td>
-                                    <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> Ver </a>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </section><!--Cierra la tabla-->
-            </div>
+        </section> <!--? cierra el contendedor reg-->
 
-            <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
-            <div class="contenedora" id="servicios">
-                <section>
-                    <h2 class="fst-italic text-white">Servicios</h2>
-                    <div class="conte">
-                        <section class="galeria-servicios">
-                            <a href="#image1">
-                                <img src="/images/ambulancias.webp" alt="">
-                                <span>Servicio de Ambulancias</span>
-                            </a>
-                            <a href="#image2">
-                                <img src="/images/laboratorio2.jpg" alt="">
-                                <span>Laboratorio a Domicilio</span>
-                            </a>
-                            <a href="#image3">
-                                <img src="/images/call.webp" alt="">
-                                <span>Atención telefónica 24/7</span>
-                            </a>
-                        </section>
-                    </div>
-                </section><!-- Cierra servicio -->
-            </div> <!-- Cierra div contenedor servicios-->
-
-        </div><!-- Cierra div del panel contenedor -->
-
-        <!--* SIDEBAR-->
-        <section th:replace="/fragments/sidebar :: section"></section>
-
-    </section> <!--? cierra el contendedor reg-->
-
-    <footer th:replace="/fragments/footer :: footer"></footer>
-</body>
+        <footer th:replace="/fragments/footer :: footer"></footer>
+    </body>
 
 </html>

@@ -15,6 +15,7 @@ public class PortalControlador {
 
         return "index";
     }
+
     @GetMapping("/login")
     public String login(@RequestParam(required = false) String error, ModelMap modelo) {
 
@@ -24,21 +25,29 @@ public class PortalControlador {
 
         return "login";
     }
-    
+
     @GetMapping("/servicios")
-    public String servicios(){
-        
+    public String servicios() {
+
         return "servicios";
     }
+
     @GetMapping("/profesionales")
     public String profesionales() {
 
         return "profesionales";
     }
+
+    @GetMapping("/especialidades")
+    public String especialidades() {
+
+        return "especialidades";
+    }
+
     @GetMapping("/us")
     public String us() {
 
         return "us";
     }
-    
+
 }
