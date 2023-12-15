@@ -35,7 +35,6 @@
                                         <th scope="col">Nombre</th>
                                         <th scope="col">Correo</th>
                                         <th scope="col">Telefono</th>
-                                        <th scope="col">Acción</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -44,11 +43,6 @@
                                         <td th:text="${paciente.nombre}"></td>
                                         <td th:text="${paciente.email}"></td>
                                         <td th:text="${paciente.telefono}"></td>
-                                        <td>
-                                            <a th:href="@{/paciente/modificar/__${paciente.dni}__}"><i
-                                                    class="fas fa-feather-alt"></i>
-                                                Modificar </a>
-                                        </td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -57,9 +51,6 @@
                                      alt="usuario">
                             </div>
                         </div><!--Cierra contenedor de datos detalles-->
-
-                        <a th:href="@{/paciente/modificar/__${session.pacientesession.dni}__}"><i
-                                class="fas fa-feather-alt"></i> Modificar </a>
 
                     </section><!--Cierra la tabla-->
 
@@ -97,9 +88,8 @@
                                     <td th:text="${profesional.email}"></td>
                                     <td th:text="${profesional.telefono}"></td>
                                     <td th:text="${profesional.especialidad}"></td>
-                                    <td>
-                                        <a th:href="@{/paciente/puntuacion/__${profesional.matricula}__}"> VER </a>
-                                    </td>
+                                    <td ></td>
+                                    <!-- <td th:text="${#aggregates.avg(profesional.calificaciones.![calificacion])}"></td>-->
                                 </tr>
                             </tbody>
                         </table>

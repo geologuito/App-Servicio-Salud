@@ -1,26 +1,97 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
-    <head>
-        <title>TODO supply a title</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    </head>
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="/css/buscarTurno.css">
+</head>
 
-    <body>
+<body>
 
-        <p>ID de la Sesión: <span th:text="${session.pacientesession.dni}"></span></p>
+    <form th:action="@{/turno/buscarTurno}" method="post">
+        <p>ID de la Sesión: <span class="space-button" th:text="${session.pacientesession.dni}"></span></p>
+        <!--contenedor para el calendario -->
+        <div id="calendario" class="flatpickr" data-enable-time="false"></div>
 
-        <br>
-
-        <form th:action="@{/turno/buscarTurno}" method="post">
-            <label for="fecha">Fecha:</label>
-            <input type="date" id="fecha" name="fecha" required><br><br>
-
-            <button type="submit">buscar</button>
-        </form>
+        <!-- Agrega un campo oculto para almacenar la fecha seleccionada -->
+        <input type="date" id="fecha" name="fecha" required style="display:none;"></br>
 
 
-    </body>
+        <button type="submit" class="space-button">
+            <svg class="space-icon" viewBox="0 0 24 24" width="16" height="16">
+                <path fill="currentColor"
+                    d="M21.7 20.3l-3.8-3.8c1.1-1.5 1.8-3.4 1.8-5.5 0-4.4-3.6-8-8-8s-8 3.6-8 8 3.6 8 8 8c2.1 0 4-0.7 5.5-1.8l3.8 3.8c0.6 0.6 1.6 0.6 2.1 0s0.6-1.6 0-2.1zM2 10c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6z">
+                </path>
+            </svg>
+            Buscar
+        </button>
+    </form>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            flatpickr("#calendario", {
+                inline: true,
+                wrap: false,
+                // Configuración para mostrar el calendario automáticamente
+                enableTime: false,
+                dateFormat: "Y-m-d",
+                defaultDate: "today",
+                // Configura el idioma a español
+                locale: {
+                    firstDayOfWeek: 1,
+                    weekdays: {
+                        shorthand: ['Do', 'Lu', 'Ma', 'Mi', 'Ju', 'Vi', 'Sa'],
+                        longhand: ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'],
+                    },
+                    months: {
+                        shorthand: ['Ene', 'Feb', 'Mar', 'Abr', 'May', 'Jun', 'Jul', 'Ago', 'Sep', 'Оct', 'Nov', 'Dic'],
+                        longhand: ['Enero', 'Febrero', 'Мarzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'],
+                    },
+                },
+                onChange: function (selectedDates, dateStr, instance) {
+                    // Actualiza el valor del campo oculto con la fecha seleccionada
+                    document.getElementById('fecha').value = dateStr;
+                }
+            });
+        });
+    </script>
+</body>
 
 </html>
+
+
+
+
+
+
+<!--<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
+
+<head>
+    <title>TODO supply a title</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body>
+    <div>TODO write content</div>
+
+    <p>ID de la Sesión: <span th:text="${session.pacientesession.dni}"></span></p>
+
+    <br>
+
+    <form th:action="@{/turno/buscarTurno}" method="post">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required><br><br>
+
+        <button type="submit">buscar</button>
+    </form>
+
+
+</body>
+
+</html>-->

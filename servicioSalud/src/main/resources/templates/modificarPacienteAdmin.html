@@ -12,9 +12,9 @@
 
     <body>
         <div class="contenedor">
-            
+
             <div th:replace="/fragments/navbar ::div"> </div>
-            
+
             <section class="reg">
                 <form id="form" class="form" th:action="@{/admin/modificar1/__${dni}__}" method="POST" enctype="multipart/form-data">
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
@@ -50,24 +50,6 @@
                     <button class="submit">Modificar</button>
                 </form>
                 <!-- FIN FORM -->
-
-                <!-- Inicio Mensaje de Exito -->
-                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                    <div class="card-body">
-                        <h5 class="card-title">Exito</h5>
-                        <p class="card-text" th:text="${exito}"></p>
-                    </div>
-                </div>
-                <!-- Fin Mensaje de Exito -->
-
-                <!-- Inicio mensaje de error -->
-                <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                    <div class="card-body">
-                        <h5 class="card-title">Error!!</h5>
-                        <p class="card-text" th:text="${error}"></p>
-                    </div>
-                </div>
-                <!-- Fin mensaje de error -->
 
             </section>
         </div>

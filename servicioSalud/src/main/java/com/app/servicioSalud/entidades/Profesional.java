@@ -1,5 +1,7 @@
 package com.app.servicioSalud.entidades;
 
+import com.app.servicioSalud.enumeraciones.Calificacion;
+import com.app.servicioSalud.enumeraciones.Especialidad;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import java.util.Date;
 import java.util.List;
@@ -12,7 +14,6 @@ import lombok.Setter;
 @Setter
 @Data
 @Getter
-//@Table(name = "profesional")
 public class Profesional {
 
     @Id
@@ -26,7 +27,6 @@ public class Profesional {
     private String domicilio; // decidir si se deja o lo sacamos
     private String telefono;
     private Boolean activo = false;
-    private String especialidad;
     private Integer consulta;
     @Temporal(TemporalType.DATE)
     private Date horario;
@@ -38,11 +38,14 @@ public class Profesional {
     private List<Turno> turno;
 
     @Enumerated(EnumType.STRING)
+    private Especialidad especialidad;
+
+    @Enumerated(EnumType.STRING)
     private RolEnum rol;
+
+    @Enumerated(EnumType.STRING)
+    private Calificacion calificacion;
 
     @OneToOne
     private Imagen imagen;
-
-    @OneToMany(mappedBy = "profesional")
-    private List<Calificacion> calificacion;
 }
