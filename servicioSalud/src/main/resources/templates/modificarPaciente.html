@@ -12,13 +12,20 @@
 
     <body>
         <div class="contenedor">
+
             <div th:replace="/fragments/navbar ::div"> </div>
+
             <section class="reg">
-                <form id="form" class="form" th:action="${#authorization.expression('hasRole(''ROLE_ADMIN'')') ? '@{/admin/modificarPaciente/__${paciente.dni}__}' : '@{/paciente/modificar/__${paciente.dni}__}'}" method="POST" enctype="multipart/form-data">
+                <form id="form" class="form" th:action="@{/paciente/modificar/__${paciente.dni}__}" method="POST" enctype="multipart/form-data">
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
-                    
+
                     <input hidden th:value="${dni}" name="dni">
+
                     <p class="title ">Modificar Paciente</p>
+                    <label>
+                        <h3>DNI</h3>
+                        <h3 type="text" name="dni" th:text="${dni}"></h3>
+                    </label>
                     <label>
                         <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">
                         <span>Domicilio</span>
@@ -30,13 +37,7 @@
                     </label>
                     <label>
                         <input type="file" class="form-control" name="archivo">
-                        
                     </label>
-                    <label>
-                        <input type="email" class="input" required="" name="email" th:value="${email}">
-                        <span>Email</span>
-                    </label>
-                    
                     <label>
                         <input type="password" class="input" required="" name="password" th:value="${password}">
                         <span>Contraseña</span>
@@ -47,27 +48,27 @@
                         <span>Repetir Contraseña</span>
                     </label>
                     <button class="submit">Modificar</button>
-                    
-                    <!-- Inicio Mensaje de Exito -->
-                    <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
-                        <div class="card-body">
-                            <h5 class="card-title">Exito</h5>
-                            <p class="card-text" th:text="${exito}"></p>
-                        </div>
-                    </div>
-                    <!-- Fin Mensaje de Exito -->
-
-                    <!-- Inicio mensaje de error -->
-                    <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
-                        <div class="card-body">
-                            <h5 class="card-title">Error!!</h5>
-                            <p class="card-text" th:text="${error}"></p>
-                        </div>
-                    </div>
-                    <!-- Fin mensaje de error -->
                 </form>
                 <!-- FIN FORM -->
-                
+
+                <!-- Inicio Mensaje de Exito -->
+                <div th:if="${exito}!=null" class="card text-white bg-success mb-3 mt-3 mensajeExito">
+                    <div class="card-body">
+                        <h5 class="card-title">Exito</h5>
+                        <p class="card-text" th:text="${exito}"></p>
+                    </div>
+                </div>
+                <!-- Fin Mensaje de Exito -->
+
+                <!-- Inicio mensaje de error -->
+                <div th:if="${error != null}" class="card text-white bg-danger my-3 mensajeError">
+                    <div class="card-body">
+                        <h5 class="card-title">Error!!</h5>
+                        <p class="card-text" th:text="${error}"></p>
+                    </div>
+                </div>
+                <!-- Fin mensaje de error -->
+
             </section>
         </div>
     </div> <!--cierra beneficios-->

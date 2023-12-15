@@ -9,7 +9,6 @@ import com.app.servicioSalud.servicios.HistoriaClinicaServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import com.app.servicioSalud.servicios.TurnoServicio;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -25,20 +24,20 @@ import org.springframework.web.multipart.MultipartFile;
 public class AdminControlador {
 
     @Autowired
+    private TurnoServicio turnoServicio;
+    @Autowired
     private PacienteServicio pacienteServicio;
     @Autowired
     private ProfesionalServicio profesionalServicio;
     @Autowired
     private HistoriaClinicaServicio HistoriaClinicaServicio;
-    @Autowired
-    private TurnoServicio turnoServicio;
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
 
+        List<Turno> turnos = turnoServicio.listarTodos();
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
-        List<Turno> turnos = turnoServicio.listarTodos();
         List<HistoriaClinica> hc = HistoriaClinicaServicio.listarHC();
 
         modelo.addAttribute("pacientes", pacientes);

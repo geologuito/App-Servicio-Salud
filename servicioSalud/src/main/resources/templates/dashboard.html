@@ -97,7 +97,8 @@
                             <td>
                                 <a class="mx-3" th:href="@{/paciente/modificar/__${paciente.dni}__}"><i
                                         class="fa-solid fa-pen " style="color: #1f1e1e;"></i></a>
-                                <a th:href="@{/paciente/modificar/__${paciente.dni}__}"><i class="fa-solid fa-trash "
+                                <a th:href="@{/paciente/eliminar/__${paciente.dni}__}" class="eliminar-paciente"
+                                    data-dni="${paciente.dni}"><i class="fa-solid fa-trash "
                                         style="color: #1f1e1e;"></i></a>
                             </td>
                         </tr>

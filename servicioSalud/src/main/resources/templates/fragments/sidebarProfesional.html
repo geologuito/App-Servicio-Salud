@@ -6,8 +6,8 @@
       <li><h5 class="fst-italic text-white" th:if="${session.profesionalsession != null}"
         th:text=" ${session.profesionalsession.apellido} "></h5></li>
         <li><a th:href="@{/profesional/modificar/__${profesional.matricula}__}">Actualizar datos</a></li>
-        <li><a th:href="@{/turno/buscarDia}">Control de Turnos</a></li>
-        <li><a th:href="@{/hc/listar}">Historia Clinica</a></li>
+        <li><a th:href="@{/turno/buscarDia}">Ver Turnos </a></li>
+        <li><a th:href="@{/hc/listar}">Historial Clinico</a></li>
     </ul>
 </div>
   </div>

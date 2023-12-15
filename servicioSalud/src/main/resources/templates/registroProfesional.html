@@ -43,10 +43,10 @@
                     <input type="number" class="input" required="" name="matricula" th:value="${matricula}">
                     <span>Matricula</span>
                 </label>
-                <label>
-                    <input type="text" class="input" required="" name="especialidad" th:value="${especialidad}">
-                    <span>Especialidad</span>
-                </label>
+                <label for=""></label>
+                <select id="especialidad" name="especialidad">
+                    <option th:each="especialidad : ${especialidades}" th:value="${especialidad}" th:text="${especialidad.name()}"></option>
+                </select>
                 <label>
                     <input type="email" class="input" required="" name="email" th:value="${email}">
                     <span>Email</span>

@@ -5,28 +5,23 @@
         <title>TODO supply a title</title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="/css/listaTurnoFecha.css">
     </head>
 
     <body>
-        <div>TODO write content</div>
-
-        <p>ID de la Sesión: <span th:text="${session.pacientesession.dni}"></span></p>
-
         <section class="tabla">
-            <hr class="my-2">
             <h2 class="fst-italic text-white">Turnos del día</h2>
-
+            <p>ID de la Sesión: <span th:text="${session.pacientesession.dni}"></span></p>
             <table class="table">
                 <thead>
                     <tr>
-                        <th scope="col">id</th>
-                        <th scope="col">fecha</th>
-                        <th scope="col">horario</th>
-                        <th scope="col">reservar</th>
-
+                        <th scope="col">ID</th>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Horario</th>
+                        <th scope="col">Reservar</th>
                     </tr>
                 </thead>
-                <tbody th:each="turno : ${turno}">
+                <tbody th:each="turno:${turno}">
                     <tr>
                         <td th:if="${!turno.reservado}" th:text ="${turno.idTurno}"></td>
                         <td th:if="${!turno.reservado}" th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
@@ -43,3 +38,4 @@
     </body>
 
 </html>
+
