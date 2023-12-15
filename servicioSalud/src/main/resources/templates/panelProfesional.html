@@ -45,8 +45,7 @@
                                     <td th:text="${profesional.email}"></td>
                                     <td th:text="${profesional.telefono}"></td>
                                     <td th:text="${profesional.especialidad}"></td>
-                                    <td>Activo</td>
-                                    <td>
+                                    <td>activo</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -66,7 +65,7 @@
 
                 <h3 class="fst-italic text-white">Pacientes</h3>
 
-                <table class="table table-success table-striped table-hover h-25">
+                <table class="table table-success table-striped table-hover w-75 h-25">
                     <thead>
                         
                         <tr>
@@ -75,7 +74,6 @@
                             <th scope="col">Correo</th>
                             <th scope="col">TelefonoCelular</th>
                             <th scope="col" colspan="2">Historia Clinica</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -87,7 +85,6 @@
                             <td>
                                 <a class="mx-2" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
                             </td>
-
                         </tr>
                     </tbody>
                 </table>
