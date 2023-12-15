@@ -3,8 +3,6 @@ package com.app.servicioSalud.controladores;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
-import com.app.servicioSalud.repositorios.PacienteRepositorio;
-import com.app.servicioSalud.repositorios.ProfesionalRepositorio;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import com.app.servicioSalud.servicios.TurnoServicio;
@@ -60,22 +58,24 @@ public class TurnoControlador {
 
         turnoServicio.generarTurnos(fechaComoLocalDate, horaInicial, horaFinal, profesional_id, null, Boolean.FALSE);
 
-        return "redirect:/";
+        return "redirect:/profesional/perfil";
     }
 
     @GetMapping("/buscarFecha")
     public String listarPorDia(ModelMap modelo, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-
         modelo.addAttribute("paciente", paciente);
+
+        List<Profesional> profesional = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesional);
 
         return "buscarTurno";
 
     }
 
     @PostMapping("/buscarTurno")
-    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session) {
+    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session, @RequestParam String matricula) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         modelo.addAttribute("paciente", paciente);
@@ -86,6 +86,7 @@ public class TurnoControlador {
         List<Turno> turnoDia = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
 
         modelo.addAttribute("turno", turnoDia);
+        modelo.addAttribute("matricula", matricula);
 
         return "listaTurnoFecha";
     }
@@ -94,17 +95,15 @@ public class TurnoControlador {
     public String turnoOK(@PathVariable String id, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-        System.out.println(id.toString());
-
         turnoServicio.asignarPaciente(id, paciente);
 
-        return "redirect:/";
+        return "redirect:/paciente/perfil";
     }
 
     @GetMapping("/buscarDia")
-    public String citas() {
+    public String citas(ModelMap modelo) {
 
-        return "buscarDia";
+        return "verTurnos";
     }
 
     @PostMapping("/citas")
@@ -117,7 +116,8 @@ public class TurnoControlador {
 
         modelo.addAttribute("turno", turnoDia);
 
-        return "citas";
+        return "verTurnos";
 
     }
+
 }

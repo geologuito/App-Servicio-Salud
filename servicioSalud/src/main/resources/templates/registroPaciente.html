@@ -62,12 +62,10 @@
                         <span>Telefono</span>
                     </label>
                     <div class="d-flex justify-content-between">
-                        <label>
-                            <span>Obra Social</span>
-                            <select id="obraSocial" name="obraSocial">
-                                <option th:each="obraSocial : ${obrasSociales}" th:value="${obraSocial}" th:text="${obraSocial.name()}"></option>
-                            </select>
-                        </label>
+                        <select class="form-control" id="obraSocial" name="obraSocial">
+                            <option>Obra Social</option>
+                            <option th:each="obraSocial : ${obrasSociales}" th:value="${obraSocial}" th:text="${obraSocial.name()}"></option>
+                        </select>
                     </div>
                     <label>
                         <input type="email" class="input" required="" name="email" th:value="${email}">

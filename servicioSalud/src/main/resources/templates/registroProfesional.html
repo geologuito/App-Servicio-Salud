@@ -44,12 +44,11 @@
                         <span>Matricula</span>
                     </label>
                     <div class="d-flex justify-content-between">
-                        <label>
-                            <span>Especialidad</span>
-                    <select id="especialidad" name="especialidad">
-                        <option th:each="especialidad : ${especialidades}" th:value="${especialidad}" th:text="${especialidad.name()}"></option>
-                            </select>
-                        </label>
+                        <select class="form-control" id="especialidad" name="especialidad">
+                            <option>Especialidad</option>
+                            <option th:each="especialidad : ${especialidades}" th:value="${especialidad}" th:text="${especialidad.name()}"></option>
+                        </select>
+
                     </div>
                     <label>
                         <input type="email" class="input" required="" name="email" th:value="${email}">
