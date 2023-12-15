@@ -51,7 +51,9 @@ public class ProfesionalControlador {
         try {
             profesionalServicio.registrar(archivo, matricula, dni, nombre, apellido, email, password, password2, domicilio, telefono, activo, consulta, horario, especialidad);
 
-            modelo.put("exito", "Usuario Registrado!");
+            modelo.put("exito", "Profesional Registrado!");
+            
+            return "redirect:/";
 
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
@@ -64,7 +66,6 @@ public class ProfesionalControlador {
 
             return "registroProfesional.html";
         }
-        return "redirect:/";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL')")
@@ -108,11 +109,11 @@ public class ProfesionalControlador {
         // Obtener el usuario actual
         Object usuario = session.getAttribute("adminsession");
         if (usuario == null) {
-            usuario = session.getAttribute("pacientesession");
+            usuario = session.getAttribute("profesionalsession");
         }
 
         // Verificar el tipo de usuario y asignar el rol correspondiente
-        String rol = (usuario instanceof Admin) ? "ADMIN" : "PACIENTE";
+        String rol = (usuario instanceof Admin) ? "ADMIN" : "PROFESIONAL";
 
         // Agregar el usuario y su rol al modelo
         modelo.put("usuario", usuario);

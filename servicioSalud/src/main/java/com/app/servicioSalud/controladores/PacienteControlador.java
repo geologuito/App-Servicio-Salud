@@ -52,7 +52,8 @@ public class PacienteControlador {
             pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2,
                     edad, obraSocial);
 
-            modelo.put("exito", "Usuario Registrado!");
+            modelo.put("exito", "Paciente Registrado!");
+            return "redirect:/";
 
         } catch (MiException ex) {
 
@@ -70,7 +71,7 @@ public class PacienteControlador {
 
             return "registroPaciente.html";
         }
-        return "redirect:/";
+       // return "redirect:/";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")

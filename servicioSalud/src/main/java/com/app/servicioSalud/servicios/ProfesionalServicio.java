@@ -99,56 +99,48 @@ public class ProfesionalServicio implements UserDetailsService {
     private void validar(String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono) throws MiException {
 
         if (matricula == null || matricula.isEmpty()) {
-            throw new MiException("La matricula no puede ser nulo ni estar vacio");
+            throw new MiException("La matricula no puede ser nula o estar vacia");
         }
-
         if (dni == null || dni.isEmpty() || dni.length() <= 6) {
-            throw new MiException("se requiere DNI valido");
+            throw new MiException("Se requiere DNI valido o mayor a 6 digitos");
         }
-
         if (nombre == null || nombre.isEmpty()) {
-            throw new MiException("el nombre no puede ser nulo ni estar vacio");
+            throw new MiException("El nombre no puede ser nulo ni estar vacio");
         }
-
         if (apellido == null || apellido.isEmpty()) {
-            throw new MiException("el apellido no puede ser nulo ni estar vacio");
+            throw new MiException("El apellido no puede ser nulo ni estar vacio");
         }
-
         if (email == null || email.isEmpty()) {
-            throw new MiException("el email no puede ser nulo ni estar vacio");
+            throw new MiException("El email no puede ser nulo ni estar vacio");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+            throw new MiException("La contraseña no puede estar vacia y debe tener más de 5 caracteres");
         }
         if (!password.equals(password2)) {
-            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+            throw new MiException("Las contraseñas no coinciden, verifica que sean iguales");
         }
         if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+            throw new MiException("El domicilio no puede ser nulo ni estar vacio");
         }
-
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
-            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+            throw new MiException("El telefono no puede ser nulo, estar vacio o tener menos de 6 digitos");
         }
-
     }
 
     private void validarModificar(String password, String password2, String domicilio, String telefono) throws MiException {
 
         if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
+            throw new MiException("La contraseña no puede estar vacia y debe tener más de 5 caracteres");
         }
         if (!password.equals(password2)) {
-            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
+            throw new MiException("Las contraseñas no coinciden, verifica que sean iguales");
         }
         if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
+            throw new MiException("El domicilio no puede ser nulo ni estar vacio");
         }
-
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
-            throw new MiException("el telefono no puede ser nulo ni estar vacio");
+            throw new MiException("El telefono no puede ser nulo, estar vacio o tener menos de 6 digitos");
         }
-
     }
 
     public Profesional getOne(String id) {
