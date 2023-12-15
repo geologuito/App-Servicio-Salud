@@ -20,4 +20,3 @@ buildNumber.properties
 servicioSalud/src/main/resources/application.properties
 servicioSalud/src/main/resources/application.properties
 *.properties
-*.properties

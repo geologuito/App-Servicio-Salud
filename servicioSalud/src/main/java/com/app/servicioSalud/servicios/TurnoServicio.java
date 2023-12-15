@@ -1,15 +1,12 @@
 package com.app.servicioSalud.servicios;
 
-import com.app.servicioSalud.entidades.HistoriaClinica;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
-import com.app.servicioSalud.enumeraciones.Horario;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +20,6 @@ public class TurnoServicio {
 
     @Autowired
     private TurnoRepositorio turnoRepositorio;
-    @Autowired
-    private ProfesionalServicio profesionalServicio;
 
     // Método para crear un turno
     @Transactional
@@ -71,7 +66,6 @@ public class TurnoServicio {
         return turno;
     }
     
-    
     public List<Turno> listarPorMatricula(String matricula){
         
         List<Turno> turno = turnoRepositorio.filtrarPorMatricula(matricula);
@@ -79,9 +73,7 @@ public class TurnoServicio {
         return turno;
     }
     
-    
-     
-    
-    
-
+    public List<Turno> listarTodos(){
+        return turnoRepositorio.findAll();
+    }
 }

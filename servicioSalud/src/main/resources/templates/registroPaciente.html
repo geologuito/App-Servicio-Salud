@@ -14,7 +14,7 @@
     <div class="contenedor">
         <div th:replace="/fragments/navbar ::div"> </div>
         <section class="reg">
-            <form id="form" class="form" th:action="@{/paciente/registro}" method="POST" enctype="multipart/form-data" novalidate>
+            <form id="form" class="form" th:action="@{/paciente/registro}" method="POST" enctype="multipart/form-data">
                 <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                 <p class="title ">Registro Paciente</p>
                 <p class="message text-white">Registrate ahora para acceder a nuestros servicios!</p>

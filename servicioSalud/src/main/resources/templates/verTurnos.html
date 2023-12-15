@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="/css/formulario.css">
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
+    <title>Historia Clinica</title>
+</head>
+
+<body>
+    <div class="contenedor">
+        <div th:replace="/fragments/navbar ::div"> </div>
+    </div>
+    <section class="reg">
+
+        <div class="panel">
+
+        
+            <form th:action="@{/turno/citas}" method="post">
+                <label for="fecha">Fecha:</label>
+                <input type="date" id="fecha" name="fecha" required><br><br>
+        
+                <button type="submit">buscar</button>
+            </form>
+        
+        
+            <section class="tabla">
+                <hr class="my-2">
+                <h2 class="fst-italic text-white">Turnos del día</h2>
+        
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">id</th>
+                            <th scope="col">fecha</th>
+                            <th scope="col">horario</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Historia Clinica</th>
+        
+                        </tr>
+                    </thead>
+                    <tbody th:each="turno : ${turno}"
+                        th:if="${turno.profesional.matricula == session.profesionalsession.matricula}">
+                        <tr>
+                            <td th:text="${turno.idTurno}"></td>
+                            <td th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
+                            <td th:text="${#temporals.format(turno.horario, 'HH:mm')}"></td>
+                            <td th:text="${turno.paciente.nombre}"></td>
+                            <td>
+                                <a class="mx-2" th:href="@{/hc/crear/__${turno.paciente.dni}__}"> crear </a>
+                                <a class="mx-2" th:href="@{/hc/listar/__${turno.paciente.dni}__}"> ver </a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+            <script src="/js/bootstrap.min.js"></script>
+        </div> 
+    </section>
+
+
+</body>
+
+</html>
