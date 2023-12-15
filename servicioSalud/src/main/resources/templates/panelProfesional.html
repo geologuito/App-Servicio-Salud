@@ -12,6 +12,7 @@
 </head>
 
 <body>
+    <!--* Contenedor general-->
     <div class="contenedor">
         <div th:replace="/fragments/navbar ::div"> </div>
     </div>
@@ -20,87 +21,88 @@
         <div class="panel">
 
             <!--* FICHA DEL PROFESIONAL-->
-
-            <div class="contenedora" id="form">
-                <section class="tabla">
-                    <hr class="my-2">
-                    <h3 class="fst-italic text-white" th:if="${session.profesionalsession != null}"
-                        th:text=" 'Panel Dr '+ ${session.profesionalsession.apellido} "></h3>
-                    <div class="datos d-flex">
-                        <table class="table table-success table-striped table-hover w-75 h-25">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Apellido</th>
-                                    <th scope="col">Nombre</th>
-                                    <th scope="col">Correo</th>
-                                    <th scope="col">Telefono</th>
-                                    <th scope="col">Especialidad</th>
-                                    <th scope="col">Estatus</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td th:text="${profesional.apellido}"></td>
-                                    <td th:text="${profesional.nombre}"></td>
-                                    <td th:text="${profesional.email}"></td>
-                                    <td th:text="${profesional.telefono}"></td>
-                                    <td th:text="${profesional.especialidad}"></td>
-                                    <td>Activo</td>
-                                    <td>
-                                </tr>
-                            </tbody>
-                        </table>
-                        <div class="imagenP mx-3 bg-info" th:unless="${session.profesionalsession == null}">
-                            <img class="imgPerfil"
-                                th:src="@{/imagen/profesional/__${session.profesionalsession.matricula}__}"
-                                alt="usuario">
-                        </div> <!-- cierra el contenedor ded actualizar -->
-                    </div>
-                </section>
-            </div>
-            <!--? LISTAR PACIENTES -->
             <section class="tabla">
+
+                <h3 class="fst-italic text-white" th:if="${session.profesionalsession != null}"
+                    th:text=" 'Panel Dr '+ ${session.profesionalsession.apellido} "></h3>
                 <hr class="my-2">
-                <h2 class="fst-italic text-white" >Turnos del día</h2>
-                <div>   
-
-                <h3 class="fst-italic text-white">Pacientes</h3>
-
-                <table class="table table-success table-striped table-hover h-25">
-                    <thead>
-                        
-                        <tr>
+                <div class="datos d-flex">
+                    <table class="table table-success table-striped table-hover w-75 h-25">
+                        <thead>
+                            <tr class="text-center"></tr>
                             <th scope="col">Apellido</th>
                             <th scope="col">Nombre</th>
                             <th scope="col">Correo</th>
-                            <th scope="col">TelefonoCelular</th>
-                            <th scope="col" colspan="2">Historia Clinica</th>
+                            <th scope="col">Telefono</th>
+                            <th scope="col">Especialidad</th>
+                            <th scope="col">Estatus</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr class="text-center"></tr>
+                            <td th:text="${profesional.apellido}"></td>
+                            <td th:text="${profesional.nombre}"></td>
+                            <td th:text="${profesional.email}"></td>
+                            <td th:text="${profesional.telefono}"></td>
+                            <td th:text="${profesional.especialidad}"></td>
+                            <td><i class="fa-solid fa-toggle-on"></i></td>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="paciente : ${pacientes}">
-                            <td th:text="${paciente.apellido}"></td>
-                            <td th:text="${paciente.nombre}"></td>
-                            <td th:text="${paciente.email}"></td>
-                            <td th:text="${paciente.telefono}"></td>
-                            <td>
-                                <a class="mx-2" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
-                            </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <!--* CONTENEDOR IMAGEN PROFESIONAL-->
+                    <div class="imagenP mx-3 bg-info" th:unless="${session.profesionalsession == null}">
+                        <img class="imgPerfil"
+                            th:src="@{/imagen/profesional/__${session.profesionalsession.matricula}__}" alt="usuario">
+                    </div> <!-- cierra el contenedor ded actualizar -->
+                </div>
+                <!--* CONTENEDOR INFO ADICIONAL-->
+                <div class="info">
+                    <h4 class="fst-italic text-white">Información Adicional</h4>
+                    <textarea class="w-50" type="text" name="" id="" ></textarea>
+                </div>
+            </section>
 
-                        </tr>
-                    </tbody>
-                </table>
-            </section><!--Cierra la tabla-->
-
-            <!--? LISTAR SERVICIOS ARMAR FRAGMENT-->
-            <section class="tabla" id="turnos">
+            <!--? LISTAR PACIENTES -->
+            <section class="pacientes my-5">
                 <hr class="my-2">
-                <h2 class="fst-italic text-white">Cargar turnos disponibles</h2>
-                <form th:action="@{/turno/creado}" method="post" class="form-inline">
+                <h2 class="fst-italic text-white">Pacientes</h2>
+                <div>
+                    <table class="table table-success table-striped table-hover w-75 h-25">
+                        <thead>
+
+                            <tr>
+                                <th scope="col">Apellido</th>
+                                <th scope="col">Nombre</th>
+                                <th scope="col">Correo</th>
+                                <th scope="col">TelefonoCelular</th>
+                                <th scope="col" colspan="2">Historia Clinica</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr th:each="paciente : ${pacientes}">
+                                <td th:text="${paciente.apellido}"></td>
+                                <td th:text="${paciente.nombre}"></td>
+                                <td th:text="${paciente.email}"></td>
+                                <td th:text="${paciente.telefono}"></td>
+                                <td>
+                                    <a class="mx-2" th:href="@{/hc/crear/__${paciente.dni}__}"> crear </a>
+                                </td>
+
+                            </tr>
+                        </tbody>
+                    </table>
+            </section><!--Cierra la tabla de Pacientes-->
+
+            <!--? DISPONIBILIDAD DE TURNOS-->
+            <section class="turno " id="turnos">
+                <hr class="my-2">
+                <h2 class="fst-italic text-white">Disponibilidad de Turnos</h2>
+                <form th:action="@{/turno/creado}" method="post" class="form text-white fw-bold">
                     <div class="form-group mx-2">
-                        <label for="fecha">Fecha:</label>
-                        <input type="date" id="fecha" name="fecha" required class="form-control">
+                        <label class="name" for="fecha">Fecha:</label>
+                        <input type="date" id="fecha" name="fecha" required class="form-control ">
                     </div>
                     <div class="form-group mx-2">
                         <label for="horaa">Hora Inicio:</label>
@@ -108,25 +110,25 @@
                     </div>
                     <div class="form-group mx-2">
                         <label for="hora">Hora Final:</label>
-                        <input type="text"  name="horaFin" required class="form-control">
+                        <input type="text" name="horaFin" required class="form-control">
                     </div>
                     <input type="hidden" name="profesional_id" th:value="${session.profesionalsession.matricula}" />
-                    <button type="submit" class="btn btn-primary mx-2">crear</button>
+                    <button type="submit" class="btn btn-primary mx-2">Cargar</button>
                 </form>
                 <div th:if="${exito}" style="color: green;">
                     <p th:text="${exito}"></p>
                 </div>
-                
+
                 <div th:if="${error}" style="color: red;">
                     <p th:text="${error}"></p>
                 </div>
             </section>
-                </div>
-            </section><!-- Cierra section servicios -->
-        </div><!-- Cierra div del panel contenedor -->
+        </div>
+    </section><!-- Cierra section servicios -->
+    </div><!-- Cierra div del panel contenedor -->
 
-        <!--* SIDEBAR-->
-        <section th:replace="/fragments/sidebarProfesional :: section"></section>
+    <!--* SIDEBAR-->
+    <section th:replace="/fragments/sidebarProfesional :: section"></section>
     </section> <!--? cierra el contendedor reg-->
 
     <footer th:replace="/fragments/footer :: footer"></footer>

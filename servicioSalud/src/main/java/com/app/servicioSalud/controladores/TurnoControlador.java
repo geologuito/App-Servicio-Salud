@@ -67,7 +67,7 @@ public class TurnoControlador {
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
 
         modelo.addAttribute("paciente", paciente);
-
+        
         return "buscarTurno";
 
     }
