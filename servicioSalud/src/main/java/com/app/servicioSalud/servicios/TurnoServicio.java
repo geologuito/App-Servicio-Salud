@@ -1,15 +1,12 @@
 package com.app.servicioSalud.servicios;
 
-import com.app.servicioSalud.entidades.HistoriaClinica;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
-import com.app.servicioSalud.enumeraciones.Horario;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,8 +20,6 @@ public class TurnoServicio {
 
     @Autowired
     private TurnoRepositorio turnoRepositorio;
-    @Autowired
-    private ProfesionalServicio profesionalServicio;
 
     // Método para crear un turno
     @Transactional
@@ -45,13 +40,13 @@ public class TurnoServicio {
         }
     }
 
-    public void asignarPaciente(String id, Paciente paciente_id ) {
+    public void asignarPaciente(String id, Paciente paciente_id) {
 
         Optional<Turno> respuesta = turnoRepositorio.findById(id);
 
         if (respuesta.isPresent()) {
             Turno turno = respuesta.get();
-            
+
             turno.setPaciente(paciente_id);
             turno.setReservado(Boolean.TRUE);
 
@@ -60,27 +55,25 @@ public class TurnoServicio {
         }
 
     }
-    
-    public List<Turno> listarPorDia(String fecha){
-        
+
+    public List<Turno> listarPorDia(String fecha) {
+
         String fechaComoString = fecha;
         LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
-        
+
         List<Turno> turno = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
-        
-        return turno;
-    }
-    
-    
-    public List<Turno> listarPorMatricula(String matricula){
-        
-        List<Turno> turno = turnoRepositorio.filtrarPorMatricula(matricula);
-        
+
         return turno;
     }
 
-    public List<Turno> listarTodos(){
+    public List<Turno> listarPorMatricula(String matricula) {
+
+        List<Turno> turno = turnoRepositorio.filtrarPorMatricula(matricula);
+
+        return turno;
+    }
+
+    public List<Turno> listarTodos() {
         return turnoRepositorio.findAll();
     }
-
 }

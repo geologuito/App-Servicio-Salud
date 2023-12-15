@@ -31,9 +31,6 @@ public class AdminControlador {
     private ProfesionalServicio profesionalServicio;
     @Autowired
     private HistoriaClinicaServicio HistoriaClinicaServicio;
-    @Autowired
-    private TurnoServicio TurnoServicio;
-
 
     @GetMapping("/dashboard")
     public String panelAdministrativo(ModelMap modelo) {
@@ -42,14 +39,13 @@ public class AdminControlador {
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
         List<HistoriaClinica> hc = HistoriaClinicaServicio.listarHC();
-        
 
         modelo.addAttribute("pacientes", pacientes);
         modelo.addAttribute("profesionales", profesionales);
-        modelo.addAttribute("hc",hc);
         modelo.addAttribute("turnos", turnos);
+        modelo.addAttribute("hc",hc);
         
-        return "dashbo";
+        return "dashboard";
     }
 
     @GetMapping("/pacientes")
@@ -57,7 +53,7 @@ public class AdminControlador {
         List<Paciente> pacientes = pacienteServicio.listarPaciente();
         modelo.addAttribute("pacientes", pacientes);
 
-        return "dashbo";
+        return "dashboard";
     }
 
     @GetMapping("/modificarPaciente/{dni}")
@@ -66,7 +62,7 @@ public class AdminControlador {
 
         pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password2);
 
-        return "redirect:/paciente/modificarPaciente.html";
+        return "modificarPaciente";
     }
     @PostMapping("/modificar/{dni}")
     public String modificar(@PathVariable String dni, String nombre, String apellido, String email, String domicilio, String telefono, String password,
@@ -74,12 +70,12 @@ public class AdminControlador {
             ModelMap modelo) {
         try {
             pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password);
-            return "dashbo"; // si esta todo ok va a ir a Dasboard- Esta regregando al login
+            return "dashboard"; // si esta todo ok va a ir a Dasboard- Esta regregando al login
 
         } catch (MiException ex) {
 
             modelo.put("error", ex.getMessage());
-            return "modificarPaciente.html"; // mapear con html
+            return "modificarPaciente"; // mapear con html
 
         }
     }

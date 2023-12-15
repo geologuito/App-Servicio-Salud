@@ -9,12 +9,12 @@
         <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
         <title>App Salud</title>
     </head>
- 
+
     <body>
         <div class="contenedor">
             <div th:replace="/fragments/navbar ::div"> </div>
             <section class="reg">
-                <form id="form" class="form" th:action="@{/paciente/modificar/__${paciente.dni}__}" method="POST" enctype="multipart/form-data">
+                <form id="form" class="form" th:action="${#authorization.expression('hasRole(''ROLE_ADMIN'')') ? '@{/admin/modificarPaciente/__${paciente.dni}__}' : '@{/paciente/modificar/__${paciente.dni}__}'}" method="POST" enctype="multipart/form-data">
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                     
                     <input hidden th:value="${dni}" name="dni">

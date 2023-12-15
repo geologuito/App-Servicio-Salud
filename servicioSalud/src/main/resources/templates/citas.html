@@ -27,7 +27,7 @@
 
                     </tr>
                 </thead>
-                <tbody th:each="turno : ${turno}" th:if="${turno.profesional.matricula == session.profesionalsession.matricula}">
+                <tbody th:each="turno : ${turno}">
                     <tr>
                         <td th:text ="${turno.idTurno}"></td>
                         <td th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
