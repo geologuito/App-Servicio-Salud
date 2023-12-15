@@ -15,17 +15,6 @@ body {
 
 /*EN NAVBAR.CSS*/
 
-/*CALIFICACION*/
-.star {
-    font-size: 20px;
-    cursor: pointer;
-}
-
-.star:hover,
-.star.active {
-    color: gold;
-}
-
 /*ESTILO DEL REGISTRO*/
 .reg {
     grid-area: reg;
