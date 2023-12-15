@@ -1,5 +1,6 @@
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Admin;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -102,26 +103,57 @@ public class PacienteControlador {
         return "listarPaciente"; // para mapear con
     }
 
-    @GetMapping("/modificar/{dni}")
-    public String modificar(@PathVariable String dni, ModelMap modelo) {
 
+
+
+    @PreAuthorize("hasAnyRole('ROLE_PACIENTE','ROLE_ADMIN')")
+    @GetMapping("/modificar/{dni}")
+    public String modificarForm(@PathVariable String dni, ModelMap modelo, HttpSession session) {
+        // Obtener el usuario actual
+        Object usuario = session.getAttribute("adminsession");
+        if (usuario == null) {
+            usuario = session.getAttribute("pacientesession");
+        }
+
+        // Verificar el tipo de usuario y asignar el rol correspondiente
+        String rol = (usuario instanceof Admin) ? "ADMIN" : "PACIENTE";
+
+        // Agregar el usuario y su rol al modelo
+        modelo.put("usuario", usuario);
+        modelo.put("rol", rol);
+
+        // Obtener y agregar la información del paciente
         modelo.put("paciente", pacienteServicio.getOne(dni));
 
-        return "modificarPaciente.html";// mapear con html
+        System.out.println("modificar");
+
+        return "modificarPaciente.html"; // Mapear con el HTML
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_PACIENTE','ROLE_ADMIN')")
     @PostMapping("/modificar/{dni}")
-    public String modificar(@PathVariable String dni, String email, String domicilio, String telefono, String password,
-            MultipartFile archivo,
-            ModelMap modelo) {
+    public String modificar(@PathVariable String dni, String nombre, String apellido, String email,
+            String domicilio, String telefono, String password, String edad,
+            MultipartFile archivo, ModelMap modelo, HttpSession session) {
         try {
-            pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password);
-            return "redirect:../perfil"; // si esta todo ok va a ir a panelPaciente
+            // Obtener el usuario actual
+            Object usuario = session.getAttribute("adminsession");
+            if (usuario == null) {
+                usuario = session.getAttribute("pacientesession");
+            }
+
+            // Verificar el tipo de usuario y asignar el rol correspondiente
+            String rol = (usuario instanceof Admin) ? "ADMIN" : "PACIENTE";
+
+            // Modificar la información según el tipo de usuario
+            pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, rol);
+
+            // Redirigir según el tipo de usuario
+            return (rol.equals("ADMIN")) ? "redirect:/admin/dashboard" : "redirect:/paciente/perfil";
 
         } catch (MiException ex) {
-
             modelo.put("error", ex.getMessage());
-            return "modificarPaciente.html"; // mapear con html
+            return "modificarPaciente.html"; // Mapear con el HTML
         }
     }
 
