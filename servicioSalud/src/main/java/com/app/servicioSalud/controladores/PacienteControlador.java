@@ -1,29 +1,28 @@
 package com.app.servicioSalud.controladores;
 
+import com.app.servicioSalud.entidades.Admin;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.enumeraciones.ObraSocialEnum;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import com.app.servicioSalud.excepciones.MiException;
-import com.app.servicioSalud.servicios.CalificacionServicio;
+import com.app.servicioSalud.servicios.AdminServicio;
 import com.app.servicioSalud.servicios.PacienteServicio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
-import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -35,23 +34,26 @@ public class PacienteControlador {
     private PacienteServicio pacienteServicio;
     @Autowired
     private ProfesionalServicio profesionalServicio;
+    @Autowired
+    private AdminServicio adminServicio;
 
     @GetMapping("/registrar") // localhost:8080/paciente/registrar
     public String registrar() {
-        return "registroPaciente";
+        return "registroPaciente.html";
     }
 
     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, String edad, ModelMap modelo, MultipartFile archivo) {
+            @RequestParam String password, String password2, String edad, @RequestParam ObraSocialEnum obraSocial,
+            ModelMap modelo, MultipartFile archivo) {
 
         try {
 
-            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2,
-                    edad);
+            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2, edad);
 
-            modelo.put("exito", "Usuario Registrado!");
+            modelo.put("exito", "Paciente Registrado!");
+            return "redirect:/";
 
         } catch (MiException ex) {
 
@@ -67,9 +69,9 @@ public class PacienteControlador {
             modelo.put("telefono", telefono);
             modelo.put("edad", edad);
 
-            return "registroPaciente";
+            return "registroPaciente.html";
         }
-        return "redirect:../login";
+       // return "redirect:/";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
@@ -77,7 +79,7 @@ public class PacienteControlador {
     public String perfil(HttpSession session, ModelMap modelo) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-        
+
         List<Profesional> profesionales = profesionalServicio.listarProfesional();
 
         modelo.addAttribute("profesionales", profesionales);
@@ -137,7 +139,7 @@ public class PacienteControlador {
 
             // Verificar el tipo de usuario y asignar el rol correspondiente
             String rol = (usuario instanceof Admin) ? "ADMIN" : "PACIENTE";
-            System.out.println(rol);
+
             // Modificar la información según el tipo de usuario
             pacienteServicio.modificarPaciente(archivo, dni, email, domicilio, telefono, password, password);
 
@@ -146,9 +148,10 @@ public class PacienteControlador {
 
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
-            return "modificarPaciente"; // Mapear con el HTML
+            return "modificarPaciente.html"; // Mapear con el HTML
         }
     }
+
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/eliminar/{dni}")
     public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
