@@ -4,7 +4,6 @@ package com.app.servicioSalud;
  *
  * @author EduRiu
  */
-import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -32,7 +31,7 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (authorities.stream().anyMatch(authority -> authority.getAuthority().equals("ROLE_PROFESIONAL"))) {
             response.sendRedirect("/profesional/perfil");
         } else {
-            response.sendRedirect("/index");
+            response.sendRedirect("/");
         }
     }
 }

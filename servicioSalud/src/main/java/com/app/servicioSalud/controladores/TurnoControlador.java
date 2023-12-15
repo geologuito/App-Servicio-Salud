@@ -3,7 +3,6 @@ package com.app.servicioSalud.controladores;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
-import com.app.servicioSalud.repositorios.PacienteRepositorio;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
 import com.app.servicioSalud.servicios.ProfesionalServicio;
 import com.app.servicioSalud.servicios.TurnoServicio;
@@ -15,8 +14,8 @@ import org.springframework.web.bind.annotation.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 @Controller
@@ -27,13 +26,10 @@ public class TurnoControlador {
     private TurnoServicio turnoServicio;
 
     @Autowired
-    private ProfesionalServicio profesionalServicio;
-
-    @Autowired
     private TurnoRepositorio turnoRepositorio;
 
     @Autowired
-    private PacienteRepositorio PacienteRepositorio;
+    ProfesionalServicio profesionalServicio;
 
     @GetMapping("/calendario")
     public String reservar(ModelMap modelo, HttpSession session) {
@@ -47,6 +43,9 @@ public class TurnoControlador {
             @RequestParam String horaInicio,
             @RequestParam String horaFin,
             @RequestParam Profesional profesional_id) {
+
+        List<Profesional> profesionales = profesionalServicio.listarProfesional();
+        modelo.addAttribute("profesionales", profesionales);
 
         String fechaComoString = fecha;
         LocalDate fechaComoLocalDate = LocalDate.parse(fechaComoString);
@@ -66,17 +65,15 @@ public class TurnoControlador {
     public String listarPorDia(ModelMap modelo, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-        modelo.addAttribute("paciente", paciente);
 
-        List<Profesional> profesional = profesionalServicio.listarProfesional();
-        modelo.addAttribute("profesionales", profesional);
+        modelo.addAttribute("paciente", paciente);
 
         return "buscarTurno";
 
     }
 
     @PostMapping("/buscarTurno")
-    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session, @RequestParam String matricula) {
+    public String reservarTurno(@RequestParam String fecha, ModelMap modelo, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
         modelo.addAttribute("paciente", paciente);
@@ -87,7 +84,6 @@ public class TurnoControlador {
         List<Turno> turnoDia = turnoRepositorio.filtrarPorFecha(fechaComoLocalDate);
 
         modelo.addAttribute("turno", turnoDia);
-        modelo.addAttribute("matricula", matricula);
 
         return "listaTurnoFecha";
     }
@@ -106,7 +102,7 @@ public class TurnoControlador {
     @GetMapping("/buscarDia")
     public String citas(ModelMap modelo) {
 
-        return "buscarDia";
+        return "verTurnos";
     }
 
     @PostMapping("/citas")
@@ -119,7 +115,7 @@ public class TurnoControlador {
 
         modelo.addAttribute("turno", turnoDia);
 
-        return "citas";
+        return "verTurnos";
 
     }
 
