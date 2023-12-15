@@ -19,8 +19,7 @@
                     <!-- se puede agregar el atributo "novalidate" para quitar las alertas predeterminadas del "required"  -->
                     <p class="title">Modificar Profesional</p>
                     <label>
-                        <h3>MATRICULA</h3>
-                        <h3 type="text" name="matricula" th:text="${matricula}"></h3>
+                        <h3 class="text-white">MATRICULA: <span type="text" name="matricula" th:text="${matricula}"></span></h3>
                     </label>
                     <label>
                         <input type="text" class="input" required="" name="domicilio" th:value="${domicilio}">

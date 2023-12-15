@@ -2,13 +2,14 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org">
 
 <head>
-    <title>TODO supply a title</title>
+    <title>APP Salud</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/bootstrap.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="/css/BuscarTurno.css">
 </head>
-
 <body>
-    <div>TODO write content</div>
 
     <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
 
@@ -21,7 +22,58 @@
         <button type="submit">buscar</button>
     </form>
 
+    <form th:action="@{/turno/citas}" method="post">
+        <span class="space-button" th:text="${session.profesionalsession.matricula}" hidden></span>
+        <!--contenedor para el calendario -->
+        <div id="calendario" class="flatpickr" data-enable-time="false"></div>
 
+        <!-- Agrega un campo oculto para almacenar la fecha seleccionada -->
+        <input type="date" id="fecha" name="fecha" required style="display:none;"></br>
+
+        <button type="submit" class="space-button">
+            <svg class="space-icon" viewBox="0 0 24 24" width="16" height="16">
+                <path fill="currentColor"
+                    d="M21.7 20.3l-3.8-3.8c1.1-1.5 1.8-3.4 1.8-5.5 0-4.4-3.6-8-8-8s-8 3.6-8 8 3.6 8 8 8c2.1 0 4-0.7 5.5-1.8l3.8 3.8c0.6 0.6 1.6 0.6 2.1 0s0.6-1.6 0-2.1zM2 10c0-3.3 2.7-6 6-6s6 2.7 6 6-2.7 6-6 6-6-2.7-6-6z">
+                </path>
+            </svg>
+            Buscar
+        </button>
+    </form>
+
+
+    <section class="tabla">
+        <hr class="my-2">
+        <h2 class="fst-italic text-white">Turnos del día</h2>
+
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">id</th>
+                    <th scope="col">fecha</th>
+                    <th scope="col">horario</th>
+                    <th scope="col">Paciente</th>
+                    <th scope="col">Historia Clinica</th>
+
+                </tr>
+            </thead>
+            <tbody th:each="turno : ${turno}"
+                th:if="${turno.profesional.matricula == session.profesionalsession.matricula}">
+                <tr>
+                    <td th:text="${turno.idTurno}"></td>
+                    <td th:text="${#temporals.format(turno.fecha, 'dd-MM-yyyy')}"></td>
+                    <td th:text="${#temporals.format(turno.horario, 'HH:mm')}"></td>
+                    <td th:text="${turno.paciente.nombre}"></td>
+                    <td>
+                        <a class="mx-2" th:href="@{/hc/crear/__${turno.paciente.dni}__}"> crear </a>
+                        <a class="mx-2" th:href="@{/hc/listar/__${turno.paciente.dni}__}"> ver </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+    <footer th:replace="/fragments/footer :: footer"></footer>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="/js/calendario.js"></script>
 </body>
 
 </html>

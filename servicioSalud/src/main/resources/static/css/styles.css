@@ -43,6 +43,9 @@
   height: 23em;
 }
 
+
+
+/*ESTILO DE LAS TARJETAS DEL INDEX*/
 .especialidades {
   width: 65em;
   display: flex;
@@ -154,10 +157,16 @@
 /*ESTILO DEL REGISTRO*/
 .reg {
   grid-area: reg;
-  display: flex;
-  justify-content: center;
+  margin-top: 70px;
   align-items: center;
+  padding: .9em;
+  display: block;
 }
+/*ESTILO DEL  MOTOR DE BUSQUEDA Y ACORDEON*/
+.regContent{
+  margin-top: 5em;
+}
+
 
 /*ESTILO DEL CONTENEDOR 2*/
 .cont2 {

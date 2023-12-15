@@ -62,7 +62,6 @@ public class ProfesionalServicio implements UserDetailsService {
         profesionalRepositorio.save(profesional);
         // correoServicio.registroProfesional(profesional.getEmail(), profesional.getNombre());
         // correoServicio.altaProfesional(matricula);
-
     }
 
     public List<Profesional> listarProfesional() {
@@ -97,7 +96,6 @@ public class ProfesionalServicio implements UserDetailsService {
     }
 
     private void validar(String matricula, String dni, String nombre, String apellido, String email, String password, String password2, String domicilio, String telefono) throws MiException {
-
         if (matricula == null || matricula.isEmpty()) {
             throw new MiException("La matricula no puede ser nula o estar vacia");
         }
@@ -114,17 +112,19 @@ public class ProfesionalServicio implements UserDetailsService {
             throw new MiException("El email no puede ser nulo ni estar vacio");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("La contraseña no puede estar vacia y debe tener más de 5 caracteres");
+            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
         }
         if (!password.equals(password2)) {
-            throw new MiException("Las contraseñas no coinciden, verifica que sean iguales");
+            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
         if (domicilio == null || domicilio.isEmpty()) {
-            throw new MiException("El domicilio no puede ser nulo ni estar vacio");
+            throw new MiException("el domicilio no puede ser nulo ni estar vacio");
         }
+
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
-            throw new MiException("El telefono no puede ser nulo, estar vacio o tener menos de 6 digitos");
+            throw new MiException("el telefono no puede ser nulo ni estar vacio");
         }
+
     }
 
     private void validarModificar(String password, String password2, String domicilio, String telefono) throws MiException {

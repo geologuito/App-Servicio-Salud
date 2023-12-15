@@ -71,7 +71,7 @@ public class PacienteControlador {
 
             return "registroPaciente.html";
         }
-       // return "redirect:/";
+        // return "redirect:/";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
@@ -157,7 +157,7 @@ public class PacienteControlador {
     public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
 
         pacienteServicio.eliminarPaciente(dni);
-        return "redirect:/admin/dashboard"; // Falta vista para saber a donde va cuando elimina paciente
+        return "redirect:/admin/dashboard";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")

@@ -39,5 +39,4 @@ public class Paciente {
 
     @ManyToMany(mappedBy = "paciente", cascade = CascadeType.ALL)
     private List<Turno> turno;
-
 }

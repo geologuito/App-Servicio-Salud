@@ -34,7 +34,6 @@ public class AdminControlador {
     private HistoriaClinicaServicio historiaClinicaServicio;
     @Autowired
     private TurnoServicio turnoServicio;
-    
 
     @GetMapping("/registrar") // localhost:8080/admin/registrar
     public String registrar() {

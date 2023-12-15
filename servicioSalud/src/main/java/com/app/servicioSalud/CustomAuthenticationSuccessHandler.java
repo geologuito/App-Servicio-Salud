@@ -21,7 +21,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
             Authentication authentication) throws IOException, ServletException {
 
         Collection<? extends GrantedAuthority> authorities = authentication.getAuthorities();
-        System.out.println(paciente.getRol());
         if (authentication.getAuthorities().stream().anyMatch(a -> a.getAuthority().equals("ROLE_ADMIN"))) {
             response.sendRedirect("/admin/dashboard");
         } else if (authorities.stream().anyMatch(pr -> pr.getAuthority().equals("ROLE_PROFESIONAL"))) {
@@ -29,7 +28,6 @@ public class CustomAuthenticationSuccessHandler implements AuthenticationSuccess
         } else if (authorities.stream().anyMatch(pa -> pa.getAuthority().equals("ROLE_PACIENTE"))) {
             response.sendRedirect("/paciente/perfil");
         } else {
-            System.out.println(paciente.getRol());
             response.sendRedirect("/");
         }
     }

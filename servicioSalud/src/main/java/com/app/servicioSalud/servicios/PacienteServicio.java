@@ -135,13 +135,13 @@ public class PacienteServicio implements UserDetailsService {
             throw new MiException("El domicilio no puede ser nulo ni estar vacio");
         }
         if (telefono == null || telefono.isEmpty() || telefono.length() <= 6) {
-            throw new MiException("El telefono no puede ser nulo, estar vacio o tener menos de 6 digitos");
+            throw new MiException("el telefono no puede ser nulo ni estar vacio");
         }
         if (password == null || password.isEmpty() || password.length() <= 5) {
-            throw new MiException("La contraseña no puede estar vacia y debe tener más de 5 caracteres");
+            throw new MiException("la contraseña no puede estar vacia y debe tener más de 5 digitos");
         }
         if (!password.equals(password2)) {
-            throw new MiException("Las contraseñas no coinciden, verifica que sean iguales");
+            throw new MiException("las contraseñas no coinciden, verifica que sean iguales");
         }
     }
 

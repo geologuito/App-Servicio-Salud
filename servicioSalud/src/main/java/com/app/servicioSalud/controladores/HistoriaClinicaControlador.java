@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- *
- * @author EduRiu
- */
 @Controller
 @RequestMapping("/hc")
 public class HistoriaClinicaControlador {
@@ -71,14 +67,25 @@ public class HistoriaClinicaControlador {
 
     }
 
-    @GetMapping("/accion/{id}") // localhost:8080/paciente/registrar
+    @GetMapping("/listar/{id}")
+    public String ListarPorId(ModelMap modelo, HttpSession session, @PathVariable String id) {
+
+        List<HistoriaClinica> hc = historiaClinicaServicio.listarPorDNI(id);
+
+        modelo.addAttribute("hc", hc);
+
+        return "historiaClinicaPaciente";
+
+    }
+
+    @GetMapping("/accion/{id}")
     public String Accion(ModelMap modelo, HttpSession session, @PathVariable String id) {
 
         HistoriaClinica hc = historiaClinicaServicio.getOne(id);
 
         modelo.addAttribute("hc", hc);
 
-        return "listarConsulta";
+        return "listaHistoria";
 
     }
 

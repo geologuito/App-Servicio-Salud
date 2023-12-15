@@ -21,7 +21,7 @@
             <p class="text-white">ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
 
             <hr class="my-2">
-            <h2 class="fst-italic text-white">Paciente de Turno</h2>
+            <h2 class="fst-italic text-white"> Consulta </h2>
 
             <table class="table table-success table-striped table-hover h-25">
                 <thead>
@@ -44,16 +44,16 @@
             
             
             <form class="form-box" th:action="@{/hc/creada}" method="post">
-                <p class="title">Crear Historia</p>
+                <p class="title">Crear Consulta</p>
                 <div class="row text-white">
                     <div class="col-4 mb-3">
                         <label>Matricula profesional</label>
                         <input type=text class="form-control" th:value="${session.profesionalsession.matricula}"
-                            name="profesional_id">
+                            name="profesional_id" readonly>
                     </div>
                     <div class="col-4 mb-3">
                         <label>DNI paciente</label>
-                        <input type=text class="form-control" th:value="${paciente.dni}" name="paciente_id">
+                        <input type=text class="form-control" th:value="${paciente.dni}" name="paciente_id" readonly>
                     </div>
                     <div class="col-4 mb-3">
                         <label>Motivo de la visita</label>

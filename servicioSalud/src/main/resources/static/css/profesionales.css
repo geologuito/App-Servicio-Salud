@@ -1,4 +1,3 @@
-
 /*Estilo servicios*/
 
 #fondo {
@@ -177,7 +176,7 @@ h4{
     transition: 300ms;
 }
 .detalle p{
-    padding: 1em;
+    padding: 0.8em;
 }
 .card:hover{
     transform: scale(1.1);

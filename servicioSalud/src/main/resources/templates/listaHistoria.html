@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="/css/formulario.css">
     <link rel="stylesheet" href="/css/sidebar.css">
     <script src="https://kit.fontawesome.com/55f72b8182.js" crossorigin="anonymous"></script>
-    <title>Historial Clinico</title>
+    <title>Historia Clinica</title>
 </head>
 
 <body>
@@ -19,40 +19,37 @@
 
         <div class="panel">
 
-        
-            <p class="text-white">ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
-
+            <p class="text-white"><span th:text="${session.profesionalsession.matricula}" hidden></span></p>
 
             <section class="tabla">
-            <hr class="my-2">
-            <h2 class="fst-italic text-white">Historial Clínico</h2>
+                <hr class="my-2">
+                <h2 class="fst-italic text-white">Historia Clínica</h2>
 
-            <table class="table table-success table-striped table-hover h-25">
-                <thead>
-                    <tr>
-                        <th scope="col">Fecha</th>
-                        <th scope="col">Titulo</th>
-                        <th scope="col">Doctor</th>
-                        <th scope="col">Acciones</th>
-
-                    </tr>
-                </thead>
-                <tbody th:each="hc : ${hc}">
-                    <tr>
-                        <td th:text="${hc.alta}"></td>
-                        <td th:text="${hc.titulo}"></td>
-                        <td th:text="${hc.profesional.nombre}"></td>
-                        <td>
-                            <a th:href="@{/hc/accion/__${hc.id}__}"> ver </a>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+                <table class="table table-success table-striped table-hover h-25">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Paciente</th>
+                            <th scope="col">Motivo Consulta</th>
+                            <th scope="col">Diagnostico</th>
+                        </tr>
+                    </thead>
+                    <tbody th:each="hc : ${hc}"
+                        th:if="${hc.profesional.matricula == session.profesionalsession.matricula}">
+                        <tr>
+                            <td th:text="${hc.alta}"></td>
+                            <td th:text="${hc.paciente.apellido}"></td>
+                            <td th:text="${hc.titulo}"></td>
+                            <td th:text="${hc.dx}"></td>
+                            
+                        </tr>
+                    </tbody>
+                </table>
             </section>
-        </div> 
+        </div>
     </section>
 
-
+    <footer th:replace="/fragments/footer :: footer"></footer>
 </body>
 
 </html>

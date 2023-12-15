@@ -107,11 +107,6 @@
                                     <a class="mx-3" th:href="@{/paciente/modificar/__${paciente.dni}__}"><i class="fa-solid fa-pen " style="color: #1f1e1e;"></i></a>
                                     <a th:href="@{/paciente/eliminar/__${paciente.dni}__}" class="eliminar-paciente" data-dni="${paciente.dni}"><i class="fa-solid fa-trash " style="color: #1f1e1e;"></i></a>
                                 </td>
-
-                                <!-- <td>
-                                    <a class="mx-3" th:href="@{/paciente/modificar/__${paciente.dni}__}"><i class="fa-solid fa-pen " style="color: #1f1e1e;"></i></a>
-                                    <a th:href="@{/paciente/eliminar/__${paciente.dni}__}"><i class="fa-solid fa-trash " style="color: #1f1e1e;"></i></a>
-                                </td>-->
                             </tr>
                         </tbody>
                     </table>
@@ -262,24 +257,7 @@
                 });
             });
         </script>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
-                var linksEliminar = document.getElementsByClassName('eliminar-turno');
 
-                Array.from(linksEliminar).forEach(function (link) {
-                    link.addEventListener('click', function (event) {
-                        event.preventDefault();
-                        var idTurno = this.getAttribute('data-idTurno');
-                        var confirmacion = confirm('¿Estás seguro de eliminar el Turno?');
-
-                        if (confirmacion) {
-                            window.location.href = this.getAttribute('href');
-                        }
-                    });
-                });
-            });
-        </script>
 
     </body>
-
 </html>

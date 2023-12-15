@@ -75,6 +75,7 @@ public class ProfesionalControlador {
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
 
         if (profesional.getRol().toString().equals("ADMIN")) {
+
             return "redirect:/admin/dashboard";
         }
 
@@ -109,6 +110,7 @@ public class ProfesionalControlador {
         // Obtener el usuario actual
         Object usuario = session.getAttribute("adminsession");
         if (usuario == null) {
+
             usuario = session.getAttribute("profesionalsession");
         }
 

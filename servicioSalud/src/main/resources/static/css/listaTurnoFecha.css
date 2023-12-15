@@ -1,0 +1,53 @@
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-color: #f7f7f7;
+}
+
+/* Estilos de la tabla */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos del encabezado de la tabla */
+.table th {
+    background-color: #98a4df;
+    color: white;
+    padding: 15px;
+    text-align: left;
+}
+
+/* Estilos de las celdas de la tabla */
+.table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+
+/* Estilos para las filas impares */
+.table tbody tr:nth-child(odd) {
+    background-color: #f2f2f2;
+}
+
+/* Estilos para el enlace "Solicitar" */
+.table a {
+    display: inline-block;
+    padding: 8px 16px;
+    text-decoration: none;
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.table a:hover {
+    background-color: #45a049;
+}
