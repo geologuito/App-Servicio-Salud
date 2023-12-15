@@ -5,6 +5,7 @@ import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.enumeraciones.EspecialidadEnum;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -75,6 +76,7 @@ public class ProfesionalControlador {
         Profesional profesional = (Profesional) session.getAttribute("profesionalsession");
 
         if (profesional.getRol().toString().equals("ADMIN")) {
+
             return "redirect:/admin/dashboard";
         }
 
@@ -85,8 +87,6 @@ public class ProfesionalControlador {
         modelo.addAttribute("pacientes", pacientes); // trae la lista de pacientes
         modelo.addAttribute("profesional", profesional); // muestra los datos del prof del perfil
 
-        
-        
         return "panelProfesional";
     }
 
@@ -104,21 +104,52 @@ public class ProfesionalControlador {
 
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL','ROLE_ADMIN')")
     @GetMapping("/modificar/{matricula}")
-    public String modificarProfesional(@PathVariable String matricula, ModelMap modelo) {
+    public String modificarForm(@PathVariable String matricula, ModelMap modelo, HttpSession session) {
 
+        // Obtener el usuario actual
+        Object usuario = session.getAttribute("adminsession");
+
+        if (usuario == null) {
+
+            usuario = session.getAttribute("profesionalsession");
+        }
+
+        // Verificar el tipo de usuario y asignar el rol correspondiente
+        String rol = (usuario instanceof Admin) ? "ADMIN" : "PROFESIONAL";
+
+        // Agregar el usuario y su rol al modelo
+        modelo.put("usuario", usuario);
+        modelo.put("rol", rol);
+
+        // Obtener y agregar la información del profesional
         modelo.put("profesional", profesionalServicio.getOne(matricula));
+
         return "modificarProfesional";
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_PROFESIONAL','ROLE_ADMIN')")
     @PostMapping("/modificar/{matricula}")
     public String modificar(@PathVariable String matricula, String email, String password, String domicilio,
-            String telefono, ModelMap modelo, MultipartFile archivo) {
+            String telefono, ModelMap modelo, MultipartFile archivo, HttpSession session) {
         try {
+            // Obtener el usuario actual
+            Object usuario = session.getAttribute("adminsession");
 
+            if (usuario == null) {
+
+                usuario = session.getAttribute("profesionalsession");
+            }
+
+            // Verificar el tipo de usuario y asignar el rol correspondiente
+            String rol = (usuario instanceof Admin) ? "ADMIN" : "PROFESIONAL";
+            
+            System.out.println(rol);
+            // Modificar la información según el tipo de usuario
             profesionalServicio.modificarProfesional(archivo, matricula, email, password, password, domicilio,
                     telefono);
-            return "redirect:../perfil"; // Decidir donde va cuando modifica prof
+            return (rol.equals("ADMIN")) ? "redirect:/admin/dashboard" : "redirect:/profesional/perfil";
 
         } catch (MiException ex) {
 
@@ -127,13 +158,15 @@ public class ProfesionalControlador {
         }
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @GetMapping("/eliminar/{matricula}")
     public String eliminarProfesional(@PathVariable String matricula, ModelMap modelo) throws MiException {
 
         profesionalServicio.eliminarProfesional(matricula);
-        return "redirect:/index"; // Falta vista para saber a donde va cuando elimina prof
+        return "redirect:/admin/dashboard"; // Falta vista para saber a donde va cuando elimina prof
     }
 
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
     @DeleteMapping("/eliminar/{matricula}")
     public ResponseEntity<String> eliminarProfesional(@PathVariable String matricula) {
         try {

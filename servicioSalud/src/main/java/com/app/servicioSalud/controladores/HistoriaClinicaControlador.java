@@ -60,7 +60,7 @@ public class HistoriaClinicaControlador {
         return "redirect:/";
     }
 
-    @GetMapping("/listar") // localhost:8080/paciente/registrar
+    @GetMapping("/listar") 
     public String Listar(ModelMap modelo, HttpSession session) {
 
         List<HistoriaClinica> hc = historiaClinicaServicio.listarHC();
@@ -71,7 +71,18 @@ public class HistoriaClinicaControlador {
 
     }
 
-    @GetMapping("/accion/{id}") // localhost:8080/paciente/registrar
+    @GetMapping("/listar/{id}") 
+    public String ListarPorId(ModelMap modelo, HttpSession session,@PathVariable String id) {
+
+        List<HistoriaClinica> hc = historiaClinicaServicio.listarPorDNI(id);
+
+        modelo.addAttribute("hc", hc);
+
+        return "historiaClinicaPaciente";
+
+    }
+
+    @GetMapping("/accion/{id}") 
     public String Accion(ModelMap modelo, HttpSession session, @PathVariable String id) {
 
         HistoriaClinica hc = historiaClinicaServicio.getOne(id);
