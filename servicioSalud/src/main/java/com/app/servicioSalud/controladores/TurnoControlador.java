@@ -92,8 +92,6 @@ public class TurnoControlador {
     public String turnoOK(@PathVariable String id, HttpSession session) {
 
         Paciente paciente = (Paciente) session.getAttribute("pacientesession");
-        System.out.println(id.toString());
-
         turnoServicio.asignarPaciente(id, paciente);
 
         return "redirect:/";
