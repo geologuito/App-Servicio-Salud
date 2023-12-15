@@ -16,10 +16,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-/**
- *
- * @author EduRiu
- */
 @Controller
 @RequestMapping("/hc")
 public class HistoriaClinicaControlador {
@@ -32,7 +28,6 @@ public class HistoriaClinicaControlador {
 
     // @Autowired
     // private CorreoServicio correoServicio;
-
     @GetMapping("/crear/{id}") // localhost:8080/paciente/registrar
     public String registrar(ModelMap modelo, HttpSession session, @PathVariable String id) {
 
@@ -43,7 +38,7 @@ public class HistoriaClinicaControlador {
         modelo.addAttribute("profesional", profesional);
         modelo.addAttribute("paciente", paciente);
 
-        return "historiaClinica";
+        return "historiaclinica";
     }
 
     @PostMapping("/creada")
@@ -54,13 +49,14 @@ public class HistoriaClinicaControlador {
         System.out.println("antes del exito");
 
         historiaClinicaServicio.crearHC(profesional_id, paciente_id, titulo, dx, tratamiento);
-       // correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
+
+        // correoServicio.calificacionProfesional(correoPaciente, profesional_id.getMatricula(), paciente_id.getNombre(), paciente_id.getDni());
         System.out.println("creada con exito");
 
         return "redirect:/";
     }
 
-    @GetMapping("/listar") 
+    @GetMapping("/listar") // localhost:8080/paciente/registrar
     public String Listar(ModelMap modelo, HttpSession session) {
 
         List<HistoriaClinica> hc = historiaClinicaServicio.listarHC();
@@ -71,8 +67,8 @@ public class HistoriaClinicaControlador {
 
     }
 
-    @GetMapping("/listar/{id}") 
-    public String ListarPorId(ModelMap modelo, HttpSession session,@PathVariable String id) {
+    @GetMapping("/listar/{id}")
+    public String ListarPorId(ModelMap modelo, HttpSession session, @PathVariable String id) {
 
         List<HistoriaClinica> hc = historiaClinicaServicio.listarPorDNI(id);
 
@@ -82,7 +78,7 @@ public class HistoriaClinicaControlador {
 
     }
 
-    @GetMapping("/accion/{id}") 
+    @GetMapping("/accion/{id}")
     public String Accion(ModelMap modelo, HttpSession session, @PathVariable String id) {
 
         HistoriaClinica hc = historiaClinicaServicio.getOne(id);

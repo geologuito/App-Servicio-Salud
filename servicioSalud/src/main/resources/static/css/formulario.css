@@ -9,8 +9,8 @@ body {
     display: grid;
     grid-template: auto auto auto / 100% 0% 1fr;
     grid-template-areas:    "navb navb navb"
-                            "reg reg reg"
-                            "foot foot foot";
+        "reg reg reg"
+        "foot foot foot";
 }
 
 /*EN NAVBAR.CSS*/

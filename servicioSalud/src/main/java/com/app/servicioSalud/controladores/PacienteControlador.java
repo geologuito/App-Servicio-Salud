@@ -3,8 +3,7 @@ package com.app.servicioSalud.controladores;
 import com.app.servicioSalud.entidades.Admin;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
-import com.app.servicioSalud.enumeraciones.ObraSocialEnum;
-
+import com.app.servicioSalud.enumeraciones.ObraSocial;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -45,12 +44,13 @@ public class PacienteControlador {
     @PostMapping("/registro")
     public String registro(@RequestParam String dni, @RequestParam String nombre, @RequestParam String apellido,
             @RequestParam String email, @RequestParam String domicilio, @RequestParam String telefono,
-            @RequestParam String password, String password2, String edad, @RequestParam ObraSocialEnum obraSocial,
+            @RequestParam String password, String password2, String edad, @RequestParam ObraSocial obraSocial,
             ModelMap modelo, MultipartFile archivo) {
 
         try {
 
-            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2, edad);
+            pacienteServicio.registrar(archivo, dni, nombre, apellido, email, domicilio, telefono, password, password2,
+                    edad, obraSocial);
 
             modelo.put("exito", "Paciente Registrado!");
             return "redirect:/";
@@ -71,7 +71,7 @@ public class PacienteControlador {
 
             return "registroPaciente.html";
         }
-       // return "redirect:/";
+        // return "redirect:/";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_PACIENTE')")
@@ -90,8 +90,8 @@ public class PacienteControlador {
     }
 
     @ModelAttribute("obrasSociales")
-    public ObraSocialEnum[] obrasSociales() {
-        return ObraSocialEnum.values();
+    public ObraSocial[] obrasSociales() {
+        return ObraSocial.values();
     }
 
     @GetMapping("/listaPacientes")
@@ -157,7 +157,7 @@ public class PacienteControlador {
     public String eliminarPaciente(@PathVariable String dni, ModelMap modelo) throws MiException {
 
         pacienteServicio.eliminarPaciente(dni);
-        return "redirect:/admin/dashboard"; // Falta vista para saber a donde va cuando elimina paciente
+        return "redirect:/admin/dashboard";
     }
 
     @PreAuthorize("hasAnyRole('ROLE_ADMIN')")
