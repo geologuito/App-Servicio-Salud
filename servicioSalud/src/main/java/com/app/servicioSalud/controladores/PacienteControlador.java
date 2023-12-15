@@ -1,6 +1,6 @@
 package com.app.servicioSalud.controladores;
 
-import com.app.servicioSalud.entidades.Admin;
+
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +18,7 @@ import com.app.servicioSalud.servicios.ProfesionalServicio;
 import java.util.List;
 import javax.persistence.Tuple;
 import javax.servlet.http.HttpSession;
+import org.springframework.boot.autoconfigure.kafka.KafkaProperties.Admin;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -147,10 +148,7 @@ public class PacienteControlador {
 
         } catch (MiException ex) {
             modelo.put("error", ex.getMessage());
-
-         
-
-            return "modificarPaciente"; // mapear con html
+            return "modificarPaciente.html"; // mapear con html
 
         }
     }
