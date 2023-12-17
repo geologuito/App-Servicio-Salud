@@ -11,6 +11,17 @@
 </head>
 <body>
 
+    <p>ID de la Sesión: <span th:text="${session.profesionalsession.matricula}"></span></p>
+
+    <br>
+
+    <form th:action="@{/turno/citas}" method="post">
+        <label for="fecha">Fecha:</label>
+        <input type="date" id="fecha" name="fecha" required><br><br>
+
+        <button type="submit">buscar</button>
+    </form>
+
     <form th:action="@{/turno/citas}" method="post">
         <span class="space-button" th:text="${session.profesionalsession.matricula}" hidden></span>
         <!--contenedor para el calendario -->

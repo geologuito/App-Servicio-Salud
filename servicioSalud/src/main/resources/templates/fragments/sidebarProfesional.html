@@ -1,15 +1,15 @@
 <section>
-  <link rel="stylesheet" href="/css/sidebar.css">
-  <button class="toggle-btn" id="sidebar-toggle">☰ Perfil</button>
-  <div class="sidebar" id="sidebar">
-    <ul class="my-5">
-      <li><h5 class="fst-italic text-white" th:if="${session.profesionalsession != null}"
-        th:text=" ${session.profesionalsession.apellido} "></h5></li>
-        <li><a th:href="@{/profesional/modificar/__${profesional.matricula}__}">Actualizar datos</a></li>
-        <li><a th:href="@{/turno/buscarDia}">Ver Turnos </a></li>
-        <li><a th:href="@{/hc/listar}">Historial Clinico</a></li>
-    </ul>
+    <link rel="stylesheet" href="/css/sidebar.css">
+    <button class="toggle-btn" id="sidebar-toggle">☰ Perfil</button>
+    <div class="sidebar" id="sidebar">
+        <ul class="my-5">
+            <li><h5 class="fst-italic text-white" th:if="${session.profesionalsession != null}"
+                    th:text=" ${session.profesionalsession.apellido} "></h5></li>
+            <li><a th:href="@{/profesional/modificar/__${profesional.matricula}__}">Actualizar datos</a></li>
+            <li><a th:href="@{/turno/buscarDia}">Ver Turnos </a></li>
+            <li><a th:href="@{/hc/listar}">Historial Clinico</a></li>
+        </ul>
+    </div>
 </div>
-  </div>
-  <script src="/js/sidebar.js"></script>
+<script src="/js/sidebar.js"></script>
 </section>

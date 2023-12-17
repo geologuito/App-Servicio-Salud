@@ -29,5 +29,4 @@ public class Admin {
 
     @OneToOne
     private Imagen imagen;
-
 }
