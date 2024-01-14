@@ -5,6 +5,9 @@ import com.app.servicioSalud.entidades.Imagen;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.AdminRepositorio;
+
+import lombok.NonNull;
+
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.http.HttpSession;
@@ -68,11 +71,11 @@ public class AdminServicio implements UserDetailsService {
 
     }
 
-    public Admin getOne(String id) {
+    public Admin getOne(@NonNull String id) {
         return adminRepositorio.getReferenceById(id);
     }
 
-    public void eliminarAdmin(String id) throws MiException {
+    public void eliminarAdmin(@NonNull String id) throws MiException {
         adminRepositorio.deleteById(id);
     }
 

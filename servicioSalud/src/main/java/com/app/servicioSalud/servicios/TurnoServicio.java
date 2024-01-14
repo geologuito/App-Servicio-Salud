@@ -5,6 +5,9 @@ import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.entidades.Turno;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.TurnoRepositorio;
+
+import lombok.NonNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.List;
@@ -38,7 +41,7 @@ public class TurnoServicio {
         }
     }
 
-    public void asignarPaciente(String id, Paciente paciente_id) {
+    public void asignarPaciente(@NonNull String id, Paciente paciente_id) {
 
         Optional<Turno> respuesta = turnoRepositorio.findById(id);
 
@@ -75,11 +78,11 @@ public class TurnoServicio {
         return turnoRepositorio.findAll();
     }
 
-    public Turno getOne(String idTurno) {
+    public Turno getOne(@NonNull String idTurno) {
         return turnoRepositorio.getReferenceById(idTurno);
     }
 
-    public void eliminarTurno(String idTurno) throws MiException {
+    public void eliminarTurno(@NonNull String idTurno) throws MiException {
         turnoRepositorio.deleteById(idTurno);
     }
 

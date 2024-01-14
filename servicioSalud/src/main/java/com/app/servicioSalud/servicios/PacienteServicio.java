@@ -12,6 +12,9 @@ import javax.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.app.servicioSalud.repositorios.PacienteRepositorio;
+
+import lombok.NonNull;
+
 import javax.servlet.http.HttpSession;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -66,7 +69,7 @@ public class PacienteServicio implements UserDetailsService {
 
     }
 
-    public void modificarPaciente(MultipartFile archivo, String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
+    public void modificarPaciente(MultipartFile archivo,@NonNull String dni, String email, String domicilio, String telefono, String password, String password2) throws MiException {
 
         modificarValidacion(domicilio, telefono, password, password2);
 
@@ -145,11 +148,11 @@ public class PacienteServicio implements UserDetailsService {
         }
     }
 
-    public Paciente getOne(String id) {
+    public Paciente getOne(@NonNull String id) {
         return pacienteRepositorio.getReferenceById(id);
     }
 
-    public void eliminarPaciente(String id) throws MiException {
+    public void eliminarPaciente(@NonNull String id) throws MiException {
         pacienteRepositorio.deleteById(id);
     }
 

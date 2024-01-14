@@ -3,6 +3,9 @@ package com.app.servicioSalud.servicios;
 import com.app.servicioSalud.entidades.Imagen;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.ImagenRepositorio;
+
+import lombok.NonNull;
+
 import java.util.List;
 import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -67,7 +70,7 @@ public class ImagenServicio {
 
     }
 
-    public void eliminar(String id) throws MiException {
+    public void eliminar(@NonNull String id) throws MiException {
         imagenRepositorio.deleteById(id);
     }
 

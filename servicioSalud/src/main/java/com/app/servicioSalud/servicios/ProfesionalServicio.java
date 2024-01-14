@@ -6,6 +6,9 @@ import com.app.servicioSalud.enumeraciones.Especialidad;
 import com.app.servicioSalud.enumeraciones.RolEnum;
 import com.app.servicioSalud.excepciones.MiException;
 import com.app.servicioSalud.repositorios.ProfesionalRepositorio;
+
+import lombok.NonNull;
+
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -70,7 +73,7 @@ public class ProfesionalServicio implements UserDetailsService {
 
     }
 
-    public void modificarProfesional(MultipartFile archivo, String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
+    public void modificarProfesional(MultipartFile archivo,@NonNull String matricula, String email, String password, String password2, String domicilio, String telefono) throws MiException {
 
         validarModificar(password, password2, domicilio, telefono);
 
@@ -143,11 +146,11 @@ public class ProfesionalServicio implements UserDetailsService {
         }
     }
 
-    public Profesional getOne(String id) {
+    public Profesional getOne(@NonNull String id) {
         return profesionalRepositorio.getReferenceById(id);
     }
 
-    public void eliminarProfesional(String id) throws MiException {
+    public void eliminarProfesional(@NonNull String id) throws MiException {
         profesionalRepositorio.deleteById(id);
     }
 

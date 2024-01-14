@@ -4,6 +4,9 @@ import com.app.servicioSalud.entidades.HistoriaClinica;
 import com.app.servicioSalud.entidades.Paciente;
 import com.app.servicioSalud.entidades.Profesional;
 import com.app.servicioSalud.repositorios.HistoriaClinicaRepositorio;
+
+import lombok.NonNull;
+
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -33,7 +36,7 @@ public class HistoriaClinicaServicio {
 
     }
 
-    public void modificacionHC(String id, Profesional profesional_id, Paciente paciente_id, String titulo, String dx,
+    public void modificacionHC(@NonNull String id, Profesional profesional_id, Paciente paciente_id, String titulo, String dx,
             String tratamiento) {
 
         Optional<HistoriaClinica> respuesta = historiaClinicaRepositorio.findById(id);
@@ -64,11 +67,11 @@ public class HistoriaClinicaServicio {
         return hc;
     }
 
-    public HistoriaClinica getOne(String id) {
+    public HistoriaClinica getOne(@NonNull String id) {
         return historiaClinicaRepositorio.getReferenceById(id);
     }
 
-    public void modificacionEstado(String id) {
+    public void modificacionEstado(@NonNull String id) {
 
         Optional<HistoriaClinica> respuesta = historiaClinicaRepositorio.findById(id);
 
