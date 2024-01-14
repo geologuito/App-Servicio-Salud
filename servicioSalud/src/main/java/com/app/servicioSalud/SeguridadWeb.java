@@ -40,21 +40,18 @@ public class SeguridadWeb extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .authorizeRequests()
-                .antMatchers("/admin").hasRole("ADMIN")
-                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
-                .antMatchers("/paciente/**").hasRole("PACIENTE")
-                .antMatchers("/profesional/**").hasRole("PROFESIONAL")
-                .and().formLogin()
+                .authorizeRequests(requests -> requests
+                        .antMatchers("/admin").hasRole("ADMIN")
+                        .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
+                        .antMatchers("/paciente/**").hasRole("PACIENTE")
+                        .antMatchers("/profesional/**").hasRole("PROFESIONAL")).formLogin(login -> login
                 .loginPage("/login")
                 .loginProcessingUrl("/logincheck")
                 .usernameParameter("email")
                 .passwordParameter("password")
-                .successHandler(new CustomAuthenticationSuccessHandler())
-                .and().logout()
+                .successHandler(new CustomAuthenticationSuccessHandler())).logout(logout -> logout
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .and().csrf().disable();
+                .logoutSuccessUrl("/")).csrf(csrf -> csrf.disable());
 
     }
 

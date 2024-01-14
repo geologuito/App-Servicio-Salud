@@ -24,23 +24,20 @@ public class SeguridadProfesional extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.authorizeRequests()
+        http.authorizeRequests(requests -> requests
                 .antMatchers("/profesional/**").hasRole("PROFESIONAL")
-                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
-                .and()
-            .formLogin()
-                .loginPage("/profesional/login")
-                .loginProcessingUrl("/logincheck")
-                .usernameParameter("email")
-                .passwordParameter("password")
-                .defaultSuccessUrl("/profesional/perfil")
-                .permitAll()
-                .and()
-            .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessUrl("/")
-                .permitAll()
-                .and()
-            .csrf().disable();
+                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll())
+                .formLogin(login -> login
+                        .loginPage("/profesional/login")
+                        .loginProcessingUrl("/logincheck")
+                        .usernameParameter("email")
+                        .passwordParameter("password")
+                        .defaultSuccessUrl("/profesional/perfil")
+                        .permitAll())
+                .logout(logout -> logout
+                        .logoutUrl("/logout")
+                        .logoutSuccessUrl("/")
+                        .permitAll())
+                .csrf(csrf -> csrf.disable());
     }
 }

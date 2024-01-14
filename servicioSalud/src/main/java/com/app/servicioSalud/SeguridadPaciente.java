@@ -13,33 +13,33 @@ import org.springframework.core.annotation.Order;
 @Configuration
 @Order(102)
 public class SeguridadPaciente extends WebSecurityConfigurerAdapter {
-    @Autowired
-    private PacienteServicio pacienteServicio;
+        @Autowired
+        private PacienteServicio pacienteServicio;
 
-    @Override
-    public void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(pacienteServicio)
-                .passwordEncoder(new BCryptPasswordEncoder());
-    }
+        @Override
+        public void configure(AuthenticationManagerBuilder auth) throws Exception {
+                auth.userDetailsService(pacienteServicio)
+                                .passwordEncoder(new BCryptPasswordEncoder());
+        }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-                .authorizeRequests()
-                .antMatchers("/paciente/**").hasRole("PACIENTE")
-                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll()
-                .and().formLogin()
-                        .loginPage("/paciente/login")
-                        .loginProcessingUrl("/logincheck")
-                        .usernameParameter("email")
-                        .passwordParameter("password")
-                        .defaultSuccessUrl("/paciente/perfil")
-                        .permitAll()
-                .and().logout()
-                        .logoutUrl("/logout")
-                        .logoutSuccessUrl("/")
-                        .permitAll()
-                .and().csrf()
-                        .disable();
-    }
+        @Override
+        protected void configure(HttpSecurity http) throws Exception {
+                http
+                                .authorizeRequests(requests -> requests
+                                                .antMatchers("/paciente/**").hasRole("PACIENTE")
+                                                .antMatchers("/css/", "/js/", "/img/*", "/**").permitAll())
+                                .formLogin(login -> login
+                                                .loginPage("/paciente/login")
+                                                .loginProcessingUrl("/logincheck")
+                                                .usernameParameter("email")
+                                                .passwordParameter("password")
+                                                .defaultSuccessUrl("/paciente/perfil")
+                                                .permitAll())
+                                .logout(logout -> logout
+                                                .logoutUrl("/logout")
+                                                .logoutSuccessUrl("/")
+                                                .permitAll())
+                                .csrf(csrf -> csrf
+                                                .disable());
+        }
 }
